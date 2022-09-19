@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="dao.ExperienceMapper">
+
+	<select id="exDisableDates" parameterType="java.util.Map" resultType="String">
+		<![CDATA[ select a.resDate from (select exCode, resDate, sum(exPeople) p from exRemain where exCode=#{exCode} group by exCode, resDate) a join experience b on a.exCode= b.exCode where b.exPeople-p <#{people}]]>
+	</select>
+
+
+<!-- 체험 등록  -->
+	<insert parameterType="com.java.exfile.dto.ExFileDto" id="subImgUpload">
+		insert into ExFileList(fileCode, fileName, filePath, fileSize, exCode) values(seq_fileList_num.nextval+1808, #{fileName}, #{filePath}, #{fileSize},#{exCode}) 
+	</insert>
+
+	<select parameterType="String" id="memberCode" resultType="int">
+		select memberCode from member where email = #{email} 
+	</select>
+
+	<insert parameterType="com.java.experience.dto.ExperienceDto" id="exHostRegister">
+		insert into experience 
+		(exCode, memberCode, exName, exPeople,exStartDate, exEndDate,exTime,exPrice,exAddress,exExplain,exApproval,exBank,exAccount,exRegDate, houseCode)
+		values(experience_exCode_seq.nextval+1808, 
+		#{memberCode},
+		#{exName},
+		#{exPeople},
+		#{exStartDate, jdbcType=DATE},
+		#{exEndDate,jdbcType=DATE},
+		#{exTime},
+		#{exPrice},
+		#{exAddress, jdbcType=VARCHAR},
+		#{exExplain},
+		#{exApproval},
+		#{exBank},
+		#{exAccount},
+		#{exRegDate},
+		#{houseCode}) 
+	</insert>
+	
+	<insert parameterType="com.java.exfile.dto.ExFileDto" id="exMainImgUpload">
+		insert into ExFileList(fileCode, fileName, mainImgName, filePath, fileSize, exCode) values(exfileList_fileCode_seq.nextval+1808, #{mainImgName} ,#{mainImgName}, #{filePath}, #{fileSize}, #{exCode}) 
+	</insert>
+	
+	<select id="exCode" resultType="int">
+		select max(exCode) from experience
+	</select>
+	
+	<select id="hostChkList" parameterType="int" resultType="com.java.host.dto.HostDto">
+		select * from house where memberCode=#{memberCode}
+	</select>
+	
+<!-- 후기작성  -->
+	
+	<!-- 이 페이지의 리뷰갯수 -->
+	<select id="reviewCnt" parameterType="int" resultType="int">
+		 select count(*) from exReview inner join exReserve on exReview.exReserveCode = exReserve.exReserveCode and exReserve.exCode = #{exCode} 
+		
+	</select>
+	
+	<!-- <select id="reviewCnt" resultType="int">
+		select count(*) from exReview
+	</select> -->
+	
+	<select id="reviewList" parameterType="java.util.Map" resultType="com.java.exreview.dto.ExReviewListDto">
+		<![CDATA[
+		SELECT * FROM 
+		(select rownum as rnum, A.* from 
+		(select exReview.*, experience.exCode, member.email from exReview inner join exReserve on exReview.exReserveCode = exReserve.exReserveCode inner join experience on exReserve.exCode = experience.exCode and exReserve.exCode=#{exCode} inner join member on exReview.memberCode = member.memberCode ORDER BY exReview.revDate Desc) A) b WHERE b.rnum >=#{startRow} and b.rnum <=#{endRow}
+		]]>
+	</select>
+<!-- 이 사람이 이 체험에 예약했는지 갯수 가져오기  -->
+	<select id="exReserveCodeCnt" parameterType="java.util.Map" resultType="int">
+		select count(*) from exReserve where memberCode=#{memberCode} and exCode=#{exCode}
+	</select>
+<!-- 예약번호 가져오기 댓글 -->
+	<select id="exReserveCode" parameterType="java.util.Map" resultType="com.java.exreserve.dto.ExReserveDto">
+		select exReserveCode from exReserve where exCode=#{exCode} and memberCode=#{memberCode}
+	</select>
+<!-- 리뷰 테이블에 존재하는 예약번호인지 확인 -->
+	<select id="reviewChk" parameterType="int" resultType="int">
+		select count(*) from exReview where exReserveCode=#{exReserveCode}
+	</select>
+	
+	<insert id="writeReview" parameterType="com.java.exreview.dto.ExReviewDto" >
+		insert into exReview(exReserveCode, memberCode, revDate, revContent, revRate) values(#{exReserveCode}, #{memberCode}, #{revDate}, #{revContent}, #{revRate})
+	</insert>
+	
+	<select id="exReviewUpdate" parameterType="java.util.Map" resultType="com.java.exreview.dto.ExReviewDto">
+		select * from exReview where memberCode=#{memberCode} and exReserveCode=#{exReserveCode}
+	</select>
+	
+	<update id="exReviewUpdateOk" parameterType="com.java.exreview.dto.ExReviewDto">
+		update exReview set revDate=#{revDate}, revContent=#{revContent}, revRate=#{revRate} where memberCode=#{memberCode}
+	</update>
+	
+	<delete id="exReviewDelete" parameterType="int">
+		delete from exReview where exReserveCode=#{exReserveCode}
+	</delete>
+	
+	<!--체험 페이지  -->
+	<select id="exPage" parameterType="int" resultType="com.java.experience.dto.ExperienceDto">
+		select * from experience where exCode=#{exCode}
+	</select>
+	
+	<select id="exPageImgList" parameterType="java.util.Map" resultType="com.java.exfile.dto.ExFileDto">
+		select * from exFileList where exCode=#{exCode}
+	</select>
+	<!-- 12/27 수정 -->
+	<select id="exHostInfo" parameterType="int" resultType="com.java.member.dto.MemberDto">
+		select member.* from member,experience where experience.memberCode = member.memberCode and exCode=#{exCode}
+	</select>
+	
+	<!-- 체험예약 -->
+	<select id="exPayment" parameterType="java.util.Map" resultType="int">
+		select exPrice*#{exPeople} from experience where exCode = #{exCode}
+	</select>
+	
+	<select id="getPoint" parameterType="String" resultType="int">
+		select point from member where email=#{email}
+	</select>
+	
+	<insert id= "insertExReserve" parameterType="com.java.exreserve.dto.ExReserveDto">
+		insert into exReserve(exReserveCode, memberCode, exCode, exPeople, reserveDate, exPayment, state, exDate) values(exReserve_exReserveCode_seq.nextval, #{memberCode}, #{exCode}, #{exPeople}, #{reserveDate}, #{exPayment}, #{state}, #{exDate})
+	</insert>
+	
+	<select id="getExReserveCode" parameterType="java.util.Map" resultType="int">
+		 select exReserveCode from exReserve where exCode=#{exCode} and memberCode=#{memberCode} and exDate=#{exDate} 
+	</select>
+
+	
+	<!-- 포인트 업데이트 -->
+	<update id="pointUpdate" parameterType="com.java.member.dto.MemberDto">
+		update member set point=#{plusPoint} where memberCode=#{memberCode}
+	</update>
+	
+	<insert id="resPointUp" parameterType="com.java.guestdelluna.dto.PointAccumulate">
+		insert into pointAccumulate (accuCode, membercode, accuPlace, accuDate, accuPoint) values(seq_accuCode_num.nextval,#{memberCode},#{accuPlace},#{accuDate},#{accuPoint})
+	</insert>
+	
+	<insert id="usePointUp" parameterType="com.java.guestdelluna.dto.PointUse">
+		insert into pointUse (useCode, memberCode, usePlace, useDate, usePoint) values(POINTUSE_USECODE_SEQ.nextval,#{memberCode},#{usePlace},#{useDate},#{usePoint})
+	</insert>
+	
+	<!-- 메세지 보관함 -->
+	<insert id="message" parameterType="com.java.guestdelluna.dto.MsgDto">
+		insert into message (msgCode, memberCode, msgContent, msgDate, msgCheck) values(message_msgCode_seq.nextval, #{memberCode},#{msgContent},#{msgDate},#{msgCheck})
+	</insert>
+	
+	<!-- 달력 체험 가능 인원 x-->
+	<select id="reserveList" parameterType="java.util.Map" resultType="com.java.exreserve.dto.ExReserveDto">
+		select exPeople from exReserve where exCode=#{exCode} and exDate=#{exDate}
+	</select>
+	
+	<!-- 하루에 수용 가능한 인원 x-->
+	<select id="getPeople" parameterType="int" resultType="int">
+		select exPeople from experience where exCode=#{exCode}
+	</select>
+	
+	<!-- 달력 !!! -->
+	<select id="getExRemain" parameterType="int" resultType="com.java.exremain.dto.ExRemainDto">
+		select * from exRemain where exCode=#{exCode}
+	</select>
+	
+	<insert id="insertExRemain" parameterType="java.util.Map">
+		insert into exRemain (resDate, exPeople,exCode) values(#{exDate},#{exPeople},#{exCode})
+	</insert>
+	
+	<select id="getMemberInfo" resultType="com.java.member.dto.MemberDto">
+		select * from member where email=#{email}
+	</select>
+	
+	<!-- 체험 메인 -->
+	<select id="searchMainEx" resultType="com.java.experience.dto.ExperienceMainDto">
+	<![CDATA[
+		select exName,exCode,exPrice, RevRate, revCount from(
+    		select h.*, rownum rn from (
+        		select a.*, nvl(b.revRate,0) revRate, b.revCount from (experience) a
+        		left outer join (select exCode, round(avg(revRate),2) revRate, count(exCode) revCount 
+        		from (select exReserve.exCode, revRate from exReserve, exReview where exReserve.exReserveCode=exReview.exReservecode) a group by exCode) b
+        		on a.exCode=b.exCode  where a.exApproval ='승인완료'  order by exregDate desc) h ) where rn>=1 and rn<=4
+     ]]>
+	</select>
+	
+	<!-- 게하 메인 -->
+	<select id="searchMainGh" resultType="com.java.experience.dto.GuestHouseMainDto">
+	<![CDATA[
+		 select houseName,houseCode,Price, RevRate, revCount from(
+    		select h.*, rownum rn from (
+        		select a.*, nvl(b.revRate,0) revRate, b.revCount from (house) a
+        		left outer join (select houseCode, round(avg(revRate),2) revRate, count(houseCode) revCount 
+        		from (select Reservation.houseCode, revRate from Reservation, Review where Reservation.ReserveCode=Review.Reservecode) a group by houseCode) b
+        		on a.houseCode=b.houseCode where a.ApprovalStatus ='승인완료'  order by houseRegDate desc) h ) where rn>=1 and rn<=4
+     ]]>
+	</select>
+	
+</mapper>

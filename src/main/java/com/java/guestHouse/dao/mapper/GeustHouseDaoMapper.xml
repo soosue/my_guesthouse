@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.GuestHouseMapper">
+
+	<select id="guestHouseRead" resultType="com.java.host.dto.HostDto">
+		select * from house where houseCode=#{houseCode}
+	</select>
+	
+	<select id="guestHouseImgList" parameterType="java.util.Map" resultType="com.java.file.dto.FileDto">
+		select * from filelist where houseCode=#{houseCode}
+	</select>
+	
+	<select id="getMemberCode" parameterType="String" resultType="int">
+		select membercode from member where email=#{email}
+	</select>
+
+	<select id="getPrice" resultType="int">
+		select price from house where houseCode=#{houseCode}
+	</select>
+	
+	<select id="getHostMemberCode" resultType="int">
+		select membercode from house where houseCode=#{houseCode}
+	</select>
+	
+	<select id="getHostInfo" resultType="com.java.host.dto.HostDto">
+		select * from house where houseCode=#{houseCode}
+	</select>
+
+	<select id="getMemberPoint" resultType="int">
+		select point from member where email=#{email}
+	</select>
+	
+	<select id="getHost" resultType="com.java.member.dto.MemberDto">
+		select * from member where memberCode=#{hostCode}
+	</select>
+	
+	<select id="getHouseName" resultType="String">
+		select houseName from house where houseCode=#{houseCode}
+	</select>
+	
+	<insert id="insertReserveInfo" parameterType="com.java.guestReserve.dto.GuestReserveDto">
+		insert into 
+		RESERVATION(reserveCode,memberCode,houseCode,reserveDate,checkIn,checkOut,state,payment,people)
+		values(seq_reserveCode_num.nextval,#{memberCode},#{houseCode},#{reserveDate},#{checkIn},#{checkOut},#{state},#{payment},#{people})
+	</insert>
+	
+	<select id="getReserveCode" parameterType="java.util.Map" resultType="int">
+		select reserveCode from RESERVATION where houseCode=#{houseCode} and memberCode=#{memberCode} and checkIn=#{checkIn}
+	</select>
+	
+	<update id="updatePoint" parameterType="java.util.Map" >
+		update member set point =#{memberPoint} where memberCode=#{memberCode}
+	</update>
+	
+	<insert id="insertResPoint" parameterType="com.java.guestdelluna.dto.PointAccumulate">
+		insert into
+		POINTACCUMULATE(accuCode,memberCode,accuPlace,accuDate,accuPoint)
+		values(seq_accuCode_num.nextval,#{memberCode},#{accuPlace},#{accuDate},#{accuPoint})
+	</insert>
+	
+	<insert id="insertUsePoint" parameterType="com.java.guestdelluna.dto.PointUse">
+		insert into
+		POINTUSE(useCode,memberCode,usePlace,useDate,usePoint)
+		values(seq_useCode_num.nextval,#{memberCode},#{usePlace},#{useDate},#{usePoint})
+	</insert>
+	
+	<insert id="insertRemain" parameterType="java.util.Map">
+		insert into
+		REMAIN(resDate,people,houseCode)
+		values(#{resDate},#{people},#{houseCode})
+	</insert>
+	
+	<select id="getRemain" parameterType="int" resultType="com.java.guestReserve.dto.RemainDto">
+		select resDate,sum(people) as people from remain where houseCode=#{houseCode} group by resDate
+	</select>
+	
+	<select id="getMemberInfo" resultType="com.java.member.dto.MemberDto">
+		select * from member where email=#{email}
+	</select>
+	
+	<insert id="insertMsg" parameterType="com.java.guestdelluna.dto.MsgDto">
+		insert into
+		message(msgCode,memberCode,msgContent,msgDate,msgCheck)
+		values(seq_msgCode_num.nextval,#{memberCode},#{msgContent},#{msgDate},#{msgCheck})
+	</insert>
+	
+	<select id="reviewCnt" parameterType="int" resultType="int">
+		select count(*) from REVIEW 
+		inner join RESERVATION on REVIEW.RESERVECODE=RESERVATION.RESERVECODE 
+		and RESERVATION.HOUSECODE=#{houseCode}
+	</select>
+	
+	<select id="reviewList" parameterType="java.util.Map" resultType="com.java.guestReserve.dto.GHouseReviewListDto">
+		<![CDATA[
+		SELECT * FROM 
+		(select rownum as rnum, A.* from 
+		(select REVIEW.*, HOUSE.HOUSECODE, member.email from REVIEW 
+		inner join RESERVATION on REVIEW.RESERVECODE = RESERVATION.RESERVECODE 
+		inner join HOUSE on RESERVATION.HOUSECODE = HOUSE.HOUSECODE and RESERVATION.HOUSECODE=#{houseCode} 
+		inner join member on REVIEW.memberCode = member.memberCode ORDER BY REVIEW.revDate Desc) A) b 
+		WHERE b.rnum >=#{startRow} and b.rnum <=#{endRow}
+		]]>
+	</select>
+	
+	<select id="reserveCodeCnt" parameterType="java.util.Map" resultType="int">
+		select count(*) from RESERVATION where memberCode=#{memberCode} and HOUSECODE=#{houseCode}
+	</select>
+	
+	<select id="reserveCode" parameterType="java.util.Map" resultType="com.java.guestReserve.dto.GuestReserveDto">
+		select reserveCode from RESERVATION where HOUSECODE=#{houseCode} and memberCode=#{memberCode}
+	</select>
+	
+	<select id="reviewChk" parameterType="int" resultType="int">
+		select count(*) from REVIEW where reserveCode=#{reserveCode}
+	</select>
+	
+	<insert id="writeReview" parameterType="com.java.guestdelluna.dto.HouseReviewDto">
+		insert into REVIEW(RESERVECODE, memberCode, revDate, revContent, revRate) 
+		values(#{reserveCode}, #{memberCode}, #{revDate}, #{revContent}, #{revRate})
+	</insert>
+	
+	<select id="reviewUpdate" parameterType="java.util.Map" resultType="com.java.guestdelluna.dto.HouseReviewDto">
+		select * from REVIEW where memberCode=#{memberCode} and RESERVECODE=#{reserveCode}
+	</select>
+	
+	<update id="reviewUpdateOk" parameterType="com.java.guestdelluna.dto.HouseReviewDto">
+		update REVIEW set RESERVECODE=#{reserveCode}, revDate=#{revDate}, revContent=#{revContent}, revRate=#{revRate}
+		where memberCode=#{memberCode}
+	</update>
+	
+	<delete id="reviewDelete" parameterType="int">
+		delete from REVIEW where RESERVECODE=#{reserveCode}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+

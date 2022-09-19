@@ -1,0 +1,100 @@
+@charset "UTF-8";
+
+html{
+	font-size: 16px;
+}
+.notice h3, .bot h3{
+	font-weight: bold;
+	margin-top:3rem;
+	margin-bottom: 2rem;
+}
+
+body{
+	color: #484848;
+}
+
+#wrap{
+	margin-bottom: 1rem;
+}
+
+.rePage{
+	margin: auto;
+	margin-top: 5rem;
+	margin-bottom: 5rem;
+	width: 70rem;
+}
+
+.rePage > p{
+	font-weight:bold;
+	font-size: 2rem;
+}
+
+.top, .mid, .bot{
+	margin-bottom: 2rem;
+}
+
+
+
+.guestHouse{
+	width: 70rem; 
+	/* height:12rem;  */
+	margin-bottom: 2rem; margin-top: 3rem; overflow: hidden;
+}
+
+#explain{
+	/* width:45rem; height: 12rem;  */
+	display: inline-block; float: left;
+	width: 40rem; 
+}
+
+#houseName{
+	font-weight: bold;
+	font-size: 1.5rem;
+	margin-top: 0rem;
+}
+
+#ghImg{
+	display: inline-block;  /* width:15rem; height: 12rem;  */
+	width: 22rem;
+	float: right;
+}
+
+.reserve{
+	margin-bottom: 2px;
+}
+
+#people,#checkIn,#checkOut{
+	margin-top: 0.6rem;
+	margin-left: 0.3rem;
+}
+
+#total{
+	margin-top:2rem;
+	font-weight: bold;
+	font-size: 1.1rem;
+}
+
+#paySelect, #pointId{
+	width: 4rem;
+	display: inline; float: left;
+	margin-top: 0.3rem;
+}
+
+#payment{
+	padding: 0.3rem 0.6rem;
+	border-radius: 0.2rem;
+	margin-left: 1rem;
+}
+
+.notice{
+	margin-top: 3rem;
+}
+
+
+#pay{
+	margin-top: 3rem;
+}
+
+
+
+

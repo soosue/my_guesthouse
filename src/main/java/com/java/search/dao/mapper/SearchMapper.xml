@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.searchMapper">
+
+	<select id="overlay" parameterType="java.util.Map" resultType="com.java.host.dto.HostImgDto">
+		
+
+		select a.houseCode, houseName, people, revRate, revCount <if test="memberCode!=null">, c.memberCode zzimed</if> from 
+		
+		(select houseName,houseCode,people from house) a
+		
+		left outer join
+		
+		(select houseCode, round(nvl(avg(revRate),0),2) revRate, count(houseCode) revCount from reservation rs, review r where rs.reserveCode= r.reserveCode group by houseCode) b
+		
+		on a.houseCode= b.houseCode
+		
+		<if test="memberCode!=null">
+		left outer join wishList c
+		on a.houseCode= c.houseCode
+		and c.memberCode=#{memberCode}
+		</if>
+		
+		where a.houseCode=#{houseCode}
+	
+	</select>
+	<select id="exOverlay" parameterType="java.util.Map" resultType="com.java.experience.dto.ExperienceImgDto">
+		
+
+		select a.exCode, exName, exPeople, revRate, revCount <if test="memberCode!=null">, c.memberCode zzimed</if> from 
+		
+		(select exName,exCode,exPeople from experience) a
+		
+		left outer join
+		
+		(select exCode, round(nvl(avg(revRate),0),2) revRate, count(exCode) revCount from exReserve rs, exReview r where rs.exReserveCode= r.exReserveCode group by exCode) b
+		
+		on a.exCode= b.exCode
+		
+		<if test="memberCode!=null">
+		left outer join exWishList c
+		on a.exCode= c.exCode
+		and c.memberCode=#{memberCode}
+		</if>
+		
+		where a.exCode=#{exCode}
+	
+	</select>
+
+
+
+	<select id="getHouseImg" parameterType="int" resultType="com.java.file.dto.FileDto">
+		select * from fileList where houseCode=#{value}
+	</select>
+
+	<select id="getExImg" parameterType="int" resultType="com.java.exfile.dto.ExFileDto">
+		select * from exFileList where exCode=#{value}
+	</select>
+
+
+	<select id="getCount" parameterType="java.util.Map" resultType="com.java.search.dto.GetCountDto">
+		<![CDATA[
+			select count(*) count, max(price) max, min(price) min from house h
+								where houseCode not in (
+												select houseCode from (
+																		select a.*, house.people-p remain from (
+																													select houseCode, resDate, sum(people) p from remain
+																														where resDate >= #{checkIn} and resDate < #{checkOut}
+																														group by houseCode, resDate order by houseCode, resDate
+																												) a, house where a.houseCode=house.houseCode
+																		) where remain < #{people} group by houseCode
+														) and h.people >=#{people} and approvalStatus='승인완료'
+		]]>
+		
+		<if test="localSplit!=null">
+			<foreach collection="localSplit" item="item" open="and (" separator="or" close=")">
+				local=#{item}
+			</foreach>
+		</if>
+		<if test="searchHouseName!=null">
+			and houseName like '%${searchHouseName}%'
+		</if>
+	</select>
+	
+	<select id="getExCount" parameterType="java.util.Map" resultType="int">
+		
+			select count(*) count from experience e
+					join house h
+					on e.houseCode= h.houseCode
+								where exCode not in (
+												select exCode from (
+																		select a.*, experience.exPeople-p remain from (
+																													select exCode, resDate, sum(exPeople) p from exRemain
+																												<![CDATA[where resDate >= #{checkIn} and resDate <= #{checkOut}
+																														group by exCode, resDate order by exCode, resDate
+																												) a, experience where a.exCode=experience.exCode
+																		) where remain < #{people} group by exCode
+														) and exPeople >=#{people}  and exApproval='승인완료'
+		]]>
+		
+		<if test="localSplit!=null">
+			<foreach collection="localSplit" item="item" open="and (" separator="or" close=")">
+				local=#{item}
+			</foreach>
+		</if>
+		<if test="searchExName!=null">
+			and exName like '%${searchExName}%'
+		</if>
+	</select>
+
+
+	
+
+	<select id="searchHouse" parameterType="java.util.Map" resultType="com.java.host.dto.HostImgDto">
+		select * from(
+		select h.*, rownum rn from (
+			
+			select a.*, nvl(b.revRate,0) revRate, b.revCount <if test="memberCode!=null">, c.memberCode zzimed</if> from (
+			
+			    select h.* from house h
+			                                where houseCode not in (
+			    select houseCode from (
+			    select a.*, house.people-p remain from (
+			    select houseCode, resDate, sum(people) p from remain
+			                                                                    <![CDATA[where resDate >= #{checkIn} and resDate < #{checkOut}
+			                                                                                      group by houseCode, resDate order by houseCode, resDate
+			    ) a, house where a.houseCode=house.houseCode
+			    ) where remain < #{people} group by houseCode]]>
+			    ) and h.people >=#{people} and approvalStatus='승인완료'
+			    <if test="searchHouseName!=null">
+					and houseName like '%${searchHouseName}%'
+				</if>
+			    
+			) a
+			left outer join (select houseCode, round(avg(revRate),2) revRate, count(houseCode) revCount from (select reservation.houseCode, revRate from reservation, review where reservation.reserveCode=review.reservecode) a group by houseCode) b
+			on a.houseCode=b.houseCode
+			<if test="memberCode!=null">
+			left outer join wishList c
+			on a.houseCode=c.houseCode
+			and c.memberCode=#{memberCode}
+			</if>
+		
+		<if test="localSplit!=null">
+			where (
+			<foreach collection="localSplit" item="item" separator="or">
+				local=#{item}
+			</foreach>
+			)
+		</if>
+		
+		<if test="sort=='priceHigh'">
+			order by price desc, revRate desc
+		</if>
+		<if test="sort=='priceLow'">
+			order by price, revRate desc
+		</if>
+		<if test="sort=='revRate'">
+			order by revRate desc
+		</if>
+		) h
+		
+		
+		<![CDATA[											
+			) where rn>=#{sRow} and rn<=#{eRow}
+		]]>
+		
+		
+	</select>
+	
+
+	<select id="searchEx" parameterType="java.util.Map" resultType="com.java.experience.dto.ExperienceImgDto">
+		select * from(
+		select h.*, rownum rn from (
+			
+			select a.*, nvl(b.revRate,0) revRate, b.revCount <if test="memberCode!=null">, c.memberCode zzimed</if> from (
+			
+			    select h.*, latlng <if test="localSplit!=null">, local </if> from experience h join house on h.houseCode=house.houseCode
+			                                where exCode not in (
+			    select exCode from (
+			    select a.*, experience.exPeople-p remain from (
+			    select exCode, resDate, sum(exPeople) p from exRemain
+			                                                                    <![CDATA[where resDate >= #{checkIn} and resDate <= #{checkOut}
+			                                                                                      group by exCode, resDate order by exCode, resDate
+			    ) a, experience where a.exCode=experience.exCode
+			    ) where remain < #{people} group by exCode]]>
+			    ) and exPeople >=#{people} and exApproval='승인완료'
+			    <if test="searchExName!=null">
+					and exName like '%${searchExName}%'
+				</if>
+			) a
+			left outer join (select exCode, round(avg(revRate),2) revRate, count(exCode) revCount from (select exReserve.exCode, revRate from exReserve, exReview where exReserve.exReserveCode=exReview.exReservecode) a group by exCode) b
+			on a.exCode=b.exCode
+			<if test="memberCode!=null">
+			left outer join exWishList c
+			on a.exCode=c.exCode
+			and c.memberCode=#{memberCode}
+			</if>
+		
+		<if test="localSplit!=null">
+			where (
+			<foreach collection="localSplit" item="item" separator="or">
+				local=#{item}
+			</foreach>
+			)
+		</if>
+		
+		<if test="sort=='priceHigh'">
+			order by exPrice desc, revRate desc
+		</if>
+		<if test="sort=='priceLow'">
+			order by exPrice, revRate desc
+		</if>
+		<if test="sort=='revRate'">
+			order by revRate desc
+		</if>
+		) h
+		
+		
+		<![CDATA[											
+			) where rn>=#{sRow} and rn<=#{eRow}
+		]]>
+		
+		
+	</select>
+
+	
+
+
+
+	<select id="searchHouse2" parameterType="java.util.Map" resultType="com.java.host.dto.HostImgDto">
+		<![CDATA[
+			
+			select * from (
+			
+			
+			
+					select a.*, b.revRate, b.revCount from (select rownum rn, h.* from house h
+							where houseCode not in (
+											select houseCode from (
+																	select a.*, house.people-p remain from (
+																												select houseCode, resDate, sum(people) p from remain
+																													where resDate >= #{checkIn} and resDate < #{checkOut}
+																													group by houseCode, resDate order by houseCode, resDate
+																											) a, house where a.houseCode=house.houseCode
+																	) where remain < #{people} group by houseCode)) a left outer join
+                                                                    
+            (select houseCode, round(avg(revRate),2) revRate, count(houseCode) revCount from (select reservation.houseCode, revRate from reservation, review where reservation.reserveCode=review.reservecode) a group by houseCode) b
+            on a.houseCode = b.houseCode
+		]]>										
+		<if test="localSplit!=null">
+			<foreach collection="localSplit" item="item" open="and (" separator="or" close=")">
+				local=#{item}
+			</foreach>
+		</if>
+		<if test="searchHouseName!=null">
+			and houseName like '%${searchHouseName}%'
+		</if>								
+													
+		<![CDATA[											
+			) where rn>=#{sRow} and rn<=#{eRow}
+		]]>
+		
+		
+	</select>
+	
+	<select id="searchHouse3" parameterType="int" resultType="double">
+		select avg(revRate) revRate from (select reservation.houseCode, revRate from reservation, review where reservation.reserveCode=review.reservecode and houseCode=#{value}) a group by houseCode
+	
+	</select>
+	
+	
+	
+	<!-- 테스트 용으로 데이터 넣기 위한 함수 -->
+	<insert id="dataInput" parameterType="com.java.host.dto.HostDto">
+		insert into house(
+						houseCode,
+						houseName,
+						memberCode,
+						zipCode,
+						sido,
+						sigungu,
+						roadName,
+						bName,
+						address,
+						jibunAddress,
+						latlng,
+						detailAddress,
+						local,
+						people,
+						bed,
+						price
+					) values(
+						house_houseCode_seq.nextval,
+						#{houseName},
+						#{memberCode},
+						#{zipCode},
+						#{sido},
+						#{sigungu},
+						#{roadName},
+						#{bName},
+						#{address},
+						#{jibunAddress},
+						#{latLng},
+						#{detailAddress},
+						#{local},
+						#{people},
+						#{bed},
+						#{price}
+					)
+	</insert>
+</mapper>

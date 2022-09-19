@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+       
+<tiles-definitions>	
+	<definition name="layout" template="/WEB-INF/views/tempalte/layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/tempalte/header.jsp"/>
+		<put-attribute name="menu" value="/WEB-INF/views/tempalte/menu.jsp"/>
+		<put-attribute name="content" value=""/>
+		<put-attribute name="foot" value="/WEB-INF/views/tempalte/foot.jsp"/>
+	</definition>
+	<definition name="layout2" template="/WEB-INF/views/tempalte/empty2.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/tempalte/header.jsp"/>
+		<put-attribute name="menu" value="/WEB-INF/views/tempalte/menu.jsp"/>
+		<put-attribute name="content" value=""/>
+	</definition>
+	
+	<definition name="*.tiles" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/views/{1}.jsp"/>
+	</definition>
+	
+	<definition name="*/*.tiles" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp"/>
+	</definition>
+
+	<definition name="*/*/*.tiles" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}/{3}.jsp"/>
+	</definition>
+	
+	<!-- no footer -->
+	
+	<definition name="empty2" extends="layout2">
+		<put-attribute name="content" value=""/>
+	</definition>
+		<definition name="*.empty2" extends="layout2">
+		<put-attribute name="content" value="/WEB-INF/views/{1}.jsp"/>
+	</definition>
+	
+	<definition name="*/*.empty2" extends="layout2">
+		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp"/>
+	</definition>
+	
+	<!-- idCheck, zipcode -->
+	
+	<definition name="empty" template="/WEB-INF/views/tempalte/empty.jsp">
+		<put-attribute name="content" value=""/>
+	</definition>
+	
+	<definition name="*/*.empty" extends="empty">
+		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp"/>
+	</definition>
+	
+</tiles-definitions>
+
+	

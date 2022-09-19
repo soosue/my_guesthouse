@@ -1,0 +1,210 @@
+@charset "UTF-8";
+
+html{
+	font-size: 16px;
+}
+
+body{
+	color: #484848;
+}
+
+
+
+#exImg{
+	/* object-fit:cover; */
+	width: 100%;
+	height: 100%;
+}
+
+.img{
+	overflow: hidden;
+}
+
+#mainImg{
+	float:left; display:inline-block;
+	width: 50%; height: 40rem; 
+	overflow: hidden;/*  border: 0.1rem solid red;  */
+	/* margin-right: 0.5rem; */
+}
+
+#imagesWrap{
+	width: 50%; height: 40rem;
+	/* border: 0.1rem solid red; */ overflow: hidden;
+}
+/* 
+#roomImg{
+	display: inline-block;
+} */
+
+.bot{
+	margin: auto;
+	margin-top: 5rem;
+	margin-bottom: 5rem;
+	width: 70rem;
+}
+
+.guestHouse{
+	float: left;
+	display: inline-block;
+
+}
+
+.name{
+	font-size: 2rem;
+	font-weight: bold;
+}
+
+#list{
+	 list-style: none;
+	 overflow: hidden;
+	 padding: 0rem;
+	 margin-top: 1rem;
+}
+
+#list li{
+	/* border: 1px solid; */
+	float: left; margin-right: 3rem;
+}
+
+.explain{
+	width: 40rem;
+	margin-top: 3rem;
+}
+
+.facilites, #calendar, .host, #map, #notice{
+	margin-bottom: 3rem;
+	margin-top: 3rem;
+}
+
+.facilites img{
+	width: 1.2rem;
+}
+
+.facilites > p, #calendar > p, #hostName, #map>p, #notice p, #reiveTitle{
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+#reviewAll{
+	margin-top: 3rem;
+}
+
+#reserveMargin>p{
+	font-weight: bold;
+}
+
+#fRight{
+	float: left; margin-right: 6rem;
+}
+
+#fLeft{
+	display: inline-block;
+}
+
+#titleEmail{
+	width: 6rem;
+}
+
+.title{
+	margin-bottom: 1rem;
+}
+
+.host{
+	overflow: hidden;
+	width: 40rem;
+}
+
+#hostInfo{
+/* 	border: 1px solid blue; */
+	float: left;
+	display: inline-block;
+	width: 40rem;
+	margin-bottom: 2rem;
+}
+
+#hostImg{
+	display: inline-block;
+	float: right;
+}
+
+#hostImgSize{
+	width: 5rem;
+	height: 5rem;
+	border-radius: 5rem;
+}
+
+#houseMap{
+	/* style="width: 500px; height: 400px;" */
+	width: 40rem;
+	height: 25rem;
+}
+
+#notice{
+	width: 40rem;
+}
+
+#reserve{
+	/* margin-left: 3rem;  */
+	width: 21rem;
+	height: 25rem;
+	display: inline-block;
+	border: 0.05rem solid #cccccc;
+	border-radius: 0.4rem;
+	float: right;
+}
+
+#reserveMargin{
+	margin: 1.5rem;
+	margin-top: 2rem;
+}
+
+#reserve p{
+	margin-bottom: 2rem;
+}
+
+.form{
+	margin-top: 3rem;
+	margin-bottom: 3rem;
+}
+
+#write{
+	margin-top: 3rem;
+	margin-bottom: 3rem;
+}
+#formToText,#peopleText{
+	font-size: 1rem;
+	font-weight: bold;
+}
+
+#formTo{
+	margin-bottom: 1.5rem;
+}
+
+#from{
+	width: 8rem; margin-right: 1rem; padding: 0.3rem;
+}
+
+#to{
+	width: 8rem; padding: 0.3rem;
+}
+
+#loginText{
+	width:100%; margin-top:3.5rem; color: red;
+	font-size: 1rem;
+}
+
+#reveiwAll{
+	border: 1px solid red;
+}
+
+#revContent{
+	background: #fff; border: none; width: 45rem; 
+	-webkit-box-shadow: 0rem 0.063rem 0.25rem 0.125rem rgba(0, 0, 0, 0.16); 
+	-moz-box-shadow: 0rem 0.063rem 0.25rem 0.125rem rgba(0, 0, 0, 0.16); 
+	box-shadow: 0rem 0.063rem 0.25rem 0.125rem rgba(0, 0, 0, 0.16); 
+	border-radius: 0.938rem; display: inline-block;
+}
+
+#moreReviewB{
+	margin-top:1rem; margin-bottom: 1rem;
+}
