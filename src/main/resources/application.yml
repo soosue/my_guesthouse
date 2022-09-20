@@ -1,2 +1,12 @@
 mybatis:
   mapper-locations: "classpath:com/java/**/*.xml"
+
+spring:
+  jpa:
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
