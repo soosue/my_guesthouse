@@ -1,10 +1,14 @@
 package com.java.myguesthouse.guesthouse.domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+
 import static com.java.myguesthouse.member.MemberFixture.사장코롱이;
 import static com.java.myguesthouse.member.MemberFixture.일반회원코롱;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -23,5 +27,15 @@ class GuestHouseTest {
         assertThatThrownBy(() ->
                 new GuestHouse(일반회원코롱)
         ).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("게스트하우스는 룸을 추가할 수 있다.")
+    @Test
+    void 룸_추가() {
+        GuestHouse guestHouse = new GuestHouse(사장코롱이);
+
+        guestHouse.addRoom(new Room(LocalDate.now(), 5));
+
+        assertThat(guestHouse.getRooms()).hasSize(1);
     }
 }
