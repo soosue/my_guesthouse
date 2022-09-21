@@ -10,6 +10,15 @@ import java.time.LocalDateTime;
 
 @Entity
 public class Member {
+
+    public enum Level {
+        GUEST, MEMBER, HOST, ADMIN;
+
+        public boolean isHost() {
+            return this == HOST;
+        }
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,17 +42,25 @@ public class Member {
     public Member() {
     }
 
-    public Member(String name, String email, String password, String phoneNumber) {
+    public Member(String name, String email, String password, String phoneNumber, Level memberLevel) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
-        this.memberLevel = Level.MEMBER;
+        this.memberLevel = memberLevel;
         this.createdDate = LocalDateTime.now();
     }
 
-    public enum Level {
-        GUEST, MEMBER, HOST, ADMIN
+    public static Member memberFrom(String name, String email, String password, String phoneNumber) {
+        return new Member(name, email, password, phoneNumber, Level.MEMBER);
+    }
+
+    public static Member hostFrom(String name, String email, String password, String phoneNumber) {
+        return new Member(name, email, password, phoneNumber, Level.HOST);
+    }
+
+    public boolean isHost() {
+        return memberLevel.isHost();
     }
 
     public Long getId() {

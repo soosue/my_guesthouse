@@ -16,6 +16,6 @@ public class MemberSaveApplication {
     }
 
     public Member toMember() {
-        return new Member(name, email, password, phoneNumber);
+        return Member.memberFrom(name, email, password, phoneNumber);
     }
 }

@@ -8,7 +8,7 @@ class MemberTest {
     @Test
     void 멤버생성() {
         assertDoesNotThrow(() ->
-                new Member("코롱", "korong@email.com", "kororong", "010-1234-5678")
+                Member.memberFrom("코롱", "korong@email.com", "kororong", "010-1234-5678")
         );
     }
 }
