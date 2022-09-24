@@ -1,7 +1,6 @@
 package com.java.myguesthouse.guesthouse.domain;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +10,7 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDate day;
+    private String name;
 
     private Integer guestsCount;
 
@@ -24,8 +23,8 @@ public class Room {
     public Room() {
     }
 
-    public Room(LocalDate day, Integer guestsCount) {
-        this.day = day;
+    public Room(String name, Integer guestsCount) {
+		this.name = name;
         this.guestsCount = guestsCount;
     }
 

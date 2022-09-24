@@ -19,6 +19,8 @@ public class GuestHouse {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+	private String name;
+
     @ManyToOne
     private Member host;
 
@@ -28,12 +30,14 @@ public class GuestHouse {
     public GuestHouse() {
     }
 
-    public GuestHouse(Member host) {
-        validate(host);
+    public GuestHouse(String name, Member host) {
+        validate(name, host);
+		this.name = name;
         this.host = host;
     }
 
-    private void validate(Member host) {
+    private void validate(String name, Member host) {
+        Assert.notNull(name, "name can not be null.");
         Assert.isTrue(host.isHost(), "guest house can be register only by host.");
     }
 
