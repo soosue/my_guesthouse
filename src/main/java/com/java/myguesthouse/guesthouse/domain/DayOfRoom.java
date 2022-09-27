@@ -11,18 +11,21 @@ public class DayOfRoom {
 
 	private LocalDate date;
 
+	private Integer remainCount;
+
 	@ManyToOne
 	private Room room;
 
 	public DayOfRoom() {
 	}
 
-	public DayOfRoom(LocalDate date) {
+	public DayOfRoom(LocalDate date, Integer remainCount) {
 		this.date = date;
+		this.remainCount = remainCount;
 	}
 
-	public static DayOfRoom today() {
-		return new DayOfRoom(LocalDate.now());
+	public static DayOfRoom today(Integer remainCount) {
+		return new DayOfRoom(LocalDate.now(), remainCount);
 	}
 
 	public LocalDate getDate() {

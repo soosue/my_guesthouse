@@ -49,4 +49,12 @@ public class GuestHouse {
     public List<Room> getRooms() {
         return rooms;
     }
+
+	public Long getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
 }

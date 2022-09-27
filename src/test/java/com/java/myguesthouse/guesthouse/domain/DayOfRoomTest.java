@@ -11,7 +11,7 @@ class DayOfRoomTest {
 	@DisplayName("배치로 매일매일 Room에 대한 DayOfRoom이 추가된다.")
 	@Test
 	void 당일_생성() {
-		DayOfRoom today = DayOfRoom.today();
+		DayOfRoom today = DayOfRoom.today(5);
 
 		assertThat(today.getDate()).isEqualTo(LocalDate.now());
 	}

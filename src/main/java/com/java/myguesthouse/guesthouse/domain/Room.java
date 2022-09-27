@@ -14,6 +14,8 @@ public class Room {
 
     private Integer guestsCount;
 
+	private Integer costPerDay;
+
     @ManyToOne
     private GuestHouse guestHouse;
 
@@ -33,7 +35,7 @@ public class Room {
     }
 
 	public void addTodayOfRoom() {
-		DayOfRoom dayOfRoom = DayOfRoom.today();
+		DayOfRoom dayOfRoom = DayOfRoom.today(guestsCount);
 		dayOfRoom.setRoom(this);
 
 		dayOfRooms.add(dayOfRoom);

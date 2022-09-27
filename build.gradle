@@ -6,7 +6,7 @@ plugins {
 
 group = 'com.java'
 version = '0.0.1-SNAPSHOT'
-description = 'guestHouse'
+description = 'guesthouse'
 sourceCompatibility = '11'
 
 repositories {
@@ -19,6 +19,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
 
     implementation 'com.googlecode.json-simple:json-simple:1.1.1'
     implementation 'org.mybatis:mybatis:3.4.6'
