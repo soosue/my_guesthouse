@@ -30,12 +30,12 @@ public class ReservationDto {
 	public static ReservationDto from(Reservation reservation) {
 		return new ReservationDto(
 			reservation.getId(),
-			reservation.getHouseId(),
+			reservation.getRoomId(),
 			reservation.getMemberId(),
 			reservation.getCheckInDate(),
 			reservation.getCheckOutDate(),
 			reservation.getGuestsCount(),
-			reservation.getGuestHouse().getName(),
+			reservation.getRoom().getName(),
 			reservation.getTotalAmount()
 		);
 	}

@@ -13,15 +13,24 @@ public class KakaoPay implements InitializingBean {
 
 	private WebClient webClient;
 
-	public String ready(ReadyDto readyDto) {
+	public ReadyResponse ready(ReadyDto readyDto) {
 		return webClient.post()
 			.uri("/v1/payment/ready")
 			.body(BodyInserters.fromFormData(readyDto.toMap()))
 			.retrieve()
 			.toEntity(ReadyResponse.class)
 			.block()
-			.getBody()
-			.getNext_redirect_pc_url();
+			.getBody();
+	}
+
+	public ApproveResponse approve(ApproveDto approveDto) {
+		return webClient.post()
+			.uri("/v1/payment/approve")
+			.body(BodyInserters.fromFormData(approveDto.toMap()))
+			.retrieve()
+			.toEntity(ApproveResponse.class)
+			.block()
+			.getBody();
 	}
 
 	@Override
@@ -33,7 +42,7 @@ public class KakaoPay implements InitializingBean {
 			.build();
 	}
 
-	static class ReadyResponse {
+	public static class ReadyResponse {
 		private String tid;
 		private String tms_result;
 		private String next_redirect_app_url;

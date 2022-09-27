@@ -35,4 +35,8 @@ public class DayOfRoom {
 	public void setRoom(Room room) {
 		this.room = room;
 	}
+
+	public void countRemainCount() {
+		remainCount--;
+	}
 }

@@ -40,4 +40,16 @@ public class Room {
 
 		dayOfRooms.add(dayOfRoom);
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public Integer getCostPerDay() {
+		return costPerDay;
+	}
 }

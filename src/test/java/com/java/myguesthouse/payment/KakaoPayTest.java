@@ -20,7 +20,8 @@ class KakaoPayTest {
 	void readyTest() {
 		String redirectUrl = kakaoPay.ready(
 			new ReadyDto(1L + "", 1L + "",
-			"coffee", 1, 2000, 0));
+				"coffee", 1, 2000, 0))
+			.getNext_redirect_pc_url();
 
 		assertThat(redirectUrl).isNotNull();
 	}
