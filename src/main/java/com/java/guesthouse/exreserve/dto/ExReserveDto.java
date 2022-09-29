@@ -1,4 +1,4 @@
-package com.java.exreserve.dto;
+package com.java.guesthouse.exreserve.dto;
 
 import java.util.Date;
 

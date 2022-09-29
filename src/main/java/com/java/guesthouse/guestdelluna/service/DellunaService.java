@@ -1,4 +1,4 @@
-package com.java.guestdelluna.service;
+package com.java.guesthouse.guestdelluna.service;
 
 import org.springframework.web.servlet.ModelAndView;
 

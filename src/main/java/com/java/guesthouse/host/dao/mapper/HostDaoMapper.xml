@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="host.dao.mapper">
-  <insert id="subImgUpload" parameterType="com.java.file.dto.FileDto">
+  <insert id="subImgUpload" parameterType="com.java.guesthouse.file.dto.FileDto">
   	 insert into FileList(fileCode, fileName, filePath, fileSize, houseCode) values(seq_fileList_num.nextval, #{fileName}, #{filePath}, #{fileSize}, #{houseCode})
   </insert>
   
@@ -28,7 +28,7 @@
   	 #{account}, #{people}, #{bed}, #{price}, #{houseRegDate})
   </insert>
   
-  <insert id="mainImgUpload" parameterType="com.java.file.dto.FileDto">
+  <insert id="mainImgUpload" parameterType="com.java.guesthouse.file.dto.FileDto">
   	 insert into FileList(fileCode, fileName, mainImgName, filePath, fileSize, houseCode) values(seq_fileList_num.nextval, #{mainImgName}, #{mainImgName}, #{filePath}, #{fileSize}, #{houseCode})
   </insert>
   
@@ -106,7 +106,7 @@
   	select count(*) from experience where memberCode = #{memberCode}
   </select>
   
-  <select id="experienceList" parameterType="java.util.Map" resultType="com.java.experience.dto.ExperienceDto">
+  <select id="experienceList" parameterType="java.util.Map" resultType="com.java.guesthouse.experience.dto.ExperienceDto">
   	<![CDATA[
   	select * from
 	(select rownum rnum, A.* from
@@ -286,7 +286,7 @@
      ]]>
   </select>
   
- <select id="getMyHouseReviewListScroll" parameterType="java.util.Map" resultType="com.java.guestdelluna.dto.MyHouseReviewList">
+ <select id="getMyHouseReviewListScroll" parameterType="java.util.Map" resultType="com.java.guesthouse.guestdelluna.dto.MyHouseReviewList">
   <![CDATA[
   	select * from
 		(select rownum rnum, A.* from
@@ -306,7 +306,7 @@
      ]]>
   </select>
   
-  <select id="getMyExReviewListScroll" parameterType="java.util.Map" resultType="com.java.guestdelluna.dto.MyExReviewList">
+  <select id="getMyExReviewListScroll" parameterType="java.util.Map" resultType="com.java.guesthouse.guestdelluna.dto.MyExReviewList">
   <![CDATA[
   	select * from
 	(select rownum rnum, A.* from

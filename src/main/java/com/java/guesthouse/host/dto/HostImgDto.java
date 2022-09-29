@@ -2,7 +2,7 @@ package com.java.guesthouse.host.dto;
 
 import java.util.List;
 
-import com.java.file.dto.FileDto;
+import com.java.guesthouse.file.dto.FileDto;
 
 public class HostImgDto extends HostDto {
     private List<FileDto> fileList;

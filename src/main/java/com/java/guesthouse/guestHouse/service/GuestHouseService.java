@@ -1,4 +1,4 @@
-package com.java.guestHouse.service;
+package com.java.guesthouse.guestHouse.service;
 
 import java.util.Map;
 

@@ -1,8 +1,8 @@
-package com.java.admin.dao;
+package com.java.guesthouse.admin.dao;
 
 import java.util.List;
 
-import com.java.experience.dto.ExperienceDto;
+import com.java.guesthouse.experience.dto.ExperienceDto;
 import com.java.guesthouse.member.dto.MemberDto;
 
 public interface AdminDao {

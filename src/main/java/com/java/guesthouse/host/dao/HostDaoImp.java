@@ -8,8 +8,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.java.experience.dto.ExperienceDto;
-import com.java.file.dto.FileDto;
+import com.java.guesthouse.experience.dto.ExperienceDto;
+import com.java.guesthouse.file.dto.FileDto;
 import com.java.guesthouse.guestReserve.dto.GuestReserveDto;
 import com.java.guesthouse.host.dto.ExReservationListDto;
 import com.java.guesthouse.host.dto.HostDto;

@@ -1,4 +1,4 @@
-package com.java.guestHouse.service;
+package com.java.guesthouse.guestHouse.service;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,16 +22,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.java.aop.HomeAspect;
-import com.java.file.dto.FileDto;
-import com.java.guestHouse.dao.GuestHouseDao;
+import com.java.guesthouse.aop.HomeAspect;
+import com.java.guesthouse.file.dto.FileDto;
+import com.java.guesthouse.guestHouse.dao.GuestHouseDao;
 import com.java.guesthouse.guestReserve.dto.GuestReserveDto;
 import com.java.guesthouse.guestReserve.dto.GHouseReviewListDto;
 import com.java.guesthouse.guestReserve.dto.RemainDto;
-import com.java.guestdelluna.dto.HouseReviewDto;
-import com.java.guestdelluna.dto.MsgDto;
-import com.java.guestdelluna.dto.PointAccumulate;
-import com.java.guestdelluna.dto.PointUse;
+import com.java.guesthouse.guestdelluna.dto.HouseReviewDto;
+import com.java.guesthouse.guestdelluna.dto.MsgDto;
+import com.java.guesthouse.guestdelluna.dto.PointAccumulate;
+import com.java.guesthouse.guestdelluna.dto.PointUse;
 import com.java.guesthouse.host.dto.HostDto;
 import com.java.guesthouse.member.dto.MemberDto;
 

@@ -1,4 +1,4 @@
-package com.java.guestdelluna;
+package com.java.guesthouse.guestdelluna;
 
 import java.util.List;
 
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.java.aop.HomeAspect;
-import com.java.experience.dao.ExperienceDao;
-import com.java.experience.dto.ExperienceMainDto;
-import com.java.experience.dto.GuestHouseMainDto;
+import com.java.guesthouse.aop.HomeAspect;
+import com.java.guesthouse.experience.dao.ExperienceDao;
+import com.java.guesthouse.experience.dto.ExperienceMainDto;
+import com.java.guesthouse.experience.dto.GuestHouseMainDto;
 
 /**
  * Handles requests for the application home page.

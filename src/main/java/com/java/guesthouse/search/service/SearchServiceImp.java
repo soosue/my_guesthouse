@@ -12,10 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.java.aop.HomeAspect;
-import com.java.exfile.dto.ExFileDto;
-import com.java.experience.dto.ExperienceImgDto;
-import com.java.file.dto.FileDto;
+import com.java.guesthouse.aop.HomeAspect;
+import com.java.guesthouse.exfile.dto.ExFileDto;
+import com.java.guesthouse.experience.dto.ExperienceImgDto;
+import com.java.guesthouse.file.dto.FileDto;
 import com.java.guesthouse.host.dto.HostDto;
 import com.java.guesthouse.host.dto.HostImgDto;
 import com.java.guesthouse.search.dao.SearchDao;

@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.java.aop.HomeAspect;
-//import com.fasterxml.jackson.databind.JsonNode;
+import com.java.guesthouse.aop.HomeAspect;
 import com.java.guesthouse.member.dto.MemberDto;
 import com.java.guesthouse.member.service.MemberService;
 

@@ -3,7 +3,7 @@ package com.java.guesthouse.search.dao;
 import java.util.List;
 import java.util.Map;
 
-import com.java.experience.dto.ExperienceImgDto;
+import com.java.guesthouse.experience.dto.ExperienceImgDto;
 import com.java.guesthouse.host.dto.HostDto;
 import com.java.guesthouse.host.dto.HostImgDto;
 import com.java.guesthouse.search.dto.GetCountDto;

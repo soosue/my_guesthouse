@@ -1,4 +1,4 @@
-package com.java.admin.service;
+package com.java.guesthouse.admin.service;
 
 import org.springframework.web.servlet.ModelAndView;
 

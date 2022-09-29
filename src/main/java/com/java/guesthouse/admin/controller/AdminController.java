@@ -1,4 +1,4 @@
-package com.java.admin.controller;
+package com.java.guesthouse.admin.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.java.admin.service.AdminService;
-import com.java.aop.HomeAspect;
+import com.java.guesthouse.admin.service.AdminService;
+import com.java.guesthouse.aop.HomeAspect;
 import com.java.guesthouse.member.dto.MemberDto;
 
 @Controller

@@ -1,4 +1,4 @@
-package com.java.experience.controller;
+package com.java.guesthouse.experience.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.java.aop.HomeAspect;
-import com.java.experience.dto.ExperienceDto;
-import com.java.experience.service.ExperienceService;
-import com.java.exreserve.dto.ExReserveDto;
-import com.java.exreview.dto.ExReviewDto;
+import com.java.guesthouse.aop.HomeAspect;
+import com.java.guesthouse.experience.dto.ExperienceDto;
+import com.java.guesthouse.experience.service.ExperienceService;
+import com.java.guesthouse.exreserve.dto.ExReserveDto;
+import com.java.guesthouse.exreview.dto.ExReviewDto;
 import com.java.guesthouse.host.dto.HostDto;
 
 /**

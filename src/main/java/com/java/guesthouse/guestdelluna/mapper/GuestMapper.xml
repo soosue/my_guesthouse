@@ -4,11 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.dellunaMapper">
 
-<select id="selectForUpdate" parameterType="String" resultType="com.java.guestdelluna.dto.MemberDto">
+<select id="selectForUpdate" parameterType="String" resultType="com.java.guesthouse.guestdelluna.dto.MemberDto">
 	select * from member where email=#{email}
 </select>
 
-<update id="updateMember" parameterType="com.java.guestdelluna.dto.MemberDto">
+<update id="updateMember" parameterType="com.java.guesthouse.guestdelluna.dto.MemberDto">
 	update member set memberName=#{memberName} , password=#{password} , phone=#{phone}, memberInfo=#{memberInfo} where email=#{email}
 </update>
 
@@ -28,7 +28,7 @@
 	delete from exWishList where memberCode=#{memberCode} and exCode=#{exCode}
 </delete>
 
-<update id="updateMemberFile" parameterType="com.java.guestdelluna.dto.MemberDto">
+<update id="updateMemberFile" parameterType="com.java.guesthouse.guestdelluna.dto.MemberDto">
 	update member set memberImgName=#{memberImgName} , memberImgPath=#{memberImgPath} , memberImgSize=#{memberImgSize} ,  memberName=#{memberName}  , password=#{password} , phone=#{phone}, memberInfo=#{memberInfo} where email=#{email}
 </update>
 
@@ -44,7 +44,7 @@
 	select count(*) from exreserve
 </select>
 
-<select id="findExpList" parameterType="int" resultType="com.java.guestdelluna.dto.ExpReservationDto">
+<select id="findExpList" parameterType="int" resultType="com.java.guesthouse.guestdelluna.dto.ExpReservationDto">
 	select * from exreserve where memberCode=#{memberCode}
 </select>
 
@@ -52,7 +52,7 @@
 	select count(*) from reservation
 </select>
 
-<select id="findHouseList" parameterType="int" resultType="com.java.guestdelluna.dto.HouseReservationDto">
+<select id="findHouseList" parameterType="int" resultType="com.java.guesthouse.guestdelluna.dto.HouseReservationDto">
 	select * from reservation where memberCode=#{memberCode}
 </select>
 
@@ -78,7 +78,7 @@
 		  ]]>
 </select>
 
-<select id="houseInfo" parameterType="int" resultType="com.java.guestdelluna.dto.HouseDto">
+<select id="houseInfo" parameterType="int" resultType="com.java.guesthouse.guestdelluna.dto.HouseDto">
 	select * from house where memberCode=#{memberCode}
 </select>
 
@@ -122,7 +122,7 @@
 	update exreserve set state='예약취소' where exreservecode=#{exreserveCode}
 </update>
 
-<select id="dtoExpZzim" parameterType="int" resultType="com.java.guestdelluna.dto.ExpZzimDto">
+<select id="dtoExpZzim" parameterType="int" resultType="com.java.guesthouse.guestdelluna.dto.ExpZzimDto">
 	select * from exwishlist where memberCode=#{memberCode}
 </select>
 
@@ -134,7 +134,7 @@
 	delete from exwishlist where exCode=#{exCode} and membercode=#{memberCode}
 </delete>
 
-<select id="dtoHouseZzim" parameterType="int" resultType="com.java.guestdelluna.dto.HouseZzimDto">
+<select id="dtoHouseZzim" parameterType="int" resultType="com.java.guesthouse.guestdelluna.dto.HouseZzimDto">
 	select * from wishlist where memberCode=#{memberCode}
 </select>
 
@@ -154,7 +154,7 @@
 	delete from reservation where reserveCode=#{reserveCode}
 </delete>
 
-<select id="findHouseListWithString" parameterType="java.util.Map" resultType="com.java.guestdelluna.dto.HouseReservationDto">	
+<select id="findHouseListWithString" parameterType="java.util.Map" resultType="com.java.guesthouse.guestdelluna.dto.HouseReservationDto">
 	select * from reservation where memberCode=#{memberCode} and state=#{state}
 </select>
 
@@ -162,7 +162,7 @@
 	select housename from reservation r , house h where r.housecode = h.housecode and r.membercode=#{memberCode} and r.state=#{state}	
 </select>
 
-<select id="findExpListWithString" parameterType="java.util.Map" resultType="com.java.guestdelluna.dto.ExpReservationDto">
+<select id="findExpListWithString" parameterType="java.util.Map" resultType="com.java.guesthouse.guestdelluna.dto.ExpReservationDto">
 	select * from exreserve where memberCode=#{memberCode} and state=#{state}
 </select>
 
@@ -178,7 +178,7 @@
 	select count(*) from pointuse where memberCode=#{memberCode}
 </select>
 
-<select id="myAccuPoint" parameterType="java.util.Map" resultType="com.java.guestdelluna.dto.PointAccumulate">
+<select id="myAccuPoint" parameterType="java.util.Map" resultType="com.java.guesthouse.guestdelluna.dto.PointAccumulate">
 	 <![CDATA[
 		select * from
 	(select rownum rnum, A.* from
@@ -187,7 +187,7 @@
     ]]>
 </select>
 
-<select id="myUsePoint" parameterType="java.util.Map" resultType="com.java.guestdelluna.dto.PointUse">
+<select id="myUsePoint" parameterType="java.util.Map" resultType="com.java.guesthouse.guestdelluna.dto.PointUse">
 	 <![CDATA[
 	 select * from (select rownum as rnum, a.* from
     (select * from pointuse where memberCode=#{memberCode}) a)b where b.rnum >=#{startRow} and b.rnum <=#{endRow}
@@ -202,21 +202,21 @@
 	select count(*) from review where memberCode=#{memberCode}
 </select>
 
-<select id="myExpReview" parameterType="java.util.Map" resultType="com.java.guestdelluna.dto.ExpReviewDto">
+<select id="myExpReview" parameterType="java.util.Map" resultType="com.java.guesthouse.guestdelluna.dto.ExpReviewDto">
 	<![CDATA[
 	 select * from (select rownum as rnum, a.* from
     (select * from exreview where memberCode=#{memberCode}) a)b where b.rnum >=#{startRow} and b.rnum <=#{endRow}
     ]]>
 </select>
 
-<select id="myHouseReview" parameterType="java.util.Map" resultType="com.java.guestdelluna.dto.HouseReviewDto">
+<select id="myHouseReview" parameterType="java.util.Map" resultType="com.java.guesthouse.guestdelluna.dto.HouseReviewDto">
 <![CDATA[
 	select * from (select rownum as rnum, a.* from
     (select * from review where memberCode=#{memberCode}) a)b where b.rnum >=#{houseStartRow} and b.rnum <=#{houseEndRow}
     ]]>
 </select>
 
-<select id="findMyReview" parameterType="java.util.Map" resultType="com.java.guestdelluna.dto.ExpReviewDto">
+<select id="findMyReview" parameterType="java.util.Map" resultType="com.java.guesthouse.guestdelluna.dto.ExpReviewDto">
 	select * from exreview where memberCode=#{memberCode} and exReserveCode=#{exReserveCode}
 </select>
 
@@ -240,7 +240,7 @@
 	select count(*) from message where memberCode=#{memberCode} and msgCheck=#{msgCheck}
 </select>
 
-<select id="listMsg" resultType="com.java.guestdelluna.dto.MsgDto" parameterType="java.util.Map">
+<select id="listMsg" resultType="com.java.guesthouse.guestdelluna.dto.MsgDto" parameterType="java.util.Map">
 	select * from message where memberCode=#{memberCode} and msgCheck=#{msgCheck}
 </select>
 
@@ -260,11 +260,11 @@
 	update message set msgCheck=#{msgCheck} where memberCode=#{memberCode} and msgCode=#{msgCode} 
 </update>
 
-<select id="allMsgDto" parameterType="int" resultType="com.java.guestdelluna.dto.MsgDto">
+<select id="allMsgDto" parameterType="int" resultType="com.java.guesthouse.guestdelluna.dto.MsgDto">
 	select * from message where memberCode=#{memberCode}
 </select>
 
-<select id="myExpreviewList" parameterType="java.util.Map" resultType="com.java.guestdelluna.dto.NewExpReviewDto">
+<select id="myExpreviewList" parameterType="java.util.Map" resultType="com.java.guesthouse.guestdelluna.dto.NewExpReviewDto">
 <![CDATA[
 		 select * from(select rownum rnum, a.* from
 (select a.*, b.exCode, c.mainimgname, d.exName 
@@ -277,7 +277,7 @@ where rnum>=#{startRow} and rnum<=#{endRow}
 ]]>
 </select>
 
-<select id="myHousereviewList" parameterType="java.util.Map" resultType="com.java.guestdelluna.dto.NewHouseReviewDto">
+<select id="myHousereviewList" parameterType="java.util.Map" resultType="com.java.guesthouse.guestdelluna.dto.NewHouseReviewDto">
 	<![CDATA[
 	select * from(select rownum rnum, a.* from
 (select a.*, b.housecode, c.mainimgname, d.houseName 
@@ -290,14 +290,14 @@ where rnum>=#{startRow} and rnum<=#{endRow}
 	]]>
 </select>
 
-<select id="newHouseReserve" parameterType="java.util.Map" resultType="com.java.guestdelluna.dto.NewHouseReserveDto">
+<select id="newHouseReserve" parameterType="java.util.Map" resultType="com.java.guesthouse.guestdelluna.dto.NewHouseReserveDto">
 	 select r.reservecode , h.housename , r.state , r.checkin , r.checkout from reservation r , house h
     where r.housecode = h.housecode
    and r.membercode = #{memberCode}
     and r.state= #{state}
 </select>
 
-<select id="newExpReserve" parameterType="java.util.Map" resultType="com.java.guestdelluna.dto.NewExpReserveDto">
+<select id="newExpReserve" parameterType="java.util.Map" resultType="com.java.guesthouse.guestdelluna.dto.NewExpReserveDto">
 	   select r.exreservecode , e.exname , r.state, r.exdate from exreserve r, experience e 
     where e.excode = r.excode
     and r.membercode = #{memberCode}
@@ -305,23 +305,23 @@ where rnum>=#{startRow} and rnum<=#{endRow}
 </select>
 
 
-<select id="newNewExpReserve" parameterType="int" resultType="com.java.guestdelluna.dto.NewExpReserveDto">
+<select id="newNewExpReserve" parameterType="int" resultType="com.java.guesthouse.guestdelluna.dto.NewExpReserveDto">
 	select r.exreservecode , e.exname , r.exdate , r.state from experience e , exreserve r
 	where r.excode = e.excode
 	and r.membercode = #{memberCode}
 </select>
 
-<select id="newNewHouseReserve" parameterType="int" resultType="com.java.guestdelluna.dto.NewHouseReserveDto">
+<select id="newNewHouseReserve" parameterType="int" resultType="com.java.guesthouse.guestdelluna.dto.NewHouseReserveDto">
 	select r.reservecode , e.housename , r.checkIn , r.checkout , r.state from house e ,reservation r
 	where r.housecode = e.housecode
 	and r.membercode=#{memberCode}
 </select>
 
-<select id="newPointAccu" parameterType="int" resultType="com.java.guestdelluna.dto.PointAccumulate">
+<select id="newPointAccu" parameterType="int" resultType="com.java.guesthouse.guestdelluna.dto.PointAccumulate">
 	select * from pointaccumulate where memberCode=#{memberCode}
 </select>
 
-<select id="newExpZzimDto" parameterType="java.util.Map" resultType="com.java.guestdelluna.dto.NewExpZzimDto">
+<select id="newExpZzimDto" parameterType="java.util.Map" resultType="com.java.guesthouse.guestdelluna.dto.NewExpZzimDto">
 <![CDATA[
 		select * from 
 		(select rownum rnum, A.*From 
@@ -332,7 +332,7 @@ where rnum>=#{startRow} and rnum<=#{endRow}
 ]]>
 </select>
 
-<select id="newHouseZzimDto" parameterType="java.util.Map" resultType="com.java.guestdelluna.dto.NewHouseZzimDto">
+<select id="newHouseZzimDto" parameterType="java.util.Map" resultType="com.java.guesthouse.guestdelluna.dto.NewHouseZzimDto">
  	<![CDATA[
  	select * from 
 		(select rownum rnum, A.*From 
@@ -359,7 +359,7 @@ where rnum>=#{startRow} and rnum<=#{endRow}
 	select count(*) from reservation where membercode=#{memberCode} and state=#{state}
 </select>
 
-<select id="newExpResDto" parameterType="java.util.Map" resultType="com.java.guestdelluna.dto.NewExpResDto">
+<select id="newExpResDto" parameterType="java.util.Map" resultType="com.java.guesthouse.guestdelluna.dto.NewExpResDto">
 		<![CDATA[
 	     	select * from 
 		(select rownum rnum, A.*From 
@@ -370,7 +370,7 @@ where rnum>=#{startRow} and rnum<=#{endRow}
 		]]>
 </select>
 
-<select id="newHouseResDto" parameterType="java.util.Map" resultType="com.java.guestdelluna.dto.NewHouseResDto">
+<select id="newHouseResDto" parameterType="java.util.Map" resultType="com.java.guesthouse.guestdelluna.dto.NewHouseResDto">
 		<![CDATA[
       	select * from 
 		(select rownum rnum, A.*From 
@@ -382,11 +382,11 @@ where rnum>=#{startRow} and rnum<=#{endRow}
 </select>
 
 
- <select id="selectMemberDto" parameterType="int" resultType="com.java.guestdelluna.dto.MemberDto">
+ <select id="selectMemberDto" parameterType="int" resultType="com.java.guesthouse.guestdelluna.dto.MemberDto">
  	select * from member where memberCode = #{memberCode}
  </select>
 
-<!-- <select id="houseInfo2" parameterType="int" resultType="com.java.guestdelluna.dto.NewDto">
+<!-- <select id="houseInfo2" parameterType="int" resultType="com.java.guesthouse.guestdelluna.dto.NewDto">
 	select * from reservation r , house h where r.houseCode = h.houseCode and r.memberCode = #{memberCode};
 </select> --> 
 
@@ -425,5 +425,3 @@ where rnum>=#{startRow} and rnum<=#{endRow}
       
 
 </mapper>
-
-   

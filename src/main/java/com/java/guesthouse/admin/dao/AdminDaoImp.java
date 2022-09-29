@@ -1,4 +1,4 @@
-package com.java.admin.dao;
+package com.java.guesthouse.admin.dao;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,7 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.java.experience.dto.ExperienceDto;
+import com.java.guesthouse.experience.dto.ExperienceDto;
 import com.java.guesthouse.member.dto.MemberDto;
 
 @Component

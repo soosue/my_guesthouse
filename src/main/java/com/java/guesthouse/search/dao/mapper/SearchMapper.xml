@@ -25,7 +25,7 @@
 		where a.houseCode=#{houseCode}
 	
 	</select>
-	<select id="exOverlay" parameterType="java.util.Map" resultType="com.java.experience.dto.ExperienceImgDto">
+	<select id="exOverlay" parameterType="java.util.Map" resultType="com.java.guesthouse.experience.dto.ExperienceImgDto">
 		
 
 		select a.exCode, exName, exPeople, revRate, revCount <if test="memberCode!=null">, c.memberCode zzimed</if> from 
@@ -50,11 +50,11 @@
 
 
 
-	<select id="getHouseImg" parameterType="int" resultType="com.java.file.dto.FileDto">
+	<select id="getHouseImg" parameterType="int" resultType="com.java.guesthouse.file.dto.FileDto">
 		select * from fileList where houseCode=#{value}
 	</select>
 
-	<select id="getExImg" parameterType="int" resultType="com.java.exfile.dto.ExFileDto">
+	<select id="getExImg" parameterType="int" resultType="com.java.guesthouse.exfile.dto.ExFileDto">
 		select * from exFileList where exCode=#{value}
 	</select>
 
@@ -169,7 +169,7 @@
 	</select>
 	
 
-	<select id="searchEx" parameterType="java.util.Map" resultType="com.java.experience.dto.ExperienceImgDto">
+	<select id="searchEx" parameterType="java.util.Map" resultType="com.java.guesthouse.experience.dto.ExperienceImgDto">
 		select * from(
 		select h.*, rownum rn from (
 			

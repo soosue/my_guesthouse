@@ -1,4 +1,4 @@
-package com.java.exreview.dto;
+package com.java.guesthouse.exreview.dto;
 
 import java.util.Date;
 

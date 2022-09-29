@@ -1,4 +1,4 @@
-package com.java.exfile.dto;
+package com.java.guesthouse.exfile.dto;
 
 public class ExFileDto {
    private int fileCode;

@@ -1,4 +1,4 @@
-package com.java.experience.dto;
+package com.java.guesthouse.experience.dto;
 
 import java.util.Date;
 

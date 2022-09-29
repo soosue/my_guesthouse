@@ -1,4 +1,4 @@
-package com.java.aop;
+package com.java.guesthouse.aop;
 
 import java.util.logging.Logger;
 

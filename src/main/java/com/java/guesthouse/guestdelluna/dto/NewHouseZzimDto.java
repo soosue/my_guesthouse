@@ -1,4 +1,4 @@
-package com.java.guestdelluna.dto;
+package com.java.guesthouse.guestdelluna.dto;
 
 public class NewHouseZzimDto {
 	private int houseCode ;

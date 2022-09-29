@@ -1,19 +1,19 @@
-package com.java.experience.dao;
+package com.java.guesthouse.experience.dao;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import com.java.exfile.dto.ExFileDto;
-import com.java.experience.dto.ExperienceDto;
-import com.java.experience.dto.ExperienceMainDto;
-import com.java.experience.dto.GuestHouseMainDto;
-import com.java.exremain.dto.ExRemainDto;
-import com.java.exreserve.dto.ExReserveDto;
-import com.java.exreview.dto.ExReviewDto;
-import com.java.exreview.dto.ExReviewListDto;
-import com.java.guestdelluna.dto.PointAccumulate;
-import com.java.guestdelluna.dto.PointUse;
+import com.java.guesthouse.exfile.dto.ExFileDto;
+import com.java.guesthouse.experience.dto.ExperienceDto;
+import com.java.guesthouse.experience.dto.ExperienceMainDto;
+import com.java.guesthouse.experience.dto.GuestHouseMainDto;
+import com.java.guesthouse.exremain.dto.ExRemainDto;
+import com.java.guesthouse.exreserve.dto.ExReserveDto;
+import com.java.guesthouse.exreview.dto.ExReviewDto;
+import com.java.guesthouse.exreview.dto.ExReviewListDto;
+import com.java.guesthouse.guestdelluna.dto.PointAccumulate;
+import com.java.guesthouse.guestdelluna.dto.PointUse;
 import com.java.guesthouse.host.dto.HostDto;
 import com.java.guesthouse.member.dto.MemberDto;
 
@@ -33,7 +33,7 @@ public interface ExperienceDao {
 
 	public int getReviewCnt(int exCode);
 
-	public List<ExReviewListDto> getExReviewList(int startRow, int endRow, int exCode); 
+	public List<ExReviewListDto> getExReviewList(int startRow, int endRow, int exCode);
 
 	//예약번호가 있는지
 	public int reserveCodeCnt(int memberCode,int exCode);

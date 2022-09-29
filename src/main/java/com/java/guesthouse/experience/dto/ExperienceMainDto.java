@@ -1,8 +1,8 @@
-package com.java.experience.dto;
+package com.java.guesthouse.experience.dto;
 
 import java.util.List;
 
-import com.java.exfile.dto.ExFileDto;
+import com.java.guesthouse.exfile.dto.ExFileDto;
 
 public class ExperienceMainDto extends ExperienceDto {
 	

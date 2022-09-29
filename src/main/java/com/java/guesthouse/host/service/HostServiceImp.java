@@ -18,9 +18,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.java.aop.HomeAspect;
-import com.java.experience.dto.ExperienceDto;
-import com.java.file.dto.FileDto;
+import com.java.guesthouse.aop.HomeAspect;
+import com.java.guesthouse.experience.dto.ExperienceDto;
+import com.java.guesthouse.file.dto.FileDto;
 import com.java.guesthouse.guestReserve.dto.GuestReserveDto;
 import com.java.guesthouse.host.dao.HostDao;
 import com.java.guesthouse.host.dto.ExReservationListDto;

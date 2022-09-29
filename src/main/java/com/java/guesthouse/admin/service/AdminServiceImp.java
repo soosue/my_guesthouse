@@ -1,4 +1,4 @@
-package com.java.admin.service;
+package com.java.guesthouse.admin.service;
 
 import java.util.List;
 import java.util.Map;
@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.java.admin.dao.AdminDao;
-import com.java.aop.HomeAspect;
-import com.java.experience.dto.ExperienceDto;
+import com.java.guesthouse.admin.dao.AdminDao;
+import com.java.guesthouse.aop.HomeAspect;
+import com.java.guesthouse.experience.dto.ExperienceDto;
 import com.java.guesthouse.member.dto.MemberDto;
 
 @Component

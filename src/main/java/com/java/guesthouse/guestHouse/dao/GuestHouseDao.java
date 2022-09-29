@@ -1,16 +1,16 @@
-package com.java.guestHouse.dao;
+package com.java.guesthouse.guestHouse.dao;
 
 import java.util.Date;
 import java.util.List;
 
-import com.java.file.dto.FileDto;
+import com.java.guesthouse.file.dto.FileDto;
 import com.java.guesthouse.guestReserve.dto.GHouseReviewListDto;
 import com.java.guesthouse.guestReserve.dto.GuestReserveDto;
 import com.java.guesthouse.guestReserve.dto.RemainDto;
-import com.java.guestdelluna.dto.HouseReviewDto;
-import com.java.guestdelluna.dto.MsgDto;
-import com.java.guestdelluna.dto.PointAccumulate;
-import com.java.guestdelluna.dto.PointUse;
+import com.java.guesthouse.guestdelluna.dto.HouseReviewDto;
+import com.java.guesthouse.guestdelluna.dto.MsgDto;
+import com.java.guesthouse.guestdelluna.dto.PointAccumulate;
+import com.java.guesthouse.guestdelluna.dto.PointUse;
 import com.java.guesthouse.member.dto.MemberDto;
 import com.java.guesthouse.host.dto.HostDto;
 

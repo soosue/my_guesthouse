@@ -1,4 +1,4 @@
-package com.java.file.dto;
+package com.java.guesthouse.file.dto;
 
 public class FileDto {
 	private int fileCode;
@@ -78,4 +78,3 @@ public class FileDto {
 	
 	
 }
-

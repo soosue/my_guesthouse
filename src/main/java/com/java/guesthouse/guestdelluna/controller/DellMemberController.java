@@ -1,4 +1,4 @@
-package com.java.guestdelluna.controller;
+package com.java.guesthouse.guestdelluna.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.java.guestdelluna.dto.MemberDto;
-import com.java.guestdelluna.service.DellunaService;
+import com.java.guesthouse.guestdelluna.dto.MemberDto;
+import com.java.guesthouse.guestdelluna.service.DellunaService;
 
 @Controller
 public class DellMemberController {

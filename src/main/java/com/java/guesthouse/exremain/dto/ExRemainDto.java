@@ -1,4 +1,4 @@
-package com.java.exremain.dto;
+package com.java.guesthouse.exremain.dto;
 
 import java.util.Date;
 

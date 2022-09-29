@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.java.aop.HomeAspect;
+import com.java.guesthouse.aop.HomeAspect;
 import com.java.guesthouse.member.dao.MemberDao;
 import com.java.guesthouse.member.dto.MemberDto;
 

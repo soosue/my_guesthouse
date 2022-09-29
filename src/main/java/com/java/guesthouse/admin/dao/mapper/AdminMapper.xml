@@ -45,7 +45,7 @@
 		select count(*) from experience
 	</select>
 	
-	<select id="experienceList" parameterType="java.util.Map" resultType="com.java.experience.dto.ExperienceDto">
+	<select id="experienceList" parameterType="java.util.Map" resultType="com.java.guesthouse.experience.dto.ExperienceDto">
 		<![CDATA[
 		SELECT * FROM
 		(SELECT ROWNUM rnum, A.* FROM 
@@ -54,10 +54,10 @@
 			]]>
 	</select>
 	
-	<update id="experienceStateOk" parameterType="com.java.experience.dto.ExperienceDto" >
+	<update id="experienceStateOk" parameterType="com.java.guesthouse.experience.dto.ExperienceDto" >
 		update experience set exApproval='승인완료' where exCode=#{exCode}
 	</update>
-	<update id="experienceStateNo" parameterType="com.java.experience.dto.ExperienceDto" >
+	<update id="experienceStateNo" parameterType="com.java.guesthouse.experience.dto.ExperienceDto" >
 		update experience set exApproval='승인거절' where exCode=#{exCode}
 	</update>
 
