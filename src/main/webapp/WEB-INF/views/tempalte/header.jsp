@@ -119,7 +119,7 @@ font-family: 'Nanum Gothic', sans-serif !important;
     				margin-top: 2rem;
 				  -->
 				<%-- <img src="${root}/resources/images/logo1.png" style="width: 3.125rem; height: 3.125rem;"/> --%>
-				<a class="active" href="${root}"
+				<a class="active" href="/"
 					style="font-size: 2rem; font-weight: bold; color: black; margin-left: 1rem;">
 					<img src="${root}/resources/images/logoFinal.png" style="width: 11rem;" />
 				</a>
