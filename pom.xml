@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.4</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>com.java</groupId>
-	<artifactId>guesthouse</artifactId>
-	<name>guestouse</name>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.4</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.java</groupId>
+    <artifactId>guesthouse</artifactId>
+    <name>guestouse</name>
 <!--	<packaging>war</packaging>-->
-	<version>1.0.0-BUILD-SNAPSHOT</version>
-	<properties>
-		<java-version>11</java-version>
+    <version>1.0.0-BUILD-SNAPSHOT</version>
+    <properties>
+        <java-version>11</java-version>
 <!--		<org.springframework-version>3.1.1.RELEASE</org.springframework-version>-->
 <!--		<org.aspectj-version>1.6.10</org.aspectj-version>-->
 <!--		<org.slf4j-version>1.6.6</org.slf4j-version>-->
-	</properties>
-	<dependencies>
-		<!-- Spring -->
+    </properties>
+    <dependencies>
+        <!-- Spring -->
 <!--		<dependency>-->
 <!--			<groupId>org.springframework</groupId>-->
 <!--			<artifactId>spring-context</artifactId>-->
@@ -38,15 +38,15 @@
 <!--			<artifactId>spring-webmvc</artifactId>-->
 <!--			<version>${org.springframework-version}</version>-->
 <!--		</dependency>-->
-				
-		<!-- AspectJ -->
+
+        <!-- AspectJ -->
 <!--		<dependency>-->
 <!--			<groupId>org.aspectj</groupId>-->
 <!--			<artifactId>aspectjrt</artifactId>-->
 <!--			<version>${org.aspectj-version}</version>-->
 <!--		</dependency>	-->
-		
-		<!-- Logging -->
+
+        <!-- Logging -->
 <!--		<dependency>-->
 <!--			<groupId>org.slf4j</groupId>-->
 <!--			<artifactId>slf4j-api</artifactId>-->
@@ -89,13 +89,13 @@
 <!--			<scope>runtime</scope>-->
 <!--		</dependency>-->
 
-		<!-- @Inject -->
+        <!-- @Inject -->
 <!--		<dependency>-->
 <!--			<groupId>javax.inject</groupId>-->
 <!--			<artifactId>javax.inject</artifactId>-->
 <!--			<version>1</version>-->
 <!--		</dependency>-->
-				
+
 <!--		&lt;!&ndash; Servlet &ndash;&gt;-->
 <!--		<dependency>-->
 <!--			<groupId>javax.servlet</groupId>-->
@@ -114,136 +114,136 @@
 <!--			<artifactId>jstl</artifactId>-->
 <!--			<version>1.2</version>-->
 <!--		</dependency>-->
-	
-		<!-- Test -->
+
+        <!-- Test -->
 <!--		<dependency>-->
 <!--			<groupId>junit</groupId>-->
 <!--			<artifactId>junit</artifactId>-->
 <!--			<version>4.7</version>-->
 <!--			<scope>test</scope>-->
 <!--		</dependency>        -->
-		
-		<!-- AOP -->
-		<!-- https://mvnrepository.com/artifact/aopalliance/aopalliance -->
-		<dependency>
-		    <groupId>aopalliance</groupId>
-		    <artifactId>aopalliance</artifactId>
-		    <version>1.0</version>
-		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
-		<dependency>
-		    <groupId>org.aspectj</groupId>
-		    <artifactId>aspectjweaver</artifactId>
-		    <version>1.8.13</version>
-		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/cglib/cglib -->
-		<dependency>
-		    <groupId>cglib</groupId>
-		    <artifactId>cglib</artifactId>
-		    <version>2.2.2</version>
-		</dependency>
-		
-		<!-- template -->
-		<!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-jsp -->
-		<dependency>
-		    <groupId>org.apache.tiles</groupId>
-		    <artifactId>tiles-jsp</artifactId>
-		    <version>2.2.2</version>
-		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-servlet -->
-		<dependency>
-		    <groupId>org.apache.tiles</groupId>
-		    <artifactId>tiles-servlet</artifactId>
-		    <version>2.2.2</version>
-		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-core -->
-		<dependency>
-		    <groupId>org.apache.tiles</groupId>
-		    <artifactId>tiles-core</artifactId>
-		    <version>2.2.2</version>
-		</dependency>
-		
-		<!-- file Upload -->
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-io -->
-		<dependency>
-		    <groupId>org.apache.commons</groupId>
-		    <artifactId>commons-io</artifactId>
-		    <version>1.3.2</version>
-		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
-		<dependency>
-		    <groupId>commons-fileupload</groupId>
-		    <artifactId>commons-fileupload</artifactId>
-		    <version>1.3.3</version>
-		</dependency>
-		
-		<!-- db Oracle -->
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+
+        <!-- AOP -->
+        <!-- https://mvnrepository.com/artifact/aopalliance/aopalliance -->
+        <dependency>
+            <groupId>aopalliance</groupId>
+            <artifactId>aopalliance</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.8.13</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/cglib/cglib -->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+
+        <!-- template -->
+        <!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-jsp -->
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-jsp</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-servlet -->
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-servlet</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-core -->
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-core</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+
+        <!-- file Upload -->
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-io -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.3.3</version>
+        </dependency>
+
+        <!-- db Oracle -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
 <!--		<dependency>-->
 <!--		    <groupId>org.springframework</groupId>-->
 <!--		    <artifactId>spring-jdbc</artifactId>-->
 <!--		    <version>3.0.5.RELEASE</version>-->
 <!--		</dependency>-->
-		
-		<!-- MyBatis -->
-		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
-		<dependency>
-		    <groupId>org.mybatis</groupId>
-		    <artifactId>mybatis</artifactId>
-		    <version>3.4.6</version>
-		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
-		<dependency>
-		    <groupId>org.mybatis</groupId>
-		    <artifactId>mybatis-spring</artifactId>
-		    <version>1.3.2</version>
-		</dependency>
-		
-		<!-- POOL -->
-		<!-- https://mvnrepository.com/artifact/commons-pool/commons-pool -->
-		<dependency>
-		    <groupId>commons-pool</groupId>
-		    <artifactId>commons-pool</artifactId>
-		    <version>1.6</version>
-		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
-		<dependency>
-		    <groupId>commons-dbcp</groupId>
-		    <artifactId>commons-dbcp</artifactId>
-		    <version>1.4</version>
-		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/commons-collections/commons-collections -->
-		<dependency>
-		    <groupId>commons-collections</groupId>
-		    <artifactId>commons-collections</artifactId>
-		    <version>3.2.1</version>
-		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
-		<dependency>
-		    <groupId>com.googlecode.json-simple</groupId>
-		    <artifactId>json-simple</artifactId>
-		    <version>1.1.1</version>
-		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+
+        <!-- MyBatis -->
+        <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.4.6</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+
+        <!-- POOL -->
+        <!-- https://mvnrepository.com/artifact/commons-pool/commons-pool -->
+        <dependency>
+            <groupId>commons-pool</groupId>
+            <artifactId>commons-pool</artifactId>
+            <version>1.6</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>1.4</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/commons-collections/commons-collections -->
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>3.2.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 <!--		<dependency>-->
 <!--		    <groupId>com.fasterxml.jackson.core</groupId>-->
 <!--		    <artifactId>jackson-databind</artifactId>-->
 <!--		    <version>2.9.8</version>-->
 <!--		</dependency>-->
-				
-				
-		<!-- Jackson -->
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+
+
+        <!-- Jackson -->
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
 <!--		<dependency>-->
 <!--		   <groupId>com.fasterxml.jackson.core</groupId>-->
 <!--		   <artifactId>jackson-core</artifactId>-->
@@ -251,59 +251,70 @@
 <!--		</dependency>-->
 
 
-		<dependency>
-		   <groupId>org.codehaus.jackson</groupId>
-		   <artifactId>jackson-mapper-asl</artifactId>
-		   <version>1.9.13</version>
-		</dependency>
-		
-		<!-- Crawling -->
-		<!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.13</version>
+        </dependency>
+
+        <!-- Crawling -->
+        <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
 <!--		<dependency>-->
 <!--		    <groupId>org.jsoup</groupId>-->
 <!--		    <artifactId>jsoup</artifactId>-->
 <!--		    <version>1.11.3</version>-->
 <!--		</dependency>-->
 
-		<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc8 -->
-		<dependency>
-			<groupId>com.oracle.database.jdbc</groupId>
-			<artifactId>ojdbc8</artifactId>
-			<version>21.1.0.0</version>
-		</dependency>
+        <!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc8 -->
+        <dependency>
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ojdbc8</artifactId>
+            <version>21.1.0.0</version>
+        </dependency>
 
-		<!-- Spring boot -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+        <!-- Spring boot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
 
-		<dependency>
-			<groupId>com.oracle.database.jdbc</groupId>
-			<artifactId>ojdbc8</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		
-	</dependencies>
+        <dependency>
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ojdbc8</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/webapp</directory>
+            </resource>
+        </resources>
         <plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
 <!--            <plugin>-->
 <!--                <artifactId>maven-eclipse-plugin</artifactId>-->
 <!--                <version>2.9</version>-->
