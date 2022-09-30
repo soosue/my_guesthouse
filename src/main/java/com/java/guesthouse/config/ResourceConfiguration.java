@@ -23,7 +23,5 @@ public class ResourceConfiguration implements WebMvcConfigurer {
         registry.addResourceHandler("/exImage/**")
                 .addResourceLocations("file:///C:/pde/")
                 .setCachePeriod(20);
-
-
     }
 }
