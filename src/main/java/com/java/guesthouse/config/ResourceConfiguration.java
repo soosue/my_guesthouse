@@ -12,6 +12,7 @@ public class ResourceConfiguration implements WebMvcConfigurer {
                 .addResourceLocations("/resources/")
                 .setCachePeriod(20);
         registry.addResourceHandler("/image/**")
+                .addResourceLocations("/resources/images/")
                 .addResourceLocations("file:///C:/pdn/")
                 .setCachePeriod(20);
         registry.addResourceHandler("/profileImg/**")
