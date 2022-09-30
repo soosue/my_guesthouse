@@ -12,10 +12,10 @@ import org.springframework.context.annotation.Configuration;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
-public class BeanConfiguration {
+public class DbConfiguration {
     private final ApplicationContext applicationContext;
 
-    public BeanConfiguration(ApplicationContext applicationContext) {
+    public DbConfiguration(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
     }
 
