@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.java.guesthouse.experience.dto.ExperienceDto;
 import com.java.guesthouse.file.dto.FileDto;
-import com.java.guesthouse.guestReserve.dto.GuestReserveDto;
+import com.java.guesthouse.guestreserve.dto.GuestReserveDto;
 import com.java.guesthouse.host.dto.ExReservationListDto;
 import com.java.guesthouse.host.dto.HostDto;
 import com.java.guesthouse.host.dto.ReservationListDto;

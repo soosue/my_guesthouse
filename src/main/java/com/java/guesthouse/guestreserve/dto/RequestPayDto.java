@@ -1,4 +1,4 @@
-package com.java.guesthouse.guestReserve.dto;
+package com.java.guesthouse.guestreserve.dto;
 
 public class RequestPayDto {
 	String impUid;

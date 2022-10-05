@@ -40,7 +40,7 @@
 		select houseName from house where houseCode=#{houseCode}
 	</select>
 	
-	<insert id="insertReserveInfo" parameterType="com.java.guesthouse.guestReserve.dto.GuestReserveDto">
+	<insert id="insertReserveInfo" parameterType="com.java.guesthouse.guestreserve.dto.GuestReserveDto">
 		insert into 
 		RESERVATION(reserveCode,memberCode,houseCode,reserveDate,checkIn,checkOut,state,payment,people)
 		values(seq_reserveCode_num.nextval,#{memberCode},#{houseCode},#{reserveDate},#{checkIn},#{checkOut},#{state},#{payment},#{people})
@@ -72,7 +72,7 @@
 		values(#{resDate},#{people},#{houseCode})
 	</insert>
 	
-	<select id="getRemain" parameterType="int" resultType="com.java.guesthouse.guestReserve.dto.RemainDto">
+	<select id="getRemain" parameterType="int" resultType="com.java.guesthouse.guestreserve.dto.RemainDto">
 		select resDate,sum(people) as people from remain where houseCode=#{houseCode} group by resDate
 	</select>
 	
@@ -92,7 +92,7 @@
 		and RESERVATION.HOUSECODE=#{houseCode}
 	</select>
 	
-	<select id="reviewList" parameterType="java.util.Map" resultType="com.java.guesthouse.guestReserve.dto.GHouseReviewListDto">
+	<select id="reviewList" parameterType="java.util.Map" resultType="com.java.guesthouse.guestreserve.dto.GHouseReviewListDto">
 		<![CDATA[
 		SELECT * FROM 
 		(select rownum as rnum, A.* from 
@@ -108,7 +108,7 @@
 		select count(*) from RESERVATION where memberCode=#{memberCode} and HOUSECODE=#{houseCode}
 	</select>
 	
-	<select id="reserveCode" parameterType="java.util.Map" resultType="com.java.guesthouse.guestReserve.dto.GuestReserveDto">
+	<select id="reserveCode" parameterType="java.util.Map" resultType="com.java.guesthouse.guestreserve.dto.GuestReserveDto">
 		select reserveCode from RESERVATION where HOUSECODE=#{houseCode} and memberCode=#{memberCode}
 	</select>
 	

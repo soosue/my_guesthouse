@@ -21,7 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.java.guesthouse.aop.HomeAspect;
 import com.java.guesthouse.experience.dto.ExperienceDto;
 import com.java.guesthouse.file.dto.FileDto;
-import com.java.guesthouse.guestReserve.dto.GuestReserveDto;
+import com.java.guesthouse.guestreserve.dto.GuestReserveDto;
 import com.java.guesthouse.host.dao.HostDao;
 import com.java.guesthouse.host.dto.ExReservationListDto;
 import com.java.guesthouse.host.dto.HostDto;

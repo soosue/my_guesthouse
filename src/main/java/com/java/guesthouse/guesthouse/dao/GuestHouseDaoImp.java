@@ -1,4 +1,4 @@
-package com.java.guesthouse.guestHouse.dao;
+package com.java.guesthouse.guesthouse.dao;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.java.guesthouse.file.dto.FileDto;
-import com.java.guesthouse.guestReserve.dto.GHouseReviewListDto;
-import com.java.guesthouse.guestReserve.dto.GuestReserveDto;
-import com.java.guesthouse.guestReserve.dto.RemainDto;
+import com.java.guesthouse.guestreserve.dto.GHouseReviewListDto;
+import com.java.guesthouse.guestreserve.dto.GuestReserveDto;
+import com.java.guesthouse.guestreserve.dto.RemainDto;
 import com.java.guesthouse.guestdelluna.dto.HouseReviewDto;
 import com.java.guesthouse.guestdelluna.dto.MsgDto;
 import com.java.guesthouse.guestdelluna.dto.PointAccumulate;

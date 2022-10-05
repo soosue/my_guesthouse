@@ -1,4 +1,4 @@
-package com.java.guesthouse.guestHouse.controller;
+package com.java.guesthouse.guesthouse.controller;
 
 
 import java.util.Map;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.java.guesthouse.aop.HomeAspect;
-import com.java.guesthouse.guestHouse.service.GuestHouseService;
+import com.java.guesthouse.guesthouse.service.GuestHouseService;
 import com.java.guesthouse.guestdelluna.dto.HouseReviewDto;
 
 @Controller
