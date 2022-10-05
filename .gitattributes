@@ -1,0 +1,4 @@
+*.java text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.html text eol=lf
