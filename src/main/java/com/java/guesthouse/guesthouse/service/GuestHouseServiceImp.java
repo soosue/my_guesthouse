@@ -803,8 +803,8 @@ public class GuestHouseServiceImp implements GuestHouseService {
 		Map<String, Object> map = mav.getModelMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");		
 		
-		String imp_uid = request.getParameter("imp_uid");
-		String merchant_uid = request.getParameter("merchant_uid");
+		String impUid = request.getParameter("imp_uid");
+		String merchantUid = request.getParameter("merchant_uid");
 		int total = Integer.parseInt(request.getParameter("paid_amount"));
 		int houseCode = hostDto.getHouseCode();
 		
@@ -816,7 +816,7 @@ public class GuestHouseServiceImp implements GuestHouseService {
 		int usePoint = Integer.parseInt(request.getParameter("usePoint"));
 		
 		HomeAspect.logger.info(HomeAspect.logMsg 
-				+ "imp_uid: "+imp_uid+", merchant_uid:"+merchant_uid +", paid_amount:"+total);
+				+ "imp_uid: "+impUid+", merchant_uid:"+merchantUid +", paid_amount:"+total);
 		
 		// 게스트하우스 사진
 		String mainImg = null;

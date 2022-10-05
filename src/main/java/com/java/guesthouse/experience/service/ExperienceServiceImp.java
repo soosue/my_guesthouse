@@ -1217,8 +1217,8 @@ public class ExperienceServiceImp implements ExperienceService {
 		HttpSession session = request.getSession();
 		String email = (String) session.getAttribute("email");
 		
-		String imp_uid = request.getParameter("imp_uid");
-		String merchant_uid = request.getParameter("merchant_uid");
+		String impUid = request.getParameter("imp_uid");
+		String merchantUid = request.getParameter("merchant_uid");
 		
 		int exPayment = Integer.parseInt(request.getParameter("paid_amount"));
 		int exCode =Integer.parseInt(request.getParameter("exCode"));
@@ -1357,7 +1357,7 @@ public class ExperienceServiceImp implements ExperienceService {
 		mav.addObject("mainImg", mainImg);
 		mav.addObject("plusPoint", plusPoint);
 		mav.addObject("resPoint",resPoint);
-		mav.addObject("imp_uid",imp_uid);
+		mav.addObject("imp_uid",impUid);
 		
 		mav.setViewName("experience/exPageReserveOk.tiles");
 
