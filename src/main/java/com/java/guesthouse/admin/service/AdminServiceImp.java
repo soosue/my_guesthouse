@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,8 +15,11 @@ import com.java.guesthouse.member.dto.MemberDto;
 
 @Component
 public class AdminServiceImp implements AdminService {
-    @Autowired
-    private AdminDao adminDao;
+    private final AdminDao adminDao;
+
+    public AdminServiceImp(AdminDao adminDao) {
+        this.adminDao = adminDao;
+    }
 
     @Override
     public void memberList(ModelAndView mav) {

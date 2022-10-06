@@ -3,7 +3,6 @@ package com.java.guesthouse.guestdelluna.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,8 +14,11 @@ import com.java.guesthouse.guestdelluna.service.DellunaService;
 @Controller
 public class DellMemberController {
 
-    @Autowired
-    private DellunaService dellunaService;
+    private final DellunaService dellunaService;
+
+    public DellMemberController(DellunaService dellunaService) {
+        this.dellunaService = dellunaService;
+    }
 
     //회원수정
     @RequestMapping(value = "guestdelluna/memberUpdate.do", method = RequestMethod.GET)

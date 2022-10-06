@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.java.guesthouse.aop.HomeAspect;
@@ -38,8 +37,11 @@ import com.java.guesthouse.host.dto.HouseReviewListDto;
 @Component
 public class DellunaDaoImp implements DellunaDao {
 
-    @Autowired
-    private SqlSessionTemplate sqlSessionTemplate;
+    private final SqlSessionTemplate sqlSessionTemplate;
+
+    public DellunaDaoImp(SqlSessionTemplate sqlSessionTemplate) {
+        this.sqlSessionTemplate = sqlSessionTemplate;
+    }
 
     @Override
     public HouseReviewDto selectReview(int memberCode) {

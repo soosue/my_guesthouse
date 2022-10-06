@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONValue;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -43,8 +42,11 @@ import com.java.guesthouse.host.dto.HouseReviewListDto;
 @Component
 public class DellunaServiceImp implements DellunaService {
 
-    @Autowired
-    private DellunaDao dellunaDao;
+    private final DellunaDao dellunaDao;
+
+    public DellunaServiceImp(DellunaDao dellunaDao) {
+        this.dellunaDao = dellunaDao;
+    }
 
     // 찜목록불러오기
     @Override

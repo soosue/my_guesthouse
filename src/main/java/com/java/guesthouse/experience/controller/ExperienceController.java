@@ -8,7 +8,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,8 +32,11 @@ import com.java.guesthouse.host.dto.HostDto;
 @Controller
 public class ExperienceController {
 
-    @Autowired
-    private ExperienceService experienceService;
+    private final ExperienceService experienceService;
+
+    public ExperienceController(ExperienceService experienceService) {
+        this.experienceService = experienceService;
+    }
 
     // 체험 등록 눌렀을 때
     @RequestMapping(value = "/experience/exHost.do", method = RequestMethod.GET)

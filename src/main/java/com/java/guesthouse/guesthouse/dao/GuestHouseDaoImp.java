@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.java.guesthouse.file.dto.FileDto;
@@ -22,8 +21,11 @@ import com.java.guesthouse.member.dto.MemberDto;
 
 @Component
 public class GuestHouseDaoImp implements GuestHouseDao {
-    @Autowired
-    private SqlSessionTemplate sqlSessionTemplate;
+    private final SqlSessionTemplate sqlSessionTemplate;
+
+    public GuestHouseDaoImp(SqlSessionTemplate sqlSessionTemplate) {
+        this.sqlSessionTemplate = sqlSessionTemplate;
+    }
 
     @Override
     public HostDto guestHouseRead(int houseCode) {

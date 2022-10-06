@@ -17,7 +17,6 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONValue;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -43,8 +42,11 @@ import com.java.guesthouse.member.dto.MemberDto;
 @Component
 public class ExperienceServiceImp implements ExperienceService {
 
-    @Autowired
-    private ExperienceDao experienceDao;
+    private final ExperienceDao experienceDao;
+
+    public ExperienceServiceImp(ExperienceDao experienceDao) {
+        this.experienceDao = experienceDao;
+    }
     // List<ExFileDto> exFileList;
     // ExperienceDto experienceDto;
 

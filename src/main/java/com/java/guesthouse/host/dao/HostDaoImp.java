@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.java.guesthouse.experience.dto.ExperienceDto;
@@ -20,8 +19,11 @@ import com.java.guesthouse.member.dto.MemberDto;
 
 @Component
 public class HostDaoImp implements HostDao {
-    @Autowired
-    private SqlSessionTemplate sqlSession;
+    private final SqlSessionTemplate sqlSession;
+
+    public HostDaoImp(SqlSessionTemplate sqlSession) {
+        this.sqlSession = sqlSession;
+    }
 
     @Override
     public int subImgUpload(FileDto fileDto) {

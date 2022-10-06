@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.java.guesthouse.aop.HomeAspect;
@@ -19,8 +18,11 @@ import com.java.guesthouse.search.dto.GetCountDto;
 @Component
 public class SearchDaoImp implements SearchDao {
 
-    @Autowired
-    private SqlSessionTemplate session;
+    private final SqlSessionTemplate session;
+
+    public SearchDaoImp(SqlSessionTemplate session) {
+        this.session = session;
+    }
 
     @Override
     public List<HostImgDto> searchHouse(Map<String, Object> dataMap) {

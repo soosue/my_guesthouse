@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.java.guesthouse.aop.HomeAspect;
@@ -27,8 +26,11 @@ import com.java.guesthouse.member.dto.MemberDto;
 @Component
 public class ExperienceDaoImp implements ExperienceDao {
 
-    @Autowired
-    private SqlSessionTemplate sqlSessionTemplate;
+    private final SqlSessionTemplate sqlSessionTemplate;
+
+    public ExperienceDaoImp(SqlSessionTemplate sqlSessionTemplate) {
+        this.sqlSessionTemplate = sqlSessionTemplate;
+    }
 
     @Override
     public int subImgUpload(ExFileDto exFileDto) {

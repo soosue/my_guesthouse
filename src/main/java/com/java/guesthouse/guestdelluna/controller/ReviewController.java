@@ -3,7 +3,6 @@ package com.java.guesthouse.guestdelluna.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,8 +13,11 @@ import com.java.guesthouse.guestdelluna.service.DellunaService;
 @Controller
 public class ReviewController {
 
-    @Autowired
-    private DellunaService dellunaService;
+    private final DellunaService dellunaService;
+
+    public ReviewController(DellunaService dellunaService) {
+        this.dellunaService = dellunaService;
+    }
 
     @RequestMapping(value = "guestdelluna/reviewUpdate.do", method = RequestMethod.GET)
     public ModelAndView reviewUpdate(HttpServletRequest request, HttpServletResponse response) {

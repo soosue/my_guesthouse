@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -32,8 +31,11 @@ import com.java.guesthouse.member.dto.MemberDto;
 
 @Component
 public class HostServiceImp implements HostService {
-    @Autowired
-    private HostDao hostDao;
+    private final HostDao hostDao;
+
+    public HostServiceImp(HostDao hostDao) {
+        this.hostDao = hostDao;
+    }
 
     @Override
     public void hostRegisterPage(ModelAndView mav) {

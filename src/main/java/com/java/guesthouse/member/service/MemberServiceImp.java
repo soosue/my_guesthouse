@@ -8,7 +8,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,8 +18,11 @@ import com.java.guesthouse.member.dto.MemberDto;
 @Component
 public class MemberServiceImp implements MemberService {
 
-    @Autowired
-    private MemberDao memberDao;
+    private final MemberDao memberDao;
+
+    public MemberServiceImp(MemberDao memberDao) {
+        this.memberDao = memberDao;
+    }
 
     @Override
     public void memberRegisterOk(ModelAndView mav) {

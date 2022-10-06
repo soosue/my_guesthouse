@@ -6,7 +6,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,8 +19,11 @@ import com.java.guesthouse.guesthouse.service.GuestHouseService;
 @Controller
 public class GuestHouseController {
 
-    @Autowired
-    private GuestHouseService guestHouseService;
+    private final GuestHouseService guestHouseService;
+
+    public GuestHouseController(GuestHouseService guestHouseService) {
+        this.guestHouseService = guestHouseService;
+    }
 
 
     @RequestMapping(value = "/guestHousePage/guestHouse.do", method = RequestMethod.GET)

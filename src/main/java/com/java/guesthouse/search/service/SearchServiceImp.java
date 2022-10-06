@@ -8,7 +8,6 @@ import java.util.Map;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,8 +24,11 @@ import com.java.guesthouse.search.dto.GetCountDto;
 @Component
 public class SearchServiceImp implements SearchService {
 
-    @Autowired
-    private SearchDao searchDao;
+    private final SearchDao searchDao;
+
+    public SearchServiceImp(SearchDao searchDao) {
+        this.searchDao = searchDao;
+    }
 
     @SuppressWarnings("unchecked")
     @Override

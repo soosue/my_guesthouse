@@ -3,7 +3,6 @@ package com.java.guesthouse.host.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,8 +13,11 @@ import com.java.guesthouse.host.service.HostService;
 
 @Controller
 public class HostController {
-    @Autowired
-    private HostService hostService;
+    private final HostService hostService;
+
+    public HostController(HostService hostService) {
+        this.hostService = hostService;
+    }
 
 
     @RequestMapping(value = "/host/register.do", method = RequestMethod.GET)
