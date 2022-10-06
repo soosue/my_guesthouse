@@ -8,14 +8,14 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.java.guesthouse.aop.HomeAspect;
 import com.java.guesthouse.member.domain.MemberDao;
 import com.java.guesthouse.member.service.dto.MemberDto;
 
-@Component
+@Service
 public class MemberServiceImp implements MemberService {
 
     private final MemberDao memberDao;

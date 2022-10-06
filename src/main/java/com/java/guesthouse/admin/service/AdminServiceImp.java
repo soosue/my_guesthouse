@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.java.guesthouse.admin.domain.AdminDao;
@@ -13,7 +13,7 @@ import com.java.guesthouse.aop.HomeAspect;
 import com.java.guesthouse.experience.service.dto.ExperienceDto;
 import com.java.guesthouse.member.service.dto.MemberDto;
 
-@Component
+@Service
 public class AdminServiceImp implements AdminService {
     private final AdminDao adminDao;
 

@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.java.guesthouse.aop.HomeAspect;
 import com.java.guesthouse.guestdelluna.service.dto.ExpReservationDto;
@@ -34,7 +34,7 @@ import com.java.guesthouse.host.service.dto.HostExListDto;
 import com.java.guesthouse.host.service.dto.HostHouseListDto;
 import com.java.guesthouse.host.service.dto.HouseReviewListDto;
 
-@Component
+@Repository
 public class DellunaDaoImp implements DellunaDao {
 
     private final SqlSessionTemplate sqlSessionTemplate;

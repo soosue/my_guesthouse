@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.java.guesthouse.experience.service.dto.ExperienceDto;
 import com.java.guesthouse.file.dto.FileDto;
@@ -17,7 +17,7 @@ import com.java.guesthouse.host.service.dto.SearchDateList;
 import com.java.guesthouse.host.service.dto.SearchDateListCount;
 import com.java.guesthouse.member.service.dto.MemberDto;
 
-@Component
+@Repository
 public class HostDaoImp implements HostDao {
     private final SqlSessionTemplate sqlSession;
 

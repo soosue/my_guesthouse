@@ -8,7 +8,7 @@ import java.util.Map;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.java.guesthouse.aop.HomeAspect;
@@ -21,7 +21,7 @@ import com.java.guesthouse.search.domain.SearchDao;
 import com.java.guesthouse.search.service.dto.GetCountDto;
 
 
-@Component
+@Service
 public class SearchServiceImp implements SearchService {
 
     private final SearchDao searchDao;

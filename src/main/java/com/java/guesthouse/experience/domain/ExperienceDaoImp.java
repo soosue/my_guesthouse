@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.java.guesthouse.aop.HomeAspect;
 import com.java.guesthouse.exfile.dto.ExFileDto;
@@ -23,7 +23,7 @@ import com.java.guesthouse.guestdelluna.service.dto.PointUse;
 import com.java.guesthouse.host.service.dto.HostDto;
 import com.java.guesthouse.member.service.dto.MemberDto;
 
-@Component
+@Repository
 public class ExperienceDaoImp implements ExperienceDao {
 
     private final SqlSessionTemplate sqlSessionTemplate;

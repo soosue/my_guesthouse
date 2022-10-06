@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONValue;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,7 +39,7 @@ import com.java.guesthouse.member.service.dto.MemberDto;
  * @Date : 2019. 12. 22.
  * @Content : 예약가능일 날짜 표시, 페이징, exReserve 시퀀스 디비에 create, messageDto
  */
-@Component
+@Service
 public class ExperienceServiceImp implements ExperienceService {
 
     private final ExperienceDao experienceDao;

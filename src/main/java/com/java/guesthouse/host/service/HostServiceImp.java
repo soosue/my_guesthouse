@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,7 +29,7 @@ import com.java.guesthouse.host.service.dto.SearchDateList;
 import com.java.guesthouse.host.service.dto.SearchDateListCount;
 import com.java.guesthouse.member.service.dto.MemberDto;
 
-@Component
+@Service
 public class HostServiceImp implements HostService {
     private final HostDao hostDao;
 

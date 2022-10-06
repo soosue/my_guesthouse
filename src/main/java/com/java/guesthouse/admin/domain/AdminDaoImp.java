@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.java.guesthouse.experience.service.dto.ExperienceDto;
 import com.java.guesthouse.member.service.dto.MemberDto;
 
-@Component
+@Repository
 public class AdminDaoImp implements AdminDao {
 
     private final SqlSessionTemplate sqlSessionTemplate;
