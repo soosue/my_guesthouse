@@ -36,7 +36,7 @@ public class MemberDaoImp implements MemberDao {
     @Override
     public String login(String email, String password) {
 
-        Map<String, Object> hMap = new HashMap<String, Object>();
+        Map<String, Object> hMap = new HashMap<>();
 
         hMap.put("email", email);
         hMap.put("password", password);
@@ -48,7 +48,7 @@ public class MemberDaoImp implements MemberDao {
     @Override
     public MemberDto memberSel(String email, String password) {
 
-        Map<String, Object> hMap = new HashMap<String, Object>();
+        Map<String, Object> hMap = new HashMap<>();
 
         hMap.put("email", email);
         hMap.put("password", password);
@@ -58,7 +58,7 @@ public class MemberDaoImp implements MemberDao {
 
     @Override
     public int inserKakao(String email, String memberImgPath, String memberName) {
-        Map<String, Object> hMap = new HashMap<String, Object>();
+        Map<String, Object> hMap = new HashMap<>();
 
         hMap.put("email", email);
         hMap.put("memberImgPath", memberImgPath);

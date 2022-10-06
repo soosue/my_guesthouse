@@ -284,7 +284,7 @@ public class GuestHouseServiceImp implements GuestHouseService {
     public Map<String, Object> review(HttpServletRequest request) {
         // jackson
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
 
         // 세션
         HttpSession session = request.getSession();

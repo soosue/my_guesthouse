@@ -57,7 +57,7 @@ public class HostDaoImp implements HostDao {
 
     @Override
     public List<HostDto> houseList(int memberCode, int startRow, int endRow) {
-        Map<String, Integer> map = new HashMap<String, Integer>();
+        Map<String, Integer> map = new HashMap<>();
         map.put("memberCode", memberCode);
         map.put("startRow", startRow);
         map.put("endRow", endRow);
@@ -96,7 +96,7 @@ public class HostDaoImp implements HostDao {
 
     @Override
     public List<ReservationListDto> reserveViewList(int houseCode, int startRow, int endRow) {
-        Map<String, Integer> map = new HashMap<String, Integer>();
+        Map<String, Integer> map = new HashMap<>();
         map.put("houseCode", houseCode);
         map.put("startRow", startRow);
         map.put("endRow", endRow);
@@ -105,7 +105,7 @@ public class HostDaoImp implements HostDao {
 
     @Override
     public List<ExReservationListDto> exReserveViewList(int exCode, int startRow, int endRow) {
-        Map<String, Integer> map = new HashMap<String, Integer>();
+        Map<String, Integer> map = new HashMap<>();
         map.put("exCode", exCode);
         map.put("startRow", startRow);
         map.put("endRow", endRow);
@@ -135,7 +135,7 @@ public class HostDaoImp implements HostDao {
 
     @Override
     public List<ExperienceDto> experienceList(int memberCode, int startRow, int endRow) {
-        Map<String, Integer> map = new HashMap<String, Integer>();
+        Map<String, Integer> map = new HashMap<>();
         map.put("memberCode", memberCode);
         map.put("startRow", startRow);
         map.put("endRow", endRow);
@@ -149,7 +149,7 @@ public class HostDaoImp implements HostDao {
 
     @Override
     public SearchDateListCount getSearchDateCount(int memberCode, String startDate, String endDate) {
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);
         map.put("startDate", startDate);
         map.put("endDate", endDate);
@@ -159,7 +159,7 @@ public class HostDaoImp implements HostDao {
     @Override
     public List<SearchDateList> searchDateList(int memberCode, String startDate, String endDate, int startRow,
                                                int endRow) {
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);
         map.put("startDate", startDate);
         map.put("endDate", endDate);

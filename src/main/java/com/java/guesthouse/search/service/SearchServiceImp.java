@@ -37,7 +37,7 @@ public class SearchServiceImp implements SearchService {
         ModelAndView mav = new ModelAndView();
 
         //myBatis에 넘겨줄 data, Map에 넣기
-        Map<String, Object> dataMap = new HashMap<String, Object>();
+        Map<String, Object> dataMap = new HashMap<>();
 
         if (memberCode != null)
             dataMap.put("memberCode", memberCode);
@@ -83,7 +83,7 @@ public class SearchServiceImp implements SearchService {
             //검색 결과 list -> JSON으로
             JSONArray arr = new JSONArray();
             for (HostImgDto hostDto : searchHouseList) {
-                HashMap<String, Object> map = new HashMap<String, Object>();
+                HashMap<String, Object> map = new HashMap<>();
                 map.put("houseName", hostDto.getHouseName());
                 map.put("houseCode", hostDto.getHouseCode());
                 map.put("lat", hostDto.getLatLng().split(",")[0]);
@@ -108,7 +108,7 @@ public class SearchServiceImp implements SearchService {
 
                 JSONArray fileArr = new JSONArray();
                 for (FileDto fileDto : hostDto.getFileList()) {
-                    HashMap<String, Object> fileMap = new HashMap<String, Object>();
+                    HashMap<String, Object> fileMap = new HashMap<>();
                     //fileMap.put("filePath",fileDto.getFilePath());
                     fileMap.put("fileName", fileDto.getFileName());
                     fileArr.add(fileMap);
@@ -117,7 +117,7 @@ public class SearchServiceImp implements SearchService {
                 arr.add(map);
                 HomeAspect.logger.info(HomeAspect.logMsg + "hostDto Json: " + map.toString());
             }
-            HashMap<String, Object> map = new HashMap<String, Object>();
+            HashMap<String, Object> map = new HashMap<>();
             map.put("houseJson", arr);
             String jsonText = JSONValue.toJSONString(map);
             HomeAspect.logger.info(HomeAspect.logMsg + "JsonText: " + jsonText);
@@ -169,7 +169,7 @@ public class SearchServiceImp implements SearchService {
 //			e.printStackTrace();
 //		}
 
-        HashMap<String, Object> map = new HashMap<String, Object>();
+        HashMap<String, Object> map = new HashMap<>();
         map.put("houseCode", hostImgDto.getHouseCode());
         map.put("houseName", hostImgDto.getHouseName());
         map.put("people", hostImgDto.getPeople());
@@ -199,7 +199,7 @@ public class SearchServiceImp implements SearchService {
         ModelAndView mav = new ModelAndView();
 
         //myBatis에 넘겨줄 data, Map에 넣기
-        Map<String, Object> dataMap = new HashMap<String, Object>();
+        Map<String, Object> dataMap = new HashMap<>();
 
         if (memberCode != null)
             dataMap.put("memberCode", memberCode);
@@ -247,7 +247,7 @@ public class SearchServiceImp implements SearchService {
             //검색 결과 list -> JSON으로
             JSONArray arr = new JSONArray();
             for (ExperienceImgDto exDto : searchExList) {
-                HashMap<String, Object> map = new HashMap<String, Object>();
+                HashMap<String, Object> map = new HashMap<>();
                 map.put("exName", exDto.getExName());
                 map.put("exCode", exDto.getExCode());
                 map.put("lat", exDto.getLatLng().split(",")[0]);
@@ -265,7 +265,7 @@ public class SearchServiceImp implements SearchService {
 
                 JSONArray exFileArr = new JSONArray();
                 for (ExFileDto exFileDto : exDto.getExFileList()) {
-                    HashMap<String, Object> exFileMap = new HashMap<String, Object>();
+                    HashMap<String, Object> exFileMap = new HashMap<>();
                     //exFileMap.put("exFilePath",exFileDto.getFilePath());
                     exFileMap.put("exFileName", exFileDto.getFileName());
                     exFileArr.add(exFileMap);
@@ -274,7 +274,7 @@ public class SearchServiceImp implements SearchService {
                 arr.add(map);
                 HomeAspect.logger.info(HomeAspect.logMsg + "exDto Json: " + map.toString());
             }
-            HashMap<String, Object> map = new HashMap<String, Object>();
+            HashMap<String, Object> map = new HashMap<>();
             map.put("exJson", arr);
             String jsonText = JSONValue.toJSONString(map);
             HomeAspect.logger.info(HomeAspect.logMsg + "ExJsonText: " + jsonText);
@@ -314,7 +314,7 @@ public class SearchServiceImp implements SearchService {
 //			e.printStackTrace();
 //		}
 
-        HashMap<String, Object> map = new HashMap<String, Object>();
+        HashMap<String, Object> map = new HashMap<>();
         map.put("exCode", exImgDto.getExCode());
         map.put("exName", exImgDto.getExName());
         map.put("people", exImgDto.getExPeople());

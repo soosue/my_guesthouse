@@ -27,7 +27,7 @@ public class AdminDaoImp implements AdminDao {
 
     @Override
     public List<MemberDto> memberList(int startRow, int endRow) {
-        Map<String, Integer> hMap = new HashMap<String, Integer>();
+        Map<String, Integer> hMap = new HashMap<>();
         hMap.put("startRow", startRow);
         hMap.put("endRow", endRow);
 
@@ -57,7 +57,7 @@ public class AdminDaoImp implements AdminDao {
 
     @Override
     public List<MemberDto> houseList(int startRow, int endRow) {
-        Map<String, Integer> hMap = new HashMap<String, Integer>();
+        Map<String, Integer> hMap = new HashMap<>();
         hMap.put("startRow", startRow);
         hMap.put("endRow", endRow);
 
@@ -72,7 +72,7 @@ public class AdminDaoImp implements AdminDao {
 
     @Override
     public List<ExperienceDto> experienceList(int startRow, int endRow) {
-        Map<String, Integer> hMap = new HashMap<String, Integer>();
+        Map<String, Integer> hMap = new HashMap<>();
         hMap.put("startRow", startRow);
         hMap.put("endRow", endRow);
 

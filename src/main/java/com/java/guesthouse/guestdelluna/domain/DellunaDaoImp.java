@@ -59,7 +59,7 @@ public class DellunaDaoImp implements DellunaDao {
     public List<HouseReviewDto> reviewList(int startRow, int endRow) {
 
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("startRow", startRow);
         map.put("endRow", endRow);
 
@@ -88,7 +88,7 @@ public class DellunaDaoImp implements DellunaDao {
     @Override
     public List<HouseReservationDto> findHouseList(int memberCode) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);
         return sqlSessionTemplate.selectList("dao.dellunaMapper.findHouseList", map);
     }
@@ -116,7 +116,7 @@ public class DellunaDaoImp implements DellunaDao {
     @Override
     public int memberDeleteOk(String email, String password) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("email", email);
         map.put("password", password);
 
@@ -277,7 +277,7 @@ public class DellunaDaoImp implements DellunaDao {
     @Override
     public int deleteExpZzim(int exCode, int memberCode) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
 
         map.put("memberCode", memberCode);
         map.put("exCode", exCode);
@@ -300,7 +300,7 @@ public class DellunaDaoImp implements DellunaDao {
     @Override
     public int deleteHouseZzim(int houseCode, int memberCode) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
 
         map.put("memberCode", memberCode);
         map.put("houseCode", houseCode);
@@ -324,7 +324,7 @@ public class DellunaDaoImp implements DellunaDao {
     public List<HouseReservationDto> findHouseListWithString(int memberCode, String state) {
 
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
 
         map.put("memberCode", memberCode);
         map.put("state", state);
@@ -336,7 +336,7 @@ public class DellunaDaoImp implements DellunaDao {
     @Override
     public List<String> findHouseNameWithString(int memberCode, String state) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
 
         map.put("memberCode", memberCode);
         map.put("state", state);
@@ -347,7 +347,7 @@ public class DellunaDaoImp implements DellunaDao {
     @Override
     public List<ExpReservationDto> findExpListWithString(int memberCode, String state) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
 
         map.put("memberCode", memberCode);
         map.put("state", state);
@@ -358,7 +358,7 @@ public class DellunaDaoImp implements DellunaDao {
     @Override
     public List<String> myExNameWithString(int memberCode, String state) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
 
         map.put("memberCode", memberCode);
         map.put("state", state);
@@ -394,7 +394,7 @@ public class DellunaDaoImp implements DellunaDao {
 
     @Override
     public List<HouseReviewListDto> getHouseReviewListScroll(int memberCode, int startRow, int endRow) {
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);
         map.put("startRow", startRow);
         map.put("endRow", endRow);
@@ -411,7 +411,7 @@ public class DellunaDaoImp implements DellunaDao {
     @Override
     public List<PointAccumulate> myAccuPoint(int memberCode, int startRow, int endRow) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);
         map.put("startRow", startRow);
         map.put("endRow", endRow);
@@ -422,7 +422,7 @@ public class DellunaDaoImp implements DellunaDao {
     @Override
     public List<PointUse> myUsePoint(int memberCode, int startRow, int endRow) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);
         map.put("startRow", startRow);
         map.put("endRow", endRow);
@@ -445,7 +445,7 @@ public class DellunaDaoImp implements DellunaDao {
     @Override
     public List<ExpReviewDto> myExpReview(int memberCode, int startRow, int endRow) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);
         map.put("startRow", startRow);
         map.put("endRow", endRow);
@@ -456,7 +456,7 @@ public class DellunaDaoImp implements DellunaDao {
     @Override
     public List<HouseReviewDto> myHouseReview(int memberCode, int houseStartRow, int houseEndRow) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);
         map.put("houseStartRow", houseStartRow);
         map.put("houseEndRow", houseEndRow);
@@ -467,7 +467,7 @@ public class DellunaDaoImp implements DellunaDao {
     @Override
     public ExpReviewDto findMyReview(int memberCode, int exReserveCode) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);
         map.put("exReserveCode", exReserveCode);
 
@@ -477,7 +477,7 @@ public class DellunaDaoImp implements DellunaDao {
     @Override
     public int deleteReview(int exReserveCode, int memberCode) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);
         map.put("exReserveCode", exReserveCode);
 
@@ -487,7 +487,7 @@ public class DellunaDaoImp implements DellunaDao {
     @Override
     public int deleteHouseReview(int reserveCode, int memberCode) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);
         map.put("reserveCode", reserveCode);
         return sqlSessionTemplate.delete("dao.dellunaMapper.deleteHouseReview", map);
@@ -496,7 +496,7 @@ public class DellunaDaoImp implements DellunaDao {
     @Override
     public int updateExpReview(int memberCode, int exReserveCode, String revContent) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);
         map.put("exReserveCode", exReserveCode);
         map.put("revContent", revContent);
@@ -507,7 +507,7 @@ public class DellunaDaoImp implements DellunaDao {
     @Override
     public int selectMSG(int memberCode, String msgCheck) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);
         map.put("msgCheck", msgCheck);
         return sqlSessionTemplate.selectOne("dao.dellunaMapper.selectMSG", map);
@@ -516,7 +516,7 @@ public class DellunaDaoImp implements DellunaDao {
     @Override
     public List<MsgDto> listMsg(int memberCode, String msgCheck) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);
         map.put("msgCheck", msgCheck);
         return sqlSessionTemplate.selectList("dao.dellunaMapper.listMsg", map);
@@ -531,7 +531,7 @@ public class DellunaDaoImp implements DellunaDao {
     @Override
     public int deleteMsg(int memberCode, int msgCode) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);
         map.put("msgCode", msgCode);
         return sqlSessionTemplate.delete("dao.dellunaMapper.deleteMsg", map);
@@ -546,7 +546,7 @@ public class DellunaDaoImp implements DellunaDao {
     @Override
     public int updateMsg(int memberCode, int msgCode, String msgCheck) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);
         map.put("msgCode", msgCode);
         map.put("msgCheck", msgCheck);
@@ -562,7 +562,7 @@ public class DellunaDaoImp implements DellunaDao {
     @Override
     public int updateHouseReview(int memberCode, int reserveCode, String revContent) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);
         map.put("reserveCode", reserveCode);
         map.put("revContent", revContent);
@@ -572,7 +572,7 @@ public class DellunaDaoImp implements DellunaDao {
     @Override
 
     public List<ExReviewListDto> getExReviewListScroll(int memberCode, int startRow, int endRow) {
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);
         map.put("startRow", startRow);
         map.put("endRow", endRow);
@@ -581,7 +581,7 @@ public class DellunaDaoImp implements DellunaDao {
 
     @Override
     public List<MyHouseReviewList> getMyHouseReviewListScroll(int memberCode, int startRow, int endRow) {
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);
         map.put("startRow", startRow);
         map.put("endRow", endRow);
@@ -590,7 +590,7 @@ public class DellunaDaoImp implements DellunaDao {
 
     @Override
     public List<MyExReviewList> getMyExReviewListScroll(int memberCode, int startRow, int endRow) {
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);
         map.put("startRow", startRow);
         map.put("endRow", endRow);
@@ -599,7 +599,7 @@ public class DellunaDaoImp implements DellunaDao {
 
     public List<NewExpReviewDto> myExpreviewList(int memberCode, int startRow, int endRow) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);
         map.put("startRow", startRow);
         map.put("endRow", endRow);
@@ -609,7 +609,7 @@ public class DellunaDaoImp implements DellunaDao {
     @Override
     public List<NewHouseReviewDto> myHousereviewList(int memberCode, int startRow, int endRow) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);
         map.put("startRow", startRow);
         map.put("endRow", endRow);
@@ -620,7 +620,7 @@ public class DellunaDaoImp implements DellunaDao {
     @Override
     public List<NewExpReserveDto> newExpReserve(int memberCode, String state) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
 
         map.put("memberCode", memberCode);
         map.put("state", state);
@@ -630,7 +630,7 @@ public class DellunaDaoImp implements DellunaDao {
     @Override
     public List<NewHouseReserveDto> newHouseReserve(int memberCode, String state) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
 
         map.put("memberCode", memberCode);
         map.put("state", state);
@@ -659,7 +659,7 @@ public class DellunaDaoImp implements DellunaDao {
     @Override
     public List<NewExpZzimDto> newExpZzimDto(int memberCode, int startRow, int endRow) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);
         map.put("startRow", startRow);
         map.put("endRow", endRow);
@@ -670,7 +670,7 @@ public class DellunaDaoImp implements DellunaDao {
     @Override
     public List<NewHouseZzimDto> newHouseZzimDto(int memberCode, int startRow, int endRow) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);
         map.put("startRow", startRow);
         map.put("endRow", endRow);
@@ -693,7 +693,7 @@ public class DellunaDaoImp implements DellunaDao {
     @Override
     public int countPayExp(int memberCode, String state) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);
         map.put("state", state);
         return sqlSessionTemplate.selectOne("dao.dellunaMapper.countPayExp", map);
@@ -702,7 +702,7 @@ public class DellunaDaoImp implements DellunaDao {
     @Override
     public int countPayHouse(int memberCode, String state) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);
         map.put("state", state);
         return sqlSessionTemplate.selectOne("dao.dellunaMapper.countPayHouse", map);
@@ -711,7 +711,7 @@ public class DellunaDaoImp implements DellunaDao {
     @Override
     public List<NewExpResDto> newExpResDto(int memberCode, String state, int startRow, int endRow) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);
         map.put("state", state);
         map.put("startRow", startRow);
@@ -722,7 +722,7 @@ public class DellunaDaoImp implements DellunaDao {
     @Override
     public List<NewHouseResDto> newHouseResDto(int memberCode, String state, int startRow, int endRow) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);
         map.put("state", state);
         map.put("startRow", startRow);

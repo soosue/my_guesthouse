@@ -70,7 +70,7 @@ public class ExperienceDaoImp implements ExperienceDao {
 
     @Override
     public List<ExReviewListDto> getExReviewList(int startRow, int endRow, int exCode) {
-        Map<String, Integer> hMap = new HashMap<String, Integer>();
+        Map<String, Integer> hMap = new HashMap<>();
         hMap.put("startRow", startRow);
         hMap.put("endRow", endRow);
         //hMap.put("memberCode", memberCode);
@@ -82,7 +82,7 @@ public class ExperienceDaoImp implements ExperienceDao {
     // 후기
     @Override // 예약번호가 있는지 cnt
     public int reserveCodeCnt(int memberCode, int exCode) {
-        Map<String, Integer> hMap = new HashMap<String, Integer>();
+        Map<String, Integer> hMap = new HashMap<>();
         hMap.put("memberCode", memberCode);
         hMap.put("exCode", exCode);
         return sqlSessionTemplate.selectOne("dao.ExperienceMapper.exReserveCodeCnt", hMap);
@@ -90,7 +90,7 @@ public class ExperienceDaoImp implements ExperienceDao {
 
     @Override
     public List<ExReserveDto> exReserveCode(int exCode, int memberCode) {
-        Map<String, Integer> hMap = new HashMap<String, Integer>();
+        Map<String, Integer> hMap = new HashMap<>();
         hMap.put("memberCode", memberCode);
         hMap.put("exCode", exCode);
         return sqlSessionTemplate.selectList("dao.ExperienceMapper.exReserveCode", hMap);
@@ -108,7 +108,7 @@ public class ExperienceDaoImp implements ExperienceDao {
 
     @Override
     public ExReviewDto exReviewUpdate(int memberCode, int exReserveCode) {
-        Map<String, Integer> hMap = new HashMap<String, Integer>();
+        Map<String, Integer> hMap = new HashMap<>();
         hMap.put("exCode", memberCode);
         hMap.put("exReserveCode", exReserveCode);
 
@@ -133,7 +133,7 @@ public class ExperienceDaoImp implements ExperienceDao {
 
     @Override
     public List<ExFileDto> exPageImgList(int exCode) {
-        Map<String, Integer> hMap = new HashMap<String, Integer>();
+        Map<String, Integer> hMap = new HashMap<>();
         hMap.put("exCode", exCode);
 
         return sqlSessionTemplate.selectList("dao.ExperienceMapper.exPageImgList", hMap);
@@ -146,7 +146,7 @@ public class ExperienceDaoImp implements ExperienceDao {
 
     @Override
     public int exPayment(int exPeople, int exCode) {
-        Map<String, Integer> hMap = new HashMap<String, Integer>();
+        Map<String, Integer> hMap = new HashMap<>();
         hMap.put("exPeople", exPeople);
         hMap.put("exCode", exCode);
         return sqlSessionTemplate.selectOne("dao.ExperienceMapper.exPayment", hMap);
@@ -164,7 +164,7 @@ public class ExperienceDaoImp implements ExperienceDao {
 
     @Override
     public int getExReserveCode(int exCode, int memberCode, Date exDate) {
-        Map<String, Object> hMap = new HashMap<String, Object>();
+        Map<String, Object> hMap = new HashMap<>();
         hMap.put("exCode", exCode);
         hMap.put("memberCode", memberCode);
         hMap.put("exDate", exDate);
@@ -174,7 +174,7 @@ public class ExperienceDaoImp implements ExperienceDao {
 
     @Override
     public int pointUpdate(int memberCode, int plusPoint) {
-        Map<String, Integer> hMap = new HashMap<String, Integer>();
+        Map<String, Integer> hMap = new HashMap<>();
         hMap.put("memberCode", memberCode);
         hMap.put("plusPoint", plusPoint);
 
@@ -194,7 +194,7 @@ public class ExperienceDaoImp implements ExperienceDao {
     // 달력 체험하는 인원 세기
     @Override
     public List<ExReserveDto> reserveList(int exCode, Date exDate) {
-        Map<String, Object> hMap = new HashMap<String, Object>();
+        Map<String, Object> hMap = new HashMap<>();
         hMap.put("exCode", exCode);
         hMap.put("exDate", exDate);
 
@@ -216,7 +216,7 @@ public class ExperienceDaoImp implements ExperienceDao {
     // 예약 확인시에 남은 체험 테이블에  데이터 넣기
     @Override
     public int insertExRemain(Date exDate, int exPeople, int exCode) {
-        Map<String, Object> hMap = new HashMap<String, Object>();
+        Map<String, Object> hMap = new HashMap<>();
         hMap.put("exDate", exDate);
         hMap.put("exPeople", exPeople);
         hMap.put("exCode", exCode);
@@ -228,7 +228,7 @@ public class ExperienceDaoImp implements ExperienceDao {
 
     @Override
     public int message(int memberCode, String msgContent, Date msgDate, String msgCheck) {
-        Map<String, Object> hMap = new HashMap<String, Object>();
+        Map<String, Object> hMap = new HashMap<>();
         hMap.put("memberCode", memberCode);
         hMap.put("msgContent", msgContent);
         hMap.put("msgDate", msgDate);

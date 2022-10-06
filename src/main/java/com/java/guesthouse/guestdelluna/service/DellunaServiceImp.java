@@ -223,7 +223,7 @@ public class DellunaServiceImp implements DellunaService {
 
     public void doZzim(String memberCode, String houseCode, String zzim) {
 
-        Map<String, Object> dataMap = new HashMap<String, Object>();
+        Map<String, Object> dataMap = new HashMap<>();
         dataMap.put("memberCode", memberCode);
         dataMap.put("houseCode", houseCode);
 
@@ -1225,7 +1225,7 @@ public class DellunaServiceImp implements DellunaService {
 
             JSONArray arr = new JSONArray();
             for (HouseReviewListDto houseReviewListDto : houseReviewList) {
-                HashMap<String, String> commonMap = new HashMap<String, String>();
+                HashMap<String, String> commonMap = new HashMap<>();
                 commonMap.put("code", Integer.toString(houseReviewListDto.getHouseCode()));
                 commonMap.put("name", houseReviewListDto.getHouseName());
                 commonMap.put("mainImgName", houseReviewListDto.getMainImgName());
@@ -1278,7 +1278,7 @@ public class DellunaServiceImp implements DellunaService {
 //
 //		JSONArray arr = new JSONArray();
 //		for (HouseReviewListDto houseReviewListDto : houseReviewList) {
-//			HashMap<String, Object> commonMap = new HashMap<String, Object>();
+//			HashMap<String, Object> commonMap = new HashMap<>();
 //			commonMap.put("houseName", houseReviewListDto.getHouseName());
 //			commonMap.put("mainImgName", houseReviewListDto.getMainImgName());
 //			commonMap.put("revContent", houseReviewListDto.getRevContent());
@@ -1376,7 +1376,7 @@ public class DellunaServiceImp implements DellunaService {
 
     public void doExZzim(String memberCode, String exCode, String zzim) {
 
-        Map<String, Object> dataMap = new HashMap<String, Object>();
+        Map<String, Object> dataMap = new HashMap<>();
         dataMap.put("memberCode", memberCode);
         dataMap.put("exCode", exCode);
 

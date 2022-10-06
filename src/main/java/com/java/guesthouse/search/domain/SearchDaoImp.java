@@ -51,7 +51,7 @@ public class SearchDaoImp implements SearchDao {
 
     @Override
     public HostImgDto overlay(int houseCode, Integer memberCode) {
-        Map<String, Integer> map = new HashMap<String, Integer>();
+        Map<String, Integer> map = new HashMap<>();
         map.put("houseCode", houseCode);
         map.put("memberCode", memberCode);
 
@@ -85,7 +85,7 @@ public class SearchDaoImp implements SearchDao {
 
     @Override
     public ExperienceImgDto exOverlay(int exCode, Integer memberCode) {
-        Map<String, Integer> map = new HashMap<String, Integer>();
+        Map<String, Integer> map = new HashMap<>();
         map.put("exCode", exCode);
         map.put("memberCode", memberCode);
 

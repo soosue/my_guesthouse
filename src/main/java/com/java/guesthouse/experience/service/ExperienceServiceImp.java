@@ -409,7 +409,7 @@ public class ExperienceServiceImp implements ExperienceService {
 
         // jackson
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
 
         // 세션
         HttpSession session = request.getSession();
@@ -635,7 +635,7 @@ public class ExperienceServiceImp implements ExperienceService {
 
     @Override
     public ArrayList<String> exDisableDates(String exCode, String people) {
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("exCode", exCode);
         map.put("people", people);
         List<String> exDisableDates = experienceDao.exDisableDates(map);
@@ -761,7 +761,7 @@ public class ExperienceServiceImp implements ExperienceService {
         //--------------///////////////////////// 달력 ///////////////////////////////////
 
 
-        Map<String, Object> mapD = new HashMap<String, Object>();
+        Map<String, Object> mapD = new HashMap<>();
         mapD.put("exCode", exCode);
         mapD.put("people", people);
         List<String> exDisableDates = experienceDao.exDisableDates(mapD);

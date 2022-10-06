@@ -36,7 +36,7 @@ public class GuestHouseDaoImp implements GuestHouseDao {
     @Override
     public List<FileDto> guestHouseImg(int houseCode) {
         // TODO Auto-generated method stub
-        Map<String, Integer> hMap = new HashMap<String, Integer>();
+        Map<String, Integer> hMap = new HashMap<>();
         hMap.put("houseCode", houseCode);
         return sqlSessionTemplate.selectList("dao.GuestHouseMapper.guestHouseImgList", hMap);
     }
@@ -91,7 +91,7 @@ public class GuestHouseDaoImp implements GuestHouseDao {
     public int getReserveCode(int houseCode, int memberCode, Date checkIn) {
         // TODO Auto-generated method stub
 
-        Map<String, Object> hMap = new HashMap<String, Object>();
+        Map<String, Object> hMap = new HashMap<>();
         hMap.put("houseCode", houseCode);
         hMap.put("memberCode", memberCode);
         hMap.put("checkIn", checkIn);
@@ -102,7 +102,7 @@ public class GuestHouseDaoImp implements GuestHouseDao {
     @Override
     public int updatePoint(int memberPoint, int memberCode) {
         // TODO Auto-generated method stub
-        Map<String, Object> hMap = new HashMap<String, Object>();
+        Map<String, Object> hMap = new HashMap<>();
         hMap.put("memberPoint", memberPoint);
         hMap.put("memberCode", memberCode);
 
@@ -124,7 +124,7 @@ public class GuestHouseDaoImp implements GuestHouseDao {
     @Override
     public int insertRemain(Date checkIn, int people, int houseCode) {
         // TODO Auto-generated method stub
-        Map<String, Object> hMap = new HashMap<String, Object>();
+        Map<String, Object> hMap = new HashMap<>();
         hMap.put("resDate", checkIn);
         hMap.put("people", people);
         hMap.put("houseCode", houseCode);
@@ -157,7 +157,7 @@ public class GuestHouseDaoImp implements GuestHouseDao {
 
     @Override
     public List<GHouseReviewListDto> getReviewList(int startRow, int endRow, int houseCode) {
-        Map<String, Integer> hMap = new HashMap<String, Integer>();
+        Map<String, Integer> hMap = new HashMap<>();
         hMap.put("startRow", startRow);
         hMap.put("endRow", endRow);
         hMap.put("houseCode", houseCode);
@@ -167,7 +167,7 @@ public class GuestHouseDaoImp implements GuestHouseDao {
 
     @Override
     public int reserveCodeCnt(int memberCode, int houseCode) {
-        Map<String, Integer> hMap = new HashMap<String, Integer>();
+        Map<String, Integer> hMap = new HashMap<>();
         hMap.put("memberCode", memberCode);
         hMap.put("houseCode", houseCode);
 
@@ -176,7 +176,7 @@ public class GuestHouseDaoImp implements GuestHouseDao {
 
     @Override
     public List<GuestReserveDto> reserveCode(int houseCode, int memberCode) {
-        Map<String, Integer> hMap = new HashMap<String, Integer>();
+        Map<String, Integer> hMap = new HashMap<>();
         hMap.put("memberCode", memberCode);
         hMap.put("houseCode", houseCode);
 
@@ -197,7 +197,7 @@ public class GuestHouseDaoImp implements GuestHouseDao {
 
     @Override
     public HouseReviewDto reviewUpdate(int memberCode, int reserveCode) {
-        Map<String, Integer> hMap = new HashMap<String, Integer>();
+        Map<String, Integer> hMap = new HashMap<>();
         hMap.put("memberCode", memberCode);
         hMap.put("reserveCode", reserveCode);
 
