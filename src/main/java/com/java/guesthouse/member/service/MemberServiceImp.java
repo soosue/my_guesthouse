@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.java.guesthouse.aop.HomeAspect;
-import com.java.guesthouse.member.dao.MemberDao;
-import com.java.guesthouse.member.dto.MemberDto;
+import com.java.guesthouse.member.domain.MemberDao;
+import com.java.guesthouse.member.service.dto.MemberDto;
 
 @Component
 public class MemberServiceImp implements MemberService {

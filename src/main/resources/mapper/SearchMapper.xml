@@ -3,7 +3,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.searchMapper">
 
-	<select id="overlay" parameterType="java.util.Map" resultType="com.java.guesthouse.host.dto.HostImgDto">
+	<select id="overlay" parameterType="java.util.Map" resultType="com.java.guesthouse.host.service.dto.HostImgDto">
 		
 
 		select a.houseCode, houseName, people, revRate, revCount <if test="memberCode!=null">, c.memberCode zzimed</if> from 
@@ -25,7 +25,7 @@
 		where a.houseCode=#{houseCode}
 	
 	</select>
-	<select id="exOverlay" parameterType="java.util.Map" resultType="com.java.guesthouse.experience.dto.ExperienceImgDto">
+	<select id="exOverlay" parameterType="java.util.Map" resultType="com.java.guesthouse.experience.service.dto.ExperienceImgDto">
 		
 
 		select a.exCode, exName, exPeople, revRate, revCount <if test="memberCode!=null">, c.memberCode zzimed</if> from 
@@ -59,7 +59,7 @@
 	</select>
 
 
-	<select id="getCount" parameterType="java.util.Map" resultType="com.java.guesthouse.search.dto.GetCountDto">
+	<select id="getCount" parameterType="java.util.Map" resultType="com.java.guesthouse.search.service.dto.GetCountDto">
 		<![CDATA[
 			select count(*) count, max(price) max, min(price) min from house h
 								where houseCode not in (
@@ -112,7 +112,7 @@
 
 	
 
-	<select id="searchHouse" parameterType="java.util.Map" resultType="com.java.guesthouse.host.dto.HostImgDto">
+	<select id="searchHouse" parameterType="java.util.Map" resultType="com.java.guesthouse.host.service.dto.HostImgDto">
 		select * from(
 		select h.*, rownum rn from (
 			
@@ -169,7 +169,7 @@
 	</select>
 	
 
-	<select id="searchEx" parameterType="java.util.Map" resultType="com.java.guesthouse.experience.dto.ExperienceImgDto">
+	<select id="searchEx" parameterType="java.util.Map" resultType="com.java.guesthouse.experience.service.dto.ExperienceImgDto">
 		select * from(
 		select h.*, rownum rn from (
 			
@@ -228,7 +228,7 @@
 
 
 
-	<select id="searchHouse2" parameterType="java.util.Map" resultType="com.java.guesthouse.host.dto.HostImgDto">
+	<select id="searchHouse2" parameterType="java.util.Map" resultType="com.java.guesthouse.host.service.dto.HostImgDto">
 		<![CDATA[
 			
 			select * from (
@@ -272,7 +272,7 @@
 	
 	
 	<!-- 테스트 용으로 데이터 넣기 위한 함수 -->
-	<insert id="dataInput" parameterType="com.java.guesthouse.host.dto.HostDto">
+	<insert id="dataInput" parameterType="com.java.guesthouse.host.service.dto.HostDto">
 		insert into house(
 						houseCode,
 						houseName,

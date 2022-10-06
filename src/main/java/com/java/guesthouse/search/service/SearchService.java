@@ -2,7 +2,7 @@ package com.java.guesthouse.search.service;
 
 import org.springframework.web.servlet.ModelAndView;
 
-import com.java.guesthouse.host.dto.HostDto;
+import com.java.guesthouse.host.service.dto.HostDto;
 
 public interface SearchService {
     ModelAndView search(String checkIn, String checkOut, String local, String people, String searchHouseName, String pageNumber, Integer memberCode, String sort);

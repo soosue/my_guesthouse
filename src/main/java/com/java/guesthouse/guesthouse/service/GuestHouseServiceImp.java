@@ -23,16 +23,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.java.guesthouse.aop.HomeAspect;
 import com.java.guesthouse.file.dto.FileDto;
-import com.java.guesthouse.guestdelluna.dto.HouseReviewDto;
-import com.java.guesthouse.guestdelluna.dto.MsgDto;
-import com.java.guesthouse.guestdelluna.dto.PointAccumulate;
-import com.java.guesthouse.guestdelluna.dto.PointUse;
-import com.java.guesthouse.guesthouse.dao.GuestHouseDao;
+import com.java.guesthouse.guestdelluna.service.dto.HouseReviewDto;
+import com.java.guesthouse.guestdelluna.service.dto.MsgDto;
+import com.java.guesthouse.guestdelluna.service.dto.PointAccumulate;
+import com.java.guesthouse.guestdelluna.service.dto.PointUse;
+import com.java.guesthouse.guesthouse.domain.GuestHouseDao;
 import com.java.guesthouse.guestreserve.dto.GHouseReviewListDto;
 import com.java.guesthouse.guestreserve.dto.GuestReserveDto;
 import com.java.guesthouse.guestreserve.dto.RemainDto;
-import com.java.guesthouse.host.dto.HostDto;
-import com.java.guesthouse.member.dto.MemberDto;
+import com.java.guesthouse.host.service.dto.HostDto;
+import com.java.guesthouse.member.service.dto.MemberDto;
 
 @Component
 public class GuestHouseServiceImp implements GuestHouseService {

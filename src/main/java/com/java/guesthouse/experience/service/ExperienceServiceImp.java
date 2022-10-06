@@ -24,15 +24,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.java.guesthouse.aop.HomeAspect;
 import com.java.guesthouse.exfile.dto.ExFileDto;
-import com.java.guesthouse.experience.dao.ExperienceDao;
-import com.java.guesthouse.experience.dto.ExperienceDto;
+import com.java.guesthouse.experience.domain.ExperienceDao;
+import com.java.guesthouse.experience.service.dto.ExperienceDto;
 import com.java.guesthouse.exreserve.dto.ExReserveDto;
 import com.java.guesthouse.exreview.dto.ExReviewDto;
 import com.java.guesthouse.exreview.dto.ExReviewListDto;
-import com.java.guesthouse.guestdelluna.dto.PointAccumulate;
-import com.java.guesthouse.guestdelluna.dto.PointUse;
-import com.java.guesthouse.host.dto.HostDto;
-import com.java.guesthouse.member.dto.MemberDto;
+import com.java.guesthouse.guestdelluna.service.dto.PointAccumulate;
+import com.java.guesthouse.guestdelluna.service.dto.PointUse;
+import com.java.guesthouse.host.service.dto.HostDto;
+import com.java.guesthouse.member.service.dto.MemberDto;
 
 /**
  * @author : 정승현

@@ -18,16 +18,16 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.java.guesthouse.aop.HomeAspect;
-import com.java.guesthouse.experience.dto.ExperienceDto;
+import com.java.guesthouse.experience.service.dto.ExperienceDto;
 import com.java.guesthouse.file.dto.FileDto;
 import com.java.guesthouse.guestreserve.dto.GuestReserveDto;
-import com.java.guesthouse.host.dao.HostDao;
-import com.java.guesthouse.host.dto.ExReservationListDto;
-import com.java.guesthouse.host.dto.HostDto;
-import com.java.guesthouse.host.dto.ReservationListDto;
-import com.java.guesthouse.host.dto.SearchDateList;
-import com.java.guesthouse.host.dto.SearchDateListCount;
-import com.java.guesthouse.member.dto.MemberDto;
+import com.java.guesthouse.host.domain.HostDao;
+import com.java.guesthouse.host.service.dto.ExReservationListDto;
+import com.java.guesthouse.host.service.dto.HostDto;
+import com.java.guesthouse.host.service.dto.ReservationListDto;
+import com.java.guesthouse.host.service.dto.SearchDateList;
+import com.java.guesthouse.host.service.dto.SearchDateListCount;
+import com.java.guesthouse.member.service.dto.MemberDto;
 
 @Component
 public class HostServiceImp implements HostService {

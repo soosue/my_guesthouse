@@ -13,12 +13,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.java.guesthouse.aop.HomeAspect;
 import com.java.guesthouse.exfile.dto.ExFileDto;
-import com.java.guesthouse.experience.dto.ExperienceImgDto;
+import com.java.guesthouse.experience.service.dto.ExperienceImgDto;
 import com.java.guesthouse.file.dto.FileDto;
-import com.java.guesthouse.host.dto.HostDto;
-import com.java.guesthouse.host.dto.HostImgDto;
-import com.java.guesthouse.search.dao.SearchDao;
-import com.java.guesthouse.search.dto.GetCountDto;
+import com.java.guesthouse.host.service.dto.HostDto;
+import com.java.guesthouse.host.service.dto.HostImgDto;
+import com.java.guesthouse.search.domain.SearchDao;
+import com.java.guesthouse.search.service.dto.GetCountDto;
 
 
 @Component

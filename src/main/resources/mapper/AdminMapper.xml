@@ -9,7 +9,7 @@
 		select count(*) from member
 	</select>
 	
-	<select id="memberList" parameterType="java.util.Map" resultType="com.java.guesthouse.member.dto.MemberDto">
+	<select id="memberList" parameterType="java.util.Map" resultType="com.java.guesthouse.member.service.dto.MemberDto">
 		<![CDATA[
 		SELECT * FROM
 		(SELECT ROWNUM rnum, A.* FROM 
@@ -18,11 +18,11 @@
 			]]>
 	</select>
 	
-	<select id="memberReadSelect" parameterType="int" resultType="com.java.guesthouse.member.dto.MemberDto">
+	<select id="memberReadSelect" parameterType="int" resultType="com.java.guesthouse.member.service.dto.MemberDto">
 		SELECT * FROM member WHERE memberCode=#{memberCode}
 	</select>
 	
-	<update id="memberUpdateOk" parameterType="com.java.guesthouse.member.dto.MemberDto">
+	<update id="memberUpdateOk" parameterType="com.java.guesthouse.member.service.dto.MemberDto">
 		UPDATE member SET point=#{point}, memberLevel=#{memberLevel} WHERE memberCode=#{memberCode}
 	</update>
 	
@@ -31,7 +31,7 @@
 		select count(*) from house
 	</select>
 	
-	<select id="houseList" parameterType="java.util.Map" resultType="com.java.guesthouse.host.dto.HostDto">
+	<select id="houseList" parameterType="java.util.Map" resultType="com.java.guesthouse.host.service.dto.HostDto">
 		<![CDATA[
 		SELECT * FROM
 		(SELECT ROWNUM rnum, A.* FROM 
@@ -45,7 +45,7 @@
 		select count(*) from experience
 	</select>
 	
-	<select id="experienceList" parameterType="java.util.Map" resultType="com.java.guesthouse.experience.dto.ExperienceDto">
+	<select id="experienceList" parameterType="java.util.Map" resultType="com.java.guesthouse.experience.service.dto.ExperienceDto">
 		<![CDATA[
 		SELECT * FROM
 		(SELECT ROWNUM rnum, A.* FROM 
@@ -54,10 +54,10 @@
 			]]>
 	</select>
 	
-	<update id="experienceStateOk" parameterType="com.java.guesthouse.experience.dto.ExperienceDto" >
+	<update id="experienceStateOk" parameterType="com.java.guesthouse.experience.service.dto.ExperienceDto" >
 		update experience set exApproval='승인완료' where exCode=#{exCode}
 	</update>
-	<update id="experienceStateNo" parameterType="com.java.guesthouse.experience.dto.ExperienceDto" >
+	<update id="experienceStateNo" parameterType="com.java.guesthouse.experience.service.dto.ExperienceDto" >
 		update experience set exApproval='승인거절' where exCode=#{exCode}
 	</update>
 

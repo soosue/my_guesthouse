@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.java.guesthouse.admin.dao.AdminDao;
+import com.java.guesthouse.admin.domain.AdminDao;
 import com.java.guesthouse.aop.HomeAspect;
-import com.java.guesthouse.experience.dto.ExperienceDto;
-import com.java.guesthouse.member.dto.MemberDto;
+import com.java.guesthouse.experience.service.dto.ExperienceDto;
+import com.java.guesthouse.member.service.dto.MemberDto;
 
 @Component
 public class AdminServiceImp implements AdminService {
