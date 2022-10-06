@@ -7,35 +7,35 @@ import com.java.guesthouse.member.dto.MemberDto;
 
 public interface AdminDao {
 
-	// 회원관리
-	public int memberCount();
+    // 회원관리
+    int memberCount();
 
-	public List<MemberDto> memberList(int startRow, int endRow);
+    List<MemberDto> memberList(int startRow, int endRow);
 
-	public MemberDto memberRead(int memberCode);
+    MemberDto memberRead(int memberCode);
 
-	public int memberUpdateOk(MemberDto memberDto);
-	
-	
-	// 게스트하우스 관리 
-	public int houseCount();
+    int memberUpdateOk(MemberDto memberDto);
 
-	public List<MemberDto> houseList(int startRow, int endRow);
-	
-	public int guestHouseStateOk(int houseCode);
-	
-	public int guestHouseStateNo(int houseCode);
 
-	// 체험 관리
-	public int experienceCount();
+    // 게스트하우스 관리
+    int houseCount();
 
-	public List<ExperienceDto> experienceList(int startRow, int endRow);
+    List<MemberDto> houseList(int startRow, int endRow);
 
-	public int experienceStateOk(int exCode);
+    int guestHouseStateOk(int houseCode);
 
-	public int experienceStateNo(int exCode);
+    int guestHouseStateNo(int houseCode);
 
-	public int memberLevelHost(int memberCode);
+    // 체험 관리
+    int experienceCount();
+
+    List<ExperienceDto> experienceList(int startRow, int endRow);
+
+    int experienceStateOk(int exCode);
+
+    int experienceStateNo(int exCode);
+
+    int memberLevelHost(int memberCode);
 
 
 }

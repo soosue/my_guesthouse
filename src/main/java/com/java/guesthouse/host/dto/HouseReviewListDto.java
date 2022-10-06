@@ -3,112 +3,112 @@ package com.java.guesthouse.host.dto;
 import java.util.Date;
 
 public class HouseReviewListDto {
-	private int houseCode;
-	private String houseName;
-	private String mainImgName;
-	private String revContent;
-	private int revRate;
-	private Date revDate;
-	private int memberCode;
-	private String memberImgName;
-	private String memberName;
-	
-	public HouseReviewListDto() {
-		
-	}
+    private int houseCode;
+    private String houseName;
+    private String mainImgName;
+    private String revContent;
+    private int revRate;
+    private Date revDate;
+    private int memberCode;
+    private String memberImgName;
+    private String memberName;
 
-	public HouseReviewListDto(int houseCode, String houseName, String mainImgName, String revContent, int revRate, Date revDate,
-			int memberCode, String memberImgName, String memberName) {
-		this.houseCode = houseCode;
-		this.houseName = houseName;
-		this.mainImgName = mainImgName;
-		this.revContent = revContent;
-		this.revRate = revRate;
-		this.revDate = revDate;
-		this.memberCode = memberCode;
-		this.memberImgName = memberImgName;
-		this.memberName = memberName;
-	}
+    public HouseReviewListDto() {
 
-	public String getHouseName() {
-		return houseName;
-	}
+    }
 
-	public void setHouseName(String houseName) {
-		this.houseName = houseName;
-	}
+    public HouseReviewListDto(int houseCode, String houseName, String mainImgName, String revContent, int revRate, Date revDate,
+                              int memberCode, String memberImgName, String memberName) {
+        this.houseCode = houseCode;
+        this.houseName = houseName;
+        this.mainImgName = mainImgName;
+        this.revContent = revContent;
+        this.revRate = revRate;
+        this.revDate = revDate;
+        this.memberCode = memberCode;
+        this.memberImgName = memberImgName;
+        this.memberName = memberName;
+    }
 
-	public String getMainImgName() {
-		return mainImgName;
-	}
+    public String getHouseName() {
+        return houseName;
+    }
 
-	public void setMainImgName(String mainImgName) {
-		this.mainImgName = mainImgName;
-	}
+    public void setHouseName(String houseName) {
+        this.houseName = houseName;
+    }
 
-	public String getRevContent() {
-		return revContent;
-	}
+    public String getMainImgName() {
+        return mainImgName;
+    }
 
-	public void setRevContent(String revContent) {
-		this.revContent = revContent;
-	}
+    public void setMainImgName(String mainImgName) {
+        this.mainImgName = mainImgName;
+    }
 
-	public int getRevRate() {
-		return revRate;
-	}
+    public String getRevContent() {
+        return revContent;
+    }
 
-	public void setRevRate(int revRate) {
-		this.revRate = revRate;
-	}
+    public void setRevContent(String revContent) {
+        this.revContent = revContent;
+    }
 
-	public Date getRevDate() {
-		return revDate;
-	}
+    public int getRevRate() {
+        return revRate;
+    }
 
-	public void setRevDate(Date revDate) {
-		this.revDate = revDate;
-	}
+    public void setRevRate(int revRate) {
+        this.revRate = revRate;
+    }
 
-	public String getMemberImgName() {
-		return memberImgName;
-	}
+    public Date getRevDate() {
+        return revDate;
+    }
 
-	public void setMemberImgName(String memberImgName) {
-		this.memberImgName = memberImgName;
-	}
+    public void setRevDate(Date revDate) {
+        this.revDate = revDate;
+    }
 
-	public String getMemberName() {
-		return memberName;
-	}
+    public String getMemberImgName() {
+        return memberImgName;
+    }
 
-	public void setMemberName(String memberName) {
-		this.memberName = memberName;
-	}
+    public void setMemberImgName(String memberImgName) {
+        this.memberImgName = memberImgName;
+    }
 
-	public int getHouseCode() {
-		return houseCode;
-	}
+    public String getMemberName() {
+        return memberName;
+    }
 
-	public void setHouseCode(int houseCode) {
-		this.houseCode = houseCode;
-	}
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
+    }
 
-	public int getMemberCode() {
-		return memberCode;
-	}
+    public int getHouseCode() {
+        return houseCode;
+    }
 
-	public void setMemberCode(int memberCode) {
-		this.memberCode = memberCode;
-	}
+    public void setHouseCode(int houseCode) {
+        this.houseCode = houseCode;
+    }
 
-	@Override
-	public String toString() {
-		return "HouseReviewListDto [houseCode=" + houseCode + ", houseName=" + houseName + ", mainImgName="
-				+ mainImgName + ", revContent=" + revContent + ", revRate=" + revRate + ", revDate=" + revDate
-				+ ", memberCode=" + memberCode + ", memberImgName=" + memberImgName + ", memberName=" + memberName
-				+ "]";
-	}
-	
-	
+    public int getMemberCode() {
+        return memberCode;
+    }
+
+    public void setMemberCode(int memberCode) {
+        this.memberCode = memberCode;
+    }
+
+    @Override
+    public String toString() {
+        return "HouseReviewListDto [houseCode=" + houseCode + ", houseName=" + houseName + ", mainImgName="
+                + mainImgName + ", revContent=" + revContent + ", revRate=" + revRate + ", revDate=" + revDate
+                + ", memberCode=" + memberCode + ", memberImgName=" + memberImgName + ", memberName=" + memberName
+                + "]";
+    }
+
+
 }

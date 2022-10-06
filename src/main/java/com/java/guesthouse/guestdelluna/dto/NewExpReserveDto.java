@@ -4,57 +4,58 @@ import java.util.Date;
 
 public class NewExpReserveDto {
 
-	private int exReserveCode ;
-	private String exName ;
-	private String state ;
-	private Date exDate ;
-	
-	public NewExpReserveDto() {}
+    private int exReserveCode;
+    private String exName;
+    private String state;
+    private Date exDate;
 
-	public NewExpReserveDto(int exReserveCode, String exName, String state, Date exDate) {
+    public NewExpReserveDto() {
+    }
 
-		this.exReserveCode = exReserveCode;
-		this.exName = exName;
-		this.state = state;
-		this.exDate = exDate;
-	}
+    public NewExpReserveDto(int exReserveCode, String exName, String state, Date exDate) {
 
-	@Override
-	public String toString() {
-		return "NewExpReserveDto [exReserveCode=" + exReserveCode + ", exName=" + exName + ", state=" + state
-				+ ", exDate=" + exDate + "]";
-	}
+        this.exReserveCode = exReserveCode;
+        this.exName = exName;
+        this.state = state;
+        this.exDate = exDate;
+    }
 
-	public int getExReserveCode() {
-		return exReserveCode;
-	}
+    @Override
+    public String toString() {
+        return "NewExpReserveDto [exReserveCode=" + exReserveCode + ", exName=" + exName + ", state=" + state
+                + ", exDate=" + exDate + "]";
+    }
 
-	public void setExReserveCode(int exReserveCode) {
-		this.exReserveCode = exReserveCode;
-	}
+    public int getExReserveCode() {
+        return exReserveCode;
+    }
 
-	public String getExName() {
-		return exName;
-	}
+    public void setExReserveCode(int exReserveCode) {
+        this.exReserveCode = exReserveCode;
+    }
 
-	public void setExName(String exName) {
-		this.exName = exName;
-	}
+    public String getExName() {
+        return exName;
+    }
 
-	public String getState() {
-		return state;
-	}
+    public void setExName(String exName) {
+        this.exName = exName;
+    }
 
-	public void setState(String state) {
-		this.state = state;
-	}
+    public String getState() {
+        return state;
+    }
 
-	public Date getExDate() {
-		return exDate;
-	}
+    public void setState(String state) {
+        this.state = state;
+    }
 
-	public void setExDate(Date exDate) {
-		this.exDate = exDate;
-	}
-	
+    public Date getExDate() {
+        return exDate;
+    }
+
+    public void setExDate(Date exDate) {
+        this.exDate = exDate;
+    }
+
 }

@@ -19,89 +19,82 @@ import com.java.guesthouse.member.dto.MemberDto;
 
 public interface ExperienceDao {
 
-	public int subImgUpload(ExFileDto exFileDto);
+    int subImgUpload(ExFileDto exFileDto);
 
-	public int memberCode(String email);
+    int memberCode(String email);
 
-	public int exHostRegister(ExperienceDto experienceDto);
+    int exHostRegister(ExperienceDto experienceDto);
 
-	public int mainImgUpload(ExFileDto exFileDto);
+    int mainImgUpload(ExFileDto exFileDto);
 
-	public int exCode();
+    int exCode();
 
-	public List<HostDto> hostChkList(int memberCode);
+    List<HostDto> hostChkList(int memberCode);
 
-	public int getReviewCnt(int exCode);
+    int getReviewCnt(int exCode);
 
-	public List<ExReviewListDto> getExReviewList(int startRow, int endRow, int exCode);
+    List<ExReviewListDto> getExReviewList(int startRow, int endRow, int exCode);
 
-	//예약번호가 있는지
-	public int reserveCodeCnt(int memberCode,int exCode);
+    //예약번호가 있는지
+    int reserveCodeCnt(int memberCode, int exCode);
 
-	public int writeReview(ExReviewDto exReviewDto);
+    int writeReview(ExReviewDto exReviewDto);
 
-	public ExReviewDto exReviewUpdate(int memberCode, int exReserveCode);
+    ExReviewDto exReviewUpdate(int memberCode, int exReserveCode);
 
-	public int exReviewUpdateOk(ExReviewDto exReviewDto);
+    int exReviewUpdateOk(ExReviewDto exReviewDto);
 
-	public int exReviewDelete(int exReserveCode);
+    int exReviewDelete(int exReserveCode);
 
-	public ExperienceDto exPage(int exCode);
+    ExperienceDto exPage(int exCode);
 
-	public List<ExFileDto> exPageImgList(int exCode);
+    List<ExFileDto> exPageImgList(int exCode);
 
-	public MemberDto exHostInfo(int memberCode);
+    MemberDto exHostInfo(int memberCode);
 
-	public int exPayment(int exPeople, int exCode);
+    int exPayment(int exPeople, int exCode);
 
-	public int getPoint(String email);
+    int getPoint(String email);
 
-	public int insertExReserve(ExReserveDto exReserveDto);
+    int insertExReserve(ExReserveDto exReserveDto);
 
-	public int getExReserveCode(int exCode, int memberCode, Date exDate);
+    int getExReserveCode(int exCode, int memberCode, Date exDate);
 
-	public int pointUpdate(int memberCode, int plusPoint);
+    int pointUpdate(int memberCode, int plusPoint);
 
-	// 후기 작성시 해당 멤버의 예약번호 가져옴
-	public List<ExReserveDto> exReserveCode(int exCode, int memberCode);
-	
-	// 댓글 작성을 했을 경우 또 작성할 수 없게 예약코드가 리뷰 테이블에 존재하는 지 확인
-	public int reviewChk(int exReserveCode);
+    // 후기 작성시 해당 멤버의 예약번호 가져옴
+    List<ExReserveDto> exReserveCode(int exCode, int memberCode);
 
-	//달력 체험하는 인원 세기
-	public List<ExReserveDto> reserveList(int exCode, Date exDate);
-	// 하루에 수용 가능한 인원
-	public int getPeople(int exCode);
+    // 댓글 작성을 했을 경우 또 작성할 수 없게 예약코드가 리뷰 테이블에 존재하는 지 확인
+    int reviewChk(int exReserveCode);
 
-	// 체험코드로 남은!!!
-	public List<ExRemainDto> getExRemain(int exCode);
+    //달력 체험하는 인원 세기
+    List<ExReserveDto> reserveList(int exCode, Date exDate);
 
-	public int insertExRemain(Date exDate, int exPeople, int exCode);
+    // 하루에 수용 가능한 인원
+    int getPeople(int exCode);
 
-	public int message(int memberCode, String msgContent, Date msgDate, String msgCheck);
+    // 체험코드로 남은!!!
+    List<ExRemainDto> getExRemain(int exCode);
 
-	public int resPointUp(PointAccumulate pointAccumulate);
+    int insertExRemain(Date exDate, int exPeople, int exCode);
 
-	public int usePointUp(PointUse pointUse);
+    int message(int memberCode, String msgContent, Date msgDate, String msgCheck);
 
-	// 카카오페이
-	public MemberDto getMemberInfo(String email);
+    int resPointUp(PointAccumulate pointAccumulate);
 
-	// 체험 메인
-	public List<ExperienceMainDto> searchMainEx();
+    int usePointUp(PointUse pointUse);
 
-	// 게하 메인
-	public List<GuestHouseMainDto> searchMain();
+    // 카카오페이
+    MemberDto getMemberInfo(String email);
 
-	public List<String> exDisableDates(Map<String, Object> map);
+    // 체험 메인
+    List<ExperienceMainDto> searchMainEx();
 
+    // 게하 메인
+    List<GuestHouseMainDto> searchMain();
 
-
-
-
-
-
-
+    List<String> exDisableDates(Map<String, Object> map);
 
 
 }

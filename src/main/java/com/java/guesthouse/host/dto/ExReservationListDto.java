@@ -3,91 +3,91 @@ package com.java.guesthouse.host.dto;
 import java.util.Date;
 
 public class ExReservationListDto {
-	private String memberName;
-	private String email;
-	private String phone;
-	private Date reserveDate;
-	private int exPayment;
-	private String state;
-	private int exPeople;
-	
-	public ExReservationListDto() {
-		
-	}
+    private String memberName;
+    private String email;
+    private String phone;
+    private Date reserveDate;
+    private int exPayment;
+    private String state;
+    private int exPeople;
 
-	public ExReservationListDto(String memberName, String email, String phone, Date reserveDate, int exPayment,
-			String state, int exPeople) {
-		this.memberName = memberName;
-		this.email = email;
-		this.phone = phone;
-		this.reserveDate = reserveDate;
-		this.exPayment = exPayment;
-		this.state = state;
-		this.exPeople = exPeople;
-	}
+    public ExReservationListDto() {
 
-	public String getMemberName() {
-		return memberName;
-	}
+    }
 
-	public void setMemberName(String memberName) {
-		this.memberName = memberName;
-	}
+    public ExReservationListDto(String memberName, String email, String phone, Date reserveDate, int exPayment,
+                                String state, int exPeople) {
+        this.memberName = memberName;
+        this.email = email;
+        this.phone = phone;
+        this.reserveDate = reserveDate;
+        this.exPayment = exPayment;
+        this.state = state;
+        this.exPeople = exPeople;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getMemberName() {
+        return memberName;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
+    }
 
-	public String getPhone() {
-		return phone;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public Date getReserveDate() {
-		return reserveDate;
-	}
+    public String getPhone() {
+        return phone;
+    }
 
-	public void setReserveDate(Date reserveDate) {
-		this.reserveDate = reserveDate;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-	public int getExPayment() {
-		return exPayment;
-	}
+    public Date getReserveDate() {
+        return reserveDate;
+    }
 
-	public void setExPayment(int exPayment) {
-		this.exPayment = exPayment;
-	}
+    public void setReserveDate(Date reserveDate) {
+        this.reserveDate = reserveDate;
+    }
 
-	public String getState() {
-		return state;
-	}
+    public int getExPayment() {
+        return exPayment;
+    }
 
-	public void setState(String state) {
-		this.state = state;
-	}
+    public void setExPayment(int exPayment) {
+        this.exPayment = exPayment;
+    }
 
-	public int getExPeople() {
-		return exPeople;
-	}
+    public String getState() {
+        return state;
+    }
 
-	public void setExPeople(int exPeople) {
-		this.exPeople = exPeople;
-	}
+    public void setState(String state) {
+        this.state = state;
+    }
 
-	@Override
-	public String toString() {
-		return "ExReservationListDto [memberName=" + memberName + ", email=" + email + ", phone=" + phone
-				+ ", reserveDate=" + reserveDate + ", exPayment=" + exPayment + ", state=" + state + ", exPeople="
-				+ exPeople + "]";
-	}
-	
-	
+    public int getExPeople() {
+        return exPeople;
+    }
+
+    public void setExPeople(int exPeople) {
+        this.exPeople = exPeople;
+    }
+
+    @Override
+    public String toString() {
+        return "ExReservationListDto [memberName=" + memberName + ", email=" + email + ", phone=" + phone
+                + ", reserveDate=" + reserveDate + ", exPayment=" + exPayment + ", state=" + state + ", exPeople="
+                + exPeople + "]";
+    }
+
+
 }

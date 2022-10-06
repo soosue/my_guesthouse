@@ -4,78 +4,79 @@ import java.util.Date;
 
 public class NewHouseReviewDto {
 
-	private int reserveCode ;
-	private Date revDate ;
-	private String revContent ;
-	private String houseName ;
-	private String mainImgName;
-	private int houseCode ;
-	
-	public NewHouseReviewDto() {}
+    private int reserveCode;
+    private Date revDate;
+    private String revContent;
+    private String houseName;
+    private String mainImgName;
+    private int houseCode;
 
-	public NewHouseReviewDto(int reserveCode, Date revDate, String revContent, String houseName, String mainImgName,
-			int houseCode) {
-	
-		this.reserveCode = reserveCode;
-		this.revDate = revDate;
-		this.revContent = revContent;
-		this.houseName = houseName;
-		this.mainImgName = mainImgName;
-		this.houseCode = houseCode;
-	}
+    public NewHouseReviewDto() {
+    }
 
-	@Override
-	public String toString() {
-		return "NewHouseReviewDto [reserveCode=" + reserveCode + ", revDate=" + revDate + ", revContent=" + revContent
-				+ ", houseName=" + houseName + ", mainImgName=" + mainImgName + ", houseCode=" + houseCode + "]";
-	}
+    public NewHouseReviewDto(int reserveCode, Date revDate, String revContent, String houseName, String mainImgName,
+                             int houseCode) {
 
-	public int getHouseCode() {
-		return houseCode;
-	}
+        this.reserveCode = reserveCode;
+        this.revDate = revDate;
+        this.revContent = revContent;
+        this.houseName = houseName;
+        this.mainImgName = mainImgName;
+        this.houseCode = houseCode;
+    }
 
-	public void setHouseCode(int houseCode) {
-		this.houseCode = houseCode;
-	}
+    @Override
+    public String toString() {
+        return "NewHouseReviewDto [reserveCode=" + reserveCode + ", revDate=" + revDate + ", revContent=" + revContent
+                + ", houseName=" + houseName + ", mainImgName=" + mainImgName + ", houseCode=" + houseCode + "]";
+    }
 
-	public int getReserveCode() {
-		return reserveCode;
-	}
+    public int getHouseCode() {
+        return houseCode;
+    }
 
-	public void setReserveCode(int reserveCode) {
-		this.reserveCode = reserveCode;
-	}
+    public void setHouseCode(int houseCode) {
+        this.houseCode = houseCode;
+    }
 
-	public Date getRevDate() {
-		return revDate;
-	}
+    public int getReserveCode() {
+        return reserveCode;
+    }
 
-	public void setRevDate(Date revDate) {
-		this.revDate = revDate;
-	}
+    public void setReserveCode(int reserveCode) {
+        this.reserveCode = reserveCode;
+    }
 
-	public String getRevContent() {
-		return revContent;
-	}
+    public Date getRevDate() {
+        return revDate;
+    }
 
-	public void setRevContent(String revContent) {
-		this.revContent = revContent;
-	}
+    public void setRevDate(Date revDate) {
+        this.revDate = revDate;
+    }
 
-	public String getHouseName() {
-		return houseName;
-	}
+    public String getRevContent() {
+        return revContent;
+    }
 
-	public void setHouseName(String houseName) {
-		this.houseName = houseName;
-	}
+    public void setRevContent(String revContent) {
+        this.revContent = revContent;
+    }
 
-	public String getMainImgName() {
-		return mainImgName;
-	}
+    public String getHouseName() {
+        return houseName;
+    }
 
-	public void setMainImgName(String mainImgName) {
-		this.mainImgName = mainImgName;
-	}
-	
+    public void setHouseName(String houseName) {
+        this.houseName = houseName;
+    }
+
+    public String getMainImgName() {
+        return mainImgName;
+    }
+
+    public void setMainImgName(String mainImgName) {
+        this.mainImgName = mainImgName;
+    }
+
 }

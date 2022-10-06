@@ -9,39 +9,38 @@ import org.springframework.web.servlet.ModelAndView;
 
 public interface ExperienceService {
 
-	public void exHostOk(ModelAndView mav);
+    void exHostOk(ModelAndView mav);
 
-	public void hostAddress(ModelAndView mav);
+    void hostAddress(ModelAndView mav);
 
-	public String exReview(ModelAndView mav);
+    String exReview(ModelAndView mav);
 
-	public void exReviewOk(ModelAndView mav);
+    void exReviewOk(ModelAndView mav);
 
-	public void exReviewUpdate(ModelAndView mav);
+    void exReviewUpdate(ModelAndView mav);
 
-	public void exReviewUpdateOk(ModelAndView mav);
+    void exReviewUpdateOk(ModelAndView mav);
 
-	public void exReviewDelete(ModelAndView mav);
+    void exReviewDelete(ModelAndView mav);
 
-	public void exPage(ModelAndView mav);
+    void exPage(ModelAndView mav);
 
-	public void exReserve(ModelAndView mav);
+    void exReserve(ModelAndView mav);
 
-	public void exReserveOk(ModelAndView mav);
-	// 달력
-	public void exReserveCal(ModelAndView mav);
+    void exReserveOk(ModelAndView mav);
 
-	// 잭슨
-	public Map<String, Object> exReview(HttpServletRequest request);
+    // 달력
+    void exReserveCal(ModelAndView mav);
 
-	// 카카오 페이
-	public void kakaoPaySuccess(ModelAndView mav);
+    // 잭슨
+    Map<String, Object> exReview(HttpServletRequest request);
 
-	public void kakaoPaySuccessOk(ModelAndView mav);
+    // 카카오 페이
+    void kakaoPaySuccess(ModelAndView mav);
 
-	public ArrayList<String> exDisableDates(String exCode, String people);
+    void kakaoPaySuccessOk(ModelAndView mav);
 
-	
-	
-	
+    ArrayList<String> exDisableDates(String exCode, String people);
+
+
 }

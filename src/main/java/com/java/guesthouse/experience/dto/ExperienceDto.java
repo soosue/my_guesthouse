@@ -3,173 +3,174 @@ package com.java.guesthouse.experience.dto;
 import java.util.Date;
 
 public class ExperienceDto {
-	private int exCode;
-	private int memberCode;
-	private String exName;
-	private int exPeople;
-	private Date exStartDate;
-	private Date exEndDate;
-	private String exTime;
-	private int exPrice;
-	private String exAddress;
-	private String exExplain;
-	private String exApproval;
-	private String exBank;
-	private long exAccount;
-	private Date exRegDate;
-	private int houseCode;
-	
-	public ExperienceDto() {}
+    private int exCode;
+    private int memberCode;
+    private String exName;
+    private int exPeople;
+    private Date exStartDate;
+    private Date exEndDate;
+    private String exTime;
+    private int exPrice;
+    private String exAddress;
+    private String exExplain;
+    private String exApproval;
+    private String exBank;
+    private long exAccount;
+    private Date exRegDate;
+    private int houseCode;
 
-	public ExperienceDto(int exCode, int memberCode, String exName, int exPeople, Date exStartDate, Date exEndDate,
-			String exTime, int exPrice, String exAddress, String exExplain, String exApproval, String exBank,
-			long exAccount, Date exRegDate, int houseCode) {
-	
-		this.exCode = exCode;
-		this.memberCode = memberCode;
-		this.exName = exName;
-		this.exPeople = exPeople;
-		this.exStartDate = exStartDate;
-		this.exEndDate = exEndDate;
-		this.exTime = exTime;
-		this.exPrice = exPrice;
-		this.exAddress = exAddress;
-		this.exExplain = exExplain;
-		this.exApproval = exApproval;
-		this.exBank = exBank;
-		this.exAccount = exAccount;
-		this.exRegDate = exRegDate;
-		this.houseCode = houseCode;
-	}
+    public ExperienceDto() {
+    }
 
-	public int getExCode() {
-		return exCode;
-	}
+    public ExperienceDto(int exCode, int memberCode, String exName, int exPeople, Date exStartDate, Date exEndDate,
+                         String exTime, int exPrice, String exAddress, String exExplain, String exApproval, String exBank,
+                         long exAccount, Date exRegDate, int houseCode) {
 
-	public void setExCode(int exCode) {
-		this.exCode = exCode;
-	}
+        this.exCode = exCode;
+        this.memberCode = memberCode;
+        this.exName = exName;
+        this.exPeople = exPeople;
+        this.exStartDate = exStartDate;
+        this.exEndDate = exEndDate;
+        this.exTime = exTime;
+        this.exPrice = exPrice;
+        this.exAddress = exAddress;
+        this.exExplain = exExplain;
+        this.exApproval = exApproval;
+        this.exBank = exBank;
+        this.exAccount = exAccount;
+        this.exRegDate = exRegDate;
+        this.houseCode = houseCode;
+    }
 
-	public int getMemberCode() {
-		return memberCode;
-	}
+    public int getExCode() {
+        return exCode;
+    }
 
-	public void setMemberCode(int memberCode) {
-		this.memberCode = memberCode;
-	}
+    public void setExCode(int exCode) {
+        this.exCode = exCode;
+    }
 
-	public String getExName() {
-		return exName;
-	}
+    public int getMemberCode() {
+        return memberCode;
+    }
 
-	public void setExName(String exName) {
-		this.exName = exName;
-	}
+    public void setMemberCode(int memberCode) {
+        this.memberCode = memberCode;
+    }
 
-	public int getExPeople() {
-		return exPeople;
-	}
+    public String getExName() {
+        return exName;
+    }
 
-	public void setExPeople(int exPeople) {
-		this.exPeople = exPeople;
-	}
+    public void setExName(String exName) {
+        this.exName = exName;
+    }
 
-	public Date getExStartDate() {
-		return exStartDate;
-	}
+    public int getExPeople() {
+        return exPeople;
+    }
 
-	public void setExStartDate(Date exStartDate) {
-		this.exStartDate = exStartDate;
-	}
+    public void setExPeople(int exPeople) {
+        this.exPeople = exPeople;
+    }
 
-	public Date getExEndDate() {
-		return exEndDate;
-	}
+    public Date getExStartDate() {
+        return exStartDate;
+    }
 
-	public void setExEndDate(Date exEndDate) {
-		this.exEndDate = exEndDate;
-	}
+    public void setExStartDate(Date exStartDate) {
+        this.exStartDate = exStartDate;
+    }
 
-	public String getExTime() {
-		return exTime;
-	}
+    public Date getExEndDate() {
+        return exEndDate;
+    }
 
-	public void setExTime(String exTime) {
-		this.exTime = exTime;
-	}
+    public void setExEndDate(Date exEndDate) {
+        this.exEndDate = exEndDate;
+    }
 
-	public int getExPrice() {
-		return exPrice;
-	}
+    public String getExTime() {
+        return exTime;
+    }
 
-	public void setExPrice(int exPrice) {
-		this.exPrice = exPrice;
-	}
+    public void setExTime(String exTime) {
+        this.exTime = exTime;
+    }
 
-	public String getExAddress() {
-		return exAddress;
-	}
+    public int getExPrice() {
+        return exPrice;
+    }
 
-	public void setExAddress(String exAddress) {
-		this.exAddress = exAddress;
-	}
+    public void setExPrice(int exPrice) {
+        this.exPrice = exPrice;
+    }
 
-	public String getExExplain() {
-		return exExplain;
-	}
+    public String getExAddress() {
+        return exAddress;
+    }
 
-	public void setExExplain(String exExplain) {
-		this.exExplain = exExplain;
-	}
+    public void setExAddress(String exAddress) {
+        this.exAddress = exAddress;
+    }
 
-	public String getExApproval() {
-		return exApproval;
-	}
+    public String getExExplain() {
+        return exExplain;
+    }
 
-	public void setExApproval(String exApproval) {
-		this.exApproval = exApproval;
-	}
+    public void setExExplain(String exExplain) {
+        this.exExplain = exExplain;
+    }
 
-	public String getExBank() {
-		return exBank;
-	}
+    public String getExApproval() {
+        return exApproval;
+    }
 
-	public void setExBank(String exBank) {
-		this.exBank = exBank;
-	}
+    public void setExApproval(String exApproval) {
+        this.exApproval = exApproval;
+    }
 
-	public long getExAccount() {
-		return exAccount;
-	}
+    public String getExBank() {
+        return exBank;
+    }
 
-	public void setExAccount(long exAccount) {
-		this.exAccount = exAccount;
-	}
+    public void setExBank(String exBank) {
+        this.exBank = exBank;
+    }
 
-	public Date getExRegDate() {
-		return exRegDate;
-	}
+    public long getExAccount() {
+        return exAccount;
+    }
 
-	public void setExRegDate(Date exRegDate) {
-		this.exRegDate = exRegDate;
-	}
+    public void setExAccount(long exAccount) {
+        this.exAccount = exAccount;
+    }
 
-	public int getHouseCode() {
-		return houseCode;
-	}
+    public Date getExRegDate() {
+        return exRegDate;
+    }
 
-	public void setHouseCode(int houseCode) {
-		this.houseCode = houseCode;
-	}
+    public void setExRegDate(Date exRegDate) {
+        this.exRegDate = exRegDate;
+    }
 
-	@Override
-	public String toString() {
-		return "ExperienceDto [exCode=" + exCode + ", memberCode=" + memberCode + ", exName=" + exName + ", exPeople="
-				+ exPeople + ", exStartDate=" + exStartDate + ", exEndDate=" + exEndDate + ", exTime=" + exTime
-				+ ", exPrice=" + exPrice + ", exAddress=" + exAddress + ", exExplain=" + exExplain + ", exApproval="
-				+ exApproval + ", exBank=" + exBank + ", exAccount=" + exAccount + ", exRegDate=" + exRegDate
-				+ ", houseCode=" + houseCode + "]";
-	}
+    public int getHouseCode() {
+        return houseCode;
+    }
 
-	
+    public void setHouseCode(int houseCode) {
+        this.houseCode = houseCode;
+    }
+
+    @Override
+    public String toString() {
+        return "ExperienceDto [exCode=" + exCode + ", memberCode=" + memberCode + ", exName=" + exName + ", exPeople="
+                + exPeople + ", exStartDate=" + exStartDate + ", exEndDate=" + exEndDate + ", exTime=" + exTime
+                + ", exPrice=" + exPrice + ", exAddress=" + exAddress + ", exExplain=" + exExplain + ", exApproval="
+                + exApproval + ", exBank=" + exBank + ", exAccount=" + exAccount + ", exRegDate=" + exRegDate
+                + ", houseCode=" + houseCode + "]";
+    }
+
+
 }

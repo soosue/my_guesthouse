@@ -4,58 +4,59 @@ import java.util.Date;
 
 public class NewExpZzimDto {
 
-	private int exCode ;
-	private String exName ;
-	private int membercode ;
-	private Date exStartDate ;
-	
-	public NewExpZzimDto() {}
+    private int exCode;
+    private String exName;
+    private int membercode;
+    private Date exStartDate;
 
-	public NewExpZzimDto(int exCode, String exName, int membercode, Date exStartDate) {
-		
-		this.exCode = exCode;
-		this.exName = exName;
-		this.membercode = membercode;
-		this.exStartDate = exStartDate;
-	}
+    public NewExpZzimDto() {
+    }
 
-	@Override
-	public String toString() {
-		return "NewExpZzimDto [exCode=" + exCode + ", exName=" + exName + ", membercode=" + membercode
-				+ ", exStartDate=" + exStartDate + "]";
-	}
+    public NewExpZzimDto(int exCode, String exName, int membercode, Date exStartDate) {
 
-	public int getExCode() {
-		return exCode;
-	}
+        this.exCode = exCode;
+        this.exName = exName;
+        this.membercode = membercode;
+        this.exStartDate = exStartDate;
+    }
 
-	public void setExCode(int exCode) {
-		this.exCode = exCode;
-	}
+    @Override
+    public String toString() {
+        return "NewExpZzimDto [exCode=" + exCode + ", exName=" + exName + ", membercode=" + membercode
+                + ", exStartDate=" + exStartDate + "]";
+    }
 
-	public String getExName() {
-		return exName;
-	}
+    public int getExCode() {
+        return exCode;
+    }
 
-	public void setExName(String exName) {
-		this.exName = exName;
-	}
+    public void setExCode(int exCode) {
+        this.exCode = exCode;
+    }
 
-	public int getMembercode() {
-		return membercode;
-	}
+    public String getExName() {
+        return exName;
+    }
 
-	public void setMembercode(int membercode) {
-		this.membercode = membercode;
-	}
+    public void setExName(String exName) {
+        this.exName = exName;
+    }
 
-	public Date getExStartDate() {
-		return exStartDate;
-	}
+    public int getMembercode() {
+        return membercode;
+    }
 
-	public void setExStartDate(Date exStartDate) {
-		this.exStartDate = exStartDate;
-	}
+    public void setMembercode(int membercode) {
+        this.membercode = membercode;
+    }
 
-	
+    public Date getExStartDate() {
+        return exStartDate;
+    }
+
+    public void setExStartDate(Date exStartDate) {
+        this.exStartDate = exStartDate;
+    }
+
+
 }

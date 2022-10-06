@@ -3,38 +3,37 @@ package com.java.guesthouse.host.service;
 import org.springframework.web.servlet.ModelAndView;
 
 public interface HostService {
-	public void hostRegisterPage(ModelAndView mav);
+    void hostRegisterPage(ModelAndView mav);
 
-	public void hostRegister(ModelAndView mav);
+    void hostRegister(ModelAndView mav);
 
-	public void hostPage(ModelAndView mav);
+    void hostPage(ModelAndView mav);
 
-	public void reservationView(ModelAndView mav);
+    void reservationView(ModelAndView mav);
 
-	public void salesView(ModelAndView mav);
+    void salesView(ModelAndView mav);
 
-	public void houseManagement(ModelAndView mav);
+    void houseManagement(ModelAndView mav);
 
-	public void hostCancel(ModelAndView mav);
+    void hostCancel(ModelAndView mav);
 
-	public void reservationOkView(ModelAndView mav);
+    void reservationOkView(ModelAndView mav);
 
-	public void exManagement(ModelAndView mav);
+    void exManagement(ModelAndView mav);
 
-	public void searchDate(ModelAndView mav);
+    void searchDate(ModelAndView mav);
 
-	public void houseManagementView(ModelAndView mav);
+    void houseManagementView(ModelAndView mav);
 
-	public void exManagementView(ModelAndView mav);
+    void exManagementView(ModelAndView mav);
 
-	public void exCancel(ModelAndView mav);
+    void exCancel(ModelAndView mav);
 
-	public void exReservationView(ModelAndView mav);
+    void exReservationView(ModelAndView mav);
 
-	public void exReservationOkView(ModelAndView mav);
+    void exReservationOkView(ModelAndView mav);
 
-	public void houseNameCheck(ModelAndView mav);
-
+    void houseNameCheck(ModelAndView mav);
 
 
 }

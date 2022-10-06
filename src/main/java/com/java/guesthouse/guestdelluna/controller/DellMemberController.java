@@ -15,63 +15,63 @@ import com.java.guesthouse.guestdelluna.service.DellunaService;
 @Controller
 public class DellMemberController {
 
-	@Autowired
-	private DellunaService dellunaService;
-	
-	//회원수정
-	@RequestMapping(value="guestdelluna/memberUpdate.do" , method=RequestMethod.GET)
-	public ModelAndView memberUpdate(HttpServletRequest request, HttpServletResponse response) {
-		
-		ModelAndView mav = new ModelAndView();
-		
-		mav.addObject("request", request);
-		
-		dellunaService.updateMember(mav);
-		
-		return mav;
-		
-	}
-	
-	//수정ok
-	@RequestMapping(value="guestdelluna/memberUpdateOk.do" , method=RequestMethod.POST)
-	public ModelAndView memberUpdateOk(HttpServletRequest request , HttpServletResponse response , MemberDto memberDto) {
-		
-		ModelAndView mav = new ModelAndView();
-		
-		mav.addObject("request", request);
-		mav.addObject("memberDto", memberDto);
-		
-		dellunaService.updateMemberOk(mav);
-		
-		return mav;
-		
-	}
-	
-	@RequestMapping(value = "guestdelluna/memberDelete.do" , method=RequestMethod.GET)
-	public ModelAndView memberDelete(HttpServletRequest request , HttpServletResponse response) {
-		
-		ModelAndView mav = new ModelAndView();
-		
-		mav.addObject("request", request);
-		
-		dellunaService.deleteMember(mav);
-		
-		return mav;
-		
-	}
-	
-	@RequestMapping(value = "guestdelluna/memberDeleteOk.do" , method=RequestMethod.GET)
-	public ModelAndView memberDeleteOk(HttpServletRequest request , HttpServletResponse response) {
-		
-		ModelAndView mav = new ModelAndView();
-		
-		mav.addObject("request", request);
-	
-		dellunaService.deleteMemberOk(mav);
-		
-		return mav;
-		
-		
-	}
-	
+    @Autowired
+    private DellunaService dellunaService;
+
+    //회원수정
+    @RequestMapping(value = "guestdelluna/memberUpdate.do", method = RequestMethod.GET)
+    public ModelAndView memberUpdate(HttpServletRequest request, HttpServletResponse response) {
+
+        ModelAndView mav = new ModelAndView();
+
+        mav.addObject("request", request);
+
+        dellunaService.updateMember(mav);
+
+        return mav;
+
+    }
+
+    //수정ok
+    @RequestMapping(value = "guestdelluna/memberUpdateOk.do", method = RequestMethod.POST)
+    public ModelAndView memberUpdateOk(HttpServletRequest request, HttpServletResponse response, MemberDto memberDto) {
+
+        ModelAndView mav = new ModelAndView();
+
+        mav.addObject("request", request);
+        mav.addObject("memberDto", memberDto);
+
+        dellunaService.updateMemberOk(mav);
+
+        return mav;
+
+    }
+
+    @RequestMapping(value = "guestdelluna/memberDelete.do", method = RequestMethod.GET)
+    public ModelAndView memberDelete(HttpServletRequest request, HttpServletResponse response) {
+
+        ModelAndView mav = new ModelAndView();
+
+        mav.addObject("request", request);
+
+        dellunaService.deleteMember(mav);
+
+        return mav;
+
+    }
+
+    @RequestMapping(value = "guestdelluna/memberDeleteOk.do", method = RequestMethod.GET)
+    public ModelAndView memberDeleteOk(HttpServletRequest request, HttpServletResponse response) {
+
+        ModelAndView mav = new ModelAndView();
+
+        mav.addObject("request", request);
+
+        dellunaService.deleteMemberOk(mav);
+
+        return mav;
+
+
+    }
+
 }

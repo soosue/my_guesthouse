@@ -7,17 +7,27 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 public interface GuestHouseService {
-	public void guestHouseRead(ModelAndView mav);
-	public void guestHouseReserv(ModelAndView mav);
-	public void reservComplete(ModelAndView mav);
-	public void kakaoPaySuccess(ModelAndView mav);
-	public void kakaoPayCompleteOk(ModelAndView mav);
-	public void limitCheck(ModelAndView mav);
-	public String review(ModelAndView mav);
-	public void reviewOk(ModelAndView mav);
-	public void reviewUpdate(ModelAndView mav);
-	public void reviewUpdateOk(ModelAndView mav);
-	public void reviewDelete(ModelAndView mav);
-	
-	public Map<String,Object> review(HttpServletRequest request);
+    void guestHouseRead(ModelAndView mav);
+
+    void guestHouseReserv(ModelAndView mav);
+
+    void reservComplete(ModelAndView mav);
+
+    void kakaoPaySuccess(ModelAndView mav);
+
+    void kakaoPayCompleteOk(ModelAndView mav);
+
+    void limitCheck(ModelAndView mav);
+
+    String review(ModelAndView mav);
+
+    void reviewOk(ModelAndView mav);
+
+    void reviewUpdate(ModelAndView mav);
+
+    void reviewUpdateOk(ModelAndView mav);
+
+    void reviewDelete(ModelAndView mav);
+
+    Map<String, Object> review(HttpServletRequest request);
 }

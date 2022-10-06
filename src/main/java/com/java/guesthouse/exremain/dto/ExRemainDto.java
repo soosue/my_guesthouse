@@ -4,47 +4,48 @@ import java.util.Date;
 
 public class ExRemainDto {
 
-	private Date resDate;
-	private int exPeople;
-	private int exCode;
-	
-	public ExRemainDto() {}
-	
-	public ExRemainDto(Date resDate, int exPeople, int exCode) {
-		
-		this.resDate = resDate;
-		this.exPeople = exPeople;
-		this.exCode = exCode;
-	}
+    private Date resDate;
+    private int exPeople;
+    private int exCode;
 
-	public Date getResDate() {
-		return resDate;
-	}
+    public ExRemainDto() {
+    }
 
-	public void setResDate(Date resDate) {
-		this.resDate = resDate;
-	}
+    public ExRemainDto(Date resDate, int exPeople, int exCode) {
 
-	public int getExPeople() {
-		return exPeople;
-	}
+        this.resDate = resDate;
+        this.exPeople = exPeople;
+        this.exCode = exCode;
+    }
 
-	public void setExPeople(int exPeople) {
-		this.exPeople = exPeople;
-	}
+    public Date getResDate() {
+        return resDate;
+    }
 
-	public int getExCode() {
-		return exCode;
-	}
+    public void setResDate(Date resDate) {
+        this.resDate = resDate;
+    }
 
-	public void setExCode(int exCode) {
-		this.exCode = exCode;
-	}
+    public int getExPeople() {
+        return exPeople;
+    }
 
-	@Override
-	public String toString() {
-		return "ExRemainDto [resDate=" + resDate + ", exPeople=" + exPeople + ", exCode=" + exCode + "]";
-	}
-	
-	
+    public void setExPeople(int exPeople) {
+        this.exPeople = exPeople;
+    }
+
+    public int getExCode() {
+        return exCode;
+    }
+
+    public void setExCode(int exCode) {
+        this.exCode = exCode;
+    }
+
+    @Override
+    public String toString() {
+        return "ExRemainDto [resDate=" + resDate + ", exPeople=" + exPeople + ", exCode=" + exCode + "]";
+    }
+
+
 }

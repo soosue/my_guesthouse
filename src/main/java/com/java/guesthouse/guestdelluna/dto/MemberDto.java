@@ -4,143 +4,143 @@ import java.util.Date;
 
 public class MemberDto {
 
-	private int memberCode ;
-	private String memberName ;
-	private String email ;
-	private String password ;
-	private int phone ;
-	private Date regDate ;
-	private int point ;
-	private String memberLevel ;
-	private String memberImgName;
-	private String memberImgPath ;
-	private Long memberImgSize ;
-	private String memberInfo;
-	
-	public MemberDto() {}
+    private int memberCode;
+    private String memberName;
+    private String email;
+    private String password;
+    private int phone;
+    private Date regDate;
+    private int point;
+    private String memberLevel;
+    private String memberImgName;
+    private String memberImgPath;
+    private Long memberImgSize;
+    private String memberInfo;
 
-	public MemberDto(int memberCode, String memberName, String email, String password, int phone, Date regDate,
-			int point, String memberLevel, String memberImgName, String memberImgPath, Long memberImgSize,
-			String memberInfo) {
-		
-		this.memberCode = memberCode;
-		this.memberName = memberName;
-		this.email = email;
-		this.password = password;
-		this.phone = phone;
-		this.regDate = regDate;
-		this.point = point;
-		this.memberLevel = memberLevel;
-		this.memberImgName = memberImgName;
-		this.memberImgPath = memberImgPath;
-		this.memberImgSize = memberImgSize;
-		this.memberInfo = memberInfo;
-	}
+    public MemberDto() {
+    }
 
-	@Override
-	public String toString() {
-		return "MemberDto [memberCode=" + memberCode + ", memberName=" + memberName + ", email=" + email + ", password="
-				+ password + ", phone=" + phone + ", regDate=" + regDate + ", point=" + point + ", memberLevel="
-				+ memberLevel + ", memberImgName=" + memberImgName + ", memberImgPath=" + memberImgPath
-				+ ", memberImgSize=" + memberImgSize + ", memberInfo=" + memberInfo + "]";
-	}
+    public MemberDto(int memberCode, String memberName, String email, String password, int phone, Date regDate,
+                     int point, String memberLevel, String memberImgName, String memberImgPath, Long memberImgSize,
+                     String memberInfo) {
 
-	public String getMemberInfo() {
-		return memberInfo;
-	}
+        this.memberCode = memberCode;
+        this.memberName = memberName;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.regDate = regDate;
+        this.point = point;
+        this.memberLevel = memberLevel;
+        this.memberImgName = memberImgName;
+        this.memberImgPath = memberImgPath;
+        this.memberImgSize = memberImgSize;
+        this.memberInfo = memberInfo;
+    }
 
-	public void setMemberInfo(String memberInfo) {
-		this.memberInfo = memberInfo;
-	}
+    @Override
+    public String toString() {
+        return "MemberDto [memberCode=" + memberCode + ", memberName=" + memberName + ", email=" + email + ", password="
+                + password + ", phone=" + phone + ", regDate=" + regDate + ", point=" + point + ", memberLevel="
+                + memberLevel + ", memberImgName=" + memberImgName + ", memberImgPath=" + memberImgPath
+                + ", memberImgSize=" + memberImgSize + ", memberInfo=" + memberInfo + "]";
+    }
 
-	public int getMemberCode() {
-		return memberCode;
-	}
+    public String getMemberInfo() {
+        return memberInfo;
+    }
 
-	public void setMemberCode(int memberCode) {
-		this.memberCode = memberCode;
-	}
+    public void setMemberInfo(String memberInfo) {
+        this.memberInfo = memberInfo;
+    }
 
-	public String getMemberName() {
-		return memberName;
-	}
+    public int getMemberCode() {
+        return memberCode;
+    }
 
-	public void setMemberName(String memberName) {
-		this.memberName = memberName;
-	}
+    public void setMemberCode(int memberCode) {
+        this.memberCode = memberCode;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getMemberName() {
+        return memberName;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public int getPhone() {
-		return phone;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setPhone(int phone) {
-		this.phone = phone;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public Date getRegDate() {
-		return regDate;
-	}
+    public int getPhone() {
+        return phone;
+    }
 
-	public void setRegDate(Date regDate) {
-		this.regDate = regDate;
-	}
+    public void setPhone(int phone) {
+        this.phone = phone;
+    }
 
-	public int getPoint() {
-		return point;
-	}
+    public Date getRegDate() {
+        return regDate;
+    }
 
-	public void setPoint(int point) {
-		this.point = point;
-	}
+    public void setRegDate(Date regDate) {
+        this.regDate = regDate;
+    }
 
-	public String getMemberLevel() {
-		return memberLevel;
-	}
+    public int getPoint() {
+        return point;
+    }
 
-	public void setMemberLevel(String memberLevel) {
-		this.memberLevel = memberLevel;
-	}
+    public void setPoint(int point) {
+        this.point = point;
+    }
 
-	public String getMemberImgName() {
-		return memberImgName;
-	}
+    public String getMemberLevel() {
+        return memberLevel;
+    }
 
-	public void setMemberImgName(String memberImgName) {
-		this.memberImgName = memberImgName;
-	}
+    public void setMemberLevel(String memberLevel) {
+        this.memberLevel = memberLevel;
+    }
 
-	public String getMemberImgPath() {
-		return memberImgPath;
-	}
+    public String getMemberImgName() {
+        return memberImgName;
+    }
 
-	public void setMemberImgPath(String memberImgPath) {
-		this.memberImgPath = memberImgPath;
-	}
+    public void setMemberImgName(String memberImgName) {
+        this.memberImgName = memberImgName;
+    }
 
-	public Long getMemberImgSize() {
-		return memberImgSize;
-	}
+    public String getMemberImgPath() {
+        return memberImgPath;
+    }
 
-	public void setMemberImgSize(Long memberImgSize) {
-		this.memberImgSize = memberImgSize;
-	}
+    public void setMemberImgPath(String memberImgPath) {
+        this.memberImgPath = memberImgPath;
+    }
 
-	
-	
+    public Long getMemberImgSize() {
+        return memberImgSize;
+    }
+
+    public void setMemberImgSize(Long memberImgSize) {
+        this.memberImgSize = memberImgSize;
+    }
+
+
 }

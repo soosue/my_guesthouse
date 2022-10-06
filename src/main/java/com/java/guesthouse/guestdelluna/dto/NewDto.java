@@ -1,24 +1,21 @@
 package com.java.guesthouse.guestdelluna.dto;
 
-public class NewDto extends HouseReservationDto  {
-	
-	private int houseCode ;
+public class NewDto extends HouseReservationDto {
 
-	public int getHouseCode() {
-		return houseCode;
-	}
+    private int houseCode;
 
-	public void setHouseCode(int houseCode) {
-		this.houseCode = houseCode;
-	}
+    public int getHouseCode() {
+        return houseCode;
+    }
 
-	@Override
-	public String toString() {
-		return "NewDto [houseCode=" + houseCode + ", toString()=" + super.toString() + "]";
-	}
-	
-	
-	
-	
-	
+    public void setHouseCode(int houseCode) {
+        this.houseCode = houseCode;
+    }
+
+    @Override
+    public String toString() {
+        return "NewDto [houseCode=" + houseCode + ", toString()=" + super.toString() + "]";
+    }
+
+
 }

@@ -4,69 +4,69 @@ import java.util.Date;
 
 public class PointAccumulate {
 
-	private int accuCode;
-	private int memberCode;
-	private String accuPlace;
-	private Date accuDate ;
-	private int accuPoint;
-	
-	public PointAccumulate() {}
+    private int accuCode;
+    private int memberCode;
+    private String accuPlace;
+    private Date accuDate;
+    private int accuPoint;
 
-	public PointAccumulate(int accuCode, int memberCode, String accuPlace, Date accuDate, int accuPoint) {
-		
-		this.accuCode = accuCode;
-		this.memberCode = memberCode;
-		this.accuPlace = accuPlace;
-		this.accuDate = accuDate;
-		this.accuPoint = accuPoint;
-	}
+    public PointAccumulate() {
+    }
 
-	@Override
-	public String toString() {
-		return "PointAccumulate [accuCode=" + accuCode + ", memberCode=" + memberCode + ", accuPlace=" + accuPlace
-				+ ", accuDate=" + accuDate + ", accuPoint=" + accuPoint + "]";
-	}
+    public PointAccumulate(int accuCode, int memberCode, String accuPlace, Date accuDate, int accuPoint) {
 
-	public int getAccuCode() {
-		return accuCode;
-	}
+        this.accuCode = accuCode;
+        this.memberCode = memberCode;
+        this.accuPlace = accuPlace;
+        this.accuDate = accuDate;
+        this.accuPoint = accuPoint;
+    }
 
-	public void setAccuCode(int accuCode) {
-		this.accuCode = accuCode;
-	}
+    @Override
+    public String toString() {
+        return "PointAccumulate [accuCode=" + accuCode + ", memberCode=" + memberCode + ", accuPlace=" + accuPlace
+                + ", accuDate=" + accuDate + ", accuPoint=" + accuPoint + "]";
+    }
 
-	public int getMemberCode() {
-		return memberCode;
-	}
+    public int getAccuCode() {
+        return accuCode;
+    }
 
-	public void setMemberCode(int memberCode) {
-		this.memberCode = memberCode;
-	}
+    public void setAccuCode(int accuCode) {
+        this.accuCode = accuCode;
+    }
 
-	public String getAccuPlace() {
-		return accuPlace;
-	}
+    public int getMemberCode() {
+        return memberCode;
+    }
 
-	public void setAccuPlace(String accuPlace) {
-		this.accuPlace = accuPlace;
-	}
+    public void setMemberCode(int memberCode) {
+        this.memberCode = memberCode;
+    }
 
-	public Date getAccuDate() {
-		return accuDate;
-	}
+    public String getAccuPlace() {
+        return accuPlace;
+    }
 
-	public void setAccuDate(Date accuDate) {
-		this.accuDate = accuDate;
-	}
+    public void setAccuPlace(String accuPlace) {
+        this.accuPlace = accuPlace;
+    }
 
-	public int getAccuPoint() {
-		return accuPoint;
-	}
+    public Date getAccuDate() {
+        return accuDate;
+    }
 
-	public void setAccuPoint(int accuPoint) {
-		this.accuPoint = accuPoint;
-	}
-	
-	
-	
+    public void setAccuDate(Date accuDate) {
+        this.accuDate = accuDate;
+    }
+
+    public int getAccuPoint() {
+        return accuPoint;
+    }
+
+    public void setAccuPoint(int accuPoint) {
+        this.accuPoint = accuPoint;
+    }
+
+
 }

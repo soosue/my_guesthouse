@@ -4,69 +4,69 @@ import java.util.Date;
 
 public class PointUse {
 
-	private int useCode ;
-	private int memberCode;
-	private String usePlace ;
-	private Date useDate;
-	private int usePoint;
-	
-	public PointUse() {}
+    private int useCode;
+    private int memberCode;
+    private String usePlace;
+    private Date useDate;
+    private int usePoint;
 
-	public PointUse(int useCode, int memberCode, String usePlace, Date useDate, int usePoint) {
-		
-		this.useCode = useCode;
-		this.memberCode = memberCode;
-		this.usePlace = usePlace;
-		this.useDate = useDate;
-		this.usePoint = usePoint;
-	}
+    public PointUse() {
+    }
 
-	@Override
-	public String toString() {
-		return "PointUse [useCode=" + useCode + ", memberCode=" + memberCode + ", usePlace=" + usePlace + ", useDate="
-				+ useDate + ", usePoint=" + usePoint + "]";
-	}
+    public PointUse(int useCode, int memberCode, String usePlace, Date useDate, int usePoint) {
 
-	public int getUseCode() {
-		return useCode;
-	}
+        this.useCode = useCode;
+        this.memberCode = memberCode;
+        this.usePlace = usePlace;
+        this.useDate = useDate;
+        this.usePoint = usePoint;
+    }
 
-	public void setUseCode(int useCode) {
-		this.useCode = useCode;
-	}
+    @Override
+    public String toString() {
+        return "PointUse [useCode=" + useCode + ", memberCode=" + memberCode + ", usePlace=" + usePlace + ", useDate="
+                + useDate + ", usePoint=" + usePoint + "]";
+    }
 
-	public int getMemberCode() {
-		return memberCode;
-	}
+    public int getUseCode() {
+        return useCode;
+    }
 
-	public void setMemberCode(int memberCode) {
-		this.memberCode = memberCode;
-	}
+    public void setUseCode(int useCode) {
+        this.useCode = useCode;
+    }
 
-	public String getUsePlace() {
-		return usePlace;
-	}
+    public int getMemberCode() {
+        return memberCode;
+    }
 
-	public void setUsePlace(String usePlace) {
-		this.usePlace = usePlace;
-	}
+    public void setMemberCode(int memberCode) {
+        this.memberCode = memberCode;
+    }
 
-	public Date getUseDate() {
-		return useDate;
-	}
+    public String getUsePlace() {
+        return usePlace;
+    }
 
-	public void setUseDate(Date useDate) {
-		this.useDate = useDate;
-	}
+    public void setUsePlace(String usePlace) {
+        this.usePlace = usePlace;
+    }
 
-	public int getUsePoint() {
-		return usePoint;
-	}
+    public Date getUseDate() {
+        return useDate;
+    }
 
-	public void setUsePoint(int usePoint) {
-		this.usePoint = usePoint;
-	}
-	
-	
-	
+    public void setUseDate(Date useDate) {
+        this.useDate = useDate;
+    }
+
+    public int getUsePoint() {
+        return usePoint;
+    }
+
+    public void setUsePoint(int usePoint) {
+        this.usePoint = usePoint;
+    }
+
+
 }

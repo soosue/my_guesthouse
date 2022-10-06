@@ -3,80 +3,81 @@ package com.java.guesthouse.guestdelluna.dto;
 import java.util.Date;
 
 public class NewExpReviewDto {
-	
-	private int exReserveCode ;
-	private Date revDate ;
-	private String revContent ;
-	private String exName ;
-	private String mainImgName;
-	private int exCode ;
-	
-	public NewExpReviewDto() {}
 
-	public NewExpReviewDto(int exReserveCode, Date revDate, String revContent, String exName, String mainImgName,
-			int exCode) {
-	
-		this.exReserveCode = exReserveCode;
-		this.revDate = revDate;
-		this.revContent = revContent;
-		this.exName = exName;
-		this.mainImgName = mainImgName;
-		this.exCode = exCode;
-	}
+    private int exReserveCode;
+    private Date revDate;
+    private String revContent;
+    private String exName;
+    private String mainImgName;
+    private int exCode;
 
-	@Override
-	public String toString() {
-		return "NewExpReviewDto [exReserveCode=" + exReserveCode + ", revDate=" + revDate + ", revContent=" + revContent
-				+ ", exName=" + exName + ", mainImgName=" + mainImgName + ", exCode=" + exCode + "]";
-	}
+    public NewExpReviewDto() {
+    }
 
-	public int getExReserveCode() {
-		return exReserveCode;
-	}
+    public NewExpReviewDto(int exReserveCode, Date revDate, String revContent, String exName, String mainImgName,
+                           int exCode) {
 
-	public void setExReserveCode(int exReserveCode) {
-		this.exReserveCode = exReserveCode;
-	}
+        this.exReserveCode = exReserveCode;
+        this.revDate = revDate;
+        this.revContent = revContent;
+        this.exName = exName;
+        this.mainImgName = mainImgName;
+        this.exCode = exCode;
+    }
 
-	public Date getRevDate() {
-		return revDate;
-	}
+    @Override
+    public String toString() {
+        return "NewExpReviewDto [exReserveCode=" + exReserveCode + ", revDate=" + revDate + ", revContent=" + revContent
+                + ", exName=" + exName + ", mainImgName=" + mainImgName + ", exCode=" + exCode + "]";
+    }
 
-	public void setRevDate(Date revDate) {
-		this.revDate = revDate;
-	}
+    public int getExReserveCode() {
+        return exReserveCode;
+    }
 
-	public String getRevContent() {
-		return revContent;
-	}
+    public void setExReserveCode(int exReserveCode) {
+        this.exReserveCode = exReserveCode;
+    }
 
-	public void setRevContent(String revContent) {
-		this.revContent = revContent;
-	}
+    public Date getRevDate() {
+        return revDate;
+    }
 
-	public String getExName() {
-		return exName;
-	}
+    public void setRevDate(Date revDate) {
+        this.revDate = revDate;
+    }
 
-	public void setExName(String exName) {
-		this.exName = exName;
-	}
+    public String getRevContent() {
+        return revContent;
+    }
 
-	public String getMainImgName() {
-		return mainImgName;
-	}
+    public void setRevContent(String revContent) {
+        this.revContent = revContent;
+    }
 
-	public void setMainImgName(String mainImgName) {
-		this.mainImgName = mainImgName;
-	}
+    public String getExName() {
+        return exName;
+    }
 
-	public int getExCode() {
-		return exCode;
-	}
+    public void setExName(String exName) {
+        this.exName = exName;
+    }
 
-	public void setExCode(int exCode) {
-		this.exCode = exCode;
-	}
-	
-	
+    public String getMainImgName() {
+        return mainImgName;
+    }
+
+    public void setMainImgName(String mainImgName) {
+        this.mainImgName = mainImgName;
+    }
+
+    public int getExCode() {
+        return exCode;
+    }
+
+    public void setExCode(int exCode) {
+        this.exCode = exCode;
+    }
+
+
 }

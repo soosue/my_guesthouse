@@ -2,36 +2,37 @@ package com.java.guesthouse.guestdelluna.dto;
 
 public class HouseZzimDto {
 
-	private int memberCode ;
-	private int houseCode ;
-	
-	public HouseZzimDto() {}
+    private int memberCode;
+    private int houseCode;
 
-	public HouseZzimDto(int memberCode, int houseCode) {
-		
-		this.memberCode = memberCode;
-		this.houseCode = houseCode;
-	}
+    public HouseZzimDto() {
+    }
 
-	public int getMemberCode() {
-		return memberCode;
-	}
+    public HouseZzimDto(int memberCode, int houseCode) {
 
-	public void setMemberCode(int memberCode) {
-		this.memberCode = memberCode;
-	}
+        this.memberCode = memberCode;
+        this.houseCode = houseCode;
+    }
 
-	public int getHouseCode() {
-		return houseCode;
-	}
+    public int getMemberCode() {
+        return memberCode;
+    }
 
-	public void setHouseCode(int houseCode) {
-		this.houseCode = houseCode;
-	}
+    public void setMemberCode(int memberCode) {
+        this.memberCode = memberCode;
+    }
 
-	@Override
-	public String toString() {
-		return "HouseZzimDto [memberCode=" + memberCode + ", houseCode=" + houseCode + "]";
-	}
-		
+    public int getHouseCode() {
+        return houseCode;
+    }
+
+    public void setHouseCode(int houseCode) {
+        this.houseCode = houseCode;
+    }
+
+    @Override
+    public String toString() {
+        return "HouseZzimDto [memberCode=" + memberCode + ", houseCode=" + houseCode + "]";
+    }
+
 }

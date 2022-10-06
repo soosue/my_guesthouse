@@ -2,81 +2,81 @@ package com.java.guesthouse.exreview.dto;
 
 import java.util.Date;
 
-
 public class ExReviewListDto {
-	private int exReserveCode;
-	private int memberCode;
-	private Date revDate;
-	
-	private String revContent;
-	private int revRate;
-	private String email;
-	
-	public ExReviewListDto() {}
-	
-	public ExReviewListDto(int exReserveCode, int memberCode, Date revDate, String revContent, int revRate,
-			String email) {
-		
-		this.exReserveCode = exReserveCode;
-		this.memberCode = memberCode;
-		this.revDate = revDate;
-		this.revContent = revContent;
-		this.revRate = revRate;
-		this.email = email;
-	}
+    private int exReserveCode;
+    private int memberCode;
+    private Date revDate;
 
-	public int getExReserveCode() {
-		return exReserveCode;
-	}
+    private String revContent;
+    private int revRate;
+    private String email;
 
-	public void setExReserveCode(int exReserveCode) {
-		this.exReserveCode = exReserveCode;
-	}
+    public ExReviewListDto() {
+    }
 
-	public int getMemberCode() {
-		return memberCode;
-	}
+    public ExReviewListDto(int exReserveCode, int memberCode, Date revDate, String revContent, int revRate,
+                           String email) {
 
-	public void setMemberCode(int memberCode) {
-		this.memberCode = memberCode;
-	}
+        this.exReserveCode = exReserveCode;
+        this.memberCode = memberCode;
+        this.revDate = revDate;
+        this.revContent = revContent;
+        this.revRate = revRate;
+        this.email = email;
+    }
 
-	public Date getRevDate() {
-		return revDate;
-	}
+    public int getExReserveCode() {
+        return exReserveCode;
+    }
 
-	public void setRevDate(Date revDate) {
-		this.revDate = revDate;
-	}
+    public void setExReserveCode(int exReserveCode) {
+        this.exReserveCode = exReserveCode;
+    }
 
-	public String getRevContent() {
-		return revContent;
-	}
+    public int getMemberCode() {
+        return memberCode;
+    }
 
-	public void setRevContent(String revContent) {
-		this.revContent = revContent;
-	}
+    public void setMemberCode(int memberCode) {
+        this.memberCode = memberCode;
+    }
 
-	public int getRevRate() {
-		return revRate;
-	}
+    public Date getRevDate() {
+        return revDate;
+    }
 
-	public void setRevRate(int revRate) {
-		this.revRate = revRate;
-	}
+    public void setRevDate(Date revDate) {
+        this.revDate = revDate;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getRevContent() {
+        return revContent;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setRevContent(String revContent) {
+        this.revContent = revContent;
+    }
 
-	@Override
-	public String toString() {
-		return "ExReviewListDto [exReserveCode=" + exReserveCode + ", memberCode=" + memberCode + ", revDate=" + revDate
-				+ ", revContent=" + revContent + ", revRate=" + revRate + ", email=" + email + "]";
-	}
-	
+    public int getRevRate() {
+        return revRate;
+    }
+
+    public void setRevRate(int revRate) {
+        this.revRate = revRate;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "ExReviewListDto [exReserveCode=" + exReserveCode + ", memberCode=" + memberCode + ", revDate=" + revDate
+                + ", revContent=" + revContent + ", revRate=" + revRate + ", email=" + email + "]";
+    }
+
 }

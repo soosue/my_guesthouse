@@ -4,111 +4,111 @@ import java.util.Date;
 
 public class HouseReservationDto {
 
-	private int reserveCode ;
-	private int people ; //사람수
-	private Date reserveDate ;
-	private Date checkIn ;
-	private Date checkOut ;
-	private int payment ;
-	private int memberCode ;
-	private int houseCode ;
-	private String state ;
+    private int reserveCode;
+    private int people; //사람수
+    private Date reserveDate;
+    private Date checkIn;
+    private Date checkOut;
+    private int payment;
+    private int memberCode;
+    private int houseCode;
+    private String state;
 
-	public HouseReservationDto() {}
+    public HouseReservationDto() {
+    }
 
-	public HouseReservationDto(int reserveCode, int people, Date reserveDate, Date checkIn, Date checkOut, int payment,
-			int memberCode, int houseCode, String state) {
-		
-		this.reserveCode = reserveCode;
-		this.people = people;
-		this.reserveDate = reserveDate;
-		this.checkIn = checkIn;
-		this.checkOut = checkOut;
-		this.payment = payment;
-		this.memberCode = memberCode;
-		this.houseCode = houseCode;
-		this.state = state;
-	}
+    public HouseReservationDto(int reserveCode, int people, Date reserveDate, Date checkIn, Date checkOut, int payment,
+                               int memberCode, int houseCode, String state) {
 
-	@Override
-	public String toString() {
-		return "HouseReservationDto [reserveCode=" + reserveCode + ", people=" + people + ", reserveDate=" + reserveDate
-				+ ", checkIn=" + checkIn + ", checkOut=" + checkOut + ", payment=" + payment + ", memberCode="
-				+ memberCode + ", houseCode=" + houseCode + ", state=" + state + "]";
-	}
+        this.reserveCode = reserveCode;
+        this.people = people;
+        this.reserveDate = reserveDate;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+        this.payment = payment;
+        this.memberCode = memberCode;
+        this.houseCode = houseCode;
+        this.state = state;
+    }
 
-	public int getReserveCode() {
-		return reserveCode;
-	}
+    @Override
+    public String toString() {
+        return "HouseReservationDto [reserveCode=" + reserveCode + ", people=" + people + ", reserveDate=" + reserveDate
+                + ", checkIn=" + checkIn + ", checkOut=" + checkOut + ", payment=" + payment + ", memberCode="
+                + memberCode + ", houseCode=" + houseCode + ", state=" + state + "]";
+    }
 
-	public void setReserveCode(int reserveCode) {
-		this.reserveCode = reserveCode;
-	}
+    public int getReserveCode() {
+        return reserveCode;
+    }
 
-	public int getPeople() {
-		return people;
-	}
+    public void setReserveCode(int reserveCode) {
+        this.reserveCode = reserveCode;
+    }
 
-	public void setPeople(int people) {
-		this.people = people;
-	}
+    public int getPeople() {
+        return people;
+    }
 
-	public Date getReserveDate() {
-		return reserveDate;
-	}
+    public void setPeople(int people) {
+        this.people = people;
+    }
 
-	public void setReserveDate(Date reserveDate) {
-		this.reserveDate = reserveDate;
-	}
+    public Date getReserveDate() {
+        return reserveDate;
+    }
 
-	public Date getCheckIn() {
-		return checkIn;
-	}
+    public void setReserveDate(Date reserveDate) {
+        this.reserveDate = reserveDate;
+    }
 
-	public void setCheckIn(Date checkIn) {
-		this.checkIn = checkIn;
-	}
+    public Date getCheckIn() {
+        return checkIn;
+    }
 
-	public Date getCheckOut() {
-		return checkOut;
-	}
+    public void setCheckIn(Date checkIn) {
+        this.checkIn = checkIn;
+    }
 
-	public void setCheckOut(Date checkOut) {
-		this.checkOut = checkOut;
-	}
+    public Date getCheckOut() {
+        return checkOut;
+    }
 
-	public int getPayment() {
-		return payment;
-	}
+    public void setCheckOut(Date checkOut) {
+        this.checkOut = checkOut;
+    }
 
-	public void setPayment(int payment) {
-		this.payment = payment;
-	}
+    public int getPayment() {
+        return payment;
+    }
 
-	public int getMemberCode() {
-		return memberCode;
-	}
+    public void setPayment(int payment) {
+        this.payment = payment;
+    }
 
-	public void setMemberCode(int memberCode) {
-		this.memberCode = memberCode;
-	}
+    public int getMemberCode() {
+        return memberCode;
+    }
 
-	public int getHouseCode() {
-		return houseCode;
-	}
+    public void setMemberCode(int memberCode) {
+        this.memberCode = memberCode;
+    }
 
-	public void setHouseCode(int houseCode) {
-		this.houseCode = houseCode;
-	}
+    public int getHouseCode() {
+        return houseCode;
+    }
 
-	public String getState() {
-		return state;
-	}
+    public void setHouseCode(int houseCode) {
+        this.houseCode = houseCode;
+    }
 
-	public void setState(String state) {
-		this.state = state;
-	}
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
 
 
-		
 }

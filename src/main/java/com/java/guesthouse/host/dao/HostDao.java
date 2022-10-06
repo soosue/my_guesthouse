@@ -14,59 +14,59 @@ import com.java.guesthouse.member.dto.MemberDto;
 
 public interface HostDao {
 
-	public int subImgUpload(FileDto fileDto);
+    int subImgUpload(FileDto fileDto);
 
-	public int hostRegister(HostDto hostDto);
+    int hostRegister(HostDto hostDto);
 
-	public int memberProfileImg(MemberDto memberDto);
+    int memberProfileImg(MemberDto memberDto);
 
-	public int memberCode(String email);
+    int memberCode(String email);
 
-	public int mainImgUpload(FileDto fileDto);
+    int mainImgUpload(FileDto fileDto);
 
-	public int houseCode();
+    int houseCode();
 
-	public List<HostDto> houseList(int memberCode, int startRow, int endRow);
+    List<HostDto> houseList(int memberCode, int startRow, int endRow);
 
-	public int hostCancel(int houseCode);
+    int hostCancel(int houseCode);
 
-	public List<String> houseNameList(int memberCode);
+    List<String> houseNameList(int memberCode);
 
-	public int getHouseCode(String houseName);
+    int getHouseCode(String houseName);
 
-	public List<ReservationListDto> reserveViewList(int houseCode, int startRow, int endRow);
+    List<ReservationListDto> reserveViewList(int houseCode, int startRow, int endRow);
 
-	public int getHouseCount(String email);
+    int getHouseCount(String email);
 
-	public int getReserveCount(int houseCode);
+    int getReserveCount(int houseCode);
 
-	public int getExCount(int memberCode);
+    int getExCount(int memberCode);
 
-	public List<ExperienceDto> experienceList(int memberCode, int startRow, int endRow);
+    List<ExperienceDto> experienceList(int memberCode, int startRow, int endRow);
 
-	public List<GuestReserveDto> getSales(int memberCode);
+    List<GuestReserveDto> getSales(int memberCode);
 
-	public SearchDateListCount getSearchDateCount(int memberCode, String startDate, String endDate);
+    SearchDateListCount getSearchDateCount(int memberCode, String startDate, String endDate);
 
-	public List<SearchDateList> searchDateList(int memberCode, String startDate, String endDate, int startRow,
-			int endRow);
+    List<SearchDateList> searchDateList(int memberCode, String startDate, String endDate, int startRow,
+                                        int endRow);
 
-	public MemberDto selectMemberDto(int memberCode);
+    MemberDto selectMemberDto(int memberCode);
 
-	public List<HostDto> ahouseList(int memberCode);
+    List<HostDto> ahouseList(int memberCode);
 
-	public int exCancel(int exCode);
+    int exCancel(int exCode);
 
-	public List<String> exNameList(int memberCode);
+    List<String> exNameList(int memberCode);
 
-	public int getExCode(String exName);
+    int getExCode(String exName);
 
-	public int getExReserveCount(int exCode);
+    int getExReserveCount(int exCode);
 
-	public List<ExReservationListDto> exReserveViewList(int exCode, int startRow, int endRow);
+    List<ExReservationListDto> exReserveViewList(int exCode, int startRow, int endRow);
 
-	public String getLocal(String localName);
+    String getLocal(String localName);
 
-	public int houseNameCheck(String houseName);
+    int houseNameCheck(String houseName);
 
 }

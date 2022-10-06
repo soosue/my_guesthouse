@@ -5,96 +5,96 @@ import java.util.List;
 import com.java.guesthouse.file.dto.FileDto;
 
 public class GuestHouseMainDto extends ExperienceDto {
-	
-	 private List<FileDto> fileList;
-	 private String houseName;
-	 private int houseCode;
-	 private int price;
-	 private int revRate;
-	 private int revCount;
-	 
-	 
-	 public GuestHouseMainDto() {}
+
+    private List<FileDto> fileList;
+    private String houseName;
+    private int houseCode;
+    private int price;
+    private int revRate;
+    private int revCount;
 
 
-	public GuestHouseMainDto(List<FileDto> fileList, String houseName, int houseCode, int price, int revRate,
-			int revCount) {
-		
-		this.fileList = fileList;
-		this.houseName = houseName;
-		this.houseCode = houseCode;
-		this.price = price;
-		this.revRate = revRate;
-		this.revCount = revCount;
-	}
+    public GuestHouseMainDto() {
+    }
 
 
-	public List<FileDto> getFileList() {
-		return fileList;
-	}
+    public GuestHouseMainDto(List<FileDto> fileList, String houseName, int houseCode, int price, int revRate,
+                             int revCount) {
+
+        this.fileList = fileList;
+        this.houseName = houseName;
+        this.houseCode = houseCode;
+        this.price = price;
+        this.revRate = revRate;
+        this.revCount = revCount;
+    }
 
 
-	public void setFileList(List<FileDto> fileList) {
-		this.fileList = fileList;
-	}
+    public List<FileDto> getFileList() {
+        return fileList;
+    }
 
 
-	public String getHouseName() {
-		return houseName;
-	}
+    public void setFileList(List<FileDto> fileList) {
+        this.fileList = fileList;
+    }
 
 
-	public void setHouseName(String houseName) {
-		this.houseName = houseName;
-	}
+    public String getHouseName() {
+        return houseName;
+    }
 
 
-	public int getHouseCode() {
-		return houseCode;
-	}
+    public void setHouseName(String houseName) {
+        this.houseName = houseName;
+    }
 
 
-	public void setHouseCode(int houseCode) {
-		this.houseCode = houseCode;
-	}
+    public int getHouseCode() {
+        return houseCode;
+    }
 
 
-	public int getPrice() {
-		return price;
-	}
+    public void setHouseCode(int houseCode) {
+        this.houseCode = houseCode;
+    }
 
 
-	public void setPrice(int price) {
-		this.price = price;
-	}
+    public int getPrice() {
+        return price;
+    }
 
 
-	public int getRevRate() {
-		return revRate;
-	}
+    public void setPrice(int price) {
+        this.price = price;
+    }
 
 
-	public void setRevRate(int revRate) {
-		this.revRate = revRate;
-	}
+    public int getRevRate() {
+        return revRate;
+    }
 
 
-	public int getRevCount() {
-		return revCount;
-	}
+    public void setRevRate(int revRate) {
+        this.revRate = revRate;
+    }
 
 
-	public void setRevCount(int revCount) {
-		this.revCount = revCount;
-	}
+    public int getRevCount() {
+        return revCount;
+    }
 
 
-	@Override
-	public String toString() {
-		return "GuestHouseMainDto [fileList=" + fileList + ", houseName=" + houseName + ", houseCode=" + houseCode
-				+ ", price=" + price + ", revRate=" + revRate + ", revCount=" + revCount + "]";
-	}
-	 
-	
-	 
+    public void setRevCount(int revCount) {
+        this.revCount = revCount;
+    }
+
+
+    @Override
+    public String toString() {
+        return "GuestHouseMainDto [fileList=" + fileList + ", houseName=" + houseName + ", houseCode=" + houseCode
+                + ", price=" + price + ", revRate=" + revRate + ", revCount=" + revCount + "]";
+    }
+
+
 }

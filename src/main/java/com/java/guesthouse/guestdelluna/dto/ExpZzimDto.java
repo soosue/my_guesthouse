@@ -2,38 +2,38 @@ package com.java.guesthouse.guestdelluna.dto;
 
 public class ExpZzimDto {
 
-	private int exCode ;
-	private int memberCode;
-	
-	public ExpZzimDto() {}
+    private int exCode;
+    private int memberCode;
 
-	public ExpZzimDto(int exCode, int memberCode) {
+    public ExpZzimDto() {
+    }
 
-		this.exCode = exCode;
-		this.memberCode = memberCode;
-	}
+    public ExpZzimDto(int exCode, int memberCode) {
 
-	public int getExCode() {
-		return exCode;
-	}
+        this.exCode = exCode;
+        this.memberCode = memberCode;
+    }
 
-	public void setExCode(int exCode) {
-		this.exCode = exCode;
-	}
+    public int getExCode() {
+        return exCode;
+    }
 
-	public int getMemberCode() {
-		return memberCode;
-	}
+    public void setExCode(int exCode) {
+        this.exCode = exCode;
+    }
 
-	public void setMemberCode(int memberCode) {
-		this.memberCode = memberCode;
-	}
+    public int getMemberCode() {
+        return memberCode;
+    }
 
-	@Override
-	public String toString() {
-		return "ExpZzimDto [exCode=" + exCode + ", memberCode=" + memberCode + "]";
-	}
-	
-	
-	
+    public void setMemberCode(int memberCode) {
+        this.memberCode = memberCode;
+    }
+
+    @Override
+    public String toString() {
+        return "ExpZzimDto [exCode=" + exCode + ", memberCode=" + memberCode + "]";
+    }
+
+
 }

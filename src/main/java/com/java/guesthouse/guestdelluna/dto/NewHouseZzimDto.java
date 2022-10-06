@@ -1,48 +1,49 @@
 package com.java.guesthouse.guestdelluna.dto;
 
 public class NewHouseZzimDto {
-	private int houseCode ;
-	private String houseName ;
-	private int memberCode ;
-	
-	public NewHouseZzimDto() {}
+    private int houseCode;
+    private String houseName;
+    private int memberCode;
 
-	public NewHouseZzimDto(int houseCode, String houseName, int memberCode) {
-	
-		this.houseCode = houseCode;
-		this.houseName = houseName;
-		this.memberCode = memberCode;
-	}
+    public NewHouseZzimDto() {
+    }
 
-	@Override
-	public String toString() {
-		return "NewHouseZzimDto [houseCode=" + houseCode + ", houseName=" + houseName + ", memberCode=" + memberCode
-				+ "]";
-	}
+    public NewHouseZzimDto(int houseCode, String houseName, int memberCode) {
 
-	public int getHouseCode() {
-		return houseCode;
-	}
+        this.houseCode = houseCode;
+        this.houseName = houseName;
+        this.memberCode = memberCode;
+    }
 
-	public void setHouseCode(int houseCode) {
-		this.houseCode = houseCode;
-	}
+    @Override
+    public String toString() {
+        return "NewHouseZzimDto [houseCode=" + houseCode + ", houseName=" + houseName + ", memberCode=" + memberCode
+                + "]";
+    }
 
-	public String getHouseName() {
-		return houseName;
-	}
+    public int getHouseCode() {
+        return houseCode;
+    }
 
-	public void setHouseName(String houseName) {
-		this.houseName = houseName;
-	}
+    public void setHouseCode(int houseCode) {
+        this.houseCode = houseCode;
+    }
 
-	public int getMemberCode() {
-		return memberCode;
-	}
+    public String getHouseName() {
+        return houseName;
+    }
 
-	public void setMemberCode(int memberCode) {
-		this.memberCode = memberCode;
-	}
-	
-	
+    public void setHouseName(String houseName) {
+        this.houseName = houseName;
+    }
+
+    public int getMemberCode() {
+        return memberCode;
+    }
+
+    public void setMemberCode(int memberCode) {
+        this.memberCode = memberCode;
+    }
+
+
 }

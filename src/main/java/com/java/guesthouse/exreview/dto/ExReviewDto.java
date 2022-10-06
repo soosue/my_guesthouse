@@ -3,73 +3,69 @@ package com.java.guesthouse.exreview.dto;
 import java.util.Date;
 
 public class ExReviewDto {
-	private int exReserveCode;
-	private int memberCode;
-	private Date revDate;
-	private String revContent;
-	private int revRate;
-	
-	public ExReviewDto() {}
+    private int exReserveCode;
+    private int memberCode;
+    private Date revDate;
+    private String revContent;
+    private int revRate;
 
-	public ExReviewDto(int exReserveCode, int memberCode, Date revDate, String revContent, int revRate) {
-		
-		this.exReserveCode = exReserveCode;
-		this.memberCode = memberCode;
-		this.revDate = revDate;
-		this.revContent = revContent;
-		this.revRate = revRate;
-	}
+    public ExReviewDto() {
+    }
 
-	public int getExReserveCode() {
-		return exReserveCode;
-	}
+    public ExReviewDto(int exReserveCode, int memberCode, Date revDate, String revContent, int revRate) {
 
-	public void setExReserveCode(int exReserveCode) {
-		this.exReserveCode = exReserveCode;
-	}
+        this.exReserveCode = exReserveCode;
+        this.memberCode = memberCode;
+        this.revDate = revDate;
+        this.revContent = revContent;
+        this.revRate = revRate;
+    }
 
-	public int getMemberCode() {
-		return memberCode;
-	}
+    public int getExReserveCode() {
+        return exReserveCode;
+    }
 
-	public void setMemberCode(int memberCode) {
-		this.memberCode = memberCode;
-	}
+    public void setExReserveCode(int exReserveCode) {
+        this.exReserveCode = exReserveCode;
+    }
 
-	public Date getRevDate() {
-		return revDate;
-	}
+    public int getMemberCode() {
+        return memberCode;
+    }
 
-	public void setRevDate(Date revDate) {
-		this.revDate = revDate;
-	}
+    public void setMemberCode(int memberCode) {
+        this.memberCode = memberCode;
+    }
 
-	public String getRevContent() {
-		return revContent;
-	}
+    public Date getRevDate() {
+        return revDate;
+    }
 
-	public void setRevContent(String revContent) {
-		this.revContent = revContent;
-	}
+    public void setRevDate(Date revDate) {
+        this.revDate = revDate;
+    }
 
-	public int getRevRate() {
-		return revRate;
-	}
+    public String getRevContent() {
+        return revContent;
+    }
 
-	public void setRevRate(int revRate) {
-		this.revRate = revRate;
-	}
+    public void setRevContent(String revContent) {
+        this.revContent = revContent;
+    }
 
-	@Override
-	public String toString() {
-		return "ExReviewDto [exReserveCode=" + exReserveCode + ", memberCode=" + memberCode + ", revDate=" + revDate
-				+ ", revContent=" + revContent + ", revRate=" + revRate + "]";
-	}
-	
-	
-	
-	
-	
-	
-	
+    public int getRevRate() {
+        return revRate;
+    }
+
+    public void setRevRate(int revRate) {
+        this.revRate = revRate;
+    }
+
+    @Override
+    public String toString() {
+        return "ExReviewDto [exReserveCode=" + exReserveCode + ", memberCode=" + memberCode + ", revDate=" + revDate
+                + ", revContent=" + revContent + ", revRate=" + revRate + "]";
+    }
+
+
 }

@@ -3,26 +3,26 @@ package com.java.guesthouse.admin.service;
 import org.springframework.web.servlet.ModelAndView;
 
 public interface AdminService {
-	/* 회원 관리*/	
-	public void memberList(ModelAndView mav);
+    /* 회원 관리*/
+    void memberList(ModelAndView mav);
 
-	public void memberRead(ModelAndView mav);
+    void memberRead(ModelAndView mav);
 
-	public void memberUpdateOk(ModelAndView mav);
+    void memberUpdateOk(ModelAndView mav);
 
-	/* 게스트하우스 관리*/	
-	public void houseList(ModelAndView mav);
+    /* 게스트하우스 관리*/
+    void houseList(ModelAndView mav);
 
-	/* 체험 관리*/
-	public void experienceList(ModelAndView mav);
+    /* 체험 관리*/
+    void experienceList(ModelAndView mav);
 
-	public void experienceStateOK(ModelAndView mav);
+    void experienceStateOK(ModelAndView mav);
 
-	public void experienceStateNo(ModelAndView mav);
+    void experienceStateNo(ModelAndView mav);
 
-	public void guestHouseStateOK(ModelAndView mav);
-	
-	public void guestHouseStateNo(ModelAndView mav);
+    void guestHouseStateOK(ModelAndView mav);
+
+    void guestHouseStateNo(ModelAndView mav);
 
 
 }

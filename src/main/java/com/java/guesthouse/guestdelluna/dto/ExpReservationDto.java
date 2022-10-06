@@ -4,120 +4,120 @@ import java.util.Date;
 
 public class ExpReservationDto {
 
-	private int exReserveCode ;
-	private int exPeople;	
-	private Date exDate ;
-	private int exPayment ;
-	private int memberCode;
-	private int exCode ;
-	private Date exRegDate ;
-	private String state ;
-
-	
-	public ExpReservationDto() {}
+    private int exReserveCode;
+    private int exPeople;
+    private Date exDate;
+    private int exPayment;
+    private int memberCode;
+    private int exCode;
+    private Date exRegDate;
+    private String state;
 
 
-	public ExpReservationDto(int exReserveCode, int exPeople, Date exDate, int exPayment, int memberCode, int exCode,
-			Date exRegDate, String state) {
-		
-		this.exReserveCode = exReserveCode;
-		this.exPeople = exPeople;
-		this.exDate = exDate;
-		this.exPayment = exPayment;
-		this.memberCode = memberCode;
-		this.exCode = exCode;
-		this.exRegDate = exRegDate;
-		this.state = state;
-	}
+    public ExpReservationDto() {
+    }
 
 
-	@Override
-	public String toString() {
-		return "ExpReservationDto [exReserveCode=" + exReserveCode + ", exPeople=" + exPeople + ", exDate=" + exDate
-				+ ", exPayment=" + exPayment + ", memberCode=" + memberCode + ", exCode=" + exCode + ", exRegDate="
-				+ exRegDate + ", state=" + state + "]";
-	}
+    public ExpReservationDto(int exReserveCode, int exPeople, Date exDate, int exPayment, int memberCode, int exCode,
+                             Date exRegDate, String state) {
+
+        this.exReserveCode = exReserveCode;
+        this.exPeople = exPeople;
+        this.exDate = exDate;
+        this.exPayment = exPayment;
+        this.memberCode = memberCode;
+        this.exCode = exCode;
+        this.exRegDate = exRegDate;
+        this.state = state;
+    }
 
 
-	public int getExReserveCode() {
-		return exReserveCode;
-	}
+    @Override
+    public String toString() {
+        return "ExpReservationDto [exReserveCode=" + exReserveCode + ", exPeople=" + exPeople + ", exDate=" + exDate
+                + ", exPayment=" + exPayment + ", memberCode=" + memberCode + ", exCode=" + exCode + ", exRegDate="
+                + exRegDate + ", state=" + state + "]";
+    }
 
 
-	public void setExReserveCode(int exReserveCode) {
-		this.exReserveCode = exReserveCode;
-	}
+    public int getExReserveCode() {
+        return exReserveCode;
+    }
 
 
-	public int getExPeople() {
-		return exPeople;
-	}
+    public void setExReserveCode(int exReserveCode) {
+        this.exReserveCode = exReserveCode;
+    }
 
 
-	public void setExPeople(int exPeople) {
-		this.exPeople = exPeople;
-	}
+    public int getExPeople() {
+        return exPeople;
+    }
 
 
-	public Date getExDate() {
-		return exDate;
-	}
+    public void setExPeople(int exPeople) {
+        this.exPeople = exPeople;
+    }
 
 
-	public void setExDate(Date exDate) {
-		this.exDate = exDate;
-	}
+    public Date getExDate() {
+        return exDate;
+    }
 
 
-	public int getExPayment() {
-		return exPayment;
-	}
+    public void setExDate(Date exDate) {
+        this.exDate = exDate;
+    }
 
 
-	public void setExPayment(int exPayment) {
-		this.exPayment = exPayment;
-	}
+    public int getExPayment() {
+        return exPayment;
+    }
 
 
-	public int getMemberCode() {
-		return memberCode;
-	}
+    public void setExPayment(int exPayment) {
+        this.exPayment = exPayment;
+    }
 
 
-	public void setMemberCode(int memberCode) {
-		this.memberCode = memberCode;
-	}
+    public int getMemberCode() {
+        return memberCode;
+    }
 
 
-	public int getExCode() {
-		return exCode;
-	}
+    public void setMemberCode(int memberCode) {
+        this.memberCode = memberCode;
+    }
 
 
-	public void setExCode(int exCode) {
-		this.exCode = exCode;
-	}
+    public int getExCode() {
+        return exCode;
+    }
 
 
-	public Date getExRegDate() {
-		return exRegDate;
-	}
+    public void setExCode(int exCode) {
+        this.exCode = exCode;
+    }
 
 
-	public void setExRegDate(Date exRegDate) {
-		this.exRegDate = exRegDate;
-	}
+    public Date getExRegDate() {
+        return exRegDate;
+    }
 
 
-	public String getState() {
-		return state;
-	}
+    public void setExRegDate(Date exRegDate) {
+        this.exRegDate = exRegDate;
+    }
 
 
-	public void setState(String state) {
-		this.state = state;
-	}
-	
-	
-	
+    public String getState() {
+        return state;
+    }
+
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+
 }

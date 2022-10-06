@@ -3,60 +3,59 @@ package com.java.guesthouse.host.dto;
 import java.util.Date;
 
 public class SearchDateList {
-	private Date reserveDate;
-	private String memberName;
-	private int people;
-	private int payment;
-	
-	public SearchDateList() {
-		
-	}
+    private Date reserveDate;
+    private String memberName;
+    private int people;
+    private int payment;
 
-	public SearchDateList(Date reserveDate, String memberName, int people, int payment) {
-		this.reserveDate = reserveDate;
-		this.memberName = memberName;
-		this.people = people;
-		this.payment = payment;
-	}
+    public SearchDateList() {
 
-	public Date getReserveDate() {
-		return reserveDate;
-	}
+    }
 
-	public void setReserveDate(Date reserveDate) {
-		this.reserveDate = reserveDate;
-	}
+    public SearchDateList(Date reserveDate, String memberName, int people, int payment) {
+        this.reserveDate = reserveDate;
+        this.memberName = memberName;
+        this.people = people;
+        this.payment = payment;
+    }
 
-	public String getMemberName() {
-		return memberName;
-	}
+    public Date getReserveDate() {
+        return reserveDate;
+    }
 
-	public void setMemberName(String memberName) {
-		this.memberName = memberName;
-	}
+    public void setReserveDate(Date reserveDate) {
+        this.reserveDate = reserveDate;
+    }
 
-	public int getPeople() {
-		return people;
-	}
+    public String getMemberName() {
+        return memberName;
+    }
 
-	public void setPeople(int people) {
-		this.people = people;
-	}
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
+    }
 
-	public int getPayment() {
-		return payment;
-	}
+    public int getPeople() {
+        return people;
+    }
 
-	public void setPayment(int payment) {
-		this.payment = payment;
-	}
+    public void setPeople(int people) {
+        this.people = people;
+    }
 
-	@Override
-	public String toString() {
-		return "SearchDateList [reserveDate=" + reserveDate + ", memberName=" + memberName + ", people=" + people
-				+ ", payment=" + payment + "]";
-	}
-	
-	
-	
+    public int getPayment() {
+        return payment;
+    }
+
+    public void setPayment(int payment) {
+        this.payment = payment;
+    }
+
+    @Override
+    public String toString() {
+        return "SearchDateList [reserveDate=" + reserveDate + ", memberName=" + memberName + ", people=" + people
+                + ", payment=" + payment + "]";
+    }
+
+
 }
