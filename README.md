@@ -18,4 +18,4 @@
 3. `GuestHouseApplication.main()`을 실행한다.
 
 ## 컨벤션
-- 해당 [컨벤션](https://github.com/soosue/my_guesthouse/wiki/Convention)을 바탕으로 작성된다.
+- 해당 [컨벤션](https://github.com/soosue/my_guesthouse/wiki/Convention) 을 바탕으로 작성된다.
