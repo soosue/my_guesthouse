@@ -16,3 +16,6 @@
 2. DB 데이터는 import 디렉토리 안의 임포트.sql 을 import 한다.
    - 일부 명령어(`REM INSERTING into PROJECT.EXWISHLIST`, `SET DEFINE OFF`) 때문에 sql developer 를 이용하는 것을 추천한다.
 3. `GuestHouseApplication.main()`을 실행한다.
+
+## 컨벤션
+- 해당 [컨벤션](https://github.com/soosue/my_guesthouse/wiki/Convention)을 바탕으로 작성된다.
