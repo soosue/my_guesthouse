@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -48,7 +49,7 @@ public class MemberController {
         return mav;
     }
 
-    @RequestMapping(value = "/member/emailCheck.do", method = RequestMethod.GET)
+    @GetMapping(value = "/v1/member/check")
     public void memberIdCheck(HttpServletRequest request, HttpServletResponse response) {
         HomeAspect.logger.info(HomeAspect.logMsg + "Email Check");
 
@@ -56,7 +57,6 @@ public class MemberController {
         mav.addObject("request", request);
         mav.addObject("response", response);
         memberService.memberEmailCheck(mav);
-
     }
 
     @RequestMapping(value = "/member/login.do", method = RequestMethod.GET)
