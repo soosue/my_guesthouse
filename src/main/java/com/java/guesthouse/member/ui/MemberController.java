@@ -4,13 +4,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.java.guesthouse.aop.HomeAspect;
-import com.java.guesthouse.member.service.dto.MemberDto;
 import com.java.guesthouse.member.service.MemberService;
+import com.java.guesthouse.member.service.dto.MemberSaveRequest;
 
 @Controller
 public class MemberController {
@@ -32,16 +33,17 @@ public class MemberController {
         return mav;
     }
 
-    @RequestMapping(value = "/member/registerOk.do", method = RequestMethod.POST)
-    public ModelAndView memberRegisterOk(HttpServletRequest request, HttpServletResponse response, MemberDto memberDto) {
-        HomeAspect.logger.info(HomeAspect.logMsg + "Member Register Ok");
+    @PostMapping("/v1/member")
+    public ModelAndView saveMember(HttpServletRequest request, HttpServletResponse response, MemberSaveRequest memberSaveRequest) {
+
+        Long id = memberService.saveMember(memberSaveRequest);
 
         ModelAndView mav = new ModelAndView();
         mav.addObject("request", request);
         mav.addObject("response", response);
-        mav.addObject("memberDto", memberDto);
-
-        memberService.memberRegisterOk(mav);
+        mav.addObject("memberDto", memberSaveRequest);
+        mav.addObject("check", id);
+        mav.setViewName("member/registerOk.tiles");
 
         return mav;
     }

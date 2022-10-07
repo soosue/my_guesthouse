@@ -9,7 +9,7 @@
         insert into member
         (id, name, email, password, phone_number, created_at, point, member_level, image_name, image_path,
          image_size, info)
-        values (member_memberCode_seq.nextval,
+        values (MEMBER_PK_SEQ.nextval,
                 #{memberName},
                 #{email},
                 #{password},
@@ -57,7 +57,7 @@
 
     <insert id="insertKakao" parameterType="com.java.guesthouse.member.service.dto.MemberDto">
         insert into member(id, email, image_path, name, member_level, created_at, point)
-        values (member_memberCode_seq.nextval, #{email}, #{memberImgPath}, #{memberName}, 'A', sysdate, 0)
+        values (MEMBER_PK_SEQ.nextval, #{email}, #{memberImgPath}, #{memberName}, 'A', sysdate, 0)
     </insert>
 
     <select id="kakaoEmailChk" parameterType="String" resultType="int">

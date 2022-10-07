@@ -2,55 +2,44 @@ package com.java.guesthouse.member.service;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.java.guesthouse.aop.HomeAspect;
-import com.java.guesthouse.member.domain.MemberDao;
+import com.java.guesthouse.member.dao.MemberDao;
+import com.java.guesthouse.member.domain.Member;
+import com.java.guesthouse.member.domain.MemberRepository;
 import com.java.guesthouse.member.service.dto.MemberDto;
+import com.java.guesthouse.member.service.dto.MemberSaveRequest;
 
 @Service
 public class MemberServiceImp implements MemberService {
+    private static final Logger logger = LoggerFactory.getLogger(MemberServiceImp.class);
 
     private final MemberDao memberDao;
 
-    public MemberServiceImp(MemberDao memberDao) {
+    private final MemberRepository memberRepository;
+
+    public MemberServiceImp(MemberDao memberDao, MemberRepository memberRepository) {
         this.memberDao = memberDao;
+        this.memberRepository = memberRepository;
     }
 
     @Override
-    public void memberRegisterOk(ModelAndView mav) {
-
-        Map<String, Object> map = mav.getModelMap();
-
-        HttpServletRequest request = (HttpServletRequest) map.get("request");
-
-        MemberDto memberDto = (MemberDto) map.get("memberDto");
-
-        memberDto.setMemberName(request.getParameter("memberName"));
-        memberDto.setEmail(request.getParameter("email"));
-        memberDto.setPassword(request.getParameter("password"));
-
-        memberDto.setPhone(request.getParameter("phone"));
-        memberDto.setRegDate(new Date());
-        memberDto.setMemberLevel("A");
-        memberDto.setMemberInfo("");
-
-        HomeAspect.logger.info(HomeAspect.logMsg + memberDto.toString());
-
-        int check = memberDao.register(memberDto);
-
-        HomeAspect.logger.info(HomeAspect.logMsg + "check: " + check);
-
-        mav.addObject("check", check);
-
-        mav.setViewName("member/registerOk.tiles");
+    @Transactional
+    public Long saveMember(MemberSaveRequest memberSaveRequest) {
+        logger.info(memberSaveRequest.toString());
+        Member member = memberSaveRequest.toMember();
+        memberRepository.save(member);
+        return member.getId();
     }
 
     @Override
