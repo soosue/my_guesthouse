@@ -14,12 +14,6 @@ public class MemberDaoImp implements MemberDao {
 
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
-
-	@Override
-	public int register(MemberDto memberDto) {
-		
-		return sqlSessionTemplate.insert("dao.MemberMapper.insert",memberDto);
-	}
 	
 	@Override
 	public int emailCheck(String email) {

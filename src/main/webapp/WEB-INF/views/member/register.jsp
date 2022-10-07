@@ -154,7 +154,7 @@ $(document).ready(function(){
 
 
 <!-- 컨텐츠 영역 -->
-<form action="${root}/member/registerOk.do" method="post" name="createForm"  class="form-horiaontal">
+<form action="${root}/v1/member" method="post" name="createForm"  class="form-horiaontal">
 
 <section id="container">
 	<div class="control-group" style="width:70rem;/*  border: 1px solid red; */ margin:5rem auto; height: 75rem;">
@@ -201,7 +201,7 @@ $(document).ready(function(){
 						<!-- 에러시 dd의 error 클래스 추가 -->
 						<dd>
 							<div class="inp">
-								<input class="form-control" style="margin-left: 20rem;" type="password" id="USER_PWD2" name="USER_PWD2" required maxlength="16" title="비밀번호 확인" placeholder="비밀번호를 확인하세요.">
+								<input class="form-control" style="margin-left: 20rem;" type="password" id="USER_PWD2" name="passwordCheck" required maxlength="16" title="비밀번호 확인" placeholder="비밀번호를 확인하세요.">
 							</div>
 							<br/><br/>
 							<div>
@@ -227,7 +227,7 @@ $(document).ready(function(){
 							<dd>
 								<div class="ui-select-wrapper">
 									<div class="inp">
-										<input class="form-control" type="text" id="memberName" name="memberName" required maxlength="14" title="이름(한글)" style="width: 30rem; margin-left: 20rem;">
+										<input class="form-control" type="text" id="memberName" name="name" required maxlength="14" title="이름(한글)" style="width: 30rem; margin-left: 20rem;">
 										
 									</div>
 								</div>
@@ -241,7 +241,7 @@ $(document).ready(function(){
 							<dt><label for="Phone" style="margin-left: 20rem; margin-top: 2rem;">휴대폰 번호 </label></dt>
 							<dd>
 								<div class="inp">
-									<input class="form-control" type="tel" id="phone" name="phone" value="" required maxlength="11" placeholder="" title="휴대 전화 번호" style="width: 30rem; margin-left: 20rem;" >
+									<input class="form-control" type="tel" id="phone" name="phoneNumber" value="" required maxlength="11" placeholder="" title="휴대 전화 번호" style="width: 30rem; margin-left: 20rem;" >
 									
 								</div>
 								
