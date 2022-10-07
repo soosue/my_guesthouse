@@ -3,6 +3,7 @@ package com.java.guesthouse.member.service;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
@@ -14,7 +15,7 @@ import com.java.guesthouse.aop.HomeAspect;
 import com.java.guesthouse.member.dao.MemberDao;
 import com.java.guesthouse.member.domain.Member;
 import com.java.guesthouse.member.domain.MemberRepository;
-import com.java.guesthouse.member.service.dto.MemberDto;
+import com.java.guesthouse.member.service.dto.LoginRequest;
 import com.java.guesthouse.member.service.dto.MemberSaveRequest;
 
 @Service
@@ -48,41 +49,19 @@ public class MemberServiceImp implements MemberService {
     }
 
     @Override
-    public void memberLoginOk(ModelAndView mav) {
+    public void login(LoginRequest loginRequest, HttpServletRequest request) {
+        String email = loginRequest.email();
+        String password = loginRequest.password();
 
-        Map<String, Object> map = mav.getModelMap();
+        Member member = memberRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException(email + "은 존재하지 않는 email입니다"));
 
-        HttpServletRequest request = (HttpServletRequest) map.get("request");
-
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-
-        HomeAspect.logger.info(HomeAspect.logMsg + "입력한 email: " + email + "\t\t" + "입력한 password: " + password);
-
-        MemberDto memberDto = memberDao.memberSel(email, password);
-        // HomeAspect.logger.info(HomeAspect.logMsg +"memberDto: "+
-        // memberDto.toString());
-
-        if (memberDto != null) {
-
-            int memberCode = memberDto.getMemberCode();
-            String memberLevel = memberDto.getMemberLevel();
-            HomeAspect.logger.info(HomeAspect.logMsg + memberDto.toString());
-
-            HomeAspect.logger.info(
-                    HomeAspect.logMsg + "회원등급 (회원이 아닐경우 null값): " + memberLevel + "		memberCode:" + memberCode);
-
-            if (memberLevel != null) {
-                mav.addObject("memberLevel", memberLevel);
-                mav.addObject("email", email);
-                mav.addObject("memberCode", memberCode);
-            }
-
-            // memberDto가 null일 경우
-        } else {
-            String memberLevel = null;
+        if (member.checkPassword(password)) {
+            HttpSession session = request.getSession();
+            session.setAttribute("memberLevel", member.getMemberLevel());
+            session.setAttribute("email", member.getEmail());
+            session.setAttribute("memberCode", member.getId());
         }
-
     }
 
     @Override

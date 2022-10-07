@@ -42,7 +42,19 @@ public class Member {
         this.phoneNumber = phoneNumber;
     }
 
+    public boolean checkPassword(String password) {
+        return this.password.equals(password);
+    }
+
     public Long getId() {
         return id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getMemberLevel() {
+        return memberLevel;
     }
 }

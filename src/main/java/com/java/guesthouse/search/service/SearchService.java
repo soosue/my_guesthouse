@@ -5,7 +5,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.java.guesthouse.host.service.dto.HostDto;
 
 public interface SearchService {
-    ModelAndView search(String checkIn, String checkOut, String local, String people, String searchHouseName, String pageNumber, Integer memberCode, String sort);
+    ModelAndView search(String checkIn, String checkOut, String local, String people, String searchHouseName,
+                        String pageNumber, Long memberCode, String sort);
 
     //테스트 용으로 데이터 넣기 위한 함수
     void dataInputOk(HostDto hostDto);

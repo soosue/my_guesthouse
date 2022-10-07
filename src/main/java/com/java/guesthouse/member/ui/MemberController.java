@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.java.guesthouse.aop.HomeAspect;
 import com.java.guesthouse.member.service.MemberService;
+import com.java.guesthouse.member.service.dto.LoginRequest;
 import com.java.guesthouse.member.service.dto.MemberSaveRequest;
 
 @Controller
@@ -60,31 +61,13 @@ public class MemberController {
         return check + "";
     }
 
-    @RequestMapping(value = "/member/login.do", method = RequestMethod.GET)
-    public ModelAndView memberLogin(HttpServletRequest request, HttpServletResponse response) {
-        HomeAspect.logger.info(HomeAspect.logMsg + "member Login");
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("request", request);
+    @RequestMapping(value = "/v1/member/login", method = RequestMethod.POST)
+    public ModelAndView login(HttpServletRequest request, LoginRequest loginRequest) {
 
-        mav.setViewName("member/login.tiles");
+        memberService.login(loginRequest, request);
 
-
-        return mav;
-    }
-
-    @RequestMapping(value = "/member/loginOk.do", method = RequestMethod.POST)
-    public ModelAndView memberLoginOk(HttpServletRequest request, HttpServletResponse response) {
-        HomeAspect.logger.info(HomeAspect.logMsg + "member LoginOk");
-
-        String beforeURL = request.getHeader("REFERER");
-        //HomeAspect.logger.info(HomeAspect.logMsg+request.getRequestURL());
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("request", request);
-        mav.addObject("beforeURL", beforeURL);
-        memberService.memberLoginOk(mav);
-
-        mav.setViewName("member/loginOk.tiles");
-
+        ModelAndView mav = new ModelAndView("member/loginOk.tiles");
+        mav.addObject("beforeURL", request.getHeader("REFERER"));
 
         return mav;
     }

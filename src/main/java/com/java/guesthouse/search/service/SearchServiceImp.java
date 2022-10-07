@@ -32,12 +32,12 @@ public class SearchServiceImp implements SearchService {
 
     @SuppressWarnings("unchecked")
     @Override
-    public ModelAndView search(String checkIn, String checkOut, String local, String people, String searchHouseName, String pageNumber, Integer memberCode, String sort) {
-        HomeAspect.logger.info(HomeAspect.logMsg + "local: " + local + ", checkIn: " + checkIn + ", checkOut: " + checkOut + " ,people: " + people + ", searchHouseName: " + searchHouseName + ", pageNumber: " + pageNumber + ", memberCode: " + memberCode + ", sort: " + sort);
+    public ModelAndView search(String checkIn, String checkOut, String local, String people, String searchHouseName,
+                               String pageNumber, Long memberCode, String sort) {
         ModelAndView mav = new ModelAndView();
 
         //myBatis에 넘겨줄 data, Map에 넣기
-        Map<String, Object> dataMap = new HashMap<>();
+        Map<String, Object> dataMap = new HashMap<String, Object>();
 
         if (memberCode != null)
             dataMap.put("memberCode", memberCode);
@@ -83,7 +83,7 @@ public class SearchServiceImp implements SearchService {
             //검색 결과 list -> JSON으로
             JSONArray arr = new JSONArray();
             for (HostImgDto hostDto : searchHouseList) {
-                HashMap<String, Object> map = new HashMap<>();
+                HashMap<String, Object> map = new HashMap<String, Object>();
                 map.put("houseName", hostDto.getHouseName());
                 map.put("houseCode", hostDto.getHouseCode());
                 map.put("lat", hostDto.getLatLng().split(",")[0]);
@@ -108,7 +108,7 @@ public class SearchServiceImp implements SearchService {
 
                 JSONArray fileArr = new JSONArray();
                 for (FileDto fileDto : hostDto.getFileList()) {
-                    HashMap<String, Object> fileMap = new HashMap<>();
+                    HashMap<String, Object> fileMap = new HashMap<String, Object>();
                     //fileMap.put("filePath",fileDto.getFilePath());
                     fileMap.put("fileName", fileDto.getFileName());
                     fileArr.add(fileMap);
@@ -117,7 +117,7 @@ public class SearchServiceImp implements SearchService {
                 arr.add(map);
                 HomeAspect.logger.info(HomeAspect.logMsg + "hostDto Json: " + map.toString());
             }
-            HashMap<String, Object> map = new HashMap<>();
+            HashMap<String, Object> map = new HashMap<String, Object>();
             map.put("houseJson", arr);
             String jsonText = JSONValue.toJSONString(map);
             HomeAspect.logger.info(HomeAspect.logMsg + "JsonText: " + jsonText);
@@ -194,7 +194,6 @@ public class SearchServiceImp implements SearchService {
     @Override
     public ModelAndView searchEx(String checkIn, String checkOut, String local, String people, String searchExName,
                                  String pageNumber, Integer memberCode, String sort) {
-        HomeAspect.logger.info(HomeAspect.logMsg + "local: " + local + ", checkIn: " + checkIn + ", checkOut: " + checkOut + " ,people: " + people + ", searchExName: " + searchExName + ", pageNumber: " + pageNumber + ", memberCode: " + memberCode + ", sort: " + sort);
 
         ModelAndView mav = new ModelAndView();
 
@@ -305,14 +304,6 @@ public class SearchServiceImp implements SearchService {
     @Override
     public String exOverlay(int exCode, Integer memberCode) {
         ExperienceImgDto exImgDto = searchDao.exOverlay(exCode, memberCode);
-
-//		ObjectMapper mapper = new ObjectMapper();
-//		try {
-//			System.out.println("objectMapper: "+mapper.writeValueAsString(mapper));
-//		} catch (JsonProcessingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 
         HashMap<String, Object> map = new HashMap<>();
         map.put("exCode", exImgDto.getExCode());

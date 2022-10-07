@@ -9,6 +9,7 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,11 +22,8 @@ import com.java.guesthouse.search.service.SearchService;
 @Controller
 public class SearchController {
 
-    private final SearchService searchService;
-
-    public SearchController(SearchService searchService) {
-        this.searchService = searchService;
-    }
+    @Autowired
+    private SearchService searchService;
 
     @RequestMapping(value = "/ys", method = RequestMethod.GET)
     public String ys() {
@@ -100,7 +98,7 @@ public class SearchController {
         ModelAndView mav = new ModelAndView();
 
         //session
-        Integer memberCode = (Integer) request.getSession().getAttribute("memberCode");
+        Long memberCode = (Long) request.getSession().getAttribute("memberCode");
         HomeAspect.logger.info(HomeAspect.logMsg + "sessionMemberCode: " + memberCode);
 
         //페이징
@@ -122,7 +120,6 @@ public class SearchController {
         String local = request.getParameter("local");
         String people = request.getParameter("people");
         String searchHouseName = request.getParameter("searchHouseName");
-        HomeAspect.logger.info(HomeAspect.logMsg + "local: " + local + ", checkIn: " + checkIn + ", checkOut: " + checkOut + " ,people: " + people + ", searchHouseName: " + searchHouseName + ", sort: " + sort);
 
         mav = searchService.search(checkIn, checkOut, local, people, searchHouseName, pageNumber, memberCode, sort);
 
@@ -157,7 +154,6 @@ public class SearchController {
         String local = request.getParameter("local");
         String people = request.getParameter("people");
         String searchExName = request.getParameter("searchExName");
-        HomeAspect.logger.info(HomeAspect.logMsg + "local: " + local + ", checkIn: " + checkIn + ", checkOut: " + checkOut + " ,people: " + people + ", searchExName: " + searchExName + ", sort: " + sort);
 
         mav = searchService.searchEx(checkIn, checkOut, local, people, searchExName, pageNumber, memberCode, sort);
 

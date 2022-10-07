@@ -112,7 +112,6 @@
 
             <c:if test="${memberLevel == null}">
                 <li class="nav-item"><a class="nav-link" href="${root}" style="color:black !important">HOME</a></li>
-                <%-- <li class="nav-item"><a class="nav-link" style="color:black !important" href="${root}/member/login.do" onclick>로그인/회원가입</a></li> --%>
 
                 <li id="log">
                     <button class="btn" data-toggle="modal" data-target="#login">로그인/회원가입
@@ -184,7 +183,7 @@
             </div>
 
             <!-- Modal body -->
-            <form action="${root}/member/loginOk.do" method="post" onsubmit="return registForm(this)" name="createForm">
+            <form action="/v1/member/login" method="post" name="createForm">
                 <section id="container">
 
                     <input type="hidden" id="isCasinoGuide" value="">
