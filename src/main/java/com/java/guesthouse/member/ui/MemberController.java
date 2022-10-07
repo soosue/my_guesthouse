@@ -2,6 +2,7 @@ package com.java.guesthouse.member.ui;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +29,6 @@ public class MemberController {
 
     @RequestMapping(value = "/member/register.do", method = RequestMethod.GET)
     public ModelAndView memberRegister(HttpServletRequest request, HttpServletResponse response) {
-        System.out.println("Member Register");
 
         ModelAndView mav = new ModelAndView();
         mav.addObject("request", request);
@@ -61,7 +61,7 @@ public class MemberController {
         return check + "";
     }
 
-    @RequestMapping(value = "/v1/member/login", method = RequestMethod.POST)
+    @PostMapping(value = "/v1/member/login")
     public ModelAndView login(HttpServletRequest request, LoginRequest loginRequest) {
 
         memberService.login(loginRequest, request);
@@ -72,15 +72,13 @@ public class MemberController {
         return mav;
     }
 
-    @RequestMapping(value = "/member/logout.do", method = RequestMethod.GET)
-    public ModelAndView memberLogout(HttpServletRequest request, HttpServletResponse response) {
-        HomeAspect.logger.info(HomeAspect.logMsg + "member Logout");
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("request", request);
+    @GetMapping(value = "/v1/member/logout")
+    public ModelAndView logout(HttpServletRequest request) {
+        
+        HttpSession session = request.getSession();
+        session.invalidate();
 
-        mav.setViewName("member/logout.tiles");
-
-        return mav;
+        return new ModelAndView("member/logout.tiles");
     }
 
 
