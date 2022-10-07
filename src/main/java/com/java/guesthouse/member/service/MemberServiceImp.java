@@ -1,11 +1,8 @@
 package com.java.guesthouse.member.service;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
@@ -43,29 +40,9 @@ public class MemberServiceImp implements MemberService {
     }
 
     @Override
-    public void memberEmailCheck(ModelAndView mav) {
-        Map<String, Object> map = mav.getModelMap();
+    public int checkEmail(String email) {
 
-        HttpServletRequest request = (HttpServletRequest) map.get("request");
-        HttpServletResponse response = (HttpServletResponse) map.get("response");
-
-        String email = request.getParameter("email");
-        HomeAspect.logger.info(HomeAspect.logMsg + "입력한 email: " + email);
-
-        int check = memberDao.emailCheck(email);
-        HomeAspect.logger.info(HomeAspect.logMsg + "기존에 있는 이메일이면 1 / 아니면 0: " + check);
-
-        response.setContentType("text/html;charset=utf-8");
-        PrintWriter out;
-        try {
-            out = response.getWriter();
-            out.print(check);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // mav.setViewName("member/emailAjax.empty");
-
+        return memberDao.emailCheck(email);
     }
 
     @Override
