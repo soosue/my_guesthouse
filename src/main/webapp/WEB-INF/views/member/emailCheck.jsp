@@ -10,7 +10,7 @@
 	<c:if test="${check>0}">	<!-- ==1로 해도 됨 -->
 		<div align = "center">
 		이미 사용중인 이메일 입니다.
-			<form action="${root}/member/emailCheck.do" method="get">
+			<form action="${root}/v1/member/check" method="get">
 				<input type = "email" name = "email"/>
 				<input type="submit" value="확인"/>
 			</form>

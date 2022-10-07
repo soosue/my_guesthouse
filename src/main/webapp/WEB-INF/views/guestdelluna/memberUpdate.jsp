@@ -30,7 +30,7 @@
 												var email = document
 														.getElementById("emailAA").value;
 
-												var url = "${root}/member/emailCheck.do?";
+												var url = "${root}/v1/member/check?";
 												var params = "email=" + email;
 
 												$
