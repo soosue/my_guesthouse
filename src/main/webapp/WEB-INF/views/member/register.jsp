@@ -8,39 +8,14 @@
 
 <!DOCTYPE html>
 <c:set var="root" value="${pageContext.request.contextPath}"/>
-<!--[if IE 8]><html lang="ko" class="ie8"><![endif]-->
-<!--[if IE 9]><html lang="ko" class="ie9"><![endif]-->
-<!--[if gt IE 9]><!-->
 <html lang="ko">
-<!--<![endif]-->
 <head>
-
-    <!-- 		<meta charset="UTF-8"> -->
-
-    <%-- <link rel="stylesheet" href="${root}/resources/css/register/test0.css"/>
-    <link rel="stylesheet" href="${root}/resources/css/register/test1.css"/>
-    <link rel="stylesheet" href="${root}/resources/css/register/test2.css"/>
-    <link rel="stylesheet" href="${root}/resources/css/register/test3.css"/> --%>
-
-
     <link rel="stylesheet" href="${root}/resources/css/register/register.css"/>
-
-    <%-- 		<script src="${root}/resources/javascript/jquery/jquery-3.4.1.js" type="text/javascript" charset="utf-8"></script> --%>
-
     <title>게스트하우스 홈페이지</title>
-
-
     <script type="text/javascript" src="${root}/resources/javascript/member/member.js"></script>
-
-
 </head>
-
-
 <body>
-
-
 <script type="text/javascript" src="${root}/resources/xhr/xhr.js"></script>
-
 <script>
     $(document).ready(function () {
         $("#emailAA").blur(checkEmail);
@@ -306,16 +281,6 @@
 
         }
     }
-
-
-    /* if(email != "" && name != "" && id != ""){
-                var btn = $('#btnPwd');
-                btn.removeAttr("disabled");
-            } */
-
-
 </script>
-
-
 </body>
 </html>
