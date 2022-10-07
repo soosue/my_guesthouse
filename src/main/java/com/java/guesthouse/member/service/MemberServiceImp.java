@@ -42,7 +42,9 @@ public class MemberServiceImp implements MemberService {
     @Override
     public int checkEmail(String email) {
 
-        return memberDao.emailCheck(email);
+        return memberRepository
+                .findByEmail(email)
+                .isPresent() ? 1 : 0;
     }
 
     @Override
