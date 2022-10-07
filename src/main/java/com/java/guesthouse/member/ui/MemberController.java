@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.java.guesthouse.aop.HomeAspect;
@@ -49,14 +51,13 @@ public class MemberController {
         return mav;
     }
 
+    @ResponseBody
     @GetMapping(value = "/v1/member/check")
-    public void memberIdCheck(HttpServletRequest request, HttpServletResponse response) {
-        HomeAspect.logger.info(HomeAspect.logMsg + "Email Check");
+    public String checkEmail(@RequestParam String email) {
 
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("request", request);
-        mav.addObject("response", response);
-        memberService.memberEmailCheck(mav);
+        int check = memberService.checkEmail(email);
+
+        return check + "";
     }
 
     @RequestMapping(value = "/member/login.do", method = RequestMethod.GET)

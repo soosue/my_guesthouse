@@ -8,7 +8,7 @@ public interface MemberService {
 
     Long saveMember(MemberSaveRequest memberSaveRequest);
 
-    void memberEmailCheck(ModelAndView mav);
+    int checkEmail(String email);
 
     void memberLoginOk(ModelAndView mav);
 
