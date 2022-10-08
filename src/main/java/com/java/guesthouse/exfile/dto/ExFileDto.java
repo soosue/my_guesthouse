@@ -1,81 +1,80 @@
 package com.java.guesthouse.exfile.dto;
 
 public class ExFileDto {
-   private int fileCode;
-   private int exCode;
-   private String fileName;
-   private String filePath;
-   private long fileSize;
-   private String mainImgName;
-   
-   public ExFileDto() {
-      
-   }
+    private int fileCode;
+    private int exCode;
+    private String fileName;
+    private String filePath;
+    private long fileSize;
+    private String mainImgName;
 
-public ExFileDto(int fileCode, int exCode, String fileName, String filePath, long fileSize, String mainImgName) {
-	
-	this.fileCode = fileCode;
-	this.exCode = exCode;
-	this.fileName = fileName;
-	this.filePath = filePath;
-	this.fileSize = fileSize;
-	this.mainImgName = mainImgName;
-}
+    public ExFileDto() {
 
-public int getFileCode() {
-	return fileCode;
-}
+    }
 
-public void setFileCode(int fileCode) {
-	this.fileCode = fileCode;
-}
+    public ExFileDto(int fileCode, int exCode, String fileName, String filePath, long fileSize, String mainImgName) {
 
-public int getExCode() {
-	return exCode;
-}
+        this.fileCode = fileCode;
+        this.exCode = exCode;
+        this.fileName = fileName;
+        this.filePath = filePath;
+        this.fileSize = fileSize;
+        this.mainImgName = mainImgName;
+    }
 
-public void setExCode(int exCode) {
-	this.exCode = exCode;
-}
+    public int getFileCode() {
+        return fileCode;
+    }
 
-public String getFileName() {
-	return fileName;
-}
+    public void setFileCode(int fileCode) {
+        this.fileCode = fileCode;
+    }
 
-public void setFileName(String fileName) {
-	this.fileName = fileName;
-}
+    public int getExCode() {
+        return exCode;
+    }
 
-public String getFilePath() {
-	return filePath;
-}
+    public void setExCode(int exCode) {
+        this.exCode = exCode;
+    }
 
-public void setFilePath(String filePath) {
-	this.filePath = filePath;
-}
+    public String getFileName() {
+        return fileName;
+    }
 
-public long getFileSize() {
-	return fileSize;
-}
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
 
-public void setFileSize(long fileSize) {
-	this.fileSize = fileSize;
-}
+    public String getFilePath() {
+        return filePath;
+    }
 
-public String getMainImgName() {
-	return mainImgName;
-}
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
 
-public void setMainImgName(String mainImgName) {
-	this.mainImgName = mainImgName;
-}
+    public long getFileSize() {
+        return fileSize;
+    }
 
-@Override
-public String toString() {
-	return "ExFileDto [fileCode=" + fileCode + ", exCode=" + exCode + ", fileName=" + fileName + ", filePath="
-			+ filePath + ", fileSize=" + fileSize + ", mainImgName=" + mainImgName + "]";
-}
+    public void setFileSize(long fileSize) {
+        this.fileSize = fileSize;
+    }
+
+    public String getMainImgName() {
+        return mainImgName;
+    }
+
+    public void setMainImgName(String mainImgName) {
+        this.mainImgName = mainImgName;
+    }
+
+    @Override
+    public String toString() {
+        return "ExFileDto [fileCode=" + fileCode + ", exCode=" + exCode + ", fileName=" + fileName + ", filePath="
+                + filePath + ", fileSize=" + fileSize + ", mainImgName=" + mainImgName + "]";
+    }
 
 
-   
 }

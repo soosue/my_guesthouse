@@ -2,18 +2,15 @@ package com.java.guesthouse.member.service;
 
 import org.springframework.web.servlet.ModelAndView;
 
-
 public interface MemberService {
 
-	public void memberRegisterOk(ModelAndView mav);
+    void memberRegisterOk(ModelAndView mav);
 
-	public void memberEmailCheck(ModelAndView mav);
+    void memberEmailCheck(ModelAndView mav);
 
-	public void memberLoginOk(ModelAndView mav);
+    void memberLoginOk(ModelAndView mav);
 
-	public void kakaoLogin(ModelAndView mav);
-
-
+    void kakaoLogin(ModelAndView mav);
 
 
 }

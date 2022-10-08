@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="dao.MemberMapper">
-	<insert id="insert" parameterType="com.java.guesthouse.member.dto.MemberDto">
+	<insert id="insert" parameterType="com.java.guesthouse.member.service.dto.MemberDto">
   		<![CDATA[insert into member
   		(memberCode,memberName,email,password,phone,regDate,point,memberLevel,memberImgName,memberImgPath,memberImgSize,memberInfo)
   			values(
@@ -31,11 +31,11 @@
   		SELECT memberLevel FROM member WHERE email=#{email} and password=#{password}
   	</select>
   	
-  	<select id="memberSel" parameterType="java.util.Map"  resultType="com.java.guesthouse.member.dto.MemberDto">
+  	<select id="memberSel" parameterType="java.util.Map"  resultType="com.java.guesthouse.member.service.dto.MemberDto">
   		select * from member where email=#{email} and password=#{password}
   	</select>
   	
-  	<insert id="insertKakao" parameterType="com.java.guesthouse.member.dto.MemberDto">
+  	<insert id="insertKakao" parameterType="com.java.guesthouse.member.service.dto.MemberDto">
   		insert into member(memberCode,email,memberImgPath,memberName, memberLevel,regDate,point) values(member_memberCode_seq.nextval, #{email}, #{memberImgPath},#{memberName},'A',sysdate,0)
   	</insert>
   	

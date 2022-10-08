@@ -8,144 +8,146 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.java.guesthouse.aop.HomeAspect;
-import com.java.guesthouse.member.dao.MemberDao;
-import com.java.guesthouse.member.dto.MemberDto;
+import com.java.guesthouse.member.domain.MemberDao;
+import com.java.guesthouse.member.service.dto.MemberDto;
 
-@Component
+@Service
 public class MemberServiceImp implements MemberService {
 
-	@Autowired
-	private MemberDao memberDao;
+    private final MemberDao memberDao;
 
-	@Override
-	public void memberRegisterOk(ModelAndView mav) {
+    public MemberServiceImp(MemberDao memberDao) {
+        this.memberDao = memberDao;
+    }
 
-		Map<String, Object> map = mav.getModelMap();
+    @Override
+    public void memberRegisterOk(ModelAndView mav) {
 
-		HttpServletRequest request = (HttpServletRequest) map.get("request");
+        Map<String, Object> map = mav.getModelMap();
 
-		MemberDto memberDto = (MemberDto) map.get("memberDto");
+        HttpServletRequest request = (HttpServletRequest) map.get("request");
 
-		memberDto.setMemberName(request.getParameter("memberName"));
-		memberDto.setEmail(request.getParameter("email"));
-		memberDto.setPassword(request.getParameter("password"));
+        MemberDto memberDto = (MemberDto) map.get("memberDto");
 
-		memberDto.setPhone(request.getParameter("phone"));
-		memberDto.setRegDate(new Date());
-		memberDto.setMemberLevel("A");
-		memberDto.setMemberInfo("");
+        memberDto.setMemberName(request.getParameter("memberName"));
+        memberDto.setEmail(request.getParameter("email"));
+        memberDto.setPassword(request.getParameter("password"));
 
-		HomeAspect.logger.info(HomeAspect.logMsg + memberDto.toString());
+        memberDto.setPhone(request.getParameter("phone"));
+        memberDto.setRegDate(new Date());
+        memberDto.setMemberLevel("A");
+        memberDto.setMemberInfo("");
 
-		int check = memberDao.register(memberDto);
+        HomeAspect.logger.info(HomeAspect.logMsg + memberDto.toString());
 
-		HomeAspect.logger.info(HomeAspect.logMsg + "check: " + check);
+        int check = memberDao.register(memberDto);
 
-		mav.addObject("check", check);
+        HomeAspect.logger.info(HomeAspect.logMsg + "check: " + check);
 
-		mav.setViewName("member/registerOk.tiles");
-	}
+        mav.addObject("check", check);
 
-	@Override
-	public void memberEmailCheck(ModelAndView mav) {
-		Map<String, Object> map = mav.getModelMap();
+        mav.setViewName("member/registerOk.tiles");
+    }
 
-		HttpServletRequest request = (HttpServletRequest) map.get("request");
-		HttpServletResponse response = (HttpServletResponse) map.get("response");
+    @Override
+    public void memberEmailCheck(ModelAndView mav) {
+        Map<String, Object> map = mav.getModelMap();
 
-		String email = request.getParameter("email");
-		HomeAspect.logger.info(HomeAspect.logMsg + "입력한 email: " + email);
+        HttpServletRequest request = (HttpServletRequest) map.get("request");
+        HttpServletResponse response = (HttpServletResponse) map.get("response");
 
-		int check = memberDao.emailCheck(email);
-		HomeAspect.logger.info(HomeAspect.logMsg + "기존에 있는 이메일이면 1 / 아니면 0: " + check);
+        String email = request.getParameter("email");
+        HomeAspect.logger.info(HomeAspect.logMsg + "입력한 email: " + email);
 
-		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out;
-		try {
-			out = response.getWriter();
-			out.print(check);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+        int check = memberDao.emailCheck(email);
+        HomeAspect.logger.info(HomeAspect.logMsg + "기존에 있는 이메일이면 1 / 아니면 0: " + check);
 
-		// mav.setViewName("member/emailAjax.empty");
+        response.setContentType("text/html;charset=utf-8");
+        PrintWriter out;
+        try {
+            out = response.getWriter();
+            out.print(check);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-	}
+        // mav.setViewName("member/emailAjax.empty");
 
-	@Override
-	public void memberLoginOk(ModelAndView mav) {
+    }
 
-		Map<String, Object> map = mav.getModelMap();
+    @Override
+    public void memberLoginOk(ModelAndView mav) {
 
-		HttpServletRequest request = (HttpServletRequest) map.get("request");
+        Map<String, Object> map = mav.getModelMap();
 
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
+        HttpServletRequest request = (HttpServletRequest) map.get("request");
 
-		HomeAspect.logger.info(HomeAspect.logMsg + "입력한 email: " + email + "\t\t" + "입력한 password: " + password);
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
 
-		MemberDto memberDto = memberDao.memberSel(email, password);
-		// HomeAspect.logger.info(HomeAspect.logMsg +"memberDto: "+
-		// memberDto.toString());
+        HomeAspect.logger.info(HomeAspect.logMsg + "입력한 email: " + email + "\t\t" + "입력한 password: " + password);
 
-		if (memberDto != null) {
+        MemberDto memberDto = memberDao.memberSel(email, password);
+        // HomeAspect.logger.info(HomeAspect.logMsg +"memberDto: "+
+        // memberDto.toString());
 
-			int memberCode = memberDto.getMemberCode();
-			String memberLevel = memberDto.getMemberLevel();
-			HomeAspect.logger.info(HomeAspect.logMsg + memberDto.toString());
+        if (memberDto != null) {
 
-			HomeAspect.logger.info(
-					HomeAspect.logMsg + "회원등급 (회원이 아닐경우 null값): " + memberLevel + "		memberCode:" + memberCode);
+            int memberCode = memberDto.getMemberCode();
+            String memberLevel = memberDto.getMemberLevel();
+            HomeAspect.logger.info(HomeAspect.logMsg + memberDto.toString());
 
-			if (memberLevel != null) {
-				mav.addObject("memberLevel", memberLevel);
-				mav.addObject("email", email);
-				mav.addObject("memberCode", memberCode);
-			}
+            HomeAspect.logger.info(
+                    HomeAspect.logMsg + "회원등급 (회원이 아닐경우 null값): " + memberLevel + "		memberCode:" + memberCode);
 
-			// memberDto가 null일 경우
-		} else {
-			String memberLevel = null;
-		}
+            if (memberLevel != null) {
+                mav.addObject("memberLevel", memberLevel);
+                mav.addObject("email", email);
+                mav.addObject("memberCode", memberCode);
+            }
 
-	}
+            // memberDto가 null일 경우
+        } else {
+            String memberLevel = null;
+        }
 
-	@Override
-	public void kakaoLogin(ModelAndView mav) {
-		Map<String, Object> map = mav.getModelMap();
+    }
 
-		HttpServletRequest request = (HttpServletRequest) map.get("request");
+    @Override
+    public void kakaoLogin(ModelAndView mav) {
+        Map<String, Object> map = mav.getModelMap();
 
-		String email = request.getParameter("email");
-		String memberImgPath = request.getParameter("memberImgPath");
-		String memberName = request.getParameter("memberName");
+        HttpServletRequest request = (HttpServletRequest) map.get("request");
 
-		String memberLevel = "A";
+        String email = request.getParameter("email");
+        String memberImgPath = request.getParameter("memberImgPath");
+        String memberName = request.getParameter("memberName");
 
-		int emailChk = memberDao.kakaoEmailChk(email);
-		int check = 0;
+        String memberLevel = "A";
 
-		if (emailChk == 0) {
-			check = memberDao.inserKakao(email, memberImgPath, memberName);
+        int emailChk = memberDao.kakaoEmailChk(email);
+        int check = 0;
 
-		} else {
-			check = emailChk;
-		}
+        if (emailChk == 0) {
+            check = memberDao.inserKakao(email, memberImgPath, memberName);
 
-		HomeAspect.logger.info(HomeAspect.logMsg + "check: " + check);
+        } else {
+            check = emailChk;
+        }
 
-		int memberCode = memberDao.getMemberCode(email);
-		HomeAspect.logger.info(HomeAspect.logMsg + "memberCode: " + memberCode);
+        HomeAspect.logger.info(HomeAspect.logMsg + "check: " + check);
 
-		mav.addObject("check", check);
-		mav.addObject("memberLevel", memberLevel);
-		mav.addObject("email", email);
-		mav.addObject("memberCode", memberCode);
+        int memberCode = memberDao.getMemberCode(email);
+        HomeAspect.logger.info(HomeAspect.logMsg + "memberCode: " + memberCode);
 
-	}
+        mav.addObject("check", check);
+        mav.addObject("memberLevel", memberLevel);
+        mav.addObject("email", email);
+        mav.addObject("memberCode", memberCode);
+
+    }
 }

@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.GuestHouseMapper">
 
-	<select id="guestHouseRead" resultType="com.java.guesthouse.host.dto.HostDto">
+	<select id="guestHouseRead" resultType="com.java.guesthouse.host.service.dto.HostDto">
 		select * from house where houseCode=#{houseCode}
 	</select>
 	
@@ -24,7 +24,7 @@
 		select membercode from house where houseCode=#{houseCode}
 	</select>
 	
-	<select id="getHostInfo" resultType="com.java.guesthouse.host.dto.HostDto">
+	<select id="getHostInfo" resultType="com.java.guesthouse.host.service.dto.HostDto">
 		select * from house where houseCode=#{houseCode}
 	</select>
 
@@ -32,7 +32,7 @@
 		select point from member where email=#{email}
 	</select>
 	
-	<select id="getHost" resultType="com.java.guesthouse.member.dto.MemberDto">
+	<select id="getHost" resultType="com.java.guesthouse.member.service.dto.MemberDto">
 		select * from member where memberCode=#{hostCode}
 	</select>
 	
@@ -40,7 +40,7 @@
 		select houseName from house where houseCode=#{houseCode}
 	</select>
 	
-	<insert id="insertReserveInfo" parameterType="com.java.guesthouse.guestReserve.dto.GuestReserveDto">
+	<insert id="insertReserveInfo" parameterType="com.java.guesthouse.guestreserve.dto.GuestReserveDto">
 		insert into 
 		RESERVATION(reserveCode,memberCode,houseCode,reserveDate,checkIn,checkOut,state,payment,people)
 		values(seq_reserveCode_num.nextval,#{memberCode},#{houseCode},#{reserveDate},#{checkIn},#{checkOut},#{state},#{payment},#{people})
@@ -54,13 +54,13 @@
 		update member set point =#{memberPoint} where memberCode=#{memberCode}
 	</update>
 	
-	<insert id="insertResPoint" parameterType="com.java.guesthouse.guestdelluna.dto.PointAccumulate">
+	<insert id="insertResPoint" parameterType="com.java.guesthouse.guestdelluna.service.dto.PointAccumulate">
 		insert into
 		POINTACCUMULATE(accuCode,memberCode,accuPlace,accuDate,accuPoint)
 		values(seq_accuCode_num.nextval,#{memberCode},#{accuPlace},#{accuDate},#{accuPoint})
 	</insert>
 	
-	<insert id="insertUsePoint" parameterType="com.java.guesthouse.guestdelluna.dto.PointUse">
+	<insert id="insertUsePoint" parameterType="com.java.guesthouse.guestdelluna.service.dto.PointUse">
 		insert into
 		POINTUSE(useCode,memberCode,usePlace,useDate,usePoint)
 		values(seq_useCode_num.nextval,#{memberCode},#{usePlace},#{useDate},#{usePoint})
@@ -72,15 +72,15 @@
 		values(#{resDate},#{people},#{houseCode})
 	</insert>
 	
-	<select id="getRemain" parameterType="int" resultType="com.java.guesthouse.guestReserve.dto.RemainDto">
+	<select id="getRemain" parameterType="int" resultType="com.java.guesthouse.guestreserve.dto.RemainDto">
 		select resDate,sum(people) as people from remain where houseCode=#{houseCode} group by resDate
 	</select>
 	
-	<select id="getMemberInfo" resultType="com.java.guesthouse.member.dto.MemberDto">
+	<select id="getMemberInfo" resultType="com.java.guesthouse.member.service.dto.MemberDto">
 		select * from member where email=#{email}
 	</select>
 	
-	<insert id="insertMsg" parameterType="com.java.guesthouse.guestdelluna.dto.MsgDto">
+	<insert id="insertMsg" parameterType="com.java.guesthouse.guestdelluna.service.dto.MsgDto">
 		insert into
 		message(msgCode,memberCode,msgContent,msgDate,msgCheck)
 		values(seq_msgCode_num.nextval,#{memberCode},#{msgContent},#{msgDate},#{msgCheck})
@@ -92,7 +92,7 @@
 		and RESERVATION.HOUSECODE=#{houseCode}
 	</select>
 	
-	<select id="reviewList" parameterType="java.util.Map" resultType="com.java.guesthouse.guestReserve.dto.GHouseReviewListDto">
+	<select id="reviewList" parameterType="java.util.Map" resultType="com.java.guesthouse.guestreserve.dto.GHouseReviewListDto">
 		<![CDATA[
 		SELECT * FROM 
 		(select rownum as rnum, A.* from 
@@ -108,7 +108,7 @@
 		select count(*) from RESERVATION where memberCode=#{memberCode} and HOUSECODE=#{houseCode}
 	</select>
 	
-	<select id="reserveCode" parameterType="java.util.Map" resultType="com.java.guesthouse.guestReserve.dto.GuestReserveDto">
+	<select id="reserveCode" parameterType="java.util.Map" resultType="com.java.guesthouse.guestreserve.dto.GuestReserveDto">
 		select reserveCode from RESERVATION where HOUSECODE=#{houseCode} and memberCode=#{memberCode}
 	</select>
 	
@@ -116,16 +116,16 @@
 		select count(*) from REVIEW where reserveCode=#{reserveCode}
 	</select>
 	
-	<insert id="writeReview" parameterType="com.java.guesthouse.guestdelluna.dto.HouseReviewDto">
+	<insert id="writeReview" parameterType="com.java.guesthouse.guestdelluna.service.dto.HouseReviewDto">
 		insert into REVIEW(RESERVECODE, memberCode, revDate, revContent, revRate) 
 		values(#{reserveCode}, #{memberCode}, #{revDate}, #{revContent}, #{revRate})
 	</insert>
 	
-	<select id="reviewUpdate" parameterType="java.util.Map" resultType="com.java.guesthouse.guestdelluna.dto.HouseReviewDto">
+	<select id="reviewUpdate" parameterType="java.util.Map" resultType="com.java.guesthouse.guestdelluna.service.dto.HouseReviewDto">
 		select * from REVIEW where memberCode=#{memberCode} and RESERVECODE=#{reserveCode}
 	</select>
 	
-	<update id="reviewUpdateOk" parameterType="com.java.guesthouse.guestdelluna.dto.HouseReviewDto">
+	<update id="reviewUpdateOk" parameterType="com.java.guesthouse.guestdelluna.service.dto.HouseReviewDto">
 		update REVIEW set RESERVECODE=#{reserveCode}, revDate=#{revDate}, revContent=#{revContent}, revRate=#{revRate}
 		where memberCode=#{memberCode}
 	</update>

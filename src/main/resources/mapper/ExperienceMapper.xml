@@ -19,7 +19,7 @@
 		select memberCode from member where email = #{email} 
 	</select>
 
-	<insert parameterType="com.java.guesthouse.experience.dto.ExperienceDto" id="exHostRegister">
+	<insert parameterType="com.java.guesthouse.experience.service.dto.ExperienceDto" id="exHostRegister">
 		insert into experience 
 		(exCode, memberCode, exName, exPeople,exStartDate, exEndDate,exTime,exPrice,exAddress,exExplain,exApproval,exBank,exAccount,exRegDate, houseCode)
 		values(experience_exCode_seq.nextval+1808, 
@@ -47,7 +47,7 @@
 		select max(exCode) from experience
 	</select>
 	
-	<select id="hostChkList" parameterType="int" resultType="com.java.guesthouse.host.dto.HostDto">
+	<select id="hostChkList" parameterType="int" resultType="com.java.guesthouse.host.service.dto.HostDto">
 		select * from house where memberCode=#{memberCode}
 	</select>
 	
@@ -100,7 +100,7 @@
 	</delete>
 	
 	<!--체험 페이지  -->
-	<select id="exPage" parameterType="int" resultType="com.java.guesthouse.experience.dto.ExperienceDto">
+	<select id="exPage" parameterType="int" resultType="com.java.guesthouse.experience.service.dto.ExperienceDto">
 		select * from experience where exCode=#{exCode}
 	</select>
 	
@@ -108,7 +108,7 @@
 		select * from exFileList where exCode=#{exCode}
 	</select>
 	<!-- 12/27 수정 -->
-	<select id="exHostInfo" parameterType="int" resultType="com.java.guesthouse.member.dto.MemberDto">
+	<select id="exHostInfo" parameterType="int" resultType="com.java.guesthouse.member.service.dto.MemberDto">
 		select member.* from member,experience where experience.memberCode = member.memberCode and exCode=#{exCode}
 	</select>
 	
@@ -131,20 +131,20 @@
 
 	
 	<!-- 포인트 업데이트 -->
-	<update id="pointUpdate" parameterType="com.java.guesthouse.member.dto.MemberDto">
+	<update id="pointUpdate" parameterType="com.java.guesthouse.member.service.dto.MemberDto">
 		update member set point=#{plusPoint} where memberCode=#{memberCode}
 	</update>
 	
-	<insert id="resPointUp" parameterType="com.java.guesthouse.guestdelluna.dto.PointAccumulate">
+	<insert id="resPointUp" parameterType="com.java.guesthouse.guestdelluna.service.dto.PointAccumulate">
 		insert into pointAccumulate (accuCode, membercode, accuPlace, accuDate, accuPoint) values(seq_accuCode_num.nextval,#{memberCode},#{accuPlace},#{accuDate},#{accuPoint})
 	</insert>
 	
-	<insert id="usePointUp" parameterType="com.java.guesthouse.guestdelluna.dto.PointUse">
+	<insert id="usePointUp" parameterType="com.java.guesthouse.guestdelluna.service.dto.PointUse">
 		insert into pointUse (useCode, memberCode, usePlace, useDate, usePoint) values(POINTUSE_USECODE_SEQ.nextval,#{memberCode},#{usePlace},#{useDate},#{usePoint})
 	</insert>
 	
 	<!-- 메세지 보관함 -->
-	<insert id="message" parameterType="com.java.guesthouse.guestdelluna.dto.MsgDto">
+	<insert id="message" parameterType="com.java.guesthouse.guestdelluna.service.dto.MsgDto">
 		insert into message (msgCode, memberCode, msgContent, msgDate, msgCheck) values(message_msgCode_seq.nextval, #{memberCode},#{msgContent},#{msgDate},#{msgCheck})
 	</insert>
 	
@@ -167,12 +167,12 @@
 		insert into exRemain (resDate, exPeople,exCode) values(#{exDate},#{exPeople},#{exCode})
 	</insert>
 	
-	<select id="getMemberInfo" resultType="com.java.guesthouse.member.dto.MemberDto">
+	<select id="getMemberInfo" resultType="com.java.guesthouse.member.service.dto.MemberDto">
 		select * from member where email=#{email}
 	</select>
 	
 	<!-- 체험 메인 -->
-	<select id="searchMainEx" resultType="com.java.guesthouse.experience.dto.ExperienceMainDto">
+	<select id="searchMainEx" resultType="com.java.guesthouse.experience.service.dto.ExperienceMainDto">
 	<![CDATA[
 		select exName,exCode,exPrice, RevRate, revCount from(
     		select h.*, rownum rn from (
@@ -184,7 +184,7 @@
 	</select>
 	
 	<!-- 게하 메인 -->
-	<select id="searchMainGh" resultType="com.java.guesthouse.experience.dto.GuestHouseMainDto">
+	<select id="searchMainGh" resultType="com.java.guesthouse.experience.service.dto.GuestHouseMainDto">
 	<![CDATA[
 		 select houseName,houseCode,Price, RevRate, revCount from(
     		select h.*, rownum rn from (
