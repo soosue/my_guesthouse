@@ -4,25 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dao.MemberMapper">
-    <insert id="insert" parameterType="com.java.guesthouse.member.service.dto.MemberDto">
-  		<![CDATA[
-        insert into member
-        (id, name, email, password, phone_number, created_at, point, member_level, image_name, image_path,
-         image_size, info)
-        values (MEMBER_PK_SEQ.nextval,
-                #{memberName},
-                #{email},
-                #{password},
-                #{phone},
-                #{regDate},
-                #{point},
-                #{memberLevel},
-                #{memberImgName, jdbcType=VARCHAR},
-                #{memberImgPath, jdbcType=VARCHAR},
-                #{memberImgSize, jdbcType=VARCHAR},
-                #{memberInfo, jdbcType=VARCHAR})
-        ]]>
-  	</insert>
 
     <select id="emailCheck" parameterType="String" resultType="String">
         select email
@@ -60,13 +41,13 @@
         values (MEMBER_PK_SEQ.nextval, #{email}, #{memberImgPath}, #{memberName}, 'A', sysdate, 0)
     </insert>
 
-    <select id="kakaoEmailChk" parameterType="String" resultType="int">
+    <select id="kakaoEmailCheck" parameterType="String" resultType="int">
         select count(*)
         from member
         where email = #{email}
     </select>
 
-    <select id="getMemberCode" parameterType="String" resultType="int">
+    <select id="findIdByEmail" parameterType="String" resultType="int">
         select id
         from member
         where email = #{email}

@@ -28,7 +28,7 @@ public class MemberController {
     }
 
     @RequestMapping(value = "/member/register.do", method = RequestMethod.GET)
-    public ModelAndView memberRegister(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView registerMember(HttpServletRequest request) {
 
         ModelAndView mav = new ModelAndView();
         mav.addObject("request", request);
@@ -83,7 +83,7 @@ public class MemberController {
 
 
     @RequestMapping(value = "/member/kakaoLogin.do", method = RequestMethod.GET)
-    public ModelAndView KakaoLogin(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView kakaoLogin(HttpServletRequest request) {
         HomeAspect.logger.info(HomeAspect.logMsg + "kakao login");
 
         String beforeURL = request.getHeader("REFERER");

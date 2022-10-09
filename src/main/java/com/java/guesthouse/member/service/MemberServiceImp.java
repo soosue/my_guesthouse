@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.java.guesthouse.aop.HomeAspect;
-import com.java.guesthouse.member.dao.MemberDao;
 import com.java.guesthouse.member.domain.Member;
+import com.java.guesthouse.member.domain.MemberDao;
 import com.java.guesthouse.member.domain.MemberRepository;
 import com.java.guesthouse.member.service.dto.LoginRequest;
 import com.java.guesthouse.member.service.dto.MemberSaveRequest;
@@ -76,11 +76,11 @@ public class MemberServiceImp implements MemberService {
 
         String memberLevel = "A";
 
-        int emailChk = memberDao.kakaoEmailChk(email);
+        int emailChk = memberDao.kakaoEmailCheck(email);
         int check = 0;
 
         if (emailChk == 0) {
-            check = memberDao.inserKakao(email, memberImgPath, memberName);
+            check = memberDao.insertKakao(email, memberImgPath, memberName);
 
         } else {
             check = emailChk;
@@ -88,7 +88,7 @@ public class MemberServiceImp implements MemberService {
 
         HomeAspect.logger.info(HomeAspect.logMsg + "check: " + check);
 
-        int memberCode = memberDao.getMemberCode(email);
+        int memberCode = memberDao.findIdByEmail(email);
         HomeAspect.logger.info(HomeAspect.logMsg + "memberCode: " + memberCode);
 
         mav.addObject("check", check);
