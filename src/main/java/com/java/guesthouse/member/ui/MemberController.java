@@ -30,8 +30,8 @@ public class MemberController {
         this.kakaoOAuth = kakaoOAuth;
     }
 
-    @RequestMapping(value = "/member/register.do", method = RequestMethod.GET)
-    public ModelAndView registerMember(HttpServletRequest request) {
+    @RequestMapping(value = "/member/register.page", method = RequestMethod.GET)
+    public ModelAndView registerMemberPage(HttpServletRequest request) {
 
         ModelAndView mav = new ModelAndView();
         mav.addObject("request", request);

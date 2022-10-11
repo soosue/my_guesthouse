@@ -248,7 +248,7 @@
                                             <div class="modal-footer" style="text-align: center; margin-top: 3rem;">
                                                 <a style="font-size:1rem; margin-right: 2rem;">아직 회원이 아니신가요?</a>
                                                 <button class="btn btn-outline-success"
-                                                        onclick="location.href='${root}/member/register.do'"
+                                                        onclick="location.href='${root}/member/register.page'"
                                                         type="button">회원가입
                                                 </button>
                                             </div>

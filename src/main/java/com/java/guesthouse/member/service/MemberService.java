@@ -34,8 +34,10 @@ public class MemberService {
     @Transactional
     public Long saveMember(MemberSaveRequest memberSaveRequest) {
         logger.info(memberSaveRequest.toString());
+
         Member member = memberSaveRequest.toMember();
         memberRepository.save(member);
+
         return member.getId();
     }
 
@@ -48,7 +50,8 @@ public class MemberService {
     }
 
     @Transactional(readOnly = true)
-    public void login(LoginRequest loginRequest, HttpServletRequest request) {
+    public void login(LoginRequest loginRequest, HttpServletRequest request)
+    {
         String email = loginRequest.email();
         String password = loginRequest.password();
 
@@ -61,6 +64,7 @@ public class MemberService {
     }
 
     private void setSession(HttpSession session, Member member) {
+
         session.setAttribute("memberLevel", member.getMemberLevel());
         session.setAttribute("email", member.getEmail());
         session.setAttribute("memberCode", member.getId());
@@ -68,6 +72,7 @@ public class MemberService {
 
     @Transactional
     public void kakaoLogin(KakaoLoginRequest kakaoLoginRequest, HttpServletRequest request) {
+
         if (kakaoLoginRequest.isFailed()) {
             return;
         }
