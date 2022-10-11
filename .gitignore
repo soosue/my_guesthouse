@@ -3,6 +3,9 @@ target
 .settings
 .springBeans
 
+### secret key
+src/main/resources/application-key.yml
+
 ### gradle version
 HELP.md
 .gradle

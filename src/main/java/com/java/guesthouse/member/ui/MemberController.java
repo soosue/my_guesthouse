@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.java.guesthouse.aop.HomeAspect;
 import com.java.guesthouse.member.service.MemberService;
+import com.java.guesthouse.member.service.dto.KakaoLoginRequest;
 import com.java.guesthouse.member.service.dto.LoginRequest;
 import com.java.guesthouse.member.service.dto.MemberSaveRequest;
 
@@ -81,22 +81,14 @@ public class MemberController {
         return new ModelAndView("member/logout.tiles");
     }
 
+    @GetMapping(value = "/v1/member/kakaologin")
+    public ModelAndView kakaoLogin(HttpServletRequest request, KakaoLoginRequest kakaoLoginRequest) {
 
-    @RequestMapping(value = "/member/kakaoLogin.do", method = RequestMethod.GET)
-    public ModelAndView kakaoLogin(HttpServletRequest request) {
-        HomeAspect.logger.info(HomeAspect.logMsg + "kakao login");
+        memberService.kakaoLogin(kakaoLoginRequest, request);
 
-        String beforeURL = request.getHeader("REFERER");
+        ModelAndView mav = new ModelAndView("member/loginOk.tiles");
+        mav.addObject("beforeURL", request.getHeader("REFERER"));
 
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("request", request);
-        mav.addObject("beforeURL", beforeURL);
-
-        memberService.kakaoLogin(mav);
-        mav.setViewName("member/loginOk.tiles");
         return mav;
-
     }
-
-
 }

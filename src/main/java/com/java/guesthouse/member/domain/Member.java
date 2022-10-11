@@ -35,6 +35,10 @@ public class Member {
     public Member() {
     }
 
+    public Member(String email, String name) {
+        this(email, null, name, null);
+    }
+
     public Member(String email, String password, String name, String phoneNumber) {
         this.email = email;
         this.password = password;

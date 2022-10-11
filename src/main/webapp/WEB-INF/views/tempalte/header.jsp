@@ -16,7 +16,9 @@
     <link rel="stylesheet" href="${root}/resources/css/header/header.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
-    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.0.0/kakao.min.js"
+            integrity="sha384-PFHeU/4gvSH8kpvhrigAPfZGBDPs372JceJq3jAXce11bVA6rMvGWzvP4fMQuBGL"
+            crossorigin="anonymous"></script>
     <script type="text/javascript">
         $(function () {
             $('ul.tab li').click(function () {
@@ -235,44 +237,6 @@
                                                                 style="width: 18rem; margin-top: 3rem;"
                                                                 onclick="kakaoLogin()" value="카카오 로그인">카카오 로그인
                                                         </button>
-                                                        <!-- <a id="kakao-login-btn"></a>
-                                                        <a href="http://developers.kakao.com/logout"></a>
-                                                         -->
-
-                                                        <script type='text/javascript'>
-                                                            //<![CDATA[
-                                                            // 사용할 앱의 JavaScript 키를 설정해 주세요.
-                                                            Kakao.init('5a47c72d35ab36aa08feca719cb2bccf');
-
-                                                            // 카카오 로그인 버튼을 생성합니다.
-                                                            function kakaoLogin() {
-                                                                Kakao.Auth.loginForm({
-                                                                    success: function (authObj) {
-                                                                        // 로그인 성공시, API를 호출합니다.
-                                                                        Kakao.API.request({
-                                                                            url: '/v1/user/me',
-                                                                            success: function (res) {
-                                                                                var url = "";
-                                                                                $.ajax({
-                                                                                    url: url,
-                                                                                    type: "get",
-                                                                                    dataType: "text",
-                                                                                    success: function (data) {
-                                                                                        window.location.href = "${root}" + "/member/kakaoLogin.do?email=" + res.kaccount_email + "&memberImgPath=" + res.properties.profile_image + "&memberName=" + res.properties.nickname;
-
-                                                                                    }
-                                                                                });
-                                                                            }
-
-                                                                        });
-                                                                    }
-                                                                });
-                                                            }
-
-
-                                                        </script>
-
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -299,9 +263,15 @@
         </div>
     </div>
 </div>
-
-<!-- //컨텐츠 영역 -->
-
-
 </body>
+
+<script type='text/javascript'>
+    Kakao.init('28118e836a017712fcde6026b1e65d72');
+
+    function kakaoLogin() {
+        Kakao.Auth.authorize({
+            redirectUri: window.location.origin + '/v1/member/kakaologin'
+        });
+    }
+</script>
 </html>
