@@ -1,4 +1,4 @@
-package com.java.guesthouse.api.login;
+package com.java.guesthouse.api.oauth;
 
 import org.springframework.stereotype.Component;
 

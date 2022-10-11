@@ -10,8 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.java.guesthouse.api.login.GetUserInfoResponse;
-import com.java.guesthouse.api.login.KakaoOAuth;
+import com.java.guesthouse.api.oauth.GetUserInfoResponse;
+import com.java.guesthouse.api.oauth.KakaoOAuth;
 import com.java.guesthouse.member.domain.Member;
 import com.java.guesthouse.member.domain.MemberRepository;
 import com.java.guesthouse.member.service.dto.KakaoLoginRequest;
