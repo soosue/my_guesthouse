@@ -10,8 +10,6 @@
 <body>
 <script type="text/javascript">
     alert("로그아웃 되었습니다");
-    Kakao.init('5a47c72d35ab36aa08feca719cb2bccf');
-    Kakao.Auth.logout();
 
     location.href = "/";
 </script>

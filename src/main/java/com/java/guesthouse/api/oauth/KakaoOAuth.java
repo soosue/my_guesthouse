@@ -6,12 +6,13 @@ import org.springframework.stereotype.Component;
 public class KakaoOAuth {
     private final GetTokenApi getTokenApi;
     private final GetUserInfoApi getUserInfoApi;
+    private final LogoutApi logoutApi;
 
-    public KakaoOAuth(GetTokenApi getTokenApi, GetUserInfoApi getUserInfoApi) {
+    public KakaoOAuth(GetTokenApi getTokenApi, GetUserInfoApi getUserInfoApi, LogoutApi logoutApi) {
         this.getTokenApi = getTokenApi;
         this.getUserInfoApi = getUserInfoApi;
+        this.logoutApi = logoutApi;
     }
-
 
     public String getToken(String code) {
         GetTokenResponse response = getTokenApi.request(code);
@@ -20,5 +21,9 @@ public class KakaoOAuth {
 
     public GetUserInfoResponse getUserInfo(String accessToken) {
         return getUserInfoApi.request(accessToken);
+    }
+
+    public LogoutResponse logout(String accessToken) {
+        return logoutApi.request(accessToken);
     }
 }

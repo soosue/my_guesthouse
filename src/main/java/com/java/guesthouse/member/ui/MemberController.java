@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.java.guesthouse.api.oauth.KakaoOAuth;
 import com.java.guesthouse.member.service.MemberService;
 import com.java.guesthouse.member.service.dto.KakaoLoginRequest;
 import com.java.guesthouse.member.service.dto.LoginRequest;
@@ -22,9 +23,11 @@ import com.java.guesthouse.member.service.dto.MemberSaveRequest;
 public class MemberController {
 
     private final MemberService memberService;
+    private final KakaoOAuth kakaoOAuth;
 
-    public MemberController(MemberService memberService) {
+    public MemberController(MemberService memberService, KakaoOAuth kakaoOAuth) {
         this.memberService = memberService;
+        this.kakaoOAuth = kakaoOAuth;
     }
 
     @RequestMapping(value = "/member/register.do", method = RequestMethod.GET)
@@ -76,6 +79,11 @@ public class MemberController {
     public ModelAndView logout(HttpServletRequest request) {
         
         HttpSession session = request.getSession();
+        String accessToken = (String)session.getAttribute("accessToken");
+        if (accessToken != null) {
+            kakaoOAuth.logout(accessToken);
+        }
+
         session.invalidate();
 
         return new ModelAndView("member/logout.tiles");
