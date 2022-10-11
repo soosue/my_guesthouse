@@ -4,13 +4,13 @@
         "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 
 <tiles-definitions>
-    <definition name="layout" template="/WEB-INF/views/tempalte/layout.jsp">
-        <put-attribute name="header" value="/WEB-INF/views/tempalte/header.jsp"/>
+    <definition name="layout" template="/WEB-INF/views/template/layout.jsp">
+        <put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
         <put-attribute name="content" value=""/>
-        <put-attribute name="foot" value="/WEB-INF/views/tempalte/foot.jsp"/>
+        <put-attribute name="foot" value="/WEB-INF/views/template/foot.jsp"/>
     </definition>
-    <definition name="layout2" template="/WEB-INF/views/tempalte/empty2.jsp">
-        <put-attribute name="header" value="/WEB-INF/views/tempalte/header.jsp"/>
+    <definition name="layout2" template="/WEB-INF/views/template/empty2.jsp">
+        <put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
         <put-attribute name="content" value=""/>
     </definition>
 
@@ -41,7 +41,7 @@
 
     <!-- idCheck, zipcode -->
 
-    <definition name="empty" template="/WEB-INF/views/tempalte/empty.jsp">
+    <definition name="empty" template="/WEB-INF/views/template/empty.jsp">
         <put-attribute name="content" value=""/>
     </definition>
 
