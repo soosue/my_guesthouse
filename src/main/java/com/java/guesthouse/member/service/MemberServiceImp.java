@@ -4,11 +4,11 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.java.guesthouse.api.login.GetUserInfoResponse;
 import com.java.guesthouse.api.login.KakaoOAuth;
@@ -41,6 +41,7 @@ public class MemberServiceImp implements MemberService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public int checkEmail(String email) {
 
         return memberRepository
@@ -49,6 +50,7 @@ public class MemberServiceImp implements MemberService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public void login(LoginRequest loginRequest, HttpServletRequest request) {
         String email = loginRequest.email();
         String password = loginRequest.password();
@@ -68,6 +70,7 @@ public class MemberServiceImp implements MemberService {
     }
 
     @Override
+    @Transactional
     public void kakaoLogin(KakaoLoginRequest kakaoLoginRequest, HttpServletRequest request) {
         if (kakaoLoginRequest.isFailed()) {
             return;
