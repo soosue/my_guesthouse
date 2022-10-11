@@ -23,16 +23,12 @@
         $(".pwd #USER_PWD2").blur(function () {
             var pwd = document.getElementById("password99").value;
             var pwd2 = document.getElementById("USER_PWD2").value;
-            //alert(pwd + pwd2);
 
             if (pwd != pwd2) {
                 $(".pwd #pwsame").text("비밀번호를 잘못 입력하셨습니다.");
                 $(".pwd #pwsame").css("color", "red");
                 $("#btnSubmit").attr("disabled", true);
-            } else {
-                //$("#btnSubmit").attr("disabled",false);
             }
-
         });
 
         $(".inp #memberName").blur(function () {
@@ -41,11 +37,9 @@
 
             if (memberName == "") {
                 alert("이름을 입력해주세요");
-                //$('#memberName').focus();
             } else if (!hName.test(memberName)) {
                 alert("이름을 한글로 정확히 입력하세요.");
                 $("#btnSubmit").attr("disabled", true);
-                //$('#memberName').focus();
             }
         });
         $(".inp #phone").blur(function () {
@@ -80,11 +74,11 @@
                 <div class="innerBox formJoinWrap" style="margin: 0 auto; height: 31rem;">
                     <!-- 아이디 및 비밀번호 -->
                     <div class="form-group" style="margin: 0 auto; /* border: 0.1rem solid blue; */ height: 29rem; ">
-                        <dt><label for="userName"
-                                   style="width:45rem; height:3rem; background-color: #edf6f6; margin-left: 13rem; margin-top: 3rem; margin-bottom: 1rem; line-height: 3rem; margin-bottom: 3rem; padding-left: 1rem;">아이디
+                        <dt><label
+                                style="width:45rem; height:3rem; background-color: #edf6f6; margin-left: 13rem; margin-top: 3rem; margin-bottom: 1rem; line-height: 3rem; margin-bottom: 3rem; padding-left: 1rem;">아이디
                             및 비밀번호</label></dt>
                         <dl class="id">
-                            <dt><label for="USER_ID" style="margin-left:20rem;">아이디 (이메일) </label></dt>
+                            <dt><label for="emailAA" style="margin-left:20rem;">아이디 (이메일) </label></dt>
                             <dd id="idid">
                                 <div class="inp">
                                     <input class="form-control email" type="email" id="emailAA" name="email" required
@@ -100,7 +94,7 @@
                         </dl>
 
                         <dl class="pwd">
-                            <dt><label for="USER_PWD1" style="margin-left: 20rem;">비밀번호 </label></dt>
+                            <dt><label for="password99" style="margin-left: 20rem;">비밀번호 </label></dt>
                             <!-- 에러시 dd의 error 클래스 추가 -->
                             <dd style="">
                                 <div class="inp">
@@ -138,14 +132,14 @@
                     <br/><br/>
                     <!-- 기본정보 -->
                     <div class="form-group">
-                        <dt><br/><label for="userInfo"
-                                        style="width:45rem; height:3rem; background-color: #edf6f6; margin-left: 13rem; margin-top: 0.5rem; margin-bottom: 3rem; line-height: 3rem; padding-left: 1rem;">기본
+                        <dt><br/><label
+                                style="width:45rem; height:3rem; background-color: #edf6f6; margin-left: 13rem; margin-top: 0.5rem; margin-bottom: 3rem; line-height: 3rem; padding-left: 1rem;">기본
                             정보</label></dt>
 
 
                         <div class="left">
                             <dl class="nameType1">
-                                <dt><label for="USER_NM" style="margin-left: 20rem;">이름(한글) </label></dt>
+                                <dt><label for="memberName" style="margin-left: 20rem;">이름(한글) </label></dt>
                                 <!-- 에러시 dd의 error 클래스 추가 -->
                                 <dd>
                                     <div class="ui-select-wrapper">
@@ -241,44 +235,32 @@
     </div>
 </div>
 <script>
-
-
     $('#password').on('input', checkInput);
     $('#USER_PWD2').on('input', checkInput);
     $('#email').on('input', checkInput);
     $('#memberName').on('input', checkInput);
     $('#phone').on('input', checkInput);
 
-
     function checkInput() {
-
-        var email = $('#email').val();
-        var password = $('#password').val();
-        var passwordChk = $('#USER_PWD2').val();
-        var name = $('#memberName').val();
-        var id = $('#phone').val();
+        let email = $('#email').val();
+        let password = $('#password').val();
+        let passwordChk = $('#USER_PWD2').val();
+        let name = $('#memberName').val();
+        let id = $('#phone').val();
 
         if (password != "" && passwordChk != "" && password != passwordChk) {
 
             document.getElementById('pwsame').innerHTML = '비밀번호가 일치하지 않습니다. 다시 입력하세요.';
-            /* alert("비밀번호가 일치하지 않습니다." +password +"," + passwordChk);
-            $("#USER_PWD2").val("");
-            $("#USER_PWD2").focus();
-            focusTgt = "#USER_PWD2";*/
-            var btn = $('#btnSubmit');
+            let btn = $('#btnSubmit');
             btn.Attr("disabled", true);
-            //btn.css("background-color","pink");
 
         } else {
             // 비번 제대로 입력
-            var btn = $('#btnSubmit');
-            //btn.css("background-color","blue");
             document.getElementById('pwsame').innerHTML = '';
             if (email != "" && name != "" && id != "" && phone !== "") {
-                var btn = $('#btnSubmit');
+                let btn = $('#btnSubmit');
                 btn.removeAttr("disabled");
             }
-
         }
     }
 </script>

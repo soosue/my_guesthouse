@@ -10,22 +10,20 @@
 </head>
 <body>
 
-<c:if test="${memberLevel != null}">
-    <script type="text/javascript">
-        alert("로그인 되었습니다.");
-        if ('${beforeURL}' == null) {
-            location.href = "/";
-        } else {
-            location.href = "${beforeURL}";
-        }
-    </script>
-</c:if>
+<script type="text/javascript">
+    <c:if test="${memberLevel != null}">
+    alert("로그인 되었습니다.");
+    if ('${beforeURL}' == null) {
+        location.href = "/";
+    } else {
+        location.href = "${beforeURL}";
+    }
+    </c:if>
 
-<c:if test="${memberLevel == null}">
-    <script type="text/javascript">
-        alert("로그인 실패하였습니다. 가입하지 않은 이메일이거나 잘못된 비밀번호입니다.");
-        location.href = "/";	//로그인이 안 되었을 경우 회원가입 페이지로 이동
-    </script>
-</c:if>
+    <c:if test="${memberLevel == null}">
+    alert("로그인 실패하였습니다. 가입하지 않은 이메일이거나 잘못된 비밀번호입니다.");
+    location.href = "/";
+    </c:if>
+</script>
 </body>
 </html>
