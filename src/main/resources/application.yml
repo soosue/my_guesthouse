@@ -11,3 +11,9 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  profiles:
+    active: key
+login:
+  kakao:
+    key:
+      rest-api: please-set-restapikey-on-the-application-key-yml-file
