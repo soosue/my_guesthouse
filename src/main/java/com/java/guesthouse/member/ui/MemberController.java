@@ -7,13 +7,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.java.guesthouse.api.oauth.KakaoOAuth;
+import com.java.guesthouse.member.service.LoginService;
 import com.java.guesthouse.member.service.MemberService;
 import com.java.guesthouse.member.service.dto.KakaoLoginRequest;
 import com.java.guesthouse.member.service.dto.LoginRequest;
@@ -23,11 +21,11 @@ import com.java.guesthouse.member.service.dto.MemberSaveRequest;
 public class MemberController {
 
     private final MemberService memberService;
-    private final KakaoOAuth kakaoOAuth;
+    private final LoginService loginService;
 
-    public MemberController(MemberService memberService, KakaoOAuth kakaoOAuth) {
+    public MemberController(MemberService memberService, LoginService loginService) {
         this.memberService = memberService;
-        this.kakaoOAuth = kakaoOAuth;
+        this.loginService = loginService;
     }
 
     @GetMapping("/v1/members/register.page")
@@ -77,12 +75,11 @@ public class MemberController {
 
     @GetMapping(value = "/v1/members/logout")
     public ModelAndView logout(HttpServletRequest request) {
-        
+
         HttpSession session = request.getSession();
-        String accessToken = (String)session.getAttribute("accessToken");
-        if (accessToken != null) {
-            kakaoOAuth.logout(accessToken);
-        }
+        String accessToken = (String) session.getAttribute("accessToken");
+
+        loginService.logout(accessToken);
 
         session.invalidate();
 
