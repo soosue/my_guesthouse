@@ -30,7 +30,7 @@ public class MemberController {
         this.kakaoOAuth = kakaoOAuth;
     }
 
-    @RequestMapping(value = "/member/register.page", method = RequestMethod.GET)
+    @GetMapping("/v1/members/register.page")
     public ModelAndView registerMemberPage(HttpServletRequest request) {
 
         ModelAndView mav = new ModelAndView();
@@ -56,7 +56,7 @@ public class MemberController {
     }
 
     @ResponseBody
-    @GetMapping(value = "/v1/member/check")
+    @GetMapping(value = "/v1/members/check")
     public String checkEmail(@RequestParam String email) {
 
         int check = memberService.checkEmail(email);
@@ -64,7 +64,7 @@ public class MemberController {
         return check + "";
     }
 
-    @PostMapping(value = "/v1/member/login")
+    @PostMapping(value = "/v1/members/login")
     public ModelAndView login(HttpServletRequest request, LoginRequest loginRequest) {
 
         memberService.login(loginRequest, request);
@@ -75,7 +75,7 @@ public class MemberController {
         return mav;
     }
 
-    @GetMapping(value = "/v1/member/logout")
+    @GetMapping(value = "/v1/members/logout")
     public ModelAndView logout(HttpServletRequest request) {
         
         HttpSession session = request.getSession();
@@ -89,7 +89,7 @@ public class MemberController {
         return new ModelAndView("member/logout.tiles");
     }
 
-    @GetMapping(value = "/v1/member/kakaologin")
+    @GetMapping(value = "/v1/members/kakaologin")
     public ModelAndView kakaoLogin(HttpServletRequest request, KakaoLoginRequest kakaoLoginRequest) {
 
         memberService.kakaoLogin(kakaoLoginRequest, request);

@@ -27,7 +27,7 @@ public class GetTokenApi {
                 .body(BodyInserters
                         .fromFormData("grant_type", "authorization_code")
                         .with("client_id", restApiKey)
-                        .with("redirect_uri", "http://localhost:8080/v1/member/kakaologin")
+                        .with("redirect_uri", "http://localhost:8080/v1/members/kakaologin")
                         .with("code", code))
                 .retrieve()
                 .toEntity(GetTokenResponse.class)

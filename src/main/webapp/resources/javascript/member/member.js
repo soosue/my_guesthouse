@@ -1,7 +1,7 @@
 function checkEmail() {
     let email = document.getElementById("emailAA").value;
 
-    let url = "/v1/member/check?";
+    let url = "/v1/members/check?";
     let params = "email=" + email;
 
     $.ajax({

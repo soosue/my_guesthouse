@@ -135,7 +135,7 @@
                 </c:if>
 
                 <li class="nav-item"><a class="nav-link" href="${root}/guestdelluna/zzimlist.do">장바구니</a></li>
-                <li class="nav-item"><a class="nav-link" href="/v1/member/logout">로그아웃</a></li>
+                <li class="nav-item"><a class="nav-link" href="/v1/members/logout">로그아웃</a></li>
                 <li class="nav-item"><a class="nav-link" href="${root}/guestdelluna/myInfo.do">마이페이지</a></li>
 
                 <c:if test="${memberLevel =='Admin'}">
@@ -178,7 +178,7 @@
             </div>
 
             <!-- Modal body -->
-            <form action="/v1/member/login" method="post" name="createForm">
+            <form action="/v1/members/login" method="post" name="createForm">
                 <section id="container">
 
                     <input type="hidden" id="isCasinoGuide" value="">
@@ -248,7 +248,7 @@
                                             <div class="modal-footer" style="text-align: center; margin-top: 3rem;">
                                                 <a style="font-size:1rem; margin-right: 2rem;">아직 회원이 아니신가요?</a>
                                                 <button class="btn btn-outline-success"
-                                                        onclick="location.href='${root}/member/register.page'"
+                                                        onclick="location.href='/v1/members/register.page'"
                                                         type="button">회원가입
                                                 </button>
                                             </div>
@@ -270,7 +270,7 @@
 
     function kakaoLogin() {
         Kakao.Auth.authorize({
-            redirectUri: window.location.origin + '/v1/member/kakaologin'
+            redirectUri: window.location.origin + '/v1/members/kakaologin'
         });
     }
 </script>

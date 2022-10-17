@@ -60,7 +60,7 @@
 
 
 <!-- 컨텐츠 영역 -->
-<form action="${root}/v1/member" method="post" name="createForm" class="form-horiaontal">
+<form action="/v1/members" method="post" name="createForm" class="form-horiaontal">
 
     <section id="container">
         <div class="control-group" style="width:70rem;/*  border: 1px solid red; */ margin:5rem auto; height: 75rem;">
