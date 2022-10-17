@@ -50,8 +50,6 @@
                             <%-- <button onclick="window.open('${root}/guestHousePage/guestHouse.do?memberCode=${hostDto.memberCode}&houseCode=${hostDto.houseCode}','window_name','width=430,height=500,location=no,status=no,scrollbars=yes')">${hostDto.houseName}</button> --%>
                             ${hostDto.houseName}
                         <input type="hidden" name="houseCode" value="${hostDto.houseCode}"/>
-                        <!--  <a href="${root}/admin/adminMemberRead.do?memberCode=${memberDto.memberCode}&pageNumber=${currentPage}">${memberDto.memberCode}</a>
-							-->
                     </td>
                     <td style="padding-left: 2rem;">${hostDto.memberCode}</td>
                     <!--address나 local 둘 중 ?  -->

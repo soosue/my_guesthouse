@@ -5,11 +5,6 @@
 
 <mapper namespace="dao.AdminMapper">
     <!-- 회원관리 -->
-    <select id="memberCount" resultType="int">
-        select count(*)
-        from member
-    </select>
-
     <select id="memberList" parameterType="java.util.Map" resultType="com.java.guesthouse.member.service.dto.MemberDto">
 		<![CDATA[
         SELECT *
@@ -32,23 +27,6 @@
           and rnum <= #{endRow}
         ]]>
 	</select>
-
-    <select id="memberReadSelect" parameterType="int" resultType="com.java.guesthouse.member.service.dto.MemberDto">
-        SELECT id           as memberCode,
-               name         as memberName,
-               email,
-               password,
-               phone_number as phone,
-               created_at   as regDate,
-               point,
-               member_level as memberLevel,
-               image_name   as memberImgName,
-               image_path   as memberImgPath,
-               image_size   as memberImgSize,
-               info         as memberInfo
-        FROM member
-        WHERE id = #{memberCode}
-    </select>
 
     <update id="memberUpdateOk" parameterType="com.java.guesthouse.member.service.dto.MemberDto">
         UPDATE member

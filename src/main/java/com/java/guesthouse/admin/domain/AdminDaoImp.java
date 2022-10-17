@@ -21,26 +21,12 @@ public class AdminDaoImp implements AdminDao {
 
     // 관리자 회원관리
     @Override
-    public int memberCount() {
-        return sqlSessionTemplate.selectOne("dao.AdminMapper.memberCount");
-    }
-
-    @Override
     public List<MemberDto> memberList(int startRow, int endRow) {
         Map<String, Integer> hMap = new HashMap<>();
         hMap.put("startRow", startRow);
         hMap.put("endRow", endRow);
 
         return sqlSessionTemplate.selectList("dao.AdminMapper.memberList", hMap);
-    }
-
-    @Override
-    public MemberDto memberRead(int memberCode) {
-        MemberDto memberDto = null;
-
-        memberDto = sqlSessionTemplate.selectOne("dao.AdminMapper.memberReadSelect", memberCode);
-
-        return memberDto;
     }
 
     @Override
@@ -107,15 +93,4 @@ public class AdminDaoImp implements AdminDao {
         // TODO Auto-generated method stub
         return sqlSessionTemplate.update("dao.AdminMapper.memberLevelHost", memberCode);
     }
-
-    /*
-     * // 메인 페이지
-     *
-     * @Override public List<ExperienceDto> mainPage() { return
-     * sqlSessionTemplate.selectList("dao.AdminMapper.experienceMain");
-     *
-     * }
-     */
-
-
 }

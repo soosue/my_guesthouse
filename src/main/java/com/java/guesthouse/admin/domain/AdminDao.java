@@ -8,11 +8,7 @@ import com.java.guesthouse.member.service.dto.MemberDto;
 public interface AdminDao {
 
     // 회원관리
-    int memberCount();
-
     List<MemberDto> memberList(int startRow, int endRow);
-
-    MemberDto memberRead(int memberCode);
 
     int memberUpdateOk(MemberDto memberDto);
 

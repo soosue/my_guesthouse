@@ -76,21 +76,15 @@
                 <tr>
 
                     <td class="tb" value="${memberDto.memberCode}">${memberDto.memberCode}
-                            <%-- <button onclick="window.open('${root}/admin/adminMemberRead.do?memberCode=${memberDto.memberCode}&pageNumber=${currentPage}','window_name','width=430,height=500,location=no,status=no,scrollbars=yes')">${memberDto.memberCode}</button> --%>
                         <input type="hidden" id="memberName" name="memberName" value="${memberDto.memberName}"/>
 
                         <input type="hidden" id="memberCode" name="memberCode" value="${memberDto.memberCode}"/>
-
-                        <!--  <a href="${root}/admin/adminMemberRead.do?memberCode=${memberDto.memberCode}&pageNumber=${currentPage}">${memberDto.memberCode}</a>
-							-->
                     </td>
                     <td id="memberName" value="${memberDto.memberName}">${memberDto.memberName}</td>
 
                     <td>${memberDto.email}</td>
                     <td>${memberDto.phone}</td>
-                    <td>
-                        <fmt:formatDate value="${memberDto.regDate}" pattern="yyyy-MM-dd hh:mm:ss"/>
-                    </td>
+                    <td>${memberDto.regDate}</td>
                     <td>${memberDto.point}</td>
                     <td>${memberDto.memberLevel}</td>
                     <td id="update">

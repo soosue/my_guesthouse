@@ -31,23 +31,8 @@ public class AdminController {
         return mav;
     }
 
-    @RequestMapping(value = "/admin/adminMemberRead.do", method = RequestMethod.GET)
-    public ModelAndView memberUpdate(HttpServletRequest request, HttpServletResponse response) {
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("request", request);
-
-        adminService.memberRead(mav);
-
-        return mav;
-    }
-
     @RequestMapping(value = "/admin/memberUpdateOk.do", method = RequestMethod.POST)
     public ModelAndView memberUpdateOk(HttpServletRequest request, HttpServletResponse response, MemberDto memberDto) {
-
-        /*
-         * int pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
-         * HomeAspect.logger.info(HomeAspect.logMsg + pageNumber);
-         */
 
         ModelAndView mav = new ModelAndView();
         mav.addObject("request", request);
@@ -55,9 +40,6 @@ public class AdminController {
         adminService.memberUpdateOk(mav);
 
         HomeAspect.logger.info(HomeAspect.logMsg + "adminController memberUpdateOk: " + memberDto.toString());
-        /*
-         * mav.addObject("pageNumber",pageNumber);
-         */
         return mav;
     }
 
