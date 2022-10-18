@@ -33,7 +33,6 @@ public class DellunaExpDto {
         this.exExplain = exExplain;
     }
 
-    @Override
     public String toString() {
         return "DellunaExpDto [exCode=" + exCode + ", memberCode=" + memberCode + ", exName=" + exName + ", exPeople="
                 + exPeople + ", exStartDate=" + exStartDate + ", exEndDate=" + exEndDate + ", exTime=" + exTime

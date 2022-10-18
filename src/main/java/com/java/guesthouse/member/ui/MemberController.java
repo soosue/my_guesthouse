@@ -1,29 +1,38 @@
 package com.java.guesthouse.member.ui;
 
+import java.util.Optional;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.java.guesthouse.aop.HomeAspect;
-import com.java.guesthouse.member.service.dto.MemberDto;
+import com.java.guesthouse.member.service.LoginService;
 import com.java.guesthouse.member.service.MemberService;
+import com.java.guesthouse.member.service.dto.KakaoLoginRequest;
+import com.java.guesthouse.member.service.dto.LoginMember;
+import com.java.guesthouse.member.service.dto.LoginRequest;
+import com.java.guesthouse.member.service.dto.MemberSaveRequest;
 
 @Controller
 public class MemberController {
 
     private final MemberService memberService;
+    private final LoginService loginService;
 
-    public MemberController(MemberService memberService) {
+    public MemberController(MemberService memberService, LoginService loginService) {
         this.memberService = memberService;
+        this.loginService = loginService;
     }
 
-    @RequestMapping(value = "/member/register.do", method = RequestMethod.GET)
-    public ModelAndView memberRegister(HttpServletRequest request, HttpServletResponse response) {
-        System.out.println("Member Register");
+    @GetMapping("/v1/members/register.page")
+    public ModelAndView registerMemberPage(HttpServletRequest request) {
 
         ModelAndView mav = new ModelAndView();
         mav.addObject("request", request);
@@ -32,87 +41,75 @@ public class MemberController {
         return mav;
     }
 
-    @RequestMapping(value = "/member/registerOk.do", method = RequestMethod.POST)
-    public ModelAndView memberRegisterOk(HttpServletRequest request, HttpServletResponse response, MemberDto memberDto) {
-        HomeAspect.logger.info(HomeAspect.logMsg + "Member Register Ok");
+    @PostMapping("/v1/members")
+    public ModelAndView saveMember(HttpServletRequest request, HttpServletResponse response, MemberSaveRequest memberSaveRequest) {
+
+        Long id = memberService.saveMember(memberSaveRequest);
 
         ModelAndView mav = new ModelAndView();
         mav.addObject("request", request);
         mav.addObject("response", response);
-        mav.addObject("memberDto", memberDto);
-
-        memberService.memberRegisterOk(mav);
-
-        return mav;
-    }
-
-    @RequestMapping(value = "/member/emailCheck.do", method = RequestMethod.GET)
-    public void memberIdCheck(HttpServletRequest request, HttpServletResponse response) {
-        HomeAspect.logger.info(HomeAspect.logMsg + "Email Check");
-
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("request", request);
-        mav.addObject("response", response);
-        memberService.memberEmailCheck(mav);
-
-    }
-
-    @RequestMapping(value = "/member/login.do", method = RequestMethod.GET)
-    public ModelAndView memberLogin(HttpServletRequest request, HttpServletResponse response) {
-        HomeAspect.logger.info(HomeAspect.logMsg + "member Login");
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("request", request);
-
-        mav.setViewName("member/login.tiles");
-
+        mav.addObject("memberDto", memberSaveRequest);
+        mav.addObject("check", id);
+        mav.setViewName("member/registerOk.tiles");
 
         return mav;
     }
 
-    @RequestMapping(value = "/member/loginOk.do", method = RequestMethod.POST)
-    public ModelAndView memberLoginOk(HttpServletRequest request, HttpServletResponse response) {
-        HomeAspect.logger.info(HomeAspect.logMsg + "member LoginOk");
+    @ResponseBody
+    @GetMapping(value = "/v1/members/check")
+    public String checkEmail(@RequestParam String email) {
 
-        String beforeURL = request.getHeader("REFERER");
-        //HomeAspect.logger.info(HomeAspect.logMsg+request.getRequestURL());
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("request", request);
-        mav.addObject("beforeURL", beforeURL);
-        memberService.memberLoginOk(mav);
+        int check = memberService.checkEmail(email);
 
-        mav.setViewName("member/loginOk.tiles");
+        return check + "";
+    }
 
+    @PostMapping(value = "/v1/members/login")
+    public ModelAndView login(HttpServletRequest request, LoginRequest loginRequest) {
+
+        Optional<LoginMember> loginMemberOptional = loginService.login(loginRequest);
+
+        HttpSession session = request.getSession();
+        loginMemberOptional.ifPresent(loginMember -> setSession(session, loginMember));
+
+        ModelAndView mav = new ModelAndView("member/loginOk.tiles");
+        mav.addObject("beforeURL", request.getHeader("REFERER"));
 
         return mav;
     }
 
-    @RequestMapping(value = "/member/logout.do", method = RequestMethod.GET)
-    public ModelAndView memberLogout(HttpServletRequest request, HttpServletResponse response) {
-        HomeAspect.logger.info(HomeAspect.logMsg + "member Logout");
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("request", request);
+    @GetMapping(value = "/v1/members/kakaologin")
+    public ModelAndView kakaoLogin(HttpServletRequest request, KakaoLoginRequest kakaoLoginRequest) {
 
-        mav.setViewName("member/logout.tiles");
+        Optional<LoginMember> loginMemberOptional = loginService.kakaoLogin(kakaoLoginRequest);
+
+        HttpSession session = request.getSession();
+        loginMemberOptional.ifPresent(loginMember -> setSession(session, loginMember));
+
+        ModelAndView mav = new ModelAndView("member/loginOk.tiles");
+        mav.addObject("beforeURL", request.getHeader("REFERER"));
 
         return mav;
     }
 
-
-    @RequestMapping(value = "/member/kakaoLogin.do", method = RequestMethod.GET)
-    public ModelAndView KakaoLogin(HttpServletRequest request, HttpServletResponse response) {
-        HomeAspect.logger.info(HomeAspect.logMsg + "kakao login");
-
-        String beforeURL = request.getHeader("REFERER");
-
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("request", request);
-        mav.addObject("beforeURL", beforeURL);
-
-        memberService.kakaoLogin(mav);
-        mav.setViewName("member/loginOk.tiles");
-        return mav;
-
+    private void setSession(HttpSession session, LoginMember member) {
+        session.setAttribute("memberLevel", member.memberLevel());
+        session.setAttribute("email", member.email());
+        session.setAttribute("memberCode", member.memberCode());
+        session.setAttribute("accessToken", member.accessToken());
     }
 
+    @GetMapping(value = "/v1/members/logout")
+    public ModelAndView logout(HttpServletRequest request) {
 
+        HttpSession session = request.getSession();
+        String accessToken = (String) session.getAttribute("accessToken");
+
+        loginService.logout(accessToken);
+
+        session.invalidate();
+
+        return new ModelAndView("member/logout.tiles");
+    }
 }

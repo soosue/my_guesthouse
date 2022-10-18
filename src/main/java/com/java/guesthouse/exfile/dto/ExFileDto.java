@@ -70,7 +70,6 @@ public class ExFileDto {
         this.mainImgName = mainImgName;
     }
 
-    @Override
     public String toString() {
         return "ExFileDto [fileCode=" + fileCode + ", exCode=" + exCode + ", fileName=" + fileName + ", filePath="
                 + filePath + ", fileSize=" + fileSize + ", mainImgName=" + mainImgName + "]";

@@ -163,7 +163,6 @@ public class ExperienceDto {
         this.houseCode = houseCode;
     }
 
-    @Override
     public String toString() {
         return "ExperienceDto [exCode=" + exCode + ", memberCode=" + memberCode + ", exName=" + exName + ", exPeople="
                 + exPeople + ", exStartDate=" + exStartDate + ", exEndDate=" + exEndDate + ", exTime=" + exTime

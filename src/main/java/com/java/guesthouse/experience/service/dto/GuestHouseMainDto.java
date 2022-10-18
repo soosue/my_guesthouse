@@ -90,7 +90,6 @@ public class GuestHouseMainDto extends ExperienceDto {
     }
 
 
-    @Override
     public String toString() {
         return "GuestHouseMainDto [fileList=" + fileList + ", houseName=" + houseName + ", houseCode=" + houseCode
                 + ", price=" + price + ", revRate=" + revRate + ", revCount=" + revCount + "]";

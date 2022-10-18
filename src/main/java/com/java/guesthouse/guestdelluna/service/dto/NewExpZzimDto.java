@@ -20,7 +20,6 @@ public class NewExpZzimDto {
         this.exStartDate = exStartDate;
     }
 
-    @Override
     public String toString() {
         return "NewExpZzimDto [exCode=" + exCode + ", exName=" + exName + ", membercode=" + membercode
                 + ", exStartDate=" + exStartDate + "]";

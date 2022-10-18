@@ -75,7 +75,6 @@ public class ExperienceMainDto extends ExperienceDto {
         this.revCount = revCount;
     }
 
-    @Override
     public String toString() {
         return "ExperienceMainDto [exFileList=" + exFileList + ", exName=" + exName + ", exCode=" + exCode
                 + ", exPrice=" + exPrice + ", revRate=" + revRate + ", revCount=" + revCount + "]";

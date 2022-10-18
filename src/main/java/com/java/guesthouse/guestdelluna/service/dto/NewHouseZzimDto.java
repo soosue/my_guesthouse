@@ -15,7 +15,6 @@ public class NewHouseZzimDto {
         this.memberCode = memberCode;
     }
 
-    @Override
     public String toString() {
         return "NewHouseZzimDto [houseCode=" + houseCode + ", houseName=" + houseName + ", memberCode=" + memberCode
                 + "]";

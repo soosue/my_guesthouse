@@ -29,7 +29,6 @@ public class SearchDateListCount {
         this.payment = payment;
     }
 
-    @Override
     public String toString() {
         return "SearchDateListCount [count=" + count + ", payment=" + payment + "]";
     }

@@ -20,7 +20,6 @@ public class NewExpReserveDto {
         this.exDate = exDate;
     }
 
-    @Override
     public String toString() {
         return "NewExpReserveDto [exReserveCode=" + exReserveCode + ", exName=" + exName + ", state=" + state
                 + ", exDate=" + exDate + "]";

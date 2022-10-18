@@ -22,7 +22,6 @@ public class MsgDto {
         this.msgCheck = msgCheck;
     }
 
-    @Override
     public String toString() {
         return "MsgDto [msgCode=" + msgCode + ", memberCode=" + memberCode + ", msgContent=" + msgContent + ", msgDate="
                 + msgDate + ", msgCheck=" + msgCheck + "]";

@@ -3,14 +3,24 @@ package com.java.guesthouse.admin.ui;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.java.guesthouse.admin.service.AdminService;
+import com.java.guesthouse.admin.service.dto.MembersResponse;
+import com.java.guesthouse.admin.service.dto.UpdateMemberRequest;
 import com.java.guesthouse.aop.HomeAspect;
-import com.java.guesthouse.member.service.dto.MemberDto;
 
 @Controller
 public class AdminController {
@@ -21,44 +31,24 @@ public class AdminController {
         this.adminService = adminService;
     }
 
-    @RequestMapping(value = "/admin/memberList.do", method = RequestMethod.GET)
-    public ModelAndView memberList(HttpServletRequest request, HttpServletResponse response) {
-        HomeAspect.logger.info(HomeAspect.logMsg + "Admin memberManagement");
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("request", request);
-
-        adminService.memberList(mav);
-        return mav;
+    @GetMapping("/v1/admin/members.page")
+    public ModelAndView membersPage() {
+        return new ModelAndView("admin/memberList.tiles");
     }
 
-    @RequestMapping(value = "/admin/adminMemberRead.do", method = RequestMethod.GET)
-    public ModelAndView memberUpdate(HttpServletRequest request, HttpServletResponse response) {
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("request", request);
-
-        adminService.memberRead(mav);
-
-        return mav;
+    @GetMapping("/v1/admin/members")
+    public ResponseEntity<MembersResponse> getMembers(
+            @PageableDefault(size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+        return ResponseEntity.ok(adminService.getMembers(pageable));
     }
 
-    @RequestMapping(value = "/admin/memberUpdateOk.do", method = RequestMethod.POST)
-    public ModelAndView memberUpdateOk(HttpServletRequest request, HttpServletResponse response, MemberDto memberDto) {
+    @PutMapping("/v1/admin/members/{id}")
+    @ResponseBody
+    public ResponseEntity<Void> updateMember(@PathVariable Long id, @RequestBody UpdateMemberRequest request) {
 
-        /*
-         * int pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
-         * HomeAspect.logger.info(HomeAspect.logMsg + pageNumber);
-         */
+        adminService.updateMember(id, request);
 
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("request", request);
-        mav.addObject("memberDto", memberDto);
-        adminService.memberUpdateOk(mav);
-
-        HomeAspect.logger.info(HomeAspect.logMsg + "adminController memberUpdateOk: " + memberDto.toString());
-        /*
-         * mav.addObject("pageNumber",pageNumber);
-         */
-        return mav;
+        return ResponseEntity.ok().build();
     }
 
     // 게스트하우스 관리

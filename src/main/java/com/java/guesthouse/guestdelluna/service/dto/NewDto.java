@@ -12,7 +12,6 @@ public class NewDto extends HouseReservationDto {
         this.houseCode = houseCode;
     }
 
-    @Override
     public String toString() {
         return "NewDto [houseCode=" + houseCode + ", toString()=" + super.toString() + "]";
     }

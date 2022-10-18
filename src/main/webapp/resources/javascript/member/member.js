@@ -1,28 +1,21 @@
+function checkEmail() {
+    let email = document.getElementById("emailAA").value;
 
-function registerForm(obj){
-	
+    let url = "/v1/members/check?";
+    let params = "email=" + email;
 
+    $.ajax({
+        url: url + params,
+        method: "get",
+        success: function (check) {
+            if (check == 1) {
+                $("#idid #id_check").text("이미 존재하는 이메일입니다. 다른 이메일을 사용하시길 바랍니다.");
+                $("#idid #id_check").css("color", "red");
+                $("#btnSubmit").attr("disabled", true);
+            } else {
+                $("#idid #id_check").text("사용가능한 이메일입니다.");
+                $("#idid #id_check").css("color", "blue");
+            }
+        }
+    });
 }
-
-
-
-
-function emailCheck(obj,root){
-	
-	if(obj.email.value==""){	//id값에 입력을 안한 경우
-		alert("이메일을 입력하세요.");
-		obj.email.focus();	//커서를 아이디에 놓아줌
-		return false;
-	}
-	
-
-	
-	var url = root +"/member/emailCheck.do?email=" + obj.email.value;	// /homePage/member/idCheck.do?id=0000 id에 0000입력한 경우
-	alert(url);													// idCheckAction으로 간 다음에 idCheck.jsp로 간다.
-	
-	open(url,"","width=400, height=400, scrollbars=yes");	// url페이지(idCheck.jsp)를 새창으로 오픈 
-}
-
-
-
-

@@ -43,7 +43,6 @@ public class RemainDto {
         this.houseCode = houseCode;
     }
 
-    @Override
     public String toString() {
         return "RemainDto [resDate=" + resDate + ", people=" + people + ", houseCode=" + houseCode + "]";
     }

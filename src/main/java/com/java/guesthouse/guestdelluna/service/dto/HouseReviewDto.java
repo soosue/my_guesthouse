@@ -66,7 +66,6 @@ public class HouseReviewDto {
         this.revRate = revRate;
     }
 
-    @Override
     public String toString() {
         return "ReviewDto [reserveCode=" + reserveCode + ", memberCode=" + memberCode + ", revDate=" + revDate
                 + ", revContent=" + revContent + ", revRate=" + revRate + "]";

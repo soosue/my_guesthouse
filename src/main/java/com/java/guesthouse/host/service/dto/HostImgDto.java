@@ -49,7 +49,6 @@ public class HostImgDto extends HostDto {
         this.fileList = fileList;
     }
 
-    @Override
     public String toString() {
         return "HostImgDto [revRate=" + revRate + ", revCount" + revCount + ", zzimed=" + zzimed + ", fileList=" + fileList + ", toString()=" + super.toString() + "]";
     }

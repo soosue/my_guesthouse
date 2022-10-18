@@ -100,7 +100,7 @@ public class SearchController {
         ModelAndView mav = new ModelAndView();
 
         //session
-        Integer memberCode = (Integer) request.getSession().getAttribute("memberCode");
+        Long memberCode = (Long) request.getSession().getAttribute("memberCode");
         HomeAspect.logger.info(HomeAspect.logMsg + "sessionMemberCode: " + memberCode);
 
         //페이징
@@ -122,7 +122,6 @@ public class SearchController {
         String local = request.getParameter("local");
         String people = request.getParameter("people");
         String searchHouseName = request.getParameter("searchHouseName");
-        HomeAspect.logger.info(HomeAspect.logMsg + "local: " + local + ", checkIn: " + checkIn + ", checkOut: " + checkOut + " ,people: " + people + ", searchHouseName: " + searchHouseName + ", sort: " + sort);
 
         mav = searchService.search(checkIn, checkOut, local, people, searchHouseName, pageNumber, memberCode, sort);
 
@@ -157,7 +156,6 @@ public class SearchController {
         String local = request.getParameter("local");
         String people = request.getParameter("people");
         String searchExName = request.getParameter("searchExName");
-        HomeAspect.logger.info(HomeAspect.logMsg + "local: " + local + ", checkIn: " + checkIn + ", checkOut: " + checkOut + " ,people: " + people + ", searchExName: " + searchExName + ", sort: " + sort);
 
         mav = searchService.searchEx(checkIn, checkOut, local, people, searchExName, pageNumber, memberCode, sort);
 

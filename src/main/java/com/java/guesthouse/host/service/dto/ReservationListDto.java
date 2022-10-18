@@ -90,7 +90,6 @@ public class ReservationListDto {
         this.people = people;
     }
 
-    @Override
     public String toString() {
         return "ReservationListDto [memberName=" + memberName + ", email=" + email + ", phone=" + phone + ", CheckIn="
                 + CheckIn + ", CheckOut=" + CheckOut + ", payment=" + payment + ", state=" + state + ", people="

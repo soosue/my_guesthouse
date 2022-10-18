@@ -1,41 +1,66 @@
 package com.java.guesthouse.admin.domain;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.java.guesthouse.experience.service.dto.ExperienceDto;
 import com.java.guesthouse.member.service.dto.MemberDto;
 
-public interface AdminDao {
+@Repository
+public class AdminDao {
 
-    // 회원관리
-    int memberCount();
+    private final SqlSessionTemplate sqlSessionTemplate;
 
-    List<MemberDto> memberList(int startRow, int endRow);
+    public AdminDao(SqlSessionTemplate sqlSessionTemplate) {
+        this.sqlSessionTemplate = sqlSessionTemplate;
+    }
 
-    MemberDto memberRead(int memberCode);
+    // 게스트 하우스 관리
+    public int houseCount() {
+        return sqlSessionTemplate.selectOne("dao.AdminMapper.houseCount");
+    }
 
-    int memberUpdateOk(MemberDto memberDto);
+    public List<MemberDto> houseList(int startRow, int endRow) {
+        Map<String, Integer> hMap = new HashMap<>();
+        hMap.put("startRow", startRow);
+        hMap.put("endRow", endRow);
 
-
-    // 게스트하우스 관리
-    int houseCount();
-
-    List<MemberDto> houseList(int startRow, int endRow);
-
-    int guestHouseStateOk(int houseCode);
-
-    int guestHouseStateNo(int houseCode);
+        return sqlSessionTemplate.selectList("dao.AdminMapper.houseList", hMap);
+    }
 
     // 체험 관리
-    int experienceCount();
+    public int experienceCount() {
+        return sqlSessionTemplate.selectOne("dao.AdminMapper.experienceCount");
+    }
 
-    List<ExperienceDto> experienceList(int startRow, int endRow);
+    public List<ExperienceDto> experienceList(int startRow, int endRow) {
+        Map<String, Integer> hMap = new HashMap<>();
+        hMap.put("startRow", startRow);
+        hMap.put("endRow", endRow);
 
-    int experienceStateOk(int exCode);
+        return sqlSessionTemplate.selectList("dao.AdminMapper.experienceList", hMap);
+    }
 
-    int experienceStateNo(int exCode);
+    public int experienceStateOk(int exCode) {
+        return sqlSessionTemplate.update("dao.AdminMapper.experienceStateOk", exCode);
+    }
 
-    int memberLevelHost(int memberCode);
+    public int experienceStateNo(int exCode) {
+        return sqlSessionTemplate.update("dao.AdminMapper.experienceStateNo", exCode);
+    }
 
+    public int guestHouseStateOk(int houseCode) {
+        // TODO Auto-generated method stub
+        return sqlSessionTemplate.update("dao.AdminMapper.guestHouseStateOk", houseCode);
+    }
 
+    public int guestHouseStateNo(int houseCode) {
+        // TODO Auto-generated method stub
+        return sqlSessionTemplate.update("dao.AdminMapper.guestHouseStateNo", houseCode);
+
+    }
 }

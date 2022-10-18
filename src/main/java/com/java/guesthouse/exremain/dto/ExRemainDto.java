@@ -42,7 +42,6 @@ public class ExRemainDto {
         this.exCode = exCode;
     }
 
-    @Override
     public String toString() {
         return "ExRemainDto [resDate=" + resDate + ", exPeople=" + exPeople + ", exCode=" + exCode + "]";
     }
