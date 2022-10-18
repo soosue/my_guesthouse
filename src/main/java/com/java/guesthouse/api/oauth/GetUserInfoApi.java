@@ -12,6 +12,8 @@ public class GetUserInfoApi {
     private static final String URI = "/v2/user/me";
     private static final String CONTENT_TYPE = "application/x-www-form-urlencoded;charset=utf-8";
     private static final String AUTHORIZATION = "Bearer ${ACCESS_TOKEN}";
+    private static final String PROPERTY_KEY_VALUE = """
+            ["kakao_account.email","properties.nickname", "properties.profile_image"]""";
 
     private WebClient webClient = WebClient.builder()
             .baseUrl(HOST)
@@ -22,8 +24,7 @@ public class GetUserInfoApi {
         return webClient.method(METHOD)
                 .uri(URI)
                 .header("Authorization", AUTHORIZATION.replace("${ACCESS_TOKEN}", accessToken))
-                .body(BodyInserters.fromFormData("property_keys", """
-                        ["kakao_account.email","properties.nickname", "properties.profile_image"]"""))
+                .body(BodyInserters.fromFormData("property_keys", PROPERTY_KEY_VALUE))
                 .retrieve()
                 .toEntity(GetUserInfoResponse.class)
                 .block()
