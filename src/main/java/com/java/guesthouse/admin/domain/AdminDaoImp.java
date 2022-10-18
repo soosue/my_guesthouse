@@ -29,12 +29,6 @@ public class AdminDaoImp implements AdminDao {
         return sqlSessionTemplate.selectList("dao.AdminMapper.memberList", hMap);
     }
 
-    @Override
-    public int memberUpdateOk(MemberDto memberDto) {
-
-        return sqlSessionTemplate.update("dao.AdminMapper.memberUpdateOk", memberDto);
-    }
-
     // 게스트 하우스 관리
     @Override
     public int houseCount() {
@@ -86,11 +80,5 @@ public class AdminDaoImp implements AdminDao {
         // TODO Auto-generated method stub
         return sqlSessionTemplate.update("dao.AdminMapper.guestHouseStateNo", houseCode);
 
-    }
-
-    @Override
-    public int memberLevelHost(int memberCode) {
-        // TODO Auto-generated method stub
-        return sqlSessionTemplate.update("dao.AdminMapper.memberLevelHost", memberCode);
     }
 }

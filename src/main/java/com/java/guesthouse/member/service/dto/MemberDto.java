@@ -1,6 +1,8 @@
 package com.java.guesthouse.member.service.dto;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+
+import com.java.guesthouse.member.domain.Member;
 
 public class MemberDto {
     private int memberCode;
@@ -8,7 +10,7 @@ public class MemberDto {
     private String email;
     private String password;
     private String phone;
-    private Date regDate;
+    private LocalDateTime regDate;
     private int point;
     private String memberLevel;
     private String memberImgName;
@@ -19,8 +21,10 @@ public class MemberDto {
     public MemberDto() {
     }
 
-    public MemberDto(int memberCode, String memberName, String email, String password, String phone, Date regDate,
-                     int point, String memberLevel, String memberImgName, String memberImgPath, long memberImgSize, String memberInfo) {
+    public MemberDto(int memberCode, String memberName, String email, String password,
+                     String phone, LocalDateTime regDate,
+                     int point, String memberLevel,
+                     String memberImgName, String memberImgPath, long memberImgSize, String memberInfo) {
 
         this.memberCode = memberCode;
         this.memberName = memberName;
@@ -34,6 +38,14 @@ public class MemberDto {
         this.memberImgPath = memberImgPath;
         this.memberImgSize = memberImgSize;
         this.memberInfo = memberInfo;
+    }
+
+    public static MemberDto from(Member member) {
+        return new MemberDto(Integer.valueOf(member.getId() + ""),
+                member.getName(), member.getEmail(), member.getPassword(),
+                member.getPhoneNumber(), member.getCreatedAt(),
+                Integer.valueOf(member.getPoint() + ""), member.getMemberLevel(),
+                member.getImageName(), member.getImagePath(), member.getImageSize(), member.getInfo());
     }
 
     public int getMemberCode() {
@@ -76,11 +88,11 @@ public class MemberDto {
         this.phone = phone;
     }
 
-    public Date getRegDate() {
+    public LocalDateTime getRegDate() {
         return regDate;
     }
 
-    public void setRegDate(Date regDate) {
+    public void setRegDate(LocalDateTime regDate) {
         this.regDate = regDate;
     }
 

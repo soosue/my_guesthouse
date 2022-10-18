@@ -28,13 +28,6 @@
         ]]>
 	</select>
 
-    <update id="memberUpdateOk" parameterType="com.java.guesthouse.member.service.dto.MemberDto">
-        UPDATE member
-        SET point=#{point},
-            member_level=#{memberLevel}
-        WHERE id = #{memberCode}
-    </update>
-
     <!-- 게스트하우스 관리 -->
     <select id="houseCount" resultType="int">
         select count(*)
@@ -91,11 +84,4 @@
         set APPROVALSTATUS='승인거절'
         where houseCode = #{houseCode}
     </update>
-
-    <update id="memberLevelHost" parameterType="int">
-        update member
-        set member_level='Host'
-        where id = #{memberCode}
-    </update>
-
 </mapper>

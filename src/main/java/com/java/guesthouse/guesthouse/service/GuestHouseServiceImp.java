@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -93,8 +94,7 @@ public class GuestHouseServiceImp implements GuestHouseService {
         MemberDto host = guestHouseDao.getHostList(hostCode);
         HomeAspect.logger.info(HomeAspect.logMsg + host.toString());
 
-        SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM");
-        String regDate = transFormat.format(host.getRegDate());
+        String regDate = host.getRegDate().format(DateTimeFormatter.ofPattern("yyyy-MM"));
         HomeAspect.logger.info(HomeAspect.logMsg + regDate);
 
         String[] arrLatLng = hostDto.getLatLng().split(",");

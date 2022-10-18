@@ -50,15 +50,60 @@ public class Member {
         return this.password.equals(password);
     }
 
+    public void updatePointAndMemberLevel(Long point, String memberLevel) {
+        this.point = point;
+        this.memberLevel = memberLevel;
+    }
+
+    public void updateToHost() {
+        this.memberLevel = "Host";
+    }
+
     public Long getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getEmail() {
         return email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public Long getPoint() {
+        return point;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public Long getImageSize() {
+        return imageSize;
+    }
+
     public String getMemberLevel() {
         return memberLevel;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 }

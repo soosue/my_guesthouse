@@ -1052,7 +1052,7 @@ public class DellunaServiceImp implements DellunaService {
         if (request.getParameter("memberCode") != null) {
             memberCode = Integer.parseInt(request.getParameter("memberCode"));
         } else {
-            memberCode = (Integer) session.getAttribute("memberCode");
+            memberCode = Integer.parseInt(session.getAttribute("memberCode") + "");
         }
         HomeAspect.logger.info(HomeAspect.logMsg + memberCode);
 

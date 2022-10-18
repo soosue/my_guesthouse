@@ -10,9 +10,6 @@ public interface AdminDao {
     // 회원관리
     List<MemberDto> memberList(int startRow, int endRow);
 
-    int memberUpdateOk(MemberDto memberDto);
-
-
     // 게스트하우스 관리
     int houseCount();
 
@@ -30,8 +27,5 @@ public interface AdminDao {
     int experienceStateOk(int exCode);
 
     int experienceStateNo(int exCode);
-
-    int memberLevelHost(int memberCode);
-
 
 }

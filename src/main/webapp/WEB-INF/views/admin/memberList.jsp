@@ -6,27 +6,20 @@
 <c:set var="root" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
-    <script src="${root}/resources/javascript/admin/admin.js" type="text/javascript" charset="utf-8"></script>
     <script>
         $(function () {
             $('#update button').on('click', function () {
                 var currentRow = $(this).closest('tr');
 
-                var memberCode = currentRow.find('td:eq(0)').text();
-                var name = currentRow.find('td:eq(1)').text();
-                var email = currentRow.find('td:eq(2)').text();
-                var phone = currentRow.find('td:eq(3)').text();
-                var regDate = currentRow.find('td:eq(4)').text();
+                var memberCode = currentRow.find('#memberCode')[0].value;
+                var name = currentRow.find('#memberName')[0].value;
                 var point = currentRow.find('td:eq(5)').text();
                 var memberLevel = currentRow.find('td:eq(6)').text();
 
-                //alert(memberCode);
-
-                $('.modal #memberCode').val(memberCode);
+                $('.modal #updateMemberCode').val(memberCode);
                 $('.modal #memberName').val(name);
                 $('.modal #point').val(point);
                 $('.modal #memberLevel').val(memberLevel);
-
             });
         });
 
@@ -74,10 +67,8 @@
             <tbody>
             <c:forEach var="memberDto" items="${memberList}">
                 <tr>
-
                     <td class="tb" value="${memberDto.memberCode}">${memberDto.memberCode}
                         <input type="hidden" id="memberName" name="memberName" value="${memberDto.memberName}"/>
-
                         <input type="hidden" id="memberCode" name="memberCode" value="${memberDto.memberCode}"/>
                     </td>
                     <td id="memberName" value="${memberDto.memberName}">${memberDto.memberName}</td>
@@ -141,8 +132,7 @@
 <div class="modal fade" id="myModal">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="${root}/admin/memberUpdateOk.do" method="post" onsubmit="return boardForm(this)"
-                  name="createForm">
+            <form>
                 <!-- Modal Header -->
                 <div class="modal-header">
                     <h4 class="modal-title">회원수정</h4>
@@ -151,11 +141,10 @@
 
                 <!-- Modal body -->
                 <div class="form-group">
-
                     <!-- memberCode는 hidden으로 값만 넘겨줌 -->
-                    <input type="hidden" name="memberCode" id="memberCode"/>
+                    <input type="hidden" name="id" id="updateMemberCode"/>
                     <div align="center" style="width: 25rem; margin-top: 3rem;">
-                        <input type="text" class="form-control" id="memberName"
+                        <input type="text" class="form-control" id="updateMemberName"
                                style="width: 5rem; float: left; margin-left: 7rem;" disabled="disabled"/>
                         <a>님의 회원 정보 수정입니다.</a>
                     </div>
@@ -179,7 +168,7 @@
                 <!-- Modal footer -->
                 <div class="modal-footer" style="margin-bottom: 1rem; padding-top: 2rem;">
                     <div style="width:10rem; margin-right: 10rem;" align="center">
-                        <button id="modalSubmit" type="submit" class="btn btn-info">수정</button>
+                        <button id="modalSubmit" type="button" class="btn btn-info">수정</button>
                         <button type="button" class="btn btn-light" data-dismiss="modal">닫기</button>
                     </div>
                 </div>
@@ -187,6 +176,33 @@
         </div>
     </div>
 </div>
-
 </body>
+<script type="text/javascript">
+    const updateButton = document.getElementById("modalSubmit");
+    const updateMemberHandler = async () => {
+        const point = document.getElementById("point").value;
+        const memberLevel = document.getElementById("memberLevel").value;
+        const memberId = document.getElementById("updateMemberCode").value;
+
+        fetch("/v1/admin/members/" + memberId, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "id":memberId,
+                "point":point,
+                "memberLevel":memberLevel
+            })
+        }).then(response => {
+            if (response.status === 200) {
+                alert("수정되었습니다");
+            } else {
+                alert("수정되지 않았습니다");
+            }
+            location.href = "/admin/memberList.do";
+        });
+    }
+    updateButton.addEventListener("click", updateMemberHandler);
+</script>
 </html>

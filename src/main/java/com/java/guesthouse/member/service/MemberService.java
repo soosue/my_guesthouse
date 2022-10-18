@@ -50,8 +50,8 @@ public class MemberService {
     }
 
     @Transactional(readOnly = true)
-    public void login(LoginRequest loginRequest, HttpServletRequest request)
-    {
+    public void login(LoginRequest loginRequest, HttpServletRequest request) {
+
         String email = loginRequest.email();
         String password = loginRequest.password();
 
@@ -91,5 +91,13 @@ public class MemberService {
         HttpSession session = request.getSession();
         setSession(session, member);
         session.setAttribute("accessToken", accessToken);
+    }
+
+    public Long count() {
+        return memberRepository.count();
+    }
+
+    public Member findById(Long id) {
+        return memberRepository.findById(id).orElseThrow(() -> new IllegalArgumentException(id + "존재하지 않는 id입니다"));
     }
 }
