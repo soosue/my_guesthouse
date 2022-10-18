@@ -38,7 +38,7 @@ public class MemberController {
         return mav;
     }
 
-    @PostMapping("/v1/member")
+    @PostMapping("/v1/members")
     public ModelAndView saveMember(HttpServletRequest request, HttpServletResponse response, MemberSaveRequest memberSaveRequest) {
 
         Long id = memberService.saveMember(memberSaveRequest);

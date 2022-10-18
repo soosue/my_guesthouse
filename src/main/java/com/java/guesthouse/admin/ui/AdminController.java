@@ -3,6 +3,9 @@ package com.java.guesthouse.admin.ui;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.java.guesthouse.admin.service.AdminService;
+import com.java.guesthouse.admin.service.dto.MembersResponse;
 import com.java.guesthouse.admin.service.dto.UpdateMemberRequest;
 import com.java.guesthouse.aop.HomeAspect;
 
@@ -27,14 +31,15 @@ public class AdminController {
         this.adminService = adminService;
     }
 
-    @RequestMapping(value = "/admin/memberList.do", method = RequestMethod.GET)
-    public ModelAndView memberList(HttpServletRequest request, HttpServletResponse response) {
-        HomeAspect.logger.info(HomeAspect.logMsg + "Admin memberManagement");
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("request", request);
+    @GetMapping("/v1/admin/members.page")
+    public ModelAndView membersPage() {
+        return new ModelAndView("admin/memberList.tiles");
+    }
 
-        adminService.memberList(mav);
-        return mav;
+    @GetMapping("/v1/admin/members")
+    public ResponseEntity<MembersResponse> getMembers(
+            @PageableDefault(size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+        return ResponseEntity.ok(adminService.getMembers(pageable));
     }
 
     @PutMapping("/v1/admin/members/{id}")

@@ -7,9 +7,6 @@ import com.java.guesthouse.member.service.dto.MemberDto;
 
 public interface AdminDao {
 
-    // 회원관리
-    List<MemberDto> memberList(int startRow, int endRow);
-
     // 게스트하우스 관리
     int houseCount();
 

@@ -5,11 +5,15 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.java.guesthouse.admin.domain.AdminDao;
+import com.java.guesthouse.admin.service.dto.MemberResponse;
+import com.java.guesthouse.admin.service.dto.MembersResponse;
 import com.java.guesthouse.admin.service.dto.UpdateMemberRequest;
 import com.java.guesthouse.aop.HomeAspect;
 import com.java.guesthouse.experience.service.dto.ExperienceDto;
@@ -27,47 +31,21 @@ public class AdminService {
         this.memberService = memberService;
     }
 
-    public void memberList(ModelAndView mav) {
+    @Transactional(readOnly = true)
+    public MembersResponse getMembers(Pageable pageable) {
 
-        Map<String, Object> map = mav.getModelMap();
-        HttpServletRequest request = (HttpServletRequest) map.get("request");
+        Page<Member> members = memberService.findAll(pageable);
 
-        String pageNumber = request.getParameter("pageNumber");
-        if (pageNumber == null) {
-            pageNumber = "1";
-        }
-        int currentPage = Integer.parseInt(pageNumber);    //요청페이지 - 시작, 끝
-        HomeAspect.logger.info(HomeAspect.logMsg + "요청페이지: " + currentPage);
-
-
-        Long count = memberService.count();
-        HomeAspect.logger.info(HomeAspect.logMsg + "총 회원 수: " + count);
-
-
-        int boardSize = 10;
-        int startRow = (currentPage - 1) * boardSize + 1;
-        int endRow = currentPage * boardSize;
-
-        List<MemberDto> memberList = null;
-
-        if (count > 0) {
-            memberList = adminDao.memberList(startRow, endRow);
-            HomeAspect.logger.info(HomeAspect.logMsg + "이 페이지 회원 갯수: " + memberList.size());
-        }
-
-        mav.addObject("boardSize", boardSize);
-        mav.addObject("currentPage", currentPage);
-        mav.addObject("count", count);
-        mav.addObject("memberList", memberList);
-
-        mav.setViewName("admin/memberList.tiles");
-
+        return MembersResponse.of(members.stream()
+                .map(MemberResponse::from)
+                .toList(),
+                members.getTotalPages());
     }
 
     @Transactional
     public void updateMember(Long id, UpdateMemberRequest request) {
-        Member member = memberService.findById(id);
 
+        Member member = memberService.findById(id);
         member.updatePointAndMemberLevel(request.point(), request.memberLevel());
     }
 
@@ -108,8 +86,8 @@ public class AdminService {
         mav.setViewName("admin/houseList.tiles");
 
     }
-    // 체험 관리
 
+    // 체험 관리
     public void experienceList(ModelAndView mav) {
 
         Map<String, Object> map = mav.getModelMap();

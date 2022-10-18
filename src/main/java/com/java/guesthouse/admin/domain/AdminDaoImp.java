@@ -19,16 +19,6 @@ public class AdminDaoImp implements AdminDao {
         this.sqlSessionTemplate = sqlSessionTemplate;
     }
 
-    // 관리자 회원관리
-    @Override
-    public List<MemberDto> memberList(int startRow, int endRow) {
-        Map<String, Integer> hMap = new HashMap<>();
-        hMap.put("startRow", startRow);
-        hMap.put("endRow", endRow);
-
-        return sqlSessionTemplate.selectList("dao.AdminMapper.memberList", hMap);
-    }
-
     // 게스트 하우스 관리
     @Override
     public int houseCount() {

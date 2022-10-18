@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -93,11 +95,18 @@ public class MemberService {
         session.setAttribute("accessToken", accessToken);
     }
 
+    @Transactional(readOnly = true)
     public Long count() {
         return memberRepository.count();
     }
 
+    @Transactional(readOnly = true)
     public Member findById(Long id) {
         return memberRepository.findById(id).orElseThrow(() -> new IllegalArgumentException(id + "존재하지 않는 id입니다"));
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Member> findAll(Pageable pageable) {
+        return memberRepository.findAll(pageable);
     }
 }

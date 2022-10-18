@@ -3,129 +3,34 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<c:set var="root" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
-    <script>
-        $(function () {
-            $('#update button').on('click', function () {
-                var currentRow = $(this).closest('tr');
-
-                var memberCode = currentRow.find('#memberCode')[0].value;
-                var name = currentRow.find('#memberName')[0].value;
-                var point = currentRow.find('td:eq(5)').text();
-                var memberLevel = currentRow.find('td:eq(6)').text();
-
-                $('.modal #updateMemberCode').val(memberCode);
-                $('.modal #memberName').val(name);
-                $('.modal #point').val(point);
-                $('.modal #memberLevel').val(memberLevel);
-            });
-        });
-
-
-    </script>
     <title>List</title>
 </head>
 <body>
-
-<input type="hidden" name="memberCode" value="${memberCode}"/>
-<input type="hidden" name="pageNumber" value="${pageNumber}"/>
-<table class="table">
-    <tr>
-        <td align="center" bgcolor="pink">
-            <div>회원의 포인트와 회원등급 수정이 가능합니다.</div>
-        </td>
-    </tr>
-</table>
-
-<c:if test="${count == 0 || memberList.size() == 0}">
-    <table>
-        <tr>
-            <td align="center">게시판에 저장된 글이 없습니다.</td>
-        </tr>
-    </table>
-</c:if>
-
+<div style="background-color: pink; height: 50px; text-align: center; line-height : 50px">회원의 포인트와 회원등급 수정이 가능합니다.</div>
 <div class="container">
-    <c:if test="${count > 0 }">
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <td>회원번호</td>
-                <td>이름</td>
-                <td>이메일</td>
-                <td>전화</td>
-                <td>가입일자</td>
-                <td>포인트</td>
-                <td>회원등급</td>
-                <td>수정</td>
-
-            </tr>
-            </thead>
-
-            <tbody>
-            <c:forEach var="memberDto" items="${memberList}">
-                <tr>
-                    <td class="tb" value="${memberDto.memberCode}">${memberDto.memberCode}
-                        <input type="hidden" id="memberName" name="memberName" value="${memberDto.memberName}"/>
-                        <input type="hidden" id="memberCode" name="memberCode" value="${memberDto.memberCode}"/>
-                    </td>
-                    <td id="memberName" value="${memberDto.memberName}">${memberDto.memberName}</td>
-
-                    <td>${memberDto.email}</td>
-                    <td>${memberDto.phone}</td>
-                    <td>${memberDto.regDate}</td>
-                    <td>${memberDto.point}</td>
-                    <td>${memberDto.memberLevel}</td>
-                    <td id="update">
-                        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal"><i
-                                class="fa fa-pencil"></i></button>
-                    </td>
-
-
-                </tr>
-
-
-            </c:forEach>
-            </tbody>
-        </table>
-    </c:if>
+    <table class="table table-hover" id="membersTable">
+        <thead>
+        <tr>
+            <td>회원번호</td>
+            <td>이름</td>
+            <td>이메일</td>
+            <td>전화</td>
+            <td>가입일자</td>
+            <td>포인트</td>
+            <td>회원등급</td>
+            <td>수정</td>
+        </tr>
+        </thead>
+        <tbody id="membersBody">
+        <td colspan="8" style="text-align: center">게시판에 저장된 글이 없습니다.</td>
+        </tbody>
+    </table>
 </div>
-
 <br/>
-
 <div class="text-center">
-    <ul class="pagination justify-content-center">
-        <c:if test="${count > 0 }">
-            <c:set var="pageBlock" value="${10}"/>
-            <c:set var="pageCount" value="${count/boardSize+(count%boardSize==0 ? 0:1)}"/>
-
-            <fmt:parseNumber var="result" value="${(currentPage-1)/pageBlock}" integerOnly="true"/>
-            <c:set var="startPage" value="${result*pageBlock+1}"/>
-            <c:set var="endPage" value="${startPage+pageBlock-1}"/>
-
-            <c:if test="${endPage > pageCount}">
-                <c:set var="endPage" value="${pageCount}"/>
-            </c:if>
-
-            <c:if test="${startPage > pageBlock}">
-                <li class="page-item"><a class="page-link"
-                                         href="${root}/admin/memberList.do?pageNumber=${startPage-pageBlock}">이전</a>
-                </li>
-            </c:if>
-
-            <c:forEach var="i" begin="${startPage}" end="${endPage}">
-                <li class="page-item"><a class="page-link" href="${root}/admin/memberList.do?pageNumber=${i}">${i}</a>
-                <li>
-            </c:forEach>
-
-            <c:if test="${endPage > pageCount}">
-                <li><a href="${root}/admin/memberList.do?pageNumber=${startPage+pageBlock}">다음</a></li>
-            </c:if>
-
-        </c:if>
-    </ul>
+    <ul id="pagination" class="pagination justify-content-center"></ul>
 </div>
 
 <!-- 모달페이지 -->
@@ -178,6 +83,113 @@
 </div>
 </body>
 <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const getMembers = async (page = 1) => {
+            page -= 1;
+
+            const json = await (await fetch("/v1/admin/members?page=" + page)).json();
+
+            const memberRow = ({id, name, email, phoneNumber, createdAt, point, memberLevel}) => {
+                return `<tr>
+                    <td class="tb" value="\${id}">\${id}
+                    <input type="hidden" id="memberName" name="memberName" value="\${name}"/>
+                    <input type="hidden" id="memberCode" name="memberCode" value="\${id}"/>
+                    </td>
+                    <td id="memberName" value="\${name}">\${name}</td>
+                    <td>\${email}</td>
+                    <td>\${phoneNumber}</td>
+                    <td>\${createdAt}</td>
+                    <td>\${point}</td>
+                    <td>\${memberLevel}</td>
+                    <td id="update">
+                        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                    </td>
+                    </tr>`;
+            };
+
+            if (json.members.length != 0) {
+                const newTbody = document.createElement("tbody");
+                newTbody.setAttribute("id", "membersBody");
+                json.members.forEach(member => newTbody.innerHTML += memberRow(member));
+
+                const table = document.getElementById("membersTable");
+                const oldTbody = document.getElementById("membersBody");
+                table.replaceChild(newTbody, oldTbody);
+
+                $('#update button').on('click', function () {
+                    var currentRow = $(this).closest('tr');
+
+                    var memberCode = currentRow.find('#memberCode')[0].value;
+                    var name = currentRow.find('#memberName')[0].value;
+                    var point = currentRow.find('td:eq(5)').text();
+                    var memberLevel = currentRow.find('td:eq(6)').text();
+
+                    $('.modal #updateMemberCode').val(memberCode);
+                    $('.modal #memberName').val(name);
+                    $('.modal #point').val(point);
+                    $('.modal #memberLevel').val(memberLevel);
+                });
+            }
+
+            const pagination = document.getElementById("pagination");
+
+            let pageBlockSize = 3;
+            let currentPage = page + 1;
+            let totalPages = json.pageInfo.totalPages;
+
+            let currentBlock = Math.floor((currentPage - 1) / pageBlockSize);
+            let startPage = currentBlock * pageBlockSize + 1;
+            let endPage = startPage + pageBlockSize - 1;
+            if (endPage > totalPages) {
+                endPage = totalPages;
+            }
+
+            let pageBtn = "";
+
+            const pageComponent = ({text, pageNumber, bold = false}) => {
+                return `<li class="page-item"><a class="page-link" data-page="\${pageNumber}" \${bold ? `
+                style = "font-weight: bold"` : ""}>\${text}</a><li>`;
+            }
+
+            if (currentBlock > 0) {
+                pageBtn += pageComponent({
+                    "text": "이전",
+                    "pageNumber": startPage - pageBlockSize
+                });
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                pageBtn += pageComponent({
+                    "text": i,
+                    "pageNumber": i,
+                    "bold": i === currentPage
+                });
+            }
+
+            if (endPage !== totalPages) {
+                pageBtn += pageComponent({
+                    "text": "다음",
+                    "pageNumber": startPage + pageBlockSize
+                });
+            }
+
+            pagination.innerHTML = pageBtn;
+        }
+        const pagination = document.getElementById("pagination");
+        const pageClick = (event) => {
+            if (event.target.className === "page-link") {
+                getMembers(event.target.dataset.page);
+            }
+        }
+        pagination.addEventListener("click", pageClick);
+
+        getMembers();
+    })
+</script>
+<script type="text/javascript">
     const updateButton = document.getElementById("modalSubmit");
     const updateMemberHandler = async () => {
         const point = document.getElementById("point").value;
@@ -190,9 +202,9 @@
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                "id":memberId,
-                "point":point,
-                "memberLevel":memberLevel
+                "id": memberId,
+                "point": point,
+                "memberLevel": memberLevel
             })
         }).then(response => {
             if (response.status === 200) {
@@ -200,7 +212,7 @@
             } else {
                 alert("수정되지 않았습니다");
             }
-            location.href = "/admin/memberList.do";
+            location.href = "/v1/admin/members.page";
         });
     }
     updateButton.addEventListener("click", updateMemberHandler);

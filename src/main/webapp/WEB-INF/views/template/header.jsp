@@ -139,11 +139,6 @@
                 <li class="nav-item"><a class="nav-link" href="${root}/guestdelluna/myInfo.do">마이페이지</a></li>
 
                 <c:if test="${memberLevel =='Admin'}">
-                    <!-- <li class="nav-item"><a class="nav-link" href="${root}/admin/experienceList.do">체험 관리</a></li>
-                    <li class="nav-item"><a class="nav-link" href="${root}/admin/houseList.do">게스트하우스 관리(등록 승인, 취소)</a></li>
-                    <li class="nav-item"><a class="nav-link" href="${root}/admin/memberList.do">회원관리</a></li>
-                    -->
-
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                             관리자
@@ -151,7 +146,7 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="${root}/admin/experienceList.do">체험 관리</a>
                             <a class="dropdown-item" href="${root}/admin/houseList.do">게스트하우스 관리</a>
-                            <a class="dropdown-item" href="${root}/admin/memberList.do">회원관리</a>
+                            <a class="dropdown-item" href="/v1/admin/members.page">회원관리</a>
                         </div>
                     </li>
                 </c:if>
