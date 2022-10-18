@@ -93,7 +93,6 @@ public class ExReserveDto {
         this.exDate = exDate;
     }
 
-    @Override
     public String toString() {
         return "ExReserveDto [exReserveCode=" + exReserveCode + ", memberCode=" + memberCode + ", exCode=" + exCode
                 + ", exPeople=" + exPeople + ", reserveDate=" + reserveDate + ", exPayment=" + exPayment + ", state="

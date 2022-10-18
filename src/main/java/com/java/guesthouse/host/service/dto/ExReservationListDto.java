@@ -82,7 +82,6 @@ public class ExReservationListDto {
         this.exPeople = exPeople;
     }
 
-    @Override
     public String toString() {
         return "ExReservationListDto [memberName=" + memberName + ", email=" + email + ", phone=" + phone
                 + ", reserveDate=" + reserveDate + ", exPayment=" + exPayment + ", state=" + state + ", exPeople="

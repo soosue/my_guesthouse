@@ -72,7 +72,6 @@ public class GHouseReviewListDto {
         this.email = email;
     }
 
-    @Override
     public String toString() {
         return "HouseReviewListDto [reserveCode=" + reserveCode + ", memberCode=" + memberCode + ", revDate=" + revDate
                 + ", revContent=" + revContent + ", revRate=" + revRate + ", email=" + email + "]";

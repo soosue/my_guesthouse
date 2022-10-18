@@ -25,7 +25,6 @@ public class NewExpReviewDto {
         this.exCode = exCode;
     }
 
-    @Override
     public String toString() {
         return "NewExpReviewDto [exReserveCode=" + exReserveCode + ", revDate=" + revDate + ", revContent=" + revContent
                 + ", exName=" + exName + ", mainImgName=" + mainImgName + ", exCode=" + exCode + "]";

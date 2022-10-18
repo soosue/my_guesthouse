@@ -367,7 +367,6 @@ public class HouseDto {
         this.houseRegDate = houseRegDate;
     }
 
-    @Override
     public String toString() {
         return "HouseDto [houseCode=" + houseCode + ", memberCode=" + memberCode + ", houseName=" + houseName
                 + ", zipCode=" + zipCode + ", explain=" + explain + ", bath=" + bath + ", etc=" + etc + ", checkIn="

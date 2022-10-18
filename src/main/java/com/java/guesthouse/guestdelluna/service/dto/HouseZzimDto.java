@@ -30,7 +30,6 @@ public class HouseZzimDto {
         this.houseCode = houseCode;
     }
 
-    @Override
     public String toString() {
         return "HouseZzimDto [memberCode=" + memberCode + ", houseCode=" + houseCode + "]";
     }

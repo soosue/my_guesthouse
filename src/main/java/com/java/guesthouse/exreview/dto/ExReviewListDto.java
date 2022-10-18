@@ -73,7 +73,6 @@ public class ExReviewListDto {
         this.email = email;
     }
 
-    @Override
     public String toString() {
         return "ExReviewListDto [exReserveCode=" + exReserveCode + ", memberCode=" + memberCode + ", revDate=" + revDate
                 + ", revContent=" + revContent + ", revRate=" + revRate + ", email=" + email + "]";

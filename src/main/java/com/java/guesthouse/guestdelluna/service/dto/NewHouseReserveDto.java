@@ -21,7 +21,6 @@ public class NewHouseReserveDto {
         this.checkOut = checkOut;
     }
 
-    @Override
     public String toString() {
         return "NewHouseReserveDto [reserveCode=" + reserveCode + ", houseName=" + houseName + ", state=" + state
                 + ", checkIn=" + checkIn + ", checkOut=" + checkOut + "]";

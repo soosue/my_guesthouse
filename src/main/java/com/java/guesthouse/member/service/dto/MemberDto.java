@@ -144,7 +144,6 @@ public class MemberDto {
         this.memberInfo = memberInfo;
     }
 
-    @Override
     public String toString() {
         return "MemberDto [memberCode=" + memberCode + ", memberName=" + memberName + ", email=" + email + ", password="
                 + password + ", phone=" + phone + ", regDate=" + regDate + ", point=" + point + ", memberLevel="

@@ -51,7 +51,6 @@ public class MyExReviewList {
         this.revDate = revDate;
     }
 
-    @Override
     public String toString() {
         return "MyExReviewList [exName=" + exName + ", mainImgName=" + mainImgName + ", revContent=" + revContent
                 + ", revDate=" + revDate + "]";

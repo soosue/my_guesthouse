@@ -38,7 +38,6 @@ public class GetCountDto {
         this.min = min;
     }
 
-    @Override
     public String toString() {
         return "GetCountDto [count=" + count + ", max=" + max + ", min=" + min + "]";
     }

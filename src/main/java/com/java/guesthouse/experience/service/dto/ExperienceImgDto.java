@@ -59,7 +59,6 @@ public class ExperienceImgDto extends ExperienceDto {
         this.exFileList = exFileList;
     }
 
-    @Override
     public String toString() {
         return "HostImgDto [revRate=" + revRate + ", revCount" + revCount + ", zzimed=" + zzimed + ", exFileList=" + exFileList + ", latLng=" + latLng + ", toString()=" + super.toString() + "]";
     }

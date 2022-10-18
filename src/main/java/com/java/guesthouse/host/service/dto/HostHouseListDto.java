@@ -59,7 +59,6 @@ public class HostHouseListDto {
         this.houseCode = houseCode;
     }
 
-    @Override
     public String toString() {
         return "HostHouseListDto [houseCode=" + houseCode + ", houseName=" + houseName + ", mainImgName=" + mainImgName
                 + ", revRate=" + revRate + ", reviewCount=" + reviewCount + "]";

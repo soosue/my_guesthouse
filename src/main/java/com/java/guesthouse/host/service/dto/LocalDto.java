@@ -30,7 +30,6 @@ public class LocalDto {
         this.local = local;
     }
 
-    @Override
     public String toString() {
         return "LocalDto [name=" + name + ", local=" + local + "]";
     }

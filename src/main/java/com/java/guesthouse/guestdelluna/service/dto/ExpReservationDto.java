@@ -32,7 +32,6 @@ public class ExpReservationDto {
     }
 
 
-    @Override
     public String toString() {
         return "ExpReservationDto [exReserveCode=" + exReserveCode + ", exPeople=" + exPeople + ", exDate=" + exDate
                 + ", exPayment=" + exPayment + ", memberCode=" + memberCode + ", exCode=" + exCode + ", exRegDate="

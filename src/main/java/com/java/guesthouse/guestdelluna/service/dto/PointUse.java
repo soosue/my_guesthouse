@@ -22,7 +22,6 @@ public class PointUse {
         this.usePoint = usePoint;
     }
 
-    @Override
     public String toString() {
         return "PointUse [useCode=" + useCode + ", memberCode=" + memberCode + ", usePlace=" + usePlace + ", useDate="
                 + useDate + ", usePoint=" + usePoint + "]";

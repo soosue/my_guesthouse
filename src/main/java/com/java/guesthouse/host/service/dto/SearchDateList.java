@@ -51,7 +51,6 @@ public class SearchDateList {
         this.payment = payment;
     }
 
-    @Override
     public String toString() {
         return "SearchDateList [reserveDate=" + reserveDate + ", memberName=" + memberName + ", people=" + people
                 + ", payment=" + payment + "]";

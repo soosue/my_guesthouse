@@ -22,7 +22,6 @@ public class ExpReviewDto {
         this.revRate = revRate;
     }
 
-    @Override
     public String toString() {
         return "ExpReviewDto [exReserveCode=" + exReserveCode + ", memberCode=" + memberCode + ", revDate=" + revDate
                 + ", revContent=" + revContent + ", revRate=" + revRate + "]";

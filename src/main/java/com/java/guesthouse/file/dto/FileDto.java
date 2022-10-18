@@ -70,7 +70,6 @@ public class FileDto {
         this.mainImgName = mainImgName;
     }
 
-    @Override
     public String toString() {
         return "FileDto [fileCode=" + fileCode + ", fileName=" + fileName + ", filePath=" + filePath + ", fileSize="
                 + fileSize + ", houseCode=" + houseCode + ", mainImgName=" + mainImgName + "]";

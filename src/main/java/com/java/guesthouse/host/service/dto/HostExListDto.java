@@ -59,7 +59,6 @@ public class HostExListDto {
         this.exCode = exCode;
     }
 
-    @Override
     public String toString() {
         return "HostExListDto [exCode=" + exCode + ", exName=" + exName + ", mainImgName=" + mainImgName + ", revRate="
                 + revRate + ", reviewCount=" + reviewCount + "]";

@@ -31,7 +31,6 @@ public class HouseReservationDto {
         this.state = state;
     }
 
-    @Override
     public String toString() {
         return "HouseReservationDto [reserveCode=" + reserveCode + ", people=" + people + ", reserveDate=" + reserveDate
                 + ", checkIn=" + checkIn + ", checkOut=" + checkOut + ", payment=" + payment + ", memberCode="

@@ -22,7 +22,6 @@ public class PointAccumulate {
         this.accuPoint = accuPoint;
     }
 
-    @Override
     public String toString() {
         return "PointAccumulate [accuCode=" + accuCode + ", memberCode=" + memberCode + ", accuPlace=" + accuPlace
                 + ", accuDate=" + accuDate + ", accuPoint=" + accuPoint + "]";

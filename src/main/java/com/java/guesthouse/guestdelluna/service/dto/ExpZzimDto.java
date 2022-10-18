@@ -30,7 +30,6 @@ public class ExpZzimDto {
         this.memberCode = memberCode;
     }
 
-    @Override
     public String toString() {
         return "ExpZzimDto [exCode=" + exCode + ", memberCode=" + memberCode + "]";
     }

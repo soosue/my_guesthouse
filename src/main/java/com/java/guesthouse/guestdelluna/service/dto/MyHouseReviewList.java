@@ -51,7 +51,6 @@ public class MyHouseReviewList {
         this.revDate = revDate;
     }
 
-    @Override
     public String toString() {
         return "MyHouseReviewList [houseName=" + houseName + ", mainImgName=" + mainImgName + ", revContent="
                 + revContent + ", revDate=" + revDate + "]";

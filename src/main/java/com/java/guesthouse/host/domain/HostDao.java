@@ -1,6 +1,11 @@
 package com.java.guesthouse.host.domain;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.java.guesthouse.experience.service.dto.ExperienceDto;
 import com.java.guesthouse.file.dto.FileDto;
@@ -12,61 +17,153 @@ import com.java.guesthouse.host.service.dto.SearchDateList;
 import com.java.guesthouse.host.service.dto.SearchDateListCount;
 import com.java.guesthouse.member.service.dto.MemberDto;
 
-public interface HostDao {
+@Repository
+public class HostDao {
+    private final SqlSessionTemplate sqlSession;
 
-    int subImgUpload(FileDto fileDto);
+    public HostDao(SqlSessionTemplate sqlSession) {
+        this.sqlSession = sqlSession;
+    }
 
-    int hostRegister(HostDto hostDto);
+    public int subImgUpload(FileDto fileDto) {
+        return sqlSession.insert("host.dao.mapper.subImgUpload", fileDto);
+    }
 
-    int memberProfileImg(MemberDto memberDto);
+    public int hostRegister(HostDto hostDto) {
+        return sqlSession.insert("host.dao.mapper.hostRegister", hostDto);
+    }
 
-    int memberCode(String email);
+    public int memberProfileImg(MemberDto memberDto) {
+        return sqlSession.update("host.dao.mapper.memberProfileUpdate", memberDto);
+    }
 
-    int mainImgUpload(FileDto fileDto);
+    public int memberCode(String email) {
+        return sqlSession.selectOne("host.dao.mapper.memberCode", email);
+    }
 
-    int houseCode();
+    public int mainImgUpload(FileDto fileDto) {
+        return sqlSession.insert("host.dao.mapper.mainImgUpload", fileDto);
+    }
 
-    List<HostDto> houseList(int memberCode, int startRow, int endRow);
+    public int houseCode() {
+        return sqlSession.selectOne("host.dao.mapper.houseCode");
+    }
 
-    int hostCancel(int houseCode);
+    public List<HostDto> houseList(int memberCode, int startRow, int endRow) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("memberCode", memberCode);
+        map.put("startRow", startRow);
+        map.put("endRow", endRow);
+        return sqlSession.selectList("host.dao.mapper.houseList", map);
+    }
 
-    List<String> houseNameList(int memberCode);
+    public int hostCancel(int houseCode) {
+        return sqlSession.update("host.dao.mapper.hostCancel", houseCode);
+    }
 
-    int getHouseCode(String houseName);
+    public int exCancel(int exCode) {
+        return sqlSession.update("host.dao.mapper.exCancel", exCode);
+    }
 
-    List<ReservationListDto> reserveViewList(int houseCode, int startRow, int endRow);
+    public List<String> houseNameList(int memberCode) {
+        return sqlSession.selectList("host.dao.mapper.houseNameList", memberCode);
+    }
 
-    int getHouseCount(String email);
+    public List<String> exNameList(int memberCode) {
+        return sqlSession.selectList("host.dao.mapper.exNameList", memberCode);
+    }
 
-    int getReserveCount(int houseCode);
+    public int getHouseCode(String houseName) {
+        return sqlSession.selectOne("host.dao.mapper.getHouseCode", houseName);
+    }
 
-    int getExCount(int memberCode);
+    public int getExCode(String exName) {
+        return sqlSession.selectOne("host.dao.mapper.getExCode", exName);
+    }
 
-    List<ExperienceDto> experienceList(int memberCode, int startRow, int endRow);
+    public List<ReservationListDto> reserveViewList(int houseCode, int startRow, int endRow) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("houseCode", houseCode);
+        map.put("startRow", startRow);
+        map.put("endRow", endRow);
+        return sqlSession.selectList("host.dao.mapper.reserveViewList", map);
+    }
 
-    List<GuestReserveDto> getSales(int memberCode);
+    public List<ExReservationListDto> exReserveViewList(int exCode, int startRow, int endRow) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("exCode", exCode);
+        map.put("startRow", startRow);
+        map.put("endRow", endRow);
+        return sqlSession.selectList("host.dao.mapper.exReserveViewList", map);
+    }
 
-    SearchDateListCount getSearchDateCount(int memberCode, String startDate, String endDate);
 
-    List<SearchDateList> searchDateList(int memberCode, String startDate, String endDate, int startRow,
-                                        int endRow);
+    public int getHouseCount(String email) {
+        return sqlSession.selectOne("host.dao.mapper.getHouseCount", email);
+    }
 
-    MemberDto selectMemberDto(int memberCode);
+    public int getReserveCount(int houseCode) {
+        return sqlSession.selectOne("host.dao.mapper.getReserveCount", houseCode);
+    }
 
-    List<HostDto> ahouseList(int memberCode);
+    public int getExReserveCount(int exCode) {
+        return sqlSession.selectOne("host.dao.mapper.getExReserveCount", exCode);
+    }
 
-    int exCancel(int exCode);
+    public int getExCount(int memberCode) {
+        return sqlSession.selectOne("host.dao.mapper.getExCount", memberCode);
+    }
 
-    List<String> exNameList(int memberCode);
+    public List<ExperienceDto> experienceList(int memberCode, int startRow, int endRow) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("memberCode", memberCode);
+        map.put("startRow", startRow);
+        map.put("endRow", endRow);
+        return sqlSession.selectList("host.dao.mapper.experienceList", map);
+    }
 
-    int getExCode(String exName);
+    public List<GuestReserveDto> getSales(int memberCode) {
+        return sqlSession.selectList("host.dao.mapper.getSales", memberCode);
+    }
 
-    int getExReserveCount(int exCode);
+    public SearchDateListCount getSearchDateCount(int memberCode, String startDate, String endDate) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("memberCode", memberCode);
+        map.put("startDate", startDate);
+        map.put("endDate", endDate);
+        return sqlSession.selectOne("host.dao.mapper.getSearchDateCount", map);
+    }
 
-    List<ExReservationListDto> exReserveViewList(int exCode, int startRow, int endRow);
+    public List<SearchDateList> searchDateList(int memberCode, String startDate, String endDate, int startRow,
+                                               int endRow) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("memberCode", memberCode);
+        map.put("startDate", startDate);
+        map.put("endDate", endDate);
+        map.put("startRow", startRow);
+        map.put("endRow", endRow);
+        return sqlSession.selectList("host.dao.mapper.searchDateList", map);
+    }
 
-    String getLocal(String localName);
+    public MemberDto selectMemberDto(int memberCode) {
+        return sqlSession.selectOne("host.dao.mapper.selectMemberDto", memberCode);
+    }
 
-    int houseNameCheck(String houseName);
+    public List<HostDto> ahouseList(int memberCode) {
+        return sqlSession.selectList("host.dao.mapper.ahouseList", memberCode);
+    }
+
+    public String getLocal(String localName) {
+        return sqlSession.selectOne("host.dao.mapper.getLocal", localName);
+    }
+
+    public int houseNameCheck(String houseName) {
+        int check = 0;
+        String checkHouseName = sqlSession.selectOne("host.dao.mapper.houseNameCheck", houseName);
+        if (checkHouseName != null) check = 1;
+
+        return check;
+    }
+
 
 }
