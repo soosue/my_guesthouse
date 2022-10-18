@@ -1,5 +1,7 @@
 package com.java.guesthouse.member.ui;
 
+import java.util.Optional;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.java.guesthouse.member.service.LoginService;
 import com.java.guesthouse.member.service.MemberService;
 import com.java.guesthouse.member.service.dto.KakaoLoginRequest;
+import com.java.guesthouse.member.service.dto.LoginMember;
 import com.java.guesthouse.member.service.dto.LoginRequest;
 import com.java.guesthouse.member.service.dto.MemberSaveRequest;
 
@@ -65,12 +68,36 @@ public class MemberController {
     @PostMapping(value = "/v1/members/login")
     public ModelAndView login(HttpServletRequest request, LoginRequest loginRequest) {
 
-        memberService.login(loginRequest, request);
+        Optional<LoginMember> loginMemberOptional = loginService.login(loginRequest);
+
+        HttpSession session = request.getSession();
+        loginMemberOptional.ifPresent(loginMember -> setSession(session, loginMember));
 
         ModelAndView mav = new ModelAndView("member/loginOk.tiles");
         mav.addObject("beforeURL", request.getHeader("REFERER"));
 
         return mav;
+    }
+
+    @GetMapping(value = "/v1/members/kakaologin")
+    public ModelAndView kakaoLogin(HttpServletRequest request, KakaoLoginRequest kakaoLoginRequest) {
+
+        Optional<LoginMember> loginMemberOptional = loginService.kakaoLogin(kakaoLoginRequest);
+
+        HttpSession session = request.getSession();
+        loginMemberOptional.ifPresent(loginMember -> setSession(session, loginMember));
+
+        ModelAndView mav = new ModelAndView("member/loginOk.tiles");
+        mav.addObject("beforeURL", request.getHeader("REFERER"));
+
+        return mav;
+    }
+
+    private void setSession(HttpSession session, LoginMember member) {
+        session.setAttribute("memberLevel", member.memberLevel());
+        session.setAttribute("email", member.email());
+        session.setAttribute("memberCode", member.memberCode());
+        session.setAttribute("accessToken", member.accessToken());
     }
 
     @GetMapping(value = "/v1/members/logout")
@@ -84,16 +111,5 @@ public class MemberController {
         session.invalidate();
 
         return new ModelAndView("member/logout.tiles");
-    }
-
-    @GetMapping(value = "/v1/members/kakaologin")
-    public ModelAndView kakaoLogin(HttpServletRequest request, KakaoLoginRequest kakaoLoginRequest) {
-
-        memberService.kakaoLogin(kakaoLoginRequest, request);
-
-        ModelAndView mav = new ModelAndView("member/loginOk.tiles");
-        mav.addObject("beforeURL", request.getHeader("REFERER"));
-
-        return mav;
     }
 }
