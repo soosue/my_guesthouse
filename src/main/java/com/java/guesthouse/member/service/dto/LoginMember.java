@@ -11,6 +11,9 @@ public record LoginMember(
         String accessToken
 ) {
     public static Optional<LoginMember> optionalOf(Member member, String accessToken) {
+        if (member == null) {
+            return Optional.empty();
+        }
         return Optional.of(new LoginMember(member.getId(), member.getEmail(), member.getMemberLevel(), accessToken));
     }
 
