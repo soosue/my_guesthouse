@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONValue;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.java.guesthouse.aop.HomeAspect;
@@ -32,20 +33,21 @@ import com.java.guesthouse.guestreserve.dto.GHouseReviewListDto;
 import com.java.guesthouse.guestreserve.dto.GuestReserveDto;
 import com.java.guesthouse.guestreserve.dto.RemainDto;
 import com.java.guesthouse.host.service.dto.HostDto;
+import com.java.guesthouse.member.domain.Member;
+import com.java.guesthouse.member.service.MemberService;
 import com.java.guesthouse.member.service.dto.MemberDto;
 
 @Service
 public class GuestHouseService {
 
     private final GuestHouseDao guestHouseDao;
-    // TODO 추후에 고치겠습니다. Bean 인데 왜 이렇게 변수를 선언했을까요...
-    String email;
+    private final MemberService memberService;
+    // TODO hostDto는 로직에 문제가 있어서 지우지 못함
     HostDto hostDto;
-    List<FileDto> fileList;
-    int memberPoint;
 
-    public GuestHouseService(GuestHouseDao guestHouseDao) {
+    public GuestHouseService(GuestHouseDao guestHouseDao, MemberService memberService) {
         this.guestHouseDao = guestHouseDao;
+        this.memberService = memberService;
     }
 
     public void guestHouseRead(ModelAndView mav) {
@@ -62,15 +64,16 @@ public class GuestHouseService {
 
 
         hostDto = guestHouseDao.getHostInfo(houseCode);
+//        HostDto hostDto = guestHouseDao.getHostInfo(houseCode);
         HomeAspect.logger.info(HomeAspect.logMsg + hostDto.toString());
 
-        fileList = guestHouseDao.guestHouseImg(houseCode);
+        List<FileDto> fileList = guestHouseDao.guestHouseImg(houseCode);
         HomeAspect.logger.info(HomeAspect.logMsg + fileList.toString());
 
 
         HttpSession session = request.getSession();
 
-        email = (String) session.getAttribute("email");
+        String email = (String) session.getAttribute("email");
         HomeAspect.logger.info(HomeAspect.logMsg + "email: " + email);
 
         MemberDto member = guestHouseDao.getMemberInfo(email);
@@ -488,6 +491,8 @@ public class GuestHouseService {
         HomeAspect.logger.info(HomeAspect.logMsg + sum);
         int check = 0;
 
+        HostDto hostDto = guestHouseDao.getHostInfo(houseCode);
+
         int limit = hostDto.getPeople();        // 1
         if (limit >= (sum + people)) {            // 1 > 0 +
             check = 1;
@@ -551,14 +556,14 @@ public class GuestHouseService {
 
         HomeAspect.logger.info(HomeAspect.logMsg + houseCode + "," + memberCode + "," + stCheckIn + "," + stCheckOut + "," + people);
 
-//		HostDto hostDto = guestHouseDao.getHostInfo(houseCode);
+        HostDto hostDto = guestHouseDao.getHostInfo(houseCode);
         HomeAspect.logger.info(HomeAspect.logMsg + hostDto.toString());
 
         int hostMemberCode = hostDto.getMemberCode();
         HomeAspect.logger.info(HomeAspect.logMsg + hostMemberCode);
 
-        HomeAspect.logger.info(HomeAspect.logMsg + email);
-        memberPoint = guestHouseDao.getPoint(email);
+        Member member = memberService.findById((long) memberCode);
+        long memberPoint = member.getPoint();
         HomeAspect.logger.info(HomeAspect.logMsg + memberPoint);
 
         int total = hostDto.getPrice() * night * people;
@@ -567,6 +572,7 @@ public class GuestHouseService {
         //HomeAspect.logger.info(HomeAspect.logMsg + fileList.toString());
 
         String mainImg = null;
+        List<FileDto> fileList = new ArrayList<>();
         for (int i = 0; i < fileList.size(); i++) {
             if (fileList.get(i).getMainImgName() != null) {
                 mainImg = fileList.get(i).getMainImgName();
@@ -597,6 +603,7 @@ public class GuestHouseService {
     }
 
     /* 무통장 입금 예약 완료 */
+    @Transactional
     public void reservComplete(ModelAndView mav) {
         Map<String, Object> map = mav.getModelMap();
         HttpServletRequest request = (HttpServletRequest) map.get("request");
@@ -665,6 +672,7 @@ public class GuestHouseService {
 
         // 게스트하우스 사진
         String mainImg = null;
+        List<FileDto> fileList = new ArrayList<>();
         for (int i = 0; i < fileList.size(); i++) {
             if (fileList.get(i).getMainImgName() != null) {
                 mainImg = fileList.get(i).getMainImgName();
@@ -693,7 +701,7 @@ public class GuestHouseService {
         // message 테이블
         MsgDto msgDto = new MsgDto();
 
-        msgDto.setMemberCode(guestHouseDao.getMemberCode(email));
+        msgDto.setMemberCode(memberCode);
         msgDto.setMsgContent("게스트하우스 예약완료되었습니다. 예약목록을 확인해보세요");
         msgDto.setMsgDate(new Date());
         msgDto.setMsgCheck("읽지 않음");
@@ -709,12 +717,11 @@ public class GuestHouseService {
 //		HomeAspect.logger.info(HomeAspect.logMsg+resPoint);
 
         // 멤버 포인트 수정
-        memberPoint = memberPoint + resPoint - usePoint;
-        HomeAspect.logger.info(HomeAspect.logMsg + "memberPoint: " + memberPoint);
+        Member member = memberService.findById((long) memberCode);
+        member.savePoint((long) (resPoint - usePoint));
+        HomeAspect.logger.info(HomeAspect.logMsg + "memberPoint: " + member.getPoint());
 
-        // 멤버 포인트 업데이트
-        int pointUpCheck = guestHouseDao.updatePoint(memberPoint, memberCode);
-        HomeAspect.logger.info(HomeAspect.logMsg + "pointUpCheck: " + pointUpCheck);
+        HostDto hostDto = guestHouseDao.getHostInfo(houseCode);
 
         // 포인트 내역 db 저장
         if (resPoint > 0) {
@@ -737,8 +744,6 @@ public class GuestHouseService {
             int usePointCheck = guestHouseDao.insertUsePoint(pointUse);
             HomeAspect.logger.info(HomeAspect.logMsg + "usePointCheck: " + usePointCheck);
         }
-
-        MemberDto memberDto = guestHouseDao.getMemberInfo(email);
 
         mav.addObject("reserveCode", reserveCode);
         mav.addObject("payment", guestReserveDto.getPayment());
@@ -773,7 +778,7 @@ public class GuestHouseService {
         int payment = total - usePoint;
         HomeAspect.logger.info(HomeAspect.logMsg + "총금액:" + payment);
 
-        MemberDto memberDto = guestHouseDao.getMemberInfo(email);
+        Member member = memberService.findById((long) memberCode);
 
         mav.addObject("checkIn", stCheckIn);        // 예약체크인날짜
         mav.addObject("checkOut", stCheckOut);    // 예약체크아웃날짜
@@ -784,7 +789,7 @@ public class GuestHouseService {
 
         mav.addObject("payment", payment);
         mav.addObject("houseCode", houseCode);
-        mav.addObject("memberDto", memberDto);
+        mav.addObject("memberDto", member);
         mav.setViewName("guestHousePage/kakaoPay.tiles");
 
     }
@@ -812,6 +817,7 @@ public class GuestHouseService {
 
         // 게스트하우스 사진
         String mainImg = null;
+        List<FileDto> fileList = new ArrayList<>();
         for (int i = 0; i < fileList.size(); i++) {
             if (fileList.get(i).getMainImgName() != null) {
                 mainImg = fileList.get(i).getMainImgName();
@@ -897,12 +903,9 @@ public class GuestHouseService {
         HomeAspect.logger.info(HomeAspect.logMsg + resPoint);
 
         // 멤버 포인트 수정
-        memberPoint = memberPoint + resPoint - usePoint;
-        HomeAspect.logger.info(HomeAspect.logMsg + "memberPoint: " + memberPoint);
-
-        // 멤버 포인트 업데이트
-        int pointUpCheck = guestHouseDao.updatePoint(memberPoint, memberCode);
-        HomeAspect.logger.info(HomeAspect.logMsg + "pointUpCheck: " + pointUpCheck);
+        Member member = memberService.findById((long) memberCode);
+        member.savePoint((long) (resPoint - usePoint));
+        HomeAspect.logger.info(HomeAspect.logMsg + "memberPoint: " + member.getPoint());
 
         // 포인트 내역 db 저장
         if (resPoint > 0) {
@@ -929,7 +932,7 @@ public class GuestHouseService {
         // message테이블
         MsgDto msgDto = new MsgDto();
 
-        msgDto.setMemberCode(guestHouseDao.getMemberCode(email));
+        msgDto.setMemberCode(memberCode);
         msgDto.setMsgContent("게스트하우스 예약완료되었습니다. 예약목록을 확인해보세요");
         msgDto.setMsgDate(new Date());
         msgDto.setMsgCheck("읽지 않음");

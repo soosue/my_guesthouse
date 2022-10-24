@@ -25,7 +25,7 @@ public class GuestHouseController {
         this.guestHouseService = guestHouseService;
     }
 
-
+    // 게스트 하우스 정보 조회(게스트 하우스 상세페이지)
     @RequestMapping(value = "/guestHousePage/guestHouse.do", method = RequestMethod.GET)
     public ModelAndView guestHousePageRead(HttpServletRequest request, HttpServletResponse response, HouseReviewDto reviewDto) {
         ModelAndView mav = new ModelAndView();
@@ -37,7 +37,7 @@ public class GuestHouseController {
         return mav;
     }
 
-    // 후기 작성 눌렀을 때
+    // 게스트 하우스 상세페이지에서 후기 더보기 눌렀을 때 슬라이스
     @ResponseBody
     @RequestMapping(value = "/guestHousePage/review.do", method = RequestMethod.GET)
     public Map<String, Object> guestHousePageReview(HttpServletRequest request, HttpServletResponse response, HouseReviewDto reviewDto) {
@@ -47,7 +47,7 @@ public class GuestHouseController {
         return guestHouseService.review(request);
     }
 
-    // 체험 후기 작성 완료
+    // 게스트 하우스 상세페이지에서 후기 작성 버튼 눌렀을 때
     @RequestMapping(value = "/guestHousePage/reviewOk.do", method = RequestMethod.GET)
     public ModelAndView guestHousePageReviewOk(HttpServletRequest request, HttpServletResponse response, HouseReviewDto reviewDto) {
         System.out.println("review write, list Ok");
@@ -64,7 +64,7 @@ public class GuestHouseController {
         return mav;
     }
 
-    // 후기 수정하기 눌렀을 때
+    // 안 사용함
     @RequestMapping(value = "/guestHousePage/reviewUpdate.do", method = RequestMethod.GET)
     public ModelAndView reviewUpdate(HttpServletRequest request, HttpServletResponse response,
                                      HouseReviewDto reviewDto) {
@@ -80,7 +80,7 @@ public class GuestHouseController {
         return mav;
     }
 
-    // 수정 완료 눌렀을 때
+    // 후기 수정 버튼 눌렀을 때
     @RequestMapping(value = "/guestHousePage/reviewUpdateOk.do", method = RequestMethod.GET)
     public void exReviewUpdateOk(HttpServletRequest request, HttpServletResponse response,
                                  HouseReviewDto reviewDto) {
@@ -96,7 +96,7 @@ public class GuestHouseController {
 
     }
 
-    // 삭제 눌렀을 때
+    // 안 사용함
     @RequestMapping(value = "/guestHousePage/reviewDelete.do", method = RequestMethod.GET)
     public ModelAndView exReviewDelete(HttpServletRequest request, HttpServletResponse response) {
         System.out.println("exReview 삭제하기");
@@ -108,7 +108,7 @@ public class GuestHouseController {
         return mav;
     }
 
-
+    // 예악하기 버튼 누르면 validation 확인
     @RequestMapping(value = "/guestHousePage/limitCheck.do", method = RequestMethod.GET)
     public ModelAndView limitCheck(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView mav = new ModelAndView();
@@ -119,6 +119,7 @@ public class GuestHouseController {
         return mav;
     }
 
+    // 예약하기 상세 페이지로 이동
     @RequestMapping(value = "guestHousePage/reservation.do", method = RequestMethod.GET)
     public ModelAndView guestHouseReserv(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView mav = new ModelAndView();
@@ -129,7 +130,7 @@ public class GuestHouseController {
         return mav;
     }
 
-
+    // 예약 상세페이지에서 무통장입금으로 예약 요청하기 버튼 눌러서 예약 완료 처리
     @RequestMapping(value = "/guestHousePage/reserveComplete.do", method = RequestMethod.GET)
     public ModelAndView reservComplete(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView mav = new ModelAndView();
@@ -140,18 +141,7 @@ public class GuestHouseController {
         return mav;
     }
 
-
-    @RequestMapping(value = "/guestHousePage/reserveCompleteOk.do", method = RequestMethod.GET)
-    public ModelAndView reservCompleteCheckOk(HttpServletRequest request, HttpServletResponse response) {
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("request", request);
-
-        guestHouseService.kakaoPayCompleteOk(mav);
-
-        return mav;
-    }
-
-
+    // 예약 상세페이지에서 카드결제로 예약 요청하기 버튼 누를 때
     @RequestMapping(value = "/guestHousePage/kakaoPay.do", method = RequestMethod.GET)
     public ModelAndView kakaoPaySuccess(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView mav = new ModelAndView();
@@ -161,5 +151,16 @@ public class GuestHouseController {
 
         return mav;
 
+    }
+
+    // 카드결제(카카오페이) 완료 후 예약 완료 처리
+    @RequestMapping(value = "/guestHousePage/reserveCompleteOk.do", method = RequestMethod.GET)
+    public ModelAndView reservCompleteCheckOk(HttpServletRequest request, HttpServletResponse response) {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("request", request);
+
+        guestHouseService.kakaoPayCompleteOk(mav);
+
+        return mav;
     }
 }

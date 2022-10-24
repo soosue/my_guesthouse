@@ -10,12 +10,6 @@
         where houseCode = #{houseCode}
     </select>
 
-    <select id="getMemberCode" parameterType="String" resultType="int">
-        select id
-        from member
-        where email = #{email}
-    </select>
-
     <select id="getPrice" resultType="int">
         select price
         from house
@@ -32,12 +26,6 @@
         select *
         from house
         where houseCode = #{houseCode}
-    </select>
-
-    <select id="getMemberPoint" resultType="int">
-        select point
-        from member
-        where email = #{email}
     </select>
 
     <select id="getHost" resultType="com.java.guesthouse.member.service.dto.MemberDto">
@@ -77,12 +65,6 @@
           and memberCode = #{memberCode}
           and checkIn = #{checkIn}
     </select>
-
-    <update id="updatePoint" parameterType="java.util.Map">
-        update member
-        set point =#{memberPoint}
-        where id = #{memberCode}
-    </update>
 
     <insert id="insertResPoint" parameterType="com.java.guesthouse.guestdelluna.service.dto.PointAccumulate">
         insert into POINTACCUMULATE(accuCode, memberCode, accuPlace, accuDate, accuPoint)

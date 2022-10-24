@@ -22,8 +22,8 @@
             name: 'Jeju Stay 결제',
             amount: '${payment}',
             buyer_email: '${memberDto.email}',
-            buyer_name: '${memberDto.memberName}',
-            buyer_tel: '${memberDto.phone}',
+            buyer_name: '${memberDto.name}',
+            buyer_tel: '${memberDto.phoneNumber}',
             //m_redirect_url : 'http://www.naver.com'
         }, function (rsp) {
             if (rsp.success) {

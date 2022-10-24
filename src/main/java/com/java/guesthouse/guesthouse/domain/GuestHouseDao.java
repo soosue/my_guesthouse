@@ -33,18 +33,9 @@ public class GuestHouseDao {
         return sqlSessionTemplate.selectList("dao.GuestHouseMapper.guestHouseImgList", hMap);
     }
 
-    public int getMemberCode(String email) {
-        return sqlSessionTemplate.selectOne("dao.GuestHouseMapper.getMemberCode", email);
-    }
-
     public HostDto getHostInfo(int houseCode) {
         // TODO Auto-generated method stub
         return sqlSessionTemplate.selectOne("dao.GuestHouseMapper.getHostInfo", houseCode);
-    }
-
-    public int getPoint(String email) {
-        // TODO Auto-generated method stub
-        return sqlSessionTemplate.selectOne("dao.GuestHouseMapper.getMemberPoint", email);
     }
 
     public MemberDto getHostList(int hostCode) {
@@ -71,15 +62,6 @@ public class GuestHouseDao {
         hMap.put("checkIn", checkIn);
 
         return sqlSessionTemplate.selectOne("dao.GuestHouseMapper.getReserveCode", hMap);
-    }
-
-    public int updatePoint(int memberPoint, int memberCode) {
-        // TODO Auto-generated method stub
-        Map<String, Object> hMap = new HashMap<>();
-        hMap.put("memberPoint", memberPoint);
-        hMap.put("memberCode", memberCode);
-
-        return sqlSessionTemplate.update("dao.GuestHouseMapper.updatePoint", hMap);
     }
 
     public int insertResPoint(PointAccumulate pointAccumulate) {
