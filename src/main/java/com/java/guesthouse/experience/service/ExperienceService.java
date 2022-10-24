@@ -459,7 +459,7 @@ public class ExperienceService {
 
         HttpSession session = request.getSession();
         String email = (String) session.getAttribute("email");
-        int memberCode = (Integer) session.getAttribute("memberCode");
+        int memberCode = Integer.parseInt(session.getAttribute("memberCode") + "");
 
         HomeAspect.logger.info(HomeAspect.logMsg + "email: " + email + "		memberCode: " + memberCode);
 
@@ -682,7 +682,7 @@ public class ExperienceService {
             // 선택된 체험 코드에 해당하는 페이지로 이동
             /* int exCode = 41; */
             /* int exCode = 6; */
-            memberCode = (Integer) session.getAttribute("memberCode");
+            memberCode = Integer.parseInt(session.getAttribute("memberCode") + "");
             HomeAspect.logger.info(HomeAspect.logMsg + "email : " + email + "	memberCode:" + memberCode);
         }
 
@@ -879,7 +879,7 @@ public class ExperienceService {
 
         HttpSession session = request.getSession();
         String email = (String) session.getAttribute("email");
-        int memberCode = (Integer) session.getAttribute("memberCode");
+        int memberCode = Integer.parseInt(session.getAttribute("memberCode") + "");
         HomeAspect.logger.info(HomeAspect.logMsg + "체험 예약자 email : " + email + "	memberCode:" + memberCode);
 
         ExReserveDto exReserveDto = (ExReserveDto) map.get("exReserveDto");

@@ -222,12 +222,13 @@ public class GuestHouseService {
 
     }
 
+    // 안 사용함
     public String review(ModelAndView mav) {
         Map<String, Object> map = mav.getModelMap();
         HttpServletRequest request = (HttpServletRequest) map.get("request");
 
         int houseCode = Integer.parseInt(request.getParameter("houseCode"));
-        int memberCode = (Integer) (request.getSession().getAttribute("memberCode"));
+        int memberCode = Integer.parseInt(request.getSession().getAttribute("memberCode") + "");
         HomeAspect.logger.info(HomeAspect.logMsg + "memberCode: " + memberCode);
 
         //////////////////////////후기 리스트 exReview///////////////////////////////
@@ -335,7 +336,7 @@ public class GuestHouseService {
         HomeAspect.logger.info(HomeAspect.logMsg + "houseCode: " + houseCode);
 
         HttpSession session = request.getSession();
-        int memberCode = (Integer) session.getAttribute("memberCode");
+        int memberCode = Integer.parseInt(session.getAttribute("memberCode") + "");
 
 
         HouseReviewDto reviewDto = (HouseReviewDto) map.get("reviewDto");

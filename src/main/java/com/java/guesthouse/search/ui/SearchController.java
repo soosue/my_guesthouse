@@ -53,7 +53,7 @@ public class SearchController {
         int houseCode = houseCodeStr == null ? 0 : Integer.parseInt(houseCodeStr);
 
         //login되어 있으면 zzimed가져와야함
-        Integer memberCode = (Integer) request.getSession().getAttribute("memberCode");
+        Integer memberCode = Integer.parseInt(request.getSession().getAttribute("memberCode") + "");
         HomeAspect.logger.info(HomeAspect.logMsg + "ajax houseCode: " + houseCode + ", memberCode: " + memberCode);
 
         String overlay = searchService.overlay(houseCode, memberCode);
@@ -78,7 +78,7 @@ public class SearchController {
         int exCode = exCodeStr == null ? 0 : Integer.parseInt(exCodeStr);
 
         //login되어 있으면 zzimed가져와야함
-        Integer memberCode = (Integer) request.getSession().getAttribute("memberCode");
+        Integer memberCode = Integer.parseInt(request.getSession().getAttribute("memberCode") + "");
         HomeAspect.logger.info(HomeAspect.logMsg + "ajax exCode: " + exCode + ", memberCode: " + memberCode);
 
         String overlay = searchService.exOverlay(exCode, memberCode);
@@ -135,7 +135,7 @@ public class SearchController {
         ModelAndView mav = new ModelAndView();
 
         //session
-        Integer memberCode = (Integer) request.getSession().getAttribute("memberCode");
+        Integer memberCode = Integer.parseInt(request.getSession().getAttribute("memberCode") + "");
         HomeAspect.logger.info(HomeAspect.logMsg + "sessionMemberCode: " + memberCode);
 
         //페이징

@@ -42,7 +42,7 @@ public class HostService {
         HttpServletRequest request = (HttpServletRequest) map.get("request");
 
         HttpSession session = request.getSession();
-        int memberCode = (Integer) session.getAttribute("memberCode");
+        int memberCode = Integer.parseInt(session.getAttribute("memberCode") + "");
 
         MemberDto memberDto = hostDao.selectMemberDto(memberCode);
         HomeAspect.logger.info(HomeAspect.logMsg + "memberDto :" + memberDto.toString());
