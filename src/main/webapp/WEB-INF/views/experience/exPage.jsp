@@ -570,7 +570,7 @@
                         </li>
                         <li style="width: 45rem; margin-bottom: 3rem;">
                             <label style="width: 10rem; float: left; margin: 0 auto;">회원가입 날짜</label>
-                            <fmt:formatDate var="regDate" pattern="yyyy년 MM월 dd일" value="${memberDto.regDate}"/>
+                            ${memberDto.regDate}
                             <p class="text-secondary" style="width: 18rem; text-align: left;">${regDate}</p>
                             <input type="hidden" name="regDate" id="regDate" value="${regDate}">
                         </li>

@@ -7,22 +7,15 @@
     <title>Insert title here</title>
 </head>
 <body>
-<c:set var="root" value="${pageContext.request.contextPath}"/>
+<script type="text/javascript">
+    <c:if test="${check > 0 }">
+    location.href = "/guestHousePage/reservation.do?houseCode=${houseCode}&memberCode=${memberCode}&checkIn=${checkIn}&checkOut=${checkOut}&people=${people}";
+    </c:if>
 
-<c:if test="${check > 0 }">
-    <script type="text/javascript">
-        //alert("예약 가능한 날짜입니다.");
-        var url = "${root}/guestHousePage/reservation.do?houseCode=${houseCode}&memberCode=${memberCode}&checkIn=${checkIn}&checkOut=${checkOut}&people=${people}";
-        //alert(url);
-        location.href = url;
-    </script>
-</c:if>
-
-<c:if test="${check==0}">
-    <script type="text/javascript">
-        alert("예약 가능 인원을 초과 하였습니다.");
-        location.href = "${root}/guestHousePage/guestHouse.do?houseCode=${houseCode}"
-    </script>
-</c:if>
+    <c:if test="${check==0}">
+    alert("예약 가능 인원을 초과 하였습니다.");
+    location.href = "/guestHousePage/guestHouse.do?houseCode=${houseCode}"
+    </c:if>
+</script>
 </body>
 </html>
