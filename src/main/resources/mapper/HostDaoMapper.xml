@@ -426,12 +426,6 @@
         ]]>
     </select>
 
-    <select id="getLocal" parameterType="String" resultType="String">
-        select local
-        from local
-        where name like '${value}%'
-    </select>
-
     <select id="getHouseReviewCount" parameterType="int" resultType="int">
         select count(*)
         from house h

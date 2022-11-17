@@ -153,10 +153,6 @@ public class HostDao {
         return sqlSession.selectList("host.dao.mapper.ahouseList", memberCode);
     }
 
-    public String getLocal(String localName) {
-        return sqlSession.selectOne("host.dao.mapper.getLocal", localName);
-    }
-
     public int houseNameCheck(String houseName) {
         int check = 0;
         String checkHouseName = sqlSession.selectOne("host.dao.mapper.houseNameCheck", houseName);
@@ -164,6 +160,5 @@ public class HostDao {
 
         return check;
     }
-
 
 }
