@@ -305,7 +305,7 @@
     </select>
 
     <select id="myAccuPoint" parameterType="java.util.Map"
-            resultType="com.java.guesthouse.guestdelluna.service.dto.PointAccumulate">
+            resultType="com.java.guesthouse.guestdelluna.service.dto.PointAccumulateDto">
 
 	 <![CDATA[
         select *
@@ -517,7 +517,7 @@
     </select>
 
     <select id="newPointAccu" parameterType="int"
-            resultType="com.java.guesthouse.guestdelluna.service.dto.PointAccumulate">
+            resultType="com.java.guesthouse.guestdelluna.service.dto.PointAccumulateDto">
         select *
         from pointaccumulate
         where memberCode = #{memberCode}

@@ -2,7 +2,7 @@ package com.java.guesthouse.guestdelluna.service.dto;
 
 import java.util.Date;
 
-public class PointAccumulate {
+public class PointAccumulateDto {
 
     private int accuCode;
     private int memberCode;
@@ -10,10 +10,10 @@ public class PointAccumulate {
     private Date accuDate;
     private int accuPoint;
 
-    public PointAccumulate() {
+    public PointAccumulateDto() {
     }
 
-    public PointAccumulate(int accuCode, int memberCode, String accuPlace, Date accuDate, int accuPoint) {
+    public PointAccumulateDto(int accuCode, int memberCode, String accuPlace, Date accuDate, int accuPoint) {
 
         this.accuCode = accuCode;
         this.memberCode = memberCode;

@@ -90,11 +90,6 @@
         where id = #{memberCode}
     </update>
 
-    <insert id="insertResPoint" parameterType="com.java.guesthouse.guestdelluna.service.dto.PointAccumulate">
-        insert into POINTACCUMULATE(accuCode, memberCode, accuPlace, accuDate, accuPoint)
-        values (seq_accuCode_num.nextval, #{memberCode}, #{accuPlace}, #{accuDate}, #{accuPoint})
-    </insert>
-
     <insert id="insertUsePoint" parameterType="com.java.guesthouse.guestdelluna.service.dto.PointUse">
         insert into POINTUSE(useCode, memberCode, usePlace, useDate, usePoint)
         values (seq_useCode_num.nextval, #{memberCode}, #{usePlace}, #{useDate}, #{usePoint})

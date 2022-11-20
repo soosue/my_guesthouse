@@ -32,7 +32,7 @@ import com.java.guesthouse.guestdelluna.service.dto.NewHouseResDto;
 import com.java.guesthouse.guestdelluna.service.dto.NewHouseReserveDto;
 import com.java.guesthouse.guestdelluna.service.dto.NewHouseReviewDto;
 import com.java.guesthouse.guestdelluna.service.dto.NewHouseZzimDto;
-import com.java.guesthouse.guestdelluna.service.dto.PointAccumulate;
+import com.java.guesthouse.guestdelluna.service.dto.PointAccumulateDto;
 import com.java.guesthouse.guestdelluna.service.dto.PointUse;
 import com.java.guesthouse.host.service.dto.ExReviewListDto;
 import com.java.guesthouse.host.service.dto.HostExListDto;
@@ -546,7 +546,7 @@ public class DellunaService {
 
         HomeAspect.logger.info(HomeAspect.logMsg + startRow + "," + endRow);
 
-        List<PointAccumulate> accuPoint = null;
+        List<PointAccumulateDto> accuPoint = null;
 
         if (countAccu > 0) {
             accuPoint = dellunaDao.myAccuPoint(memberCode, startRow, endRow);
@@ -589,7 +589,7 @@ public class DellunaService {
         List<PointUse> usePoint = dellunaDao.myUsePoint(memberCode, startRow, endRow);
         HomeAspect.logger.info(HomeAspect.logMsg + "포인트사용내역 리스트 : " + usePoint);
 
-        List<PointAccumulate> accuPoint = dellunaDao.myAccuPoint(memberCode, startRow, endRow);
+        List<PointAccumulateDto> accuPoint = dellunaDao.myAccuPoint(memberCode, startRow, endRow);
         HomeAspect.logger.info(HomeAspect.logMsg + "포인트적립내역 리스트 : " + accuPoint);
 
 

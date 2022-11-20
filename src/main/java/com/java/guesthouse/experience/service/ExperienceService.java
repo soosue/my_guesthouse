@@ -29,7 +29,7 @@ import com.java.guesthouse.experience.service.dto.ExperienceDto;
 import com.java.guesthouse.exreserve.dto.ExReserveDto;
 import com.java.guesthouse.exreview.dto.ExReviewDto;
 import com.java.guesthouse.exreview.dto.ExReviewListDto;
-import com.java.guesthouse.guestdelluna.service.dto.PointAccumulate;
+import com.java.guesthouse.guestdelluna.service.dto.PointAccumulateDto;
 import com.java.guesthouse.guestdelluna.service.dto.PointUse;
 import com.java.guesthouse.host.service.dto.HostDto;
 import com.java.guesthouse.member.service.dto.MemberDto;
@@ -1042,7 +1042,7 @@ public class ExperienceService {
         // 적립포인트가 0보다 크면(포인트를 사용하지 않았을 때)
         int plusPoint = 0;
         if (resPoint > 0) {
-            PointAccumulate pointAccumulate = new PointAccumulate();
+            PointAccumulateDto pointAccumulate = new PointAccumulateDto();
             pointAccumulate.setMemberCode(memberCode);
             pointAccumulate.setAccuPlace(experienceDto.getExName());
             pointAccumulate.setAccuDate(exReserveDto.getReserveDate());
@@ -1281,7 +1281,7 @@ public class ExperienceService {
         // 적립포인트가 0보다 크면(포인트를 사용하지 않았을 때)
         int plusPoint = 0;
         if (resPoint > 0) {
-            PointAccumulate pointAccumulate = new PointAccumulate();
+            PointAccumulateDto pointAccumulate = new PointAccumulateDto();
             pointAccumulate.setMemberCode(memberCode);
             pointAccumulate.setAccuPlace(experienceDto.getExName());
             pointAccumulate.setAccuDate(exReserveDto.getReserveDate());

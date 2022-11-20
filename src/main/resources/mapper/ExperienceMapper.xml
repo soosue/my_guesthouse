@@ -206,7 +206,7 @@
         where id = #{memberCode}
     </update>
 
-    <insert id="resPointUp" parameterType="com.java.guesthouse.guestdelluna.service.dto.PointAccumulate">
+    <insert id="resPointUp" parameterType="com.java.guesthouse.guestdelluna.service.dto.PointAccumulateDto">
         insert into pointAccumulate (accuCode, membercode, accuPlace, accuDate, accuPoint)
         values (seq_accuCode_num.nextval, #{memberCode}, #{accuPlace}, #{accuDate}, #{accuPoint})
     </insert>
