@@ -13,7 +13,7 @@ import javax.persistence.Id;
 @Entity
 public class PointAccumulate {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "accucode")
     private Long id;
 
