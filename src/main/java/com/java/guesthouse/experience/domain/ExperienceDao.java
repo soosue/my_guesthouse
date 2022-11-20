@@ -158,10 +158,6 @@ public class ExperienceDao {
         return sqlSessionTemplate.update("dao.ExperienceMapper.pointUpdate", hMap);
     }
 
-    public int resPointUp(PointAccumulateDto pointAccumulate) {
-        return sqlSessionTemplate.insert("dao.ExperienceMapper.resPointUp", pointAccumulate);
-    }
-
     public int usePointUp(PointUse pointUse) {
         return sqlSessionTemplate.insert("dao.ExperienceMapper.usePointUp", pointUse);
     }

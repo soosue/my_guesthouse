@@ -725,7 +725,8 @@ public class GuestHouseService {
                     new PointAccumulate(
                             (long) resPoint,
                             (long) memberCode,
-                            (long) hostDto.getHouseCode()
+                            (long) hostDto.getHouseCode(),
+                            PointAccumulate.PointType.RESERVE_GUESTHOUSE
                     )
             );
         } else {// 포인트 사용 내역
@@ -911,7 +912,8 @@ public class GuestHouseService {
                     new PointAccumulate(
                             (long) resPoint,
                             (long) memberCode,
-                            (long) hostDto.getHouseCode()
+                            (long) hostDto.getHouseCode(),
+                            PointAccumulate.PointType.RESERVE_GUESTHOUSE
                     )
             );
         } else {// 포인트 사용 내역
