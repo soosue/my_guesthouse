@@ -292,12 +292,6 @@
           and h.state = #{state}
     </select>
 
-    <select id="getCountAccu" parameterType="int" resultType="int">
-        select count(*)
-        from pointaccumulate
-        where memberCode = #{memberCode}
-    </select>
-
     <select id="getCountUse" parameterType="int" resultType="int">
         select count(*)
         from pointuse

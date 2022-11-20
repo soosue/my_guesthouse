@@ -38,14 +38,17 @@ import com.java.guesthouse.host.service.dto.ExReviewListDto;
 import com.java.guesthouse.host.service.dto.HostExListDto;
 import com.java.guesthouse.host.service.dto.HostHouseListDto;
 import com.java.guesthouse.host.service.dto.HouseReviewListDto;
+import com.java.guesthouse.point.domain.PointAccumulateRepository;
 
 @Service
 public class DellunaService {
 
     private final DellunaDao dellunaDao;
+    private final PointAccumulateRepository pointAccumulateRepository;
 
-    public DellunaService(DellunaDao dellunaDao) {
+    public DellunaService(DellunaDao dellunaDao, PointAccumulateRepository pointAccumulateRepository) {
         this.dellunaDao = dellunaDao;
+        this.pointAccumulateRepository = pointAccumulateRepository;
     }
 
     // 찜목록불러오기
@@ -534,8 +537,7 @@ public class DellunaService {
         int currentPage = Integer.parseInt(pageNumber);
         HomeAspect.logger.info(HomeAspect.logMsg + "현재 적립페이지 : " + currentPage);
 
-        int countAccu = dellunaDao.getCountAccu(memberCode);
-        HomeAspect.logger.info(HomeAspect.logMsg + memberCode + "의 적립 된 개수 : " + countAccu);
+        long countAccu = pointAccumulateRepository.countByMemberId((long)memberCode);
 
         int countUse = 10000000;
 

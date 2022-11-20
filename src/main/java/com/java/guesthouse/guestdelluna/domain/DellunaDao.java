@@ -324,11 +324,6 @@ public class DellunaDao {
         return sqlSessionTemplate.selectList("dao.dellunaMapper.myExNameWithString", map);
     }
 
-    public int getCountAccu(int memberCode) {
-
-        return sqlSessionTemplate.selectOne("dao.dellunaMapper.getCountAccu", memberCode);
-    }
-
     public List<HostHouseListDto> getHouseList(int memberCode) {
         return sqlSessionTemplate.selectList("host.dao.mapper.getHouseList", memberCode);
     }
