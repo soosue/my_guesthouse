@@ -20,6 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.java.guesthouse.aop.HomeAspect;
 import com.java.guesthouse.experience.service.dto.ExperienceDto;
 import com.java.guesthouse.file.dto.FileDto;
+import com.java.guesthouse.guesthouse.domain.Local;
+import com.java.guesthouse.guesthouse.domain.LocalRepository;
 import com.java.guesthouse.guestreserve.dto.GuestReserveDto;
 import com.java.guesthouse.host.domain.HostDao;
 import com.java.guesthouse.host.service.dto.ExReservationListDto;
@@ -32,9 +34,11 @@ import com.java.guesthouse.member.service.dto.MemberDto;
 @Service
 public class HostService {
     private final HostDao hostDao;
+    private final LocalRepository localRepository;
 
-    public HostService(HostDao hostDao) {
+    public HostService(HostDao hostDao, LocalRepository localRepository) {
         this.hostDao = hostDao;
+        this.localRepository = localRepository;
     }
 
     public void hostRegisterPage(ModelAndView mav) {
@@ -113,9 +117,10 @@ public class HostService {
         String localName = jibunStr[2].substring(0, 2);
         HomeAspect.logger.info(HomeAspect.logMsg + "지번이름!!: " + localName);
 
-        String local = hostDao.getLocal(localName);
+        List<Local> locals = localRepository.findByNameLike(localName);
+        Local local = locals.get(0);
 
-        hostDto.setLocal(local);
+        hostDto.setLocal(local.getLocal());
         hostDto.setSido(roadStr[0]);
         hostDto.setSigungu(roadStr[1]);
         hostDto.setRoadName(roadStr[roadStr.length - 2]);
