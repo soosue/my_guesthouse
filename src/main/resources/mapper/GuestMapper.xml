@@ -516,13 +516,6 @@
           and r.membercode = #{memberCode}
     </select>
 
-    <select id="newPointAccu" parameterType="int"
-            resultType="com.java.guesthouse.guestdelluna.service.dto.PointAccumulateDto">
-        select *
-        from pointaccumulate
-        where memberCode = #{memberCode}
-    </select>
-
     <select id="newExpZzimDto" parameterType="java.util.Map"
             resultType="com.java.guesthouse.guestdelluna.service.dto.NewExpZzimDto">
     <![CDATA[

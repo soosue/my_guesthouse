@@ -574,12 +574,6 @@ public class DellunaDao {
         return sqlSessionTemplate.selectList("dao.dellunaMapper.newNewHouseReserve", memberCode);
     }
 
-
-    public List<PointAccumulateDto> allAccuPoint(int memberCode) {
-
-        return sqlSessionTemplate.selectList("dao.dellunaMapper.newPointAccu", memberCode);
-    }
-
     public List<NewExpZzimDto> newExpZzimDto(int memberCode, int startRow, int endRow) {
 
         Map<String, Object> map = new HashMap<>();
