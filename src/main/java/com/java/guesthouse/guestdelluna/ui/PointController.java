@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,16 +20,9 @@ public class PointController {
         this.dellunaService = dellunaService;
     }
 
-    @RequestMapping(value = "/manage/points", method = RequestMethod.GET)
-    public ModelAndView managePoint(HttpServletRequest request, HttpServletResponse response) {
-
-        ModelAndView mav = new ModelAndView();
-
-        mav.addObject("request", request);
-
-        dellunaService.pointManage(mav);
-
-        return mav;
+    @GetMapping("/manage/points")
+    public ModelAndView managePoint() {
+        return new ModelAndView("guestdelluna/myPoint.tiles");
     }
 
     @RequestMapping(value = "guestdelluna/managePointUseAjax.do", method = RequestMethod.GET)
