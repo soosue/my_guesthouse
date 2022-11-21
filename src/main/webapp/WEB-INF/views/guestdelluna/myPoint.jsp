@@ -30,7 +30,7 @@
 
         function paging(root, param, accuCount, useCount) {
             if (useCount > 50000) {
-                var url = root + "/guestdelluna/managePointAjax.do";
+                var url = root + "/v1/points/me";
 
                 var params = "pageNumber=" + param;
 
