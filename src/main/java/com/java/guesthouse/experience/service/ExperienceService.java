@@ -29,7 +29,6 @@ import com.java.guesthouse.experience.service.dto.ExperienceDto;
 import com.java.guesthouse.exreserve.dto.ExReserveDto;
 import com.java.guesthouse.exreview.dto.ExReviewDto;
 import com.java.guesthouse.exreview.dto.ExReviewListDto;
-import com.java.guesthouse.guestdelluna.service.dto.PointAccumulateDto;
 import com.java.guesthouse.guestdelluna.service.dto.PointUse;
 import com.java.guesthouse.host.service.dto.HostDto;
 import com.java.guesthouse.member.service.dto.MemberDto;
