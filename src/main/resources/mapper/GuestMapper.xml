@@ -292,12 +292,6 @@
           and h.state = #{state}
     </select>
 
-    <select id="getCountUse" parameterType="int" resultType="int">
-        select count(*)
-        from pointuse
-        where memberCode = #{memberCode}
-    </select>
-
     <select id="myUsePoint" parameterType="java.util.Map"
             resultType="com.java.guesthouse.guestdelluna.service.dto.PointUseDto">
 	 <![CDATA[

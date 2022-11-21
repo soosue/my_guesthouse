@@ -347,12 +347,6 @@ public class DellunaDao {
         return sqlSessionTemplate.selectList("host.dao.mapper.getHouseReviewListScroll", map);
     }
 
-
-    public int getCountUse(int memberCode) {
-
-        return sqlSessionTemplate.selectOne("dao.dellunaMapper.getCountUse", memberCode);
-    }
-
     public List<PointUseDto> myUsePoint(Long memberCode, int startRow, int endRow) {
 
         Map<String, Object> map = new HashMap<>();
