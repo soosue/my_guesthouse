@@ -5,8 +5,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.java.guesthouse.guesthouse.domain.PointUse;
-import com.java.guesthouse.guesthouse.domain.PointUseRepository;
+import com.java.guesthouse.point.domain.PointUse;
+import com.java.guesthouse.point.domain.PointUseRepository;
 import com.java.guesthouse.member.domain.Member;
 import com.java.guesthouse.member.service.MemberService;
 import com.java.guesthouse.point.domain.PointAccumulate;

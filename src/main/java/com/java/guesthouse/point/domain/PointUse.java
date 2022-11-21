@@ -1,4 +1,4 @@
-package com.java.guesthouse.guesthouse.domain;
+package com.java.guesthouse.point.domain;
 
 import java.time.LocalDateTime;
 

@@ -1,6 +1,6 @@
 package com.java.guesthouse.point.service.dto;
 
-import com.java.guesthouse.guesthouse.domain.PointUse;
+import com.java.guesthouse.point.domain.PointUse;
 
 public record PointUseResponse(
         Long id,

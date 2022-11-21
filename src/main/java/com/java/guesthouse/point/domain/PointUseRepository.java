@@ -1,4 +1,4 @@
-package com.java.guesthouse.guesthouse.domain;
+package com.java.guesthouse.point.domain;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
