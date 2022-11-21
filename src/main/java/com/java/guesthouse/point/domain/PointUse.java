@@ -9,8 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Getter;
+
 @Entity
 @Table(name = "pointuse")
+@Getter
 public class PointUse {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -39,29 +42,5 @@ public class PointUse {
         this.memberId = memberId;
         this.placeId = placeId;
         this.placeName = placeName;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Long getPoint() {
-        return point;
-    }
-
-    public Long getMemberId() {
-        return memberId;
-    }
-
-    public Long getPlaceId() {
-        return placeId;
-    }
-
-    public String getPlaceName() {
-        return placeName;
-    }
-
-    public LocalDateTime getCreatedDate() {
-        return createdDate;
     }
 }

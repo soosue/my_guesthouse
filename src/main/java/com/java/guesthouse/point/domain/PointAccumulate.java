@@ -11,8 +11,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Getter;
+
 @Entity
 @Table(name = "pointaccumulate")
+@Getter
 public class PointAccumulate {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -49,33 +52,5 @@ public class PointAccumulate {
 
     public enum PointType {
         RESERVE_GUESTHOUSE, RESERVE_EXPERIENCE
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Long getPoint() {
-        return point;
-    }
-
-    public Long getMemberId() {
-        return memberId;
-    }
-
-    public Long getGuestHouseId() {
-        return guestHouseId;
-    }
-
-    public String getGuestHouseName() {
-        return guestHouseName;
-    }
-
-    public PointType getPointType() {
-        return pointType;
-    }
-
-    public LocalDateTime getCreatedDate() {
-        return createdDate;
     }
 }
