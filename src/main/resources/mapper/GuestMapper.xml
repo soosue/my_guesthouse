@@ -298,18 +298,6 @@
         where memberCode = #{memberCode}
     </select>
 
-    <select id="myAccuPoint" parameterType="java.util.Map"
-            resultType="com.java.guesthouse.guestdelluna.service.dto.PointAccumulateDto">
-
-	 <![CDATA[
-        select *
-        from (select rownum rnum, A.*
-              from (select * from pointaccumulate where memberCode = #{memberCode}) A)
-        where rnum >= #{startRow}
-          and rnum <= #{endRow}
-        ]]>
-</select>
-
     <select id="myUsePoint" parameterType="java.util.Map"
             resultType="com.java.guesthouse.guestdelluna.service.dto.PointUse">
 	 <![CDATA[

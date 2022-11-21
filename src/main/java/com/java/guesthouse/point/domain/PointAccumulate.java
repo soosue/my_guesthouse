@@ -25,8 +25,10 @@ public class PointAccumulate {
     @Column(name = "membercode")
     private Long memberId;
 
-    @Column(name = "accuplace")
     private Long guestHouseId;
+
+    @Column(name = "accuplace")
+    private String guestHouseName;
 
     @Enumerated(EnumType.STRING)
     private PointType pointType;
@@ -47,5 +49,33 @@ public class PointAccumulate {
 
     public enum PointType {
         RESERVE_GUESTHOUSE, RESERVE_EXPERIENCE
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Long getPoint() {
+        return point;
+    }
+
+    public Long getMemberId() {
+        return memberId;
+    }
+
+    public Long getGuestHouseId() {
+        return guestHouseId;
+    }
+
+    public String getGuestHouseName() {
+        return guestHouseName;
+    }
+
+    public PointType getPointType() {
+        return pointType;
+    }
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
     }
 }

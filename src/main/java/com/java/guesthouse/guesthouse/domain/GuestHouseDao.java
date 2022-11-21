@@ -52,7 +52,7 @@ public class GuestHouseDao {
         return sqlSessionTemplate.selectOne("dao.GuestHouseMapper.getHost", hostCode);
     }
 
-    public String getHouseName(int houseCode) {
+    public String getHouseName(Long houseCode) {
         // TODO Auto-generated method stub
         return sqlSessionTemplate.selectOne("dao.GuestHouseMapper.getHouseName", houseCode);
     }

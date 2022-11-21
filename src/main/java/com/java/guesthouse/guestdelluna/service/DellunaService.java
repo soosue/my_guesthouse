@@ -516,62 +516,6 @@ public class DellunaService {
         mav.setViewName("guestdelluna/pointUse.empty");
     }
 
-    // 포인트 관리페이지 ajax
-    public void pointManageAjax(ModelAndView mav) {
-        // TODO Auto-generated method stub
-
-        Map<String, Object> map = mav.getModelMap();
-        HttpServletRequest request = (HttpServletRequest) map.get("request");
-
-        HttpSession session = request.getSession();
-        String email = (String) session.getAttribute("email");
-        HomeAspect.logger.info(HomeAspect.logMsg + email);
-
-        int memberCode = dellunaDao.selectMemberCode(email);
-        HomeAspect.logger.info(HomeAspect.logMsg + memberCode);
-
-        String pageNumber = request.getParameter("pageNumber");
-        if (pageNumber.equals("")) {
-            pageNumber = "1";
-        }
-        int currentPage = Integer.parseInt(pageNumber);
-        HomeAspect.logger.info(HomeAspect.logMsg + "현재 적립페이지 : " + currentPage);
-
-        long countAccu = pointAccumulateRepository.countByMemberId((long) memberCode);
-
-        int countUse = 10000000;
-
-        int boardSize = 5;
-
-        int startRow = (currentPage - 1) * boardSize + 1;
-        int endRow = startRow + boardSize - 1;
-
-        HomeAspect.logger.info(HomeAspect.logMsg + startRow + "," + endRow);
-
-        List<PointAccumulateDto> accuPoint = null;
-
-        if (countAccu > 0) {
-            accuPoint = dellunaDao.myAccuPoint((long) memberCode, startRow, endRow);
-            HomeAspect.logger.info(HomeAspect.logMsg + "포인트적립내역 리스트 : " + accuPoint);
-        }
-
-        mav.addObject("countUse", countUse);
-        mav.addObject("accuPoint", accuPoint);
-        mav.addObject("countAccu", countAccu);
-        mav.addObject("boardSize", boardSize);
-        mav.addObject("currentPage", currentPage);
-        mav.setViewName("guestdelluna/pointAccu.empty");
-    }
-
-    // 포인트 적립 목록 조회
-    public List<PointAccumulateDto> getPointAccumulates(int currentPage, Long memberId) {
-        int boardSize = 5;
-        int startRow = (currentPage - 1) * boardSize + 1;
-        int endRow = startRow + boardSize - 1;
-
-        return dellunaDao.myAccuPoint(memberId, startRow, endRow);
-    }
-
     // 포인트 사용 목록 조회
     public List<PointUse> getPointUses(int currentPage, Long memberId) {
         int boardSize = 5;

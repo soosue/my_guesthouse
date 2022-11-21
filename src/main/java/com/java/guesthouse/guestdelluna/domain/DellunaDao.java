@@ -354,16 +354,6 @@ public class DellunaDao {
         return sqlSessionTemplate.selectOne("dao.dellunaMapper.getCountUse", memberCode);
     }
 
-    public List<PointAccumulateDto> myAccuPoint(Long memberCode, int startRow, int endRow) {
-
-        Map<String, Object> map = new HashMap<>();
-        map.put("memberCode", memberCode);
-        map.put("startRow", startRow);
-        map.put("endRow", endRow);
-
-        return sqlSessionTemplate.selectList("dao.dellunaMapper.myAccuPoint", map);
-    }
-
     public List<PointUse> myUsePoint(Long memberCode, int startRow, int endRow) {
 
         Map<String, Object> map = new HashMap<>();
