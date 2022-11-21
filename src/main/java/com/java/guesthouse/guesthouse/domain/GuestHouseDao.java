@@ -81,11 +81,6 @@ public class GuestHouseDao {
         return sqlSessionTemplate.update("dao.GuestHouseMapper.updatePoint", hMap);
     }
 
-    public int insertUsePoint(PointUseDto pointUse) {
-        // TODO Auto-generated method stub
-        return sqlSessionTemplate.insert("dao.GuestHouseMapper.insertUsePoint", pointUse);
-    }
-
     public int insertRemain(Date checkIn, int people, int houseCode) {
         // TODO Auto-generated method stub
         Map<String, Object> hMap = new HashMap<>();

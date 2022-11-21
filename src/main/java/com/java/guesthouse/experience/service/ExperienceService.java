@@ -29,7 +29,8 @@ import com.java.guesthouse.experience.service.dto.ExperienceDto;
 import com.java.guesthouse.exreserve.dto.ExReserveDto;
 import com.java.guesthouse.exreview.dto.ExReviewDto;
 import com.java.guesthouse.exreview.dto.ExReviewListDto;
-import com.java.guesthouse.guestdelluna.service.dto.PointUseDto;
+import com.java.guesthouse.guesthouse.domain.PointUse;
+import com.java.guesthouse.guesthouse.domain.PointUseRepository;
 import com.java.guesthouse.host.service.dto.HostDto;
 import com.java.guesthouse.member.service.dto.MemberDto;
 import com.java.guesthouse.point.domain.PointAccumulate;
@@ -45,10 +46,12 @@ public class ExperienceService {
 
     private final ExperienceDao experienceDao;
     private final PointAccumulateRepository pointAccumulateRepository;
+    private final PointUseRepository pointUseRepository;
 
-    public ExperienceService(ExperienceDao experienceDao, PointAccumulateRepository pointAccumulateRepository) {
+    public ExperienceService(ExperienceDao experienceDao, PointAccumulateRepository pointAccumulateRepository, PointUseRepository pointUseRepository) {
         this.experienceDao = experienceDao;
         this.pointAccumulateRepository = pointAccumulateRepository;
+        this.pointUseRepository = pointUseRepository;
     }
     // List<ExFileDto> exFileList;
     // ExperienceDto experienceDto;
@@ -1054,19 +1057,17 @@ public class ExperienceService {
                     )
             );
         } else {    // 적립포인트가 0이면 (포인트를 사용한 경우)
-
-            PointUseDto pointUse = new PointUseDto();
-            pointUse.setMemberCode(memberCode);
-            pointUse.setUsePlace(experienceDto.getExName());
-            pointUse.setUseDate(exReserveDto.getReserveDate());
-            pointUse.setUsePoint(usePoint);
+            pointUseRepository.save(
+                    new PointUse(
+                            (long) usePoint,
+                            (long) memberCode,
+                            (long) experienceDto.getExCode(),
+                            experienceDto.getExName()
+                    )
+            );
 
             // 포인트 사용 = 현재 포인트 - 사용 포인트
             plusPoint = nowPoint - usePoint;
-
-            // 포인트 사용테이블에 저장
-            int usePointUp = experienceDao.usePointUp(pointUse);
-            HomeAspect.logger.info(HomeAspect.logMsg + "usePointUp:" + usePointUp);
         }
 
         // 멤버테이블에 포인트 업데이트
@@ -1286,19 +1287,17 @@ public class ExperienceService {
                     )
             );
         } else {    // 적립포인트가 0이면 (포인트를 사용한 경우)
-
-            PointUseDto pointUse = new PointUseDto();
-            pointUse.setMemberCode(memberCode);
-            pointUse.setUsePlace(experienceDto.getExName());
-            pointUse.setUseDate(exReserveDto.getReserveDate());
-            pointUse.setUsePoint(usePoint);
+            pointUseRepository.save(
+                    new PointUse(
+                            (long) usePoint,
+                            (long) memberCode,
+                            (long) experienceDto.getExCode(),
+                            experienceDto.getExName()
+                    )
+            );
 
             // 포인트 사용 = 현재 포인트 - 사용 포인트
             plusPoint = nowPoint - usePoint;
-
-            // 포인트 사용테이블에 저장
-            int usePointUp = experienceDao.usePointUp(pointUse);
-            HomeAspect.logger.info(HomeAspect.logMsg + "usePointUp:" + usePointUp);
         }
 
         // 멤버테이블에 포인트 업데이트

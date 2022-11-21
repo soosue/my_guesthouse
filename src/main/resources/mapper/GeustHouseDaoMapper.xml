@@ -84,11 +84,6 @@
         where id = #{memberCode}
     </update>
 
-    <insert id="insertUsePoint" parameterType="com.java.guesthouse.guestdelluna.service.dto.PointUseDto">
-        insert into POINTUSE(useCode, memberCode, usePlace, useDate, usePoint)
-        values (seq_useCode_num.nextval, #{memberCode}, #{usePlace}, #{useDate}, #{usePoint})
-    </insert>
-
     <insert id="insertRemain" parameterType="java.util.Map">
         insert into REMAIN(resDate, people, houseCode)
         values (#{resDate}, #{people}, #{houseCode})

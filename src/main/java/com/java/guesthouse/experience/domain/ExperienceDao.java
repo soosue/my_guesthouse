@@ -157,10 +157,6 @@ public class ExperienceDao {
         return sqlSessionTemplate.update("dao.ExperienceMapper.pointUpdate", hMap);
     }
 
-    public int usePointUp(PointUseDto pointUse) {
-        return sqlSessionTemplate.insert("dao.ExperienceMapper.usePointUp", pointUse);
-    }
-
     // 달력 체험하는 인원 세기
     public List<ExReserveDto> reserveList(int exCode, Date exDate) {
         Map<String, Object> hMap = new HashMap<>();

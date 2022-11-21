@@ -206,11 +206,6 @@
         where id = #{memberCode}
     </update>
 
-    <insert id="usePointUp" parameterType="com.java.guesthouse.guestdelluna.service.dto.PointUseDto">
-        insert into pointUse (useCode, memberCode, usePlace, useDate, usePoint)
-        values (POINTUSE_USECODE_SEQ.nextval, #{memberCode}, #{usePlace}, #{useDate}, #{usePoint})
-    </insert>
-
     <!-- 메세지 보관함 -->
     <insert id="message" parameterType="com.java.guesthouse.guestdelluna.service.dto.MsgDto">
         insert into message (msgCode, memberCode, msgContent, msgDate, msgCheck)
