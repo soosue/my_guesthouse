@@ -5,7 +5,7 @@ import java.util.List;
 import com.java.guesthouse.common.dto.PageInfo;
 
 public record MembersResponse(
-    List<MemberResponse> members,
+    List<MemberResponse> data,
     PageInfo pageInfo
 ) {
     public static MembersResponse of(List<MemberResponse> members, Integer totalPages) {

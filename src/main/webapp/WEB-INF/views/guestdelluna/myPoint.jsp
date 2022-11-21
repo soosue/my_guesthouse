@@ -86,23 +86,42 @@
                         </tr>
                         </thead>
                         <tbody id="pointAccumulatesBody">
-                            <td colspan="8" style="text-align: center">적립된 포인트가 없습니다.</td>
+                        <td colspan="8" style="text-align: center">적립된 포인트가 없습니다.</td>
                         </tbody>
                     </table>
                     <div class="text-center">
-                        <ul id="pagination" class="pagination justify-content-center"></ul>
+                        <ul id="paginationPointAccumulates" class="pagination justify-content-center"></ul>
                     </div>
                 </div>
             </div>
 
             <div id="fragment-2">
-                <div id="useView"></div>
+                <div id="useView">
+                    <table class="table table-hover" id="pointUsesTable">
+                        <thead align="center">
+                        <tr>
+                            <th align="center" height="20" width="125">번호</th>
+                            <th align="center" height="20" width="300">사용장소</th>
+                            <th align="center" height="20" width="125">사용일</th>
+                            <th align="center" height="20" width="125">사용포인트</th>
+                        </tr>
+                        </thead>
+
+                        <tbody id="pointUsesBody">
+                        <td colspan="8" style="text-align: center">사용된 포인트가 없습니다.</td>
+                        </tbody>
+                    </table>
+                    <div class="text-center">
+                        <ul id="paginationPointUses" class="pagination justify-content-center"></ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 </body>
 
+<script type="text/javascript" src="/resources/javascript/paging/paging.js"></script>
 <script type="text/javascript">
     $(function () {
         $('#tabs').tabs();
@@ -111,89 +130,66 @@
             paging('${root}', '', '500000', '');
         })
 
-        const pagination = document.getElementById("pagination");
-        const pageClick = (event) => {
+        const paginationPointAccumulates = document.getElementById("paginationPointAccumulates");
+        const paginationPointAccumulatesClick = (event) => {
             if (event.target.className === "page-link") {
                 getPointAccumulates(event.target.dataset.page);
             }
         }
-        pagination.addEventListener("click", pageClick);
+        paginationPointAccumulates.addEventListener("click", paginationPointAccumulatesClick);
+
+        const paginationPointUses = document.getElementById("paginationPointUses");
+        const paginationPointUsesClick = (event) => {
+            if (event.target.className === "page-link") {
+                getPointAccumulates(event.target.dataset.page);
+            }
+        }
+        paginationPointUses.addEventListener("click", paginationPointUsesClick);
 
         getPointAccumulates();
     });
 
-    const getPointAccumulates = async (page = 1) => {
-        page -= 1;
+    const getPointAccumulates = (page = 1) => {
+        return getDataAndDraw(
+            "/v1/pointaccumulates/me?page=",
+            pointAccumulatesRow,
+            "pointAccumulatesTable",
+            "pointAccumulatesBody",
+            pageComponent,
+            "paginationPointAccumulates",
+            page
+        );
+    }
 
-        const json = await (await fetch("/v1/pointaccumulates/me?page=" + page)).json();
+    const getPointUses = (page = 1) => {
+        return getDataAndDraw(
+            "/v1/pointuses/me?page=",
+            pointAccumulatesRow,
+            "pointUsesTable",
+            "pointUsesBody",
+            pageComponent,
+            "paginationPointUses",
+            page
+        );
+    }
 
-        const pointAccumulatesRow = ({id, guestHouseName, createdAt, point}) => {
-            return `<tr>
+    const pointAccumulatesRow = ({id, guestHouseName, createdAt, point}) => {
+        return `<tr>
                     <td align="center" height="20" width="125">\${id}</td>
                     <td align="center" height="20" width="300">\${guestHouseName}</td>
                     <td align="center" height="20" width="125">\${createdAt} </td>
                     <td align="center" height="20" width="125">\${point}</td>
                     </tr>`;
-        };
+    };
 
-        if (json.pointAccumulates.length != 0) {
-            const newTbody = document.createElement("tbody");
-            newTbody.setAttribute("id", "pointAccumulatesBody");
-            json.pointAccumulates.forEach(pointAccumulates => newTbody.innerHTML += pointAccumulatesRow(pointAccumulates));
-
-            const table = document.getElementById("pointAccumulatesTable");
-            const oldTbody = document.getElementById("pointAccumulatesBody");
-            table.replaceChild(newTbody, oldTbody);
-        }
-
-        const pagination = document.getElementById("pagination");
-
-        let pageBlockSize = 3;
-        let currentPage = page + 1;
-        let totalPages = json.pageInfo.totalPages;
-
-        let currentBlock = Math.floor((currentPage - 1) / pageBlockSize);
-        let startPage = currentBlock * pageBlockSize + 1;
-        let endPage = startPage + pageBlockSize - 1;
-        if (endPage > totalPages) {
-            endPage = totalPages;
-        }
-
-        let pageBtn = "";
-
-        const pageComponent = ({text, pageNumber, bold = false}) => {
-            return `<li class="page-item"><a class="page-link" data-page="\${pageNumber}" \${bold ? `
-            style = "font-weight: bold"` : ""}>\${text}</a><li>`;
-        }
-
-        if (currentBlock > 0) {
-            pageBtn += pageComponent({
-                "text": "이전",
-                "pageNumber": startPage - pageBlockSize
-            });
-        }
-
-        for (let i = startPage; i <= endPage; i++) {
-            pageBtn += pageComponent({
-                "text": i,
-                "pageNumber": i,
-                "bold": i === currentPage
-            });
-        }
-
-        if (endPage !== totalPages) {
-            pageBtn += pageComponent({
-                "text": "다음",
-                "pageNumber": startPage + pageBlockSize
-            });
-        }
-
-        pagination.innerHTML = pageBtn;
+    const pageComponent = ({text, pageNumber, bold = false}) => {
+        return `<li class="page-item"><a class="page-link" data-page="\${pageNumber}" \${bold ? `
+        style = "font-weight: bold"` : ""}>\${text}</a><li>`;
     }
 
     function paging(root, param, accuCount, useCount) {
         if (accuCount > 50000) {
-            var url = root + "/guestdelluna/managePointUseAjax.do";
+            var url = root + "/v1/pointuses/me";
             var params = "usePageNumber=" + param;
             sendRequest("GET", url, usePOK, params);
         }

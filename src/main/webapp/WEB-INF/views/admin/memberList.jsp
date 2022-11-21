@@ -82,16 +82,23 @@
     </div>
 </div>
 </body>
+
+<script type="text/javascript" src="/resources/javascript/paging/paging.js"></script>
 <script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", () => {
+    const getMembers = (page = 1) => {
+        return getDataAndDraw(
+            "/v1/admin/members?page=",
+            memberRow,
+            "membersTable",
+            "membersBody",
+            pageComponent,
+            "pagination",
+            page
+        );
+    }
 
-        const getMembers = async (page = 1) => {
-            page -= 1;
-
-            const json = await (await fetch("/v1/admin/members?page=" + page)).json();
-
-            const memberRow = ({id, name, email, phoneNumber, createdAt, point, memberLevel}) => {
-                return `<tr>
+    const memberRow = ({id, name, email, phoneNumber, createdAt, point, memberLevel}) => {
+        return `<tr>
                     <td class="tb" value="\${id}">\${id}
                     <input type="hidden" id="memberName" name="memberName" value="\${name}"/>
                     <input type="hidden" id="memberCode" name="memberCode" value="\${id}"/>
@@ -108,76 +115,14 @@
                         </button>
                     </td>
                     </tr>`;
-            };
+    };
 
-            if (json.members.length != 0) {
-                const newTbody = document.createElement("tbody");
-                newTbody.setAttribute("id", "membersBody");
-                json.members.forEach(member => newTbody.innerHTML += memberRow(member));
+    const pageComponent = ({text, pageNumber, bold = false}) => {
+        return `<li class="page-item"><a class="page-link" data-page="\${pageNumber}" \${bold ? `
+        style = "font-weight: bold"` : ""}>\${text}</a><li>`;
+    }
 
-                const table = document.getElementById("membersTable");
-                const oldTbody = document.getElementById("membersBody");
-                table.replaceChild(newTbody, oldTbody);
-
-                $('#update button').on('click', function () {
-                    var currentRow = $(this).closest('tr');
-
-                    var memberCode = currentRow.find('#memberCode')[0].value;
-                    var name = currentRow.find('#memberName')[0].value;
-                    var point = currentRow.find('td:eq(5)').text();
-                    var memberLevel = currentRow.find('td:eq(6)').text();
-
-                    $('.modal #updateMemberCode').val(memberCode);
-                    $('.modal #memberName').val(name);
-                    $('.modal #point').val(point);
-                    $('.modal #memberLevel').val(memberLevel);
-                });
-            }
-
-            const pagination = document.getElementById("pagination");
-
-            let pageBlockSize = 3;
-            let currentPage = page + 1;
-            let totalPages = json.pageInfo.totalPages;
-
-            let currentBlock = Math.floor((currentPage - 1) / pageBlockSize);
-            let startPage = currentBlock * pageBlockSize + 1;
-            let endPage = startPage + pageBlockSize - 1;
-            if (endPage > totalPages) {
-                endPage = totalPages;
-            }
-
-            let pageBtn = "";
-
-            const pageComponent = ({text, pageNumber, bold = false}) => {
-                return `<li class="page-item"><a class="page-link" data-page="\${pageNumber}" \${bold ? `
-                style = "font-weight: bold"` : ""}>\${text}</a><li>`;
-            }
-
-            if (currentBlock > 0) {
-                pageBtn += pageComponent({
-                    "text": "이전",
-                    "pageNumber": startPage - pageBlockSize
-                });
-            }
-
-            for (let i = startPage; i <= endPage; i++) {
-                pageBtn += pageComponent({
-                    "text": i,
-                    "pageNumber": i,
-                    "bold": i === currentPage
-                });
-            }
-
-            if (endPage !== totalPages) {
-                pageBtn += pageComponent({
-                    "text": "다음",
-                    "pageNumber": startPage + pageBlockSize
-                });
-            }
-
-            pagination.innerHTML = pageBtn;
-        }
+    document.addEventListener("DOMContentLoaded", () => {
         const pagination = document.getElementById("pagination");
         const pageClick = (event) => {
             if (event.target.className === "page-link") {
