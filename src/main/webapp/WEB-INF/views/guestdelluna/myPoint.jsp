@@ -128,21 +128,8 @@
         $("#pointAccumulates").click(() => getPointAccumulates());
         $("#pointUses").click(() => getPointUses());
 
-        const paginationPointAccumulates = document.getElementById("paginationPointAccumulates");
-        const paginationPointAccumulatesClick = (event) => {
-            if (event.target.className === "page-link") {
-                getPointAccumulates(event.target.dataset.page);
-            }
-        }
-        paginationPointAccumulates.addEventListener("click", paginationPointAccumulatesClick);
-
-        const paginationPointUses = document.getElementById("paginationPointUses");
-        const paginationPointUsesClick = (event) => {
-            if (event.target.className === "page-link") {
-                getPointAccumulates(event.target.dataset.page);
-            }
-        }
-        paginationPointUses.addEventListener("click", paginationPointUsesClick);
+        addPaginationClickEventTo("paginationPointAccumulates", getPointAccumulates);
+        addPaginationClickEventTo("paginationPointUses", getPointUses);
 
         getPointAccumulates();
     });
@@ -192,40 +179,6 @@
     const pageComponent = ({text, pageNumber, bold = false}) => {
         return `<li class="page-item"><a class="page-link" data-page="\${pageNumber}" \${bold ? `
         style = "font-weight: bold"` : ""}>\${text}</a><li>`;
-    }
-
-    function paging(root, param, accuCount, useCount) {
-        if (accuCount > 50000) {
-            var url = root + "/v1/pointuses/me";
-            var params = "usePageNumber=" + param;
-            sendRequest("GET", url, usePOK, params);
-        }
-    }
-
-    function accuPOK() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            document.getElementById("accuView").innerHTML = xhr.responseText;
-            var currentPage = $("#currentPage").val();
-            var page = "#" + currentPage.toString();
-            $(page).css({
-                'color': '#008489',
-                'font-size': '1.2rem',
-                'font-weight': 'bold'
-            });
-        }
-    }
-
-    function usePOK() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            document.getElementById("useView").innerHTML = xhr.responseText;
-            var currentPage = $("#useCurrentPage").val();
-            var page = "#" + currentPage.toString();
-            $(page).css({
-                'color': '#008489',
-                'font-size': '1.2rem',
-                'font-weight': 'bold'
-            });
-        }
     }
 </script>
 </html>

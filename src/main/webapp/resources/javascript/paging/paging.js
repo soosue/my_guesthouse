@@ -51,4 +51,14 @@ const getDataAndDraw = async (url, dataRow, tableId, bodyId, pageComponent, pagi
     }
 
     pagination.innerHTML = pageBtn;
+};
+
+const addPaginationClickEventTo = (paginationId, clickHandler) => {
+    const pagination = document.getElementById(paginationId);
+    const clickPagination = (event) => {
+        if (event.target.className === "page-link") {
+            clickHandler(event.target.dataset.page);
+        }
+    }
+    pagination.addEventListener("click", clickPagination);
 }

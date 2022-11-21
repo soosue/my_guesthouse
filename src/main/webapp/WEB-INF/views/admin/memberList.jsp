@@ -123,14 +123,7 @@
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-        const pagination = document.getElementById("pagination");
-        const pageClick = (event) => {
-            if (event.target.className === "page-link") {
-                getMembers(event.target.dataset.page);
-            }
-        }
-        pagination.addEventListener("click", pageClick);
-
+        addPaginationClickEventTo("pagination", getMembers);
         getMembers();
     })
 </script>
