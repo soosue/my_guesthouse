@@ -19,7 +19,7 @@ public class PointController {
         this.dellunaService = dellunaService;
     }
 
-    @RequestMapping(value = "guestdelluna/managePoint.do", method = RequestMethod.GET)
+    @RequestMapping(value = "/manage/points", method = RequestMethod.GET)
     public ModelAndView managePoint(HttpServletRequest request, HttpServletResponse response) {
 
         ModelAndView mav = new ModelAndView();
