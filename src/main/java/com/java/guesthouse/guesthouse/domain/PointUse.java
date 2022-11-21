@@ -40,4 +40,28 @@ public class PointUse {
         this.placeId = placeId;
         this.placeName = placeName;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Long getPoint() {
+        return point;
+    }
+
+    public Long getMemberId() {
+        return memberId;
+    }
+
+    public Long getPlaceId() {
+        return placeId;
+    }
+
+    public String getPlaceName() {
+        return placeName;
+    }
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
 }

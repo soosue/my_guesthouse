@@ -37,17 +37,14 @@ import com.java.guesthouse.host.service.dto.ExReviewListDto;
 import com.java.guesthouse.host.service.dto.HostExListDto;
 import com.java.guesthouse.host.service.dto.HostHouseListDto;
 import com.java.guesthouse.host.service.dto.HouseReviewListDto;
-import com.java.guesthouse.point.domain.PointAccumulateRepository;
 
 @Service
 public class DellunaService {
 
     private final DellunaDao dellunaDao;
-    private final PointAccumulateRepository pointAccumulateRepository;
 
-    public DellunaService(DellunaDao dellunaDao, PointAccumulateRepository pointAccumulateRepository) {
+    public DellunaService(DellunaDao dellunaDao) {
         this.dellunaDao = dellunaDao;
-        this.pointAccumulateRepository = pointAccumulateRepository;
     }
 
     // 찜목록불러오기

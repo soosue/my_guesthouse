@@ -7,11 +7,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.java.guesthouse.point.service.PointService;
 import com.java.guesthouse.point.service.dto.PointAccumulatesResponse;
+import com.java.guesthouse.point.service.dto.PointUsesResponse;
 
 @Controller
 public class PointController2 {
@@ -21,12 +21,21 @@ public class PointController2 {
         this.pointService = pointService;
     }
 
-    @RequestMapping(value = "/v1/pointaccumulates/me", method = RequestMethod.GET)
+    @GetMapping("/v1/pointaccumulates/me")
     public ResponseEntity<PointAccumulatesResponse> getPointAccumulates(
             HttpSession session,
             @PageableDefault(size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable
     ) {
         Long memberId = (Long) session.getAttribute("memberCode");
         return ResponseEntity.ok(pointService.getPointAccumulates(memberId, pageable));
+    }
+
+    @GetMapping("/v1/pointuses/me")
+    public ResponseEntity<PointUsesResponse> managePointUseAjax(
+            HttpSession session,
+            @PageableDefault(size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable
+    ) {
+        Long memberId = (Long) session.getAttribute("memberCode");
+        return ResponseEntity.ok(pointService.getPointUses(memberId, pageable));
     }
 }

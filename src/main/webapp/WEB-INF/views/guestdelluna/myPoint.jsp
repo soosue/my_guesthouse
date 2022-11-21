@@ -53,7 +53,7 @@
                 <li id="pointAccumulates" class="accu"
                     style="float: left; border: 0px; background: #ffffff; margin-top: -3.04rem; margin-left: -0.5rem"><a
                         href="#fragment-1"><span>포인트 적립 내역</span></a></li>
-                <li class="use"
+                <li id="pointUses" class="use"
                     style="float: left; border: 0px; background: #ffffff; margin-top: -3.04rem; margin-left: 11rem;"><a
                         href="#fragment-2"><span>포인트 사용 내역</span></a></li>
 
@@ -126,9 +126,7 @@
     $(function () {
         $('#tabs').tabs();
         $("#pointAccumulates").click(() => getPointAccumulates());
-        $(".use").click(function () {
-            paging('${root}', '', '500000', '');
-        })
+        $("#pointUses").click(() => getPointUses());
 
         const paginationPointAccumulates = document.getElementById("paginationPointAccumulates");
         const paginationPointAccumulatesClick = (event) => {
@@ -164,7 +162,7 @@
     const getPointUses = (page = 1) => {
         return getDataAndDraw(
             "/v1/pointuses/me?page=",
-            pointAccumulatesRow,
+            pointUsesRow,
             "pointUsesTable",
             "pointUsesBody",
             pageComponent,
@@ -179,8 +177,17 @@
                     <td align="center" height="20" width="300">\${guestHouseName}</td>
                     <td align="center" height="20" width="125">\${createdAt} </td>
                     <td align="center" height="20" width="125">\${point}</td>
-                    </tr>`;
+                </tr>`;
     };
+
+    const pointUsesRow = ({id, placeName, createdAt, point}) => {
+        return `<tr>
+                    <td align="center" height="20" width="125">\${id}</td>
+                    <td align="center" height="20" width="300">\${placeName}</td>
+                    <td align="center" height="20" width="125">\${createdAt}</td>
+                    <td align="center" height="20" width="125">\${point}</td>
+                </tr>`;
+    }
 
     const pageComponent = ({text, pageNumber, bold = false}) => {
         return `<li class="page-item"><a class="page-link" data-page="\${pageNumber}" \${bold ? `
