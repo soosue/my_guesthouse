@@ -29,7 +29,7 @@ import com.java.guesthouse.experience.service.dto.ExperienceDto;
 import com.java.guesthouse.exreserve.dto.ExReserveDto;
 import com.java.guesthouse.exreview.dto.ExReviewDto;
 import com.java.guesthouse.exreview.dto.ExReviewListDto;
-import com.java.guesthouse.guestdelluna.service.dto.PointUse;
+import com.java.guesthouse.guestdelluna.service.dto.PointUseDto;
 import com.java.guesthouse.host.service.dto.HostDto;
 import com.java.guesthouse.member.service.dto.MemberDto;
 import com.java.guesthouse.point.domain.PointAccumulate;
@@ -1055,7 +1055,7 @@ public class ExperienceService {
             );
         } else {    // 적립포인트가 0이면 (포인트를 사용한 경우)
 
-            PointUse pointUse = new PointUse();
+            PointUseDto pointUse = new PointUseDto();
             pointUse.setMemberCode(memberCode);
             pointUse.setUsePlace(experienceDto.getExName());
             pointUse.setUseDate(exReserveDto.getReserveDate());
@@ -1287,7 +1287,7 @@ public class ExperienceService {
             );
         } else {    // 적립포인트가 0이면 (포인트를 사용한 경우)
 
-            PointUse pointUse = new PointUse();
+            PointUseDto pointUse = new PointUseDto();
             pointUse.setMemberCode(memberCode);
             pointUse.setUsePlace(experienceDto.getExName());
             pointUse.setUseDate(exReserveDto.getReserveDate());

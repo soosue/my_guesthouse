@@ -27,7 +27,7 @@ import com.java.guesthouse.guestdelluna.service.dto.NewHouseResDto;
 import com.java.guesthouse.guestdelluna.service.dto.NewHouseReserveDto;
 import com.java.guesthouse.guestdelluna.service.dto.NewHouseReviewDto;
 import com.java.guesthouse.guestdelluna.service.dto.NewHouseZzimDto;
-import com.java.guesthouse.guestdelluna.service.dto.PointUse;
+import com.java.guesthouse.guestdelluna.service.dto.PointUseDto;
 import com.java.guesthouse.host.service.dto.ExReviewListDto;
 import com.java.guesthouse.host.service.dto.HostExListDto;
 import com.java.guesthouse.host.service.dto.HostHouseListDto;
@@ -353,7 +353,7 @@ public class DellunaDao {
         return sqlSessionTemplate.selectOne("dao.dellunaMapper.getCountUse", memberCode);
     }
 
-    public List<PointUse> myUsePoint(Long memberCode, int startRow, int endRow) {
+    public List<PointUseDto> myUsePoint(Long memberCode, int startRow, int endRow) {
 
         Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);

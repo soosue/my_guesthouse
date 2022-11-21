@@ -18,7 +18,7 @@ import com.java.guesthouse.exreserve.dto.ExReserveDto;
 import com.java.guesthouse.exreview.dto.ExReviewDto;
 import com.java.guesthouse.exreview.dto.ExReviewListDto;
 import com.java.guesthouse.file.dto.FileDto;
-import com.java.guesthouse.guestdelluna.service.dto.PointUse;
+import com.java.guesthouse.guestdelluna.service.dto.PointUseDto;
 import com.java.guesthouse.host.service.dto.HostDto;
 import com.java.guesthouse.member.service.dto.MemberDto;
 
@@ -157,7 +157,7 @@ public class ExperienceDao {
         return sqlSessionTemplate.update("dao.ExperienceMapper.pointUpdate", hMap);
     }
 
-    public int usePointUp(PointUse pointUse) {
+    public int usePointUp(PointUseDto pointUse) {
         return sqlSessionTemplate.insert("dao.ExperienceMapper.usePointUp", pointUse);
     }
 

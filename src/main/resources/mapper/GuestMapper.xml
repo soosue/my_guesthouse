@@ -299,7 +299,7 @@
     </select>
 
     <select id="myUsePoint" parameterType="java.util.Map"
-            resultType="com.java.guesthouse.guestdelluna.service.dto.PointUse">
+            resultType="com.java.guesthouse.guestdelluna.service.dto.PointUseDto">
 	 <![CDATA[
         select *
         from (select rownum as rnum, a.*

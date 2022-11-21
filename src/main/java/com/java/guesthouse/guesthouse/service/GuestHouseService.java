@@ -25,7 +25,7 @@ import com.java.guesthouse.aop.HomeAspect;
 import com.java.guesthouse.file.dto.FileDto;
 import com.java.guesthouse.guestdelluna.service.dto.HouseReviewDto;
 import com.java.guesthouse.guestdelluna.service.dto.MsgDto;
-import com.java.guesthouse.guestdelluna.service.dto.PointUse;
+import com.java.guesthouse.guestdelluna.service.dto.PointUseDto;
 import com.java.guesthouse.guesthouse.domain.GuestHouseDao;
 import com.java.guesthouse.guestreserve.dto.GHouseReviewListDto;
 import com.java.guesthouse.guestreserve.dto.GuestReserveDto;
@@ -729,7 +729,7 @@ public class GuestHouseService {
                     )
             );
         } else {// 포인트 사용 내역
-            PointUse pointUse = new PointUse();
+            PointUseDto pointUse = new PointUseDto();
             pointUse.setMemberCode(memberCode);
             pointUse.setUseDate(guestReserveDto.getReserveDate());
             pointUse.setUsePlace(hostDto.getHouseName());
@@ -916,7 +916,7 @@ public class GuestHouseService {
                     )
             );
         } else {// 포인트 사용 내역
-            PointUse pointUse = new PointUse();
+            PointUseDto pointUse = new PointUseDto();
             pointUse.setMemberCode(memberCode);
             pointUse.setUseDate(guestReserveDto.getReserveDate());
             pointUse.setUsePlace(hostDto.getHouseName());

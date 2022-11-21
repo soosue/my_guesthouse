@@ -32,7 +32,7 @@ import com.java.guesthouse.guestdelluna.service.dto.NewHouseResDto;
 import com.java.guesthouse.guestdelluna.service.dto.NewHouseReserveDto;
 import com.java.guesthouse.guestdelluna.service.dto.NewHouseReviewDto;
 import com.java.guesthouse.guestdelluna.service.dto.NewHouseZzimDto;
-import com.java.guesthouse.guestdelluna.service.dto.PointUse;
+import com.java.guesthouse.guestdelluna.service.dto.PointUseDto;
 import com.java.guesthouse.host.service.dto.ExReviewListDto;
 import com.java.guesthouse.host.service.dto.HostExListDto;
 import com.java.guesthouse.host.service.dto.HostHouseListDto;
@@ -502,7 +502,7 @@ public class DellunaService {
 
         HomeAspect.logger.info(HomeAspect.logMsg + startRow + "," + endRow);
 
-        List<PointUse> usePoint = null;
+        List<PointUseDto> usePoint = null;
         if (countUse > 0) {
             usePoint = dellunaDao.myUsePoint((long) memberCode, startRow, endRow);
             HomeAspect.logger.info(HomeAspect.logMsg + "포인트사용내역 리스트 : " + usePoint);
@@ -516,7 +516,7 @@ public class DellunaService {
     }
 
     // 포인트 사용 목록 조회
-    public List<PointUse> getPointUses(int currentPage, Long memberId) {
+    public List<PointUseDto> getPointUses(int currentPage, Long memberId) {
         int boardSize = 5;
         int startRow = (currentPage - 1) * boardSize + 1;
         int endRow = startRow + boardSize - 1;

@@ -2,7 +2,7 @@ package com.java.guesthouse.guestdelluna.service.dto;
 
 import java.util.Date;
 
-public class PointUse {
+public class PointUseDto {
 
     private int useCode;
     private int memberCode;
@@ -10,10 +10,10 @@ public class PointUse {
     private Date useDate;
     private int usePoint;
 
-    public PointUse() {
+    public PointUseDto() {
     }
 
-    public PointUse(int useCode, int memberCode, String usePlace, Date useDate, int usePoint) {
+    public PointUseDto(int useCode, int memberCode, String usePlace, Date useDate, int usePoint) {
 
         this.useCode = useCode;
         this.memberCode = memberCode;
