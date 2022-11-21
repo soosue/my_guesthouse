@@ -25,20 +25,6 @@ public class PointController {
         return new ModelAndView("guestdelluna/myPoint.tiles");
     }
 
-    @RequestMapping(value = "guestdelluna/managePointUseAjax.do", method = RequestMethod.GET)
-    public ModelAndView managePointUseAjax(HttpServletRequest request, HttpServletResponse response) {
-
-        ModelAndView mav = new ModelAndView();
-
-        mav.addObject("request", request);
-        mav.addObject("response", response);
-
-        dellunaService.pointManageUseAjax(mav);
-
-        return mav;
-
-    }
-
     @RequestMapping(value = "guestdelluna/payList.do", method = RequestMethod.GET)
     public ModelAndView payList(HttpServletRequest request, HttpServletResponse response) {
 

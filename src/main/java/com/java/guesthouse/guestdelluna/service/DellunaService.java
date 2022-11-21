@@ -468,59 +468,6 @@ public class DellunaService {
 
     }
 
-    public void pointManageUseAjax(ModelAndView mav) {
-        // TODO Auto-generated method stub
-        Map<String, Object> map = mav.getModelMap();
-        HttpServletRequest request = (HttpServletRequest) map.get("request");
-
-        HttpSession session = request.getSession();
-        String email = (String) session.getAttribute("email");
-        HomeAspect.logger.info(HomeAspect.logMsg + email);
-
-        int memberCode = dellunaDao.selectMemberCode(email);
-        HomeAspect.logger.info(HomeAspect.logMsg + memberCode);
-
-        String usePageNumber = request.getParameter("usePageNumber");
-        if (usePageNumber.equals("")) {
-            usePageNumber = "1";
-        }
-        int useCurrentPage = Integer.parseInt(usePageNumber);
-        HomeAspect.logger.info(HomeAspect.logMsg + "현재 적립페이지 : " + useCurrentPage);
-
-        int countAccu = 10000000;
-
-        int countUse = dellunaDao.getCountUse(memberCode);
-        HomeAspect.logger.info(HomeAspect.logMsg + memberCode + "의 사용 된 개수 : " + countUse);
-
-        int boardSize = 5;
-
-        int startRow = (useCurrentPage - 1) * boardSize + 1;
-        int endRow = startRow + boardSize - 1;
-
-        HomeAspect.logger.info(HomeAspect.logMsg + startRow + "," + endRow);
-
-        List<PointUseDto> usePoint = null;
-        if (countUse > 0) {
-            usePoint = dellunaDao.myUsePoint((long) memberCode, startRow, endRow);
-            HomeAspect.logger.info(HomeAspect.logMsg + "포인트사용내역 리스트 : " + usePoint);
-        }
-        mav.addObject("countUse", countUse);
-        mav.addObject("countAccu", countAccu);
-        mav.addObject("usePoint", usePoint);
-        mav.addObject("boardSize", boardSize);
-        mav.addObject("useCurrentPage", useCurrentPage);
-        mav.setViewName("guestdelluna/pointUse.empty");
-    }
-
-    // 포인트 사용 목록 조회
-    public List<PointUseDto> getPointUses(int currentPage, Long memberId) {
-        int boardSize = 5;
-        int startRow = (currentPage - 1) * boardSize + 1;
-        int endRow = startRow + boardSize - 1;
-
-        return dellunaDao.myUsePoint(memberId, startRow, endRow);
-    }
-
     // 내가 예약한 게스트하우스 , 찜 목록 조회
     public void reserveCheck(ModelAndView mav) {
         // TODO Auto-generated method stub
