@@ -505,7 +505,7 @@ public class DellunaService {
 
         List<PointUse> usePoint = null;
         if (countUse > 0) {
-            usePoint = dellunaDao.myUsePoint(memberCode, startRow, endRow);
+            usePoint = dellunaDao.myUsePoint((long) memberCode, startRow, endRow);
             HomeAspect.logger.info(HomeAspect.logMsg + "포인트사용내역 리스트 : " + usePoint);
         }
         mav.addObject("countUse", countUse);
@@ -537,7 +537,7 @@ public class DellunaService {
         int currentPage = Integer.parseInt(pageNumber);
         HomeAspect.logger.info(HomeAspect.logMsg + "현재 적립페이지 : " + currentPage);
 
-        long countAccu = pointAccumulateRepository.countByMemberId((long)memberCode);
+        long countAccu = pointAccumulateRepository.countByMemberId((long) memberCode);
 
         int countUse = 10000000;
 
@@ -551,7 +551,7 @@ public class DellunaService {
         List<PointAccumulateDto> accuPoint = null;
 
         if (countAccu > 0) {
-            accuPoint = dellunaDao.myAccuPoint(memberCode, startRow, endRow);
+            accuPoint = dellunaDao.myAccuPoint((long) memberCode, startRow, endRow);
             HomeAspect.logger.info(HomeAspect.logMsg + "포인트적립내역 리스트 : " + accuPoint);
         }
 
@@ -563,44 +563,22 @@ public class DellunaService {
         mav.setViewName("guestdelluna/pointAccu.empty");
     }
 
-    // 포인트 적립 및 사용 다 가져와서 보내줌
-    public void pointManage(ModelAndView mav) {
-        // TODO Auto-generated method stub
-
-        Map<String, Object> map = mav.getModelMap();
-        HttpServletRequest request = (HttpServletRequest) map.get("request");
-
-        HttpSession session = request.getSession();
-        String email = (String) session.getAttribute("email");
-        HomeAspect.logger.info(HomeAspect.logMsg + email);
-        int memberCode = dellunaDao.selectMemberCode(email);
-        HomeAspect.logger.info(HomeAspect.logMsg + memberCode);
-
-        String pageNumber = request.getParameter("pageNumber");
-        if (pageNumber == null) {
-            pageNumber = "1";
-        }
-        int currentPage = Integer.parseInt(pageNumber);
-        HomeAspect.logger.info(HomeAspect.logMsg + "현재 적립페이지 : " + currentPage);
-
+    // 포인트 적립 목록 조회
+    public List<PointAccumulateDto> getPointAccumulates(int currentPage, Long memberId) {
         int boardSize = 5;
-
         int startRow = (currentPage - 1) * boardSize + 1;
         int endRow = startRow + boardSize - 1;
 
-        List<PointUse> usePoint = dellunaDao.myUsePoint(memberCode, startRow, endRow);
-        HomeAspect.logger.info(HomeAspect.logMsg + "포인트사용내역 리스트 : " + usePoint);
+        return dellunaDao.myAccuPoint(memberId, startRow, endRow);
+    }
 
-        List<PointAccumulateDto> accuPoint = dellunaDao.myAccuPoint(memberCode, startRow, endRow);
-        HomeAspect.logger.info(HomeAspect.logMsg + "포인트적립내역 리스트 : " + accuPoint);
+    // 포인트 사용 목록 조회
+    public List<PointUse> getPointUses(int currentPage, Long memberId) {
+        int boardSize = 5;
+        int startRow = (currentPage - 1) * boardSize + 1;
+        int endRow = startRow + boardSize - 1;
 
-
-        MemberDto memberDto = dellunaDao.selectForUpdate(email);
-        mav.addObject("memberDto", memberDto);
-        mav.addObject("usePoint", usePoint);
-        mav.addObject("accuPoint", accuPoint);
-        mav.setViewName("guestdelluna/myPoint.tiles");
-
+        return dellunaDao.myUsePoint(memberId, startRow, endRow);
     }
 
     // 내가 예약한 게스트하우스 , 찜 목록 조회
