@@ -23,13 +23,13 @@ public class PointController2 {
     }
 
     @GetMapping("/v1/points/me")
-    public ResponseEntity<PointResponse> getPoint(HttpSession session) {
+    public ResponseEntity<PointResponse> getMyPoint(HttpSession session) {
         Long memberId = (Long) session.getAttribute("memberCode");
         return ResponseEntity.ok(pointService.getPointByMemberId(memberId));
     }
 
     @GetMapping("/v1/pointaccumulates/me")
-    public ResponseEntity<PointAccumulatesResponse> getPointAccumulates(
+    public ResponseEntity<PointAccumulatesResponse> getMyPointAccumulates(
             HttpSession session,
             @PageableDefault(size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable
     ) {
@@ -38,7 +38,7 @@ public class PointController2 {
     }
 
     @GetMapping("/v1/pointuses/me")
-    public ResponseEntity<PointUsesResponse> managePointUseAjax(
+    public ResponseEntity<PointUsesResponse> getMyPointUses(
             HttpSession session,
             @PageableDefault(size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable
     ) {
