@@ -21,7 +21,7 @@ public class PointController {
     }
 
     @GetMapping("/manage/points.page")
-    public ModelAndView managePoint() {
+    public ModelAndView managePointPage() {
         return new ModelAndView("guestdelluna/myPoint.tiles");
     }
 

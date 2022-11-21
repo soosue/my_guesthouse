@@ -292,17 +292,6 @@
           and h.state = #{state}
     </select>
 
-    <select id="myUsePoint" parameterType="java.util.Map"
-            resultType="com.java.guesthouse.guestdelluna.service.dto.PointUseDto">
-	 <![CDATA[
-        select *
-        from (select rownum as rnum, a.*
-              from (select * from pointuse where memberCode = #{memberCode}) a) b
-        where b.rnum >= #{startRow}
-          and b.rnum <= #{endRow}
-        ]]>
-    </select>
-
     <select id="expReviewCount" parameterType="int" resultType="int">
         select count(*)
         from exreview

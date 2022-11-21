@@ -27,7 +27,6 @@ import com.java.guesthouse.guestdelluna.service.dto.NewHouseResDto;
 import com.java.guesthouse.guestdelluna.service.dto.NewHouseReserveDto;
 import com.java.guesthouse.guestdelluna.service.dto.NewHouseReviewDto;
 import com.java.guesthouse.guestdelluna.service.dto.NewHouseZzimDto;
-import com.java.guesthouse.guestdelluna.service.dto.PointUseDto;
 import com.java.guesthouse.host.service.dto.ExReviewListDto;
 import com.java.guesthouse.host.service.dto.HostExListDto;
 import com.java.guesthouse.host.service.dto.HostHouseListDto;
@@ -345,16 +344,6 @@ public class DellunaDao {
         map.put("startRow", startRow);
         map.put("endRow", endRow);
         return sqlSessionTemplate.selectList("host.dao.mapper.getHouseReviewListScroll", map);
-    }
-
-    public List<PointUseDto> myUsePoint(Long memberCode, int startRow, int endRow) {
-
-        Map<String, Object> map = new HashMap<>();
-        map.put("memberCode", memberCode);
-        map.put("startRow", startRow);
-        map.put("endRow", endRow);
-
-        return sqlSessionTemplate.selectList("dao.dellunaMapper.myUsePoint", map);
     }
 
     public int expReviewCount(int memberCode) {
