@@ -58,19 +58,7 @@
                         href="#fragment-2"><span>포인트 사용 내역</span></a></li>
 
                 <li style="margin-top: -2.3rem; float: right; color: black"> 보유 포인트 : <span
-                        style="text-decoration: underline;"> <c:forEach
-                        items="${accuPoint}" var="ap">
-                    <c:set var="accSum" value="${accSum + ap.accuPoint}"/>
-                </c:forEach> <c:set var="pointSum" value="${accSum}"/> <c:forEach
-                        items="${usePoint}" var="up">
-                    <c:set var="useSum" value="${useSum + up.usePoint}"/>
-                </c:forEach> <c:set var="pointUse" value="${useSum}"/> <c:if
-                        test="${pointSum - pointUse > 0}">
-                    <c:out value="${pointSum - pointUse}"/>
-                </c:if> <c:if test="${pointSum - pointUse < 0}">
-                    <span>없습니다.</span>
-                </c:if>
-			</span>
+                        style="text-decoration: underline;" id="point"></span>
                 </li>
             </ul>
 
@@ -132,7 +120,26 @@
         addPaginationClickEventTo("paginationPointUses", getPointUses);
 
         getPointAccumulates();
+        getCurrentPoint();
     });
+
+    const getCurrentPoint = () => {
+        fetch("/v1/points/me", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(response => {
+            if (response.status === 200) {
+                response.json().then(
+                    data => {
+                        const pointElement = document.getElementById("point")
+                        pointElement.innerHTML = data.point;
+                    }
+                )
+            }
+        });
+    }
 
     const getPointAccumulates = (page = 1) => {
         return getDataAndDraw(

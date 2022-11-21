@@ -7,10 +7,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.java.guesthouse.guesthouse.domain.PointUse;
 import com.java.guesthouse.guesthouse.domain.PointUseRepository;
+import com.java.guesthouse.member.domain.Member;
+import com.java.guesthouse.member.service.MemberService;
 import com.java.guesthouse.point.domain.PointAccumulate;
 import com.java.guesthouse.point.domain.PointAccumulateRepository;
 import com.java.guesthouse.point.service.dto.PointAccumulateResponse;
 import com.java.guesthouse.point.service.dto.PointAccumulatesResponse;
+import com.java.guesthouse.point.service.dto.PointResponse;
 import com.java.guesthouse.point.service.dto.PointUseResponse;
 import com.java.guesthouse.point.service.dto.PointUsesResponse;
 
@@ -19,10 +22,12 @@ import com.java.guesthouse.point.service.dto.PointUsesResponse;
 public class PointService {
     private final PointAccumulateRepository pointAccumulateRepository;
     private final PointUseRepository pointUseRepository;
+    private final MemberService memberService;
 
-    public PointService(PointAccumulateRepository pointAccumulateRepository, PointUseRepository pointUseRepository) {
+    public PointService(PointAccumulateRepository pointAccumulateRepository, PointUseRepository pointUseRepository, MemberService memberService) {
         this.pointAccumulateRepository = pointAccumulateRepository;
         this.pointUseRepository = pointUseRepository;
+        this.memberService = memberService;
     }
 
     public PointAccumulatesResponse getPointAccumulates(Long memberId, Pageable pageable) {
@@ -43,5 +48,11 @@ public class PointService {
                         .toList(),
                 pointUses.getTotalPages()
         );
+    }
+
+    public PointResponse getPointByMemberId(Long memberId) {
+        Member member = memberService.findById(memberId);
+
+        return PointResponse.from(member.getPoint());
     }
 }

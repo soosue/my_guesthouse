@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.java.guesthouse.point.service.PointService;
 import com.java.guesthouse.point.service.dto.PointAccumulatesResponse;
+import com.java.guesthouse.point.service.dto.PointResponse;
 import com.java.guesthouse.point.service.dto.PointUsesResponse;
 
 @Controller
@@ -19,6 +20,12 @@ public class PointController2 {
 
     public PointController2(PointService pointService) {
         this.pointService = pointService;
+    }
+
+    @GetMapping("/v1/points/me")
+    public ResponseEntity<PointResponse> getPoint(HttpSession session) {
+        Long memberId = (Long) session.getAttribute("memberCode");
+        return ResponseEntity.ok(pointService.getPointByMemberId(memberId));
     }
 
     @GetMapping("/v1/pointaccumulates/me")
