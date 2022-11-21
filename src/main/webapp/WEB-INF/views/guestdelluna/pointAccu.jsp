@@ -57,13 +57,13 @@
         </c:if>
 
         <c:if test="${startPage>pageBlock}">
-            <a onclick="paging('${root}','${startPage-pageBlock}','${countAccu}','${countUse}')">[이전]</a>
+            <a onclick="getPointAccumulates('${startPage-pageBlock}')">[이전]</a>
         </c:if>
         <c:forEach var="i" begin="${startPage}" end="${endPage}">
-            <a onclick="paging('${root}', '${i}','${countAccu}','${countUse}','${countUse}')" id="${i}">${i}</a>
+            <a onclick="getPointAccumulates('${i}')" id="${i}">${i}</a>
         </c:forEach>
         <c:if test="${endPage < pageCount}">
-            <a onclick="paging('${root}','${startPage+pageBlock}','${countAccu}','${countUse}')">[다음]</a>
+            <a onclick="getPointAccumulates('${startPage+pageBlock}')">[다음]</a>
         </c:if>
     </c:if>
     <input type="hidden" value="${currentPage}" id="currentPage"/>

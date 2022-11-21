@@ -19,30 +19,24 @@
     <script type="text/javascript">
         $(function () {
             $('#tabs').tabs();
-            paging('${root}', '', '', '300000');
-            $(".accu").click(function () {
-                paging('${root}', '', '', '300000');
-            })
+            getPointAccumulates();
+            $("#pointAccumulates").click(() => getPointAccumulates());
             $(".use").click(function () {
                 paging('${root}', '', '500000', '');
             })
         });
 
+        function getPointAccumulates(page = 1) {
+            const url = "/v1/pointaccumulates/me";
+            const params = "pageNumber=" + page;
+
+            sendRequest("GET", url, accuPOK, params);
+        }
+
         function paging(root, param, accuCount, useCount) {
-            if (useCount > 50000) {
-                var url = root + "/v1/points/me";
-
-                var params = "pageNumber=" + param;
-
-                sendRequest("GET", url, accuPOK, params);
-            }
-
             if (accuCount > 50000) {
-
                 var url = root + "/guestdelluna/managePointUseAjax.do";
-
                 var params = "usePageNumber=" + param;
-
                 sendRequest("GET", url, usePOK, params);
             }
         }
@@ -80,28 +74,26 @@
         <ul>
             <li><a href="${root}/guestdelluna/allMyReview.do"
                    style="color: black;">후기</a></li>
-            <c:if test="${memberCode == memberDto.memberCode}">
-                <li><a href="${root}/guestdelluna/memberUpdate.do"
-                       style="color: black;">회원수정</a></li>
-                <li><a href="${root}/manage/points"
-                       style="color: black;">포인트관리</a></li>
-                <li><a href="${root}/guestdelluna/payList.do"
-                       style="color: black;">결제내역</a></li>
-                <c:if test="${memberLevel == 'Host'}">
-                    <hr style="border: 0.0315rem solid #ddd;"/>
-                    <li><a href="${root}/host/reservationView.do"
-                           style="color: black;">숙소예약현황</a></li>
-                    <li><a href="${root}/host/exReservationView.do"
-                           style="color: black;">체험예약현황</a></li>
-                    <li><a href="${root}/host/salesView.do" style="color: black;">매출조회</a></li>
-                    <li><a href="${root}/host/houseManagement.do"
-                           style="color: black;">게스트하우스 관리</a></li>
-                    <li><a href="${root}/host/exManagement.do"
-                           style="color: black;">체험 관리</a></li>
-                </c:if>
-                <li><a href="${root}/guestdelluna/memberDelete.do"
-                       style="color: black;">회원탈퇴</a></li>
+            <li><a href="${root}/guestdelluna/memberUpdate.do"
+                   style="color: black;">회원수정</a></li>
+            <li><a href="${root}/manage/points"
+                   style="color: black;">포인트관리</a></li>
+            <li><a href="${root}/guestdelluna/payList.do"
+                   style="color: black;">결제내역</a></li>
+            <c:if test="${memberLevel == 'Host'}">
+                <hr style="border: 0.0315rem solid #ddd;"/>
+                <li><a href="${root}/host/reservationView.do"
+                       style="color: black;">숙소예약현황</a></li>
+                <li><a href="${root}/host/exReservationView.do"
+                       style="color: black;">체험예약현황</a></li>
+                <li><a href="${root}/host/salesView.do" style="color: black;">매출조회</a></li>
+                <li><a href="${root}/host/houseManagement.do"
+                       style="color: black;">게스트하우스 관리</a></li>
+                <li><a href="${root}/host/exManagement.do"
+                       style="color: black;">체험 관리</a></li>
             </c:if>
+            <li><a href="${root}/guestdelluna/memberDelete.do"
+                   style="color: black;">회원탈퇴</a></li>
         </ul>
     </div>
 
@@ -109,7 +101,7 @@
         <div id="tabs" class="container"
              style="width: 60rem; margin-top: 1.5rem; margin-left: -4rem;">
             <ul style="border: 0px; background: #ffffff;">
-                <li class="accu"
+                <li id="pointAccumulates" class="accu"
                     style="float: left; border: 0px; background: #ffffff; margin-top: -3.04rem; margin-left: -0.5rem"><a
                         href="#fragment-1"><span>포인트 적립 내역</span></a></li>
                 <li class="use"

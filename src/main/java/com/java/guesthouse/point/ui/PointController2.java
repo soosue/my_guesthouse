@@ -23,9 +23,15 @@ public class PointController2 {
     }
 
 
-    @RequestMapping(value = "/v1/points/me", method = RequestMethod.GET)
+    @RequestMapping(value = "/v1/pointaccumulates/me", method = RequestMethod.GET)
     public ModelAndView managePointAjax(HttpServletRequest request, @PageableDefault Pageable pageable) {
 
+//        Long memberId = (Long)session.getAttribute("memberCode");
+
+//        List<PointAccumulateDto> pointAccumulates = dellunaService.getPointAccumulates(1, memberId);
+//        List<PointUse> pointUses = dellunaService.getPointUses(1, memberId);
+//        mav.addObject("accuPoint", pointAccumulates);
+//        mav.addObject("usePoint", pointUses);
         ModelAndView mav = new ModelAndView();
 
         mav.addObject("request", request);
