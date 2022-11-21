@@ -20,7 +20,7 @@ public class PointController {
         this.dellunaService = dellunaService;
     }
 
-    @GetMapping("/manage/points")
+    @GetMapping("/manage/points.page")
     public ModelAndView managePoint() {
         return new ModelAndView("guestdelluna/myPoint.tiles");
     }
