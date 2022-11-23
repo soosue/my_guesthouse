@@ -65,12 +65,13 @@
             <div id="fragment-1">
                 <div id="accuView">
                     <table class="table table-hover" id="pointAccumulatesTable">
-                        <thead align="center">
+                        <caption style="display:none">Point Accumulates Table</caption>
+                        <thead>
                         <tr>
-                            <th align="center" height="20" width="125">번호</th>
-                            <th align="center" height="20" width="300">적립장소</th>
-                            <th align="center" height="20" width="125">적립일</th>
-                            <th align="center" height="20" width="125">적립포인트</th>
+                            <th>번호</th>
+                            <th>적립장소</th>
+                            <th>적립일</th>
+                            <th>적립포인트</th>
                         </tr>
                         </thead>
                         <tbody id="pointAccumulatesBody">
@@ -86,12 +87,13 @@
             <div id="fragment-2">
                 <div id="useView">
                     <table class="table table-hover" id="pointUsesTable">
-                        <thead align="center">
+                        <caption style="display:none">Point Uses Table</caption>
+                        <thead>
                         <tr>
-                            <th align="center" height="20" width="125">번호</th>
-                            <th align="center" height="20" width="300">사용장소</th>
-                            <th align="center" height="20" width="125">사용일</th>
-                            <th align="center" height="20" width="125">사용포인트</th>
+                            <th>번호</th>
+                            <th>사용장소</th>
+                            <th>사용일</th>
+                            <th>사용포인트</th>
                         </tr>
                         </thead>
 
@@ -167,19 +169,19 @@
 
     const pointAccumulatesRow = ({id, guestHouseName, createdAt, point}) => {
         return `<tr>
-                    <td align="center" height="20" width="125">\${id}</td>
-                    <td align="center" height="20" width="300">\${guestHouseName}</td>
-                    <td align="center" height="20" width="125">\${createdAt} </td>
-                    <td align="center" height="20" width="125">\${point}</td>
+                    <td>\${id}</td>
+                    <td>\${guestHouseName}</td>
+                    <td>\${createdAt} </td>
+                    <td>\${point}</td>
                 </tr>`;
     };
 
     const pointUsesRow = ({id, placeName, createdAt, point}) => {
         return `<tr>
-                    <td align="center" height="20" width="125">\${id}</td>
-                    <td align="center" height="20" width="300">\${placeName}</td>
-                    <td align="center" height="20" width="125">\${createdAt}</td>
-                    <td align="center" height="20" width="125">\${point}</td>
+                    <td>\${id}</td>
+                    <td>\${placeName}</td>
+                    <td>\${createdAt}</td>
+                    <td>\${point}</td>
                 </tr>`;
     }
 

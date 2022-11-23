@@ -24,7 +24,7 @@ public class PointController2 {
 
     @GetMapping("/v1/points/me")
     public ResponseEntity<PointResponse> getMyPoint(HttpSession session) {
-        Long memberId = (Long) session.getAttribute("memberCode");
+        Long memberId = getMemberId(session);
         return ResponseEntity.ok(pointService.getPointByMemberId(memberId));
     }
 
@@ -33,7 +33,7 @@ public class PointController2 {
             HttpSession session,
             @PageableDefault(size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable
     ) {
-        Long memberId = (Long) session.getAttribute("memberCode");
+        Long memberId = getMemberId(session);
         return ResponseEntity.ok(pointService.getPointAccumulates(memberId, pageable));
     }
 
@@ -42,7 +42,11 @@ public class PointController2 {
             HttpSession session,
             @PageableDefault(size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable
     ) {
-        Long memberId = (Long) session.getAttribute("memberCode");
+        Long memberId = getMemberId(session);
         return ResponseEntity.ok(pointService.getPointUses(memberId, pageable));
+    }
+
+    private Long getMemberId(HttpSession session) {
+        return (Long) session.getAttribute("memberCode");
     }
 }
