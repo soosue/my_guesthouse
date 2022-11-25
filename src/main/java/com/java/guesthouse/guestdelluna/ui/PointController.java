@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,44 +20,9 @@ public class PointController {
         this.dellunaService = dellunaService;
     }
 
-    @RequestMapping(value = "guestdelluna/managePoint.do", method = RequestMethod.GET)
-    public ModelAndView managePoint(HttpServletRequest request, HttpServletResponse response) {
-
-        ModelAndView mav = new ModelAndView();
-
-        mav.addObject("request", request);
-
-        dellunaService.pointManage(mav);
-
-        return mav;
-    }
-
-    @RequestMapping(value = "guestdelluna/managePointAjax.do", method = RequestMethod.GET)
-    public ModelAndView managePointAjax(HttpServletRequest request, HttpServletResponse response) {
-
-        ModelAndView mav = new ModelAndView();
-
-        mav.addObject("request", request);
-        mav.addObject("response", response);
-
-        dellunaService.pointManageAjax(mav);
-
-        return mav;
-
-    }
-
-    @RequestMapping(value = "guestdelluna/managePointUseAjax.do", method = RequestMethod.GET)
-    public ModelAndView managePointUseAjax(HttpServletRequest request, HttpServletResponse response) {
-
-        ModelAndView mav = new ModelAndView();
-
-        mav.addObject("request", request);
-        mav.addObject("response", response);
-
-        dellunaService.pointManageUseAjax(mav);
-
-        return mav;
-
+    @GetMapping("/manage/points.page")
+    public ModelAndView managePointPage() {
+        return new ModelAndView("guestdelluna/myPoint.tiles");
     }
 
     @RequestMapping(value = "guestdelluna/payList.do", method = RequestMethod.GET)

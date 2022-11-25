@@ -16,63 +16,6 @@
     <script type="text/javascript" src="${root}/resources/xhr/xhr.js"></script>
     <script type="text/javascript"
             src="${root}/resources/javascript/guestdelluna/menuLayout.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            $('#tabs').tabs();
-            paging('${root}', '', '', '300000');
-            $(".accu").click(function () {
-                paging('${root}', '', '', '300000');
-            })
-            $(".use").click(function () {
-                paging('${root}', '', '500000', '');
-            })
-        });
-
-        function paging(root, param, accuCount, useCount) {
-            if (useCount > 50000) {
-                var url = root + "/guestdelluna/managePointAjax.do";
-
-                var params = "pageNumber=" + param;
-
-                sendRequest("GET", url, accuPOK, params);
-            }
-
-            if (accuCount > 50000) {
-
-                var url = root + "/guestdelluna/managePointUseAjax.do";
-
-                var params = "usePageNumber=" + param;
-
-                sendRequest("GET", url, usePOK, params);
-            }
-        }
-
-        function accuPOK() {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                document.getElementById("accuView").innerHTML = xhr.responseText;
-                var currentPage = $("#currentPage").val();
-                var page = "#" + currentPage.toString();
-                $(page).css({
-                    'color': '#008489',
-                    'font-size': '1.2rem',
-                    'font-weight': 'bold'
-                });
-            }
-        }
-
-        function usePOK() {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                document.getElementById("useView").innerHTML = xhr.responseText;
-                var currentPage = $("#useCurrentPage").val();
-                var page = "#" + currentPage.toString();
-                $(page).css({
-                    'color': '#008489',
-                    'font-size': '1.2rem',
-                    'font-weight': 'bold'
-                });
-            }
-        }
-    </script>
 </head>
 <body>
 <div id="wrap" style="margin-top: 3rem;">
@@ -80,28 +23,26 @@
         <ul>
             <li><a href="${root}/guestdelluna/allMyReview.do"
                    style="color: black;">후기</a></li>
-            <c:if test="${memberCode == memberDto.memberCode}">
-                <li><a href="${root}/guestdelluna/memberUpdate.do"
-                       style="color: black;">회원수정</a></li>
-                <li><a href="${root}/guestdelluna/managePoint.do"
-                       style="color: black;">포인트관리</a></li>
-                <li><a href="${root}/guestdelluna/payList.do"
-                       style="color: black;">결제내역</a></li>
-                <c:if test="${memberLevel == 'Host'}">
-                    <hr style="border: 0.0315rem solid #ddd;"/>
-                    <li><a href="${root}/host/reservationView.do"
-                           style="color: black;">숙소예약현황</a></li>
-                    <li><a href="${root}/host/exReservationView.do"
-                           style="color: black;">체험예약현황</a></li>
-                    <li><a href="${root}/host/salesView.do" style="color: black;">매출조회</a></li>
-                    <li><a href="${root}/host/houseManagement.do"
-                           style="color: black;">게스트하우스 관리</a></li>
-                    <li><a href="${root}/host/exManagement.do"
-                           style="color: black;">체험 관리</a></li>
-                </c:if>
-                <li><a href="${root}/guestdelluna/memberDelete.do"
-                       style="color: black;">회원탈퇴</a></li>
+            <li><a href="${root}/guestdelluna/memberUpdate.do"
+                   style="color: black;">회원수정</a></li>
+            <li><a href="${root}/manage/points.page"
+                   style="color: black;">포인트관리</a></li>
+            <li><a href="${root}/guestdelluna/payList.do"
+                   style="color: black;">결제내역</a></li>
+            <c:if test="${memberLevel == 'Host'}">
+                <hr style="border: 0.0315rem solid #ddd;"/>
+                <li><a href="${root}/host/reservationView.do"
+                       style="color: black;">숙소예약현황</a></li>
+                <li><a href="${root}/host/exReservationView.do"
+                       style="color: black;">체험예약현황</a></li>
+                <li><a href="${root}/host/salesView.do" style="color: black;">매출조회</a></li>
+                <li><a href="${root}/host/houseManagement.do"
+                       style="color: black;">게스트하우스 관리</a></li>
+                <li><a href="${root}/host/exManagement.do"
+                       style="color: black;">체험 관리</a></li>
             </c:if>
+            <li><a href="${root}/guestdelluna/memberDelete.do"
+                   style="color: black;">회원탈퇴</a></li>
         </ul>
     </div>
 
@@ -109,39 +50,144 @@
         <div id="tabs" class="container"
              style="width: 60rem; margin-top: 1.5rem; margin-left: -4rem;">
             <ul style="border: 0px; background: #ffffff;">
-                <li class="accu"
+                <li id="pointAccumulates" class="accu"
                     style="float: left; border: 0px; background: #ffffff; margin-top: -3.04rem; margin-left: -0.5rem"><a
                         href="#fragment-1"><span>포인트 적립 내역</span></a></li>
-                <li class="use"
+                <li id="pointUses" class="use"
                     style="float: left; border: 0px; background: #ffffff; margin-top: -3.04rem; margin-left: 11rem;"><a
                         href="#fragment-2"><span>포인트 사용 내역</span></a></li>
 
                 <li style="margin-top: -2.3rem; float: right; color: black"> 보유 포인트 : <span
-                        style="text-decoration: underline;"> <c:forEach
-                        items="${accuPoint}" var="ap">
-                    <c:set var="accSum" value="${accSum + ap.accuPoint}"/>
-                </c:forEach> <c:set var="pointSum" value="${accSum}"/> <c:forEach
-                        items="${usePoint}" var="up">
-                    <c:set var="useSum" value="${useSum + up.usePoint}"/>
-                </c:forEach> <c:set var="pointUse" value="${useSum}"/> <c:if
-                        test="${pointSum - pointUse > 0}">
-                    <c:out value="${pointSum - pointUse}"/>
-                </c:if> <c:if test="${pointSum - pointUse < 0}">
-                    <span>없습니다.</span>
-                </c:if>
-			</span>
+                        style="text-decoration: underline;" id="point"></span>
                 </li>
             </ul>
 
             <div id="fragment-1">
-                <div id="accuView"></div>
+                <div id="accuView">
+                    <table class="table table-hover" id="pointAccumulatesTable">
+                        <caption style="display:none">Point Accumulates Table</caption>
+                        <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>적립장소</th>
+                            <th>적립일</th>
+                            <th>적립포인트</th>
+                        </tr>
+                        </thead>
+                        <tbody id="pointAccumulatesBody">
+                        <td colspan="8" style="text-align: center">적립된 포인트가 없습니다.</td>
+                        </tbody>
+                    </table>
+                    <div class="text-center">
+                        <ul id="paginationPointAccumulates" class="pagination justify-content-center"></ul>
+                    </div>
+                </div>
             </div>
 
             <div id="fragment-2">
-                <div id="useView"></div>
+                <div id="useView">
+                    <table class="table table-hover" id="pointUsesTable">
+                        <caption style="display:none">Point Uses Table</caption>
+                        <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>사용장소</th>
+                            <th>사용일</th>
+                            <th>사용포인트</th>
+                        </tr>
+                        </thead>
+
+                        <tbody id="pointUsesBody">
+                        <td colspan="8" style="text-align: center">사용된 포인트가 없습니다.</td>
+                        </tbody>
+                    </table>
+                    <div class="text-center">
+                        <ul id="paginationPointUses" class="pagination justify-content-center"></ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 </body>
+
+<script type="text/javascript" src="/resources/javascript/paging/paging.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#tabs').tabs();
+        $("#pointAccumulates").click(() => getPointAccumulates());
+        $("#pointUses").click(() => getPointUses());
+
+        addPaginationClickEventTo("paginationPointAccumulates", getPointAccumulates);
+        addPaginationClickEventTo("paginationPointUses", getPointUses);
+
+        getPointAccumulates();
+        getCurrentPoint();
+    });
+
+    const getCurrentPoint = () => {
+        fetch("/v1/points/me", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(response => {
+            if (response.status === 200) {
+                response.json().then(
+                    data => {
+                        const pointElement = document.getElementById("point")
+                        pointElement.innerHTML = data.point;
+                    }
+                )
+            }
+        });
+    }
+
+    const getPointAccumulates = (page = 1) => {
+        return getDataAndDraw(
+            "/v1/pointaccumulates/me?page=",
+            pointAccumulatesRow,
+            "pointAccumulatesTable",
+            "pointAccumulatesBody",
+            pageComponent,
+            "paginationPointAccumulates",
+            page
+        );
+    }
+
+    const getPointUses = (page = 1) => {
+        return getDataAndDraw(
+            "/v1/pointuses/me?page=",
+            pointUsesRow,
+            "pointUsesTable",
+            "pointUsesBody",
+            pageComponent,
+            "paginationPointUses",
+            page
+        );
+    }
+
+    const pointAccumulatesRow = ({id, guestHouseName, createdAt, point}) => {
+        return `<tr>
+                    <td>\${id}</td>
+                    <td>\${guestHouseName}</td>
+                    <td>\${createdAt} </td>
+                    <td>\${point}</td>
+                </tr>`;
+    };
+
+    const pointUsesRow = ({id, placeName, createdAt, point}) => {
+        return `<tr>
+                    <td>\${id}</td>
+                    <td>\${placeName}</td>
+                    <td>\${createdAt}</td>
+                    <td>\${point}</td>
+                </tr>`;
+    }
+
+    const pageComponent = ({text, pageNumber, bold = false}) => {
+        return `<li class="page-item"><a class="page-link" data-page="\${pageNumber}" \${bold ? `
+        style = "font-weight: bold"` : ""}>\${text}</a><li>`;
+    }
+</script>
 </html>

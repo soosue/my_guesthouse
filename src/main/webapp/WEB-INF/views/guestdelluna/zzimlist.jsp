@@ -95,7 +95,7 @@
             <c:if test="${memberCode == memberDto.memberCode}">
                 <li><a href="${root}/guestdelluna/memberUpdate.do"
                        style="color: black;">회원수정</a></li>
-                <li><a href="${root}/guestdelluna/managePoint.do"
+                <li><a href="${root}/manage/points.page"
                        style="color: black;">포인트관리</a></li>
                 <li><a href="${root}/guestdelluna/payList.do"
                        style="color: black;">결제내역</a></li>

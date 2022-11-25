@@ -25,27 +25,33 @@ import com.java.guesthouse.aop.HomeAspect;
 import com.java.guesthouse.file.dto.FileDto;
 import com.java.guesthouse.guestdelluna.service.dto.HouseReviewDto;
 import com.java.guesthouse.guestdelluna.service.dto.MsgDto;
-import com.java.guesthouse.guestdelluna.service.dto.PointAccumulate;
-import com.java.guesthouse.guestdelluna.service.dto.PointUse;
 import com.java.guesthouse.guesthouse.domain.GuestHouseDao;
+import com.java.guesthouse.point.domain.PointUse;
+import com.java.guesthouse.point.domain.PointUseRepository;
 import com.java.guesthouse.guestreserve.dto.GHouseReviewListDto;
 import com.java.guesthouse.guestreserve.dto.GuestReserveDto;
 import com.java.guesthouse.guestreserve.dto.RemainDto;
 import com.java.guesthouse.host.service.dto.HostDto;
 import com.java.guesthouse.member.service.dto.MemberDto;
+import com.java.guesthouse.point.domain.PointAccumulate;
+import com.java.guesthouse.point.domain.PointAccumulateRepository;
 
 @Service
 public class GuestHouseService {
 
     private final GuestHouseDao guestHouseDao;
+    private final PointAccumulateRepository pointAccumulateRepository;
+    private final PointUseRepository pointUseRepository;
     // TODO 추후에 고치겠습니다. Bean 인데 왜 이렇게 변수를 선언했을까요...
     String email;
     HostDto hostDto;
     List<FileDto> fileList;
     int memberPoint;
 
-    public GuestHouseService(GuestHouseDao guestHouseDao) {
+    public GuestHouseService(GuestHouseDao guestHouseDao, PointAccumulateRepository pointAccumulateRepository, PointUseRepository pointUseRepository) {
         this.guestHouseDao = guestHouseDao;
+        this.pointAccumulateRepository = pointAccumulateRepository;
+        this.pointUseRepository = pointUseRepository;
     }
 
     public void guestHouseRead(ModelAndView mav) {
@@ -717,27 +723,24 @@ public class GuestHouseService {
 
         // 포인트 내역 db 저장
         if (resPoint > 0) {
-            PointAccumulate pointAccumulate = new PointAccumulate();
-            pointAccumulate.setAccuDate(guestReserveDto.getReserveDate());
-            pointAccumulate.setMemberCode(memberCode);
-            pointAccumulate.setAccuPlace(hostDto.getHouseName());
-            pointAccumulate.setAccuPoint(resPoint);
-            HomeAspect.logger.info(HomeAspect.logMsg + pointAccumulate.toString());
-
-            int resPointCheck = guestHouseDao.insertResPoint(pointAccumulate);
-            HomeAspect.logger.info(HomeAspect.logMsg + "resPointCheck: " + resPointCheck);
+            pointAccumulateRepository.save(
+                    new PointAccumulate(
+                            (long) resPoint,
+                            (long) memberCode,
+                            (long) hostDto.getHouseCode(),
+                            PointAccumulate.PointType.RESERVE_GUESTHOUSE
+                    )
+            );
         } else {// 포인트 사용 내역
-            PointUse pointUse = new PointUse();
-            pointUse.setMemberCode(memberCode);
-            pointUse.setUseDate(guestReserveDto.getReserveDate());
-            pointUse.setUsePlace(hostDto.getHouseName());
-            pointUse.setUsePoint(usePoint);
-
-            int usePointCheck = guestHouseDao.insertUsePoint(pointUse);
-            HomeAspect.logger.info(HomeAspect.logMsg + "usePointCheck: " + usePointCheck);
+            pointUseRepository.save(
+                    new PointUse(
+                            (long) usePoint,
+                            (long) memberCode,
+                            (long) hostDto.getHouseCode(),
+                            hostDto.getHouseName()
+                    )
+            );
         }
-
-        MemberDto memberDto = guestHouseDao.getMemberInfo(email);
 
         mav.addObject("reserveCode", reserveCode);
         mav.addObject("payment", guestReserveDto.getPayment());
@@ -746,10 +749,8 @@ public class GuestHouseService {
         mav.addObject("account", hostDto.getAccount());
         mav.addObject("mainImg", mainImg);
         mav.addObject("resPoint", resPoint);
-        //mav.addObject("memberDto",memberDto);
 
         mav.setViewName("guestHousePage/guestHouseReservOk.tiles");
-        //mav.setViewName("guestHousePage/kakaoPay.tiles");
     }
 
     /* 결제 방식이 카카오페이 */
@@ -905,24 +906,23 @@ public class GuestHouseService {
 
         // 포인트 내역 db 저장
         if (resPoint > 0) {
-            PointAccumulate pointAccumulate = new PointAccumulate();
-            pointAccumulate.setAccuDate(guestReserveDto.getReserveDate());
-            pointAccumulate.setMemberCode(memberCode);
-            pointAccumulate.setAccuPlace(hostDto.getHouseName());
-            pointAccumulate.setAccuPoint(resPoint);
-            HomeAspect.logger.info(HomeAspect.logMsg + pointAccumulate.toString());
-
-            int resPointCheck = guestHouseDao.insertResPoint(pointAccumulate);
-            HomeAspect.logger.info(HomeAspect.logMsg + "resPointCheck: " + resPointCheck);
+            pointAccumulateRepository.save(
+                    new PointAccumulate(
+                            (long) resPoint,
+                            (long) memberCode,
+                            (long) hostDto.getHouseCode(),
+                            PointAccumulate.PointType.RESERVE_GUESTHOUSE
+                    )
+            );
         } else {// 포인트 사용 내역
-            PointUse pointUse = new PointUse();
-            pointUse.setMemberCode(memberCode);
-            pointUse.setUseDate(guestReserveDto.getReserveDate());
-            pointUse.setUsePlace(hostDto.getHouseName());
-            pointUse.setUsePoint(usePoint);
-
-            int usePointCheck = guestHouseDao.insertUsePoint(pointUse);
-            HomeAspect.logger.info(HomeAspect.logMsg + "usePointCheck: " + usePointCheck);
+            pointUseRepository.save(
+                    new PointUse(
+                            (long) usePoint,
+                            (long) memberCode,
+                            (long) hostDto.getHouseCode(),
+                            hostDto.getHouseName()
+                    )
+            );
         }
 
         // message테이블

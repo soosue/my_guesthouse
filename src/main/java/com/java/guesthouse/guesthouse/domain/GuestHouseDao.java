@@ -11,8 +11,6 @@ import org.springframework.stereotype.Repository;
 import com.java.guesthouse.file.dto.FileDto;
 import com.java.guesthouse.guestdelluna.service.dto.HouseReviewDto;
 import com.java.guesthouse.guestdelluna.service.dto.MsgDto;
-import com.java.guesthouse.guestdelluna.service.dto.PointAccumulate;
-import com.java.guesthouse.guestdelluna.service.dto.PointUse;
 import com.java.guesthouse.guestreserve.dto.GHouseReviewListDto;
 import com.java.guesthouse.guestreserve.dto.GuestReserveDto;
 import com.java.guesthouse.guestreserve.dto.RemainDto;
@@ -27,13 +25,7 @@ public class GuestHouseDao {
         this.sqlSessionTemplate = sqlSessionTemplate;
     }
 
-    public HostDto guestHouseRead(int houseCode) {
-        // TODO Auto-generated method stub
-        return sqlSessionTemplate.selectOne("dao.GuestHouseMapper.guestHouseRead", houseCode);
-    }
-
     public List<FileDto> guestHouseImg(int houseCode) {
-        // TODO Auto-generated method stub
         Map<String, Integer> hMap = new HashMap<>();
         hMap.put("houseCode", houseCode);
         return sqlSessionTemplate.selectList("dao.GuestHouseMapper.guestHouseImgList", hMap);
@@ -42,17 +34,6 @@ public class GuestHouseDao {
     public int getMemberCode(String email) {
         return sqlSessionTemplate.selectOne("dao.GuestHouseMapper.getMemberCode", email);
     }
-
-//	@Override
-//	public int getPrice(int houseCode) {
-//		return sqlSessionTemplate.selectOne("dao.GuestHouseMapper.getPrice",houseCode);
-//	}
-//	
-//	@Override
-//	public int getHostMemberCode(int houseCode) {
-//		// TODO Auto-generated method stub
-//		return sqlSessionTemplate.selectOne("dao.GuestHouseMapper.getHostMemberCode",houseCode);
-//	}
 
     public HostDto getHostInfo(int houseCode) {
         // TODO Auto-generated method stub
@@ -69,7 +50,7 @@ public class GuestHouseDao {
         return sqlSessionTemplate.selectOne("dao.GuestHouseMapper.getHost", hostCode);
     }
 
-    public String getHouseName(int houseCode) {
+    public String getHouseName(Long houseCode) {
         // TODO Auto-generated method stub
         return sqlSessionTemplate.selectOne("dao.GuestHouseMapper.getHouseName", houseCode);
     }
@@ -97,16 +78,6 @@ public class GuestHouseDao {
         hMap.put("memberCode", memberCode);
 
         return sqlSessionTemplate.update("dao.GuestHouseMapper.updatePoint", hMap);
-    }
-
-    public int insertResPoint(PointAccumulate pointAccumulate) {
-        // TODO Auto-generated method stub
-        return sqlSessionTemplate.insert("dao.GuestHouseMapper.insertResPoint", pointAccumulate);
-    }
-
-    public int insertUsePoint(PointUse pointUse) {
-        // TODO Auto-generated method stub
-        return sqlSessionTemplate.insert("dao.GuestHouseMapper.insertUsePoint", pointUse);
     }
 
     public int insertRemain(Date checkIn, int people, int houseCode) {
@@ -182,12 +153,10 @@ public class GuestHouseDao {
     }
 
     public int reviewUpdateOk(HouseReviewDto reviewDto) {
-        // TODO Auto-generated method stub
         return sqlSessionTemplate.update("dao.GuestHouseMapper.reviewUpdateOk", reviewDto);
     }
 
     public int reviewDelete(int reserveCode) {
-        // TODO Auto-generated method stub
         return sqlSessionTemplate.delete("dao.GuestHouseMapper.reviewDelete", reserveCode);
     }
 }

@@ -4,12 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.GuestHouseMapper">
 
-    <select id="guestHouseRead" resultType="com.java.guesthouse.host.service.dto.HostDto">
-        select *
-        from house
-        where houseCode = #{houseCode}
-    </select>
-
     <select id="guestHouseImgList" parameterType="java.util.Map" resultType="com.java.guesthouse.file.dto.FileDto">
         select *
         from filelist
@@ -89,16 +83,6 @@
         set point =#{memberPoint}
         where id = #{memberCode}
     </update>
-
-    <insert id="insertResPoint" parameterType="com.java.guesthouse.guestdelluna.service.dto.PointAccumulate">
-        insert into POINTACCUMULATE(accuCode, memberCode, accuPlace, accuDate, accuPoint)
-        values (seq_accuCode_num.nextval, #{memberCode}, #{accuPlace}, #{accuDate}, #{accuPoint})
-    </insert>
-
-    <insert id="insertUsePoint" parameterType="com.java.guesthouse.guestdelluna.service.dto.PointUse">
-        insert into POINTUSE(useCode, memberCode, usePlace, useDate, usePoint)
-        values (seq_useCode_num.nextval, #{memberCode}, #{usePlace}, #{useDate}, #{usePoint})
-    </insert>
 
     <insert id="insertRemain" parameterType="java.util.Map">
         insert into REMAIN(resDate, people, houseCode)

@@ -292,41 +292,6 @@
           and h.state = #{state}
     </select>
 
-    <select id="getCountAccu" parameterType="int" resultType="int">
-        select count(*)
-        from pointaccumulate
-        where memberCode = #{memberCode}
-    </select>
-
-    <select id="getCountUse" parameterType="int" resultType="int">
-        select count(*)
-        from pointuse
-        where memberCode = #{memberCode}
-    </select>
-
-    <select id="myAccuPoint" parameterType="java.util.Map"
-            resultType="com.java.guesthouse.guestdelluna.service.dto.PointAccumulate">
-
-	 <![CDATA[
-        select *
-        from (select rownum rnum, A.*
-              from (select * from pointaccumulate where memberCode = #{memberCode}) A)
-        where rnum >= #{startRow}
-          and rnum <= #{endRow}
-        ]]>
-</select>
-
-    <select id="myUsePoint" parameterType="java.util.Map"
-            resultType="com.java.guesthouse.guestdelluna.service.dto.PointUse">
-	 <![CDATA[
-        select *
-        from (select rownum as rnum, a.*
-              from (select * from pointuse where memberCode = #{memberCode}) a) b
-        where b.rnum >= #{startRow}
-          and b.rnum <= #{endRow}
-        ]]>
-    </select>
-
     <select id="expReviewCount" parameterType="int" resultType="int">
         select count(*)
         from exreview
@@ -514,13 +479,6 @@
              reservation r
         where r.housecode = e.housecode
           and r.membercode = #{memberCode}
-    </select>
-
-    <select id="newPointAccu" parameterType="int"
-            resultType="com.java.guesthouse.guestdelluna.service.dto.PointAccumulate">
-        select *
-        from pointaccumulate
-        where memberCode = #{memberCode}
     </select>
 
     <select id="newExpZzimDto" parameterType="java.util.Map"

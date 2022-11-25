@@ -27,8 +27,6 @@ import com.java.guesthouse.guestdelluna.service.dto.NewHouseResDto;
 import com.java.guesthouse.guestdelluna.service.dto.NewHouseReserveDto;
 import com.java.guesthouse.guestdelluna.service.dto.NewHouseReviewDto;
 import com.java.guesthouse.guestdelluna.service.dto.NewHouseZzimDto;
-import com.java.guesthouse.guestdelluna.service.dto.PointAccumulate;
-import com.java.guesthouse.guestdelluna.service.dto.PointUse;
 import com.java.guesthouse.host.service.dto.ExReviewListDto;
 import com.java.guesthouse.host.service.dto.HostExListDto;
 import com.java.guesthouse.host.service.dto.HostHouseListDto;
@@ -324,11 +322,6 @@ public class DellunaDao {
         return sqlSessionTemplate.selectList("dao.dellunaMapper.myExNameWithString", map);
     }
 
-    public int getCountAccu(int memberCode) {
-
-        return sqlSessionTemplate.selectOne("dao.dellunaMapper.getCountAccu", memberCode);
-    }
-
     public List<HostHouseListDto> getHouseList(int memberCode) {
         return sqlSessionTemplate.selectList("host.dao.mapper.getHouseList", memberCode);
     }
@@ -351,32 +344,6 @@ public class DellunaDao {
         map.put("startRow", startRow);
         map.put("endRow", endRow);
         return sqlSessionTemplate.selectList("host.dao.mapper.getHouseReviewListScroll", map);
-    }
-
-
-    public int getCountUse(int memberCode) {
-
-        return sqlSessionTemplate.selectOne("dao.dellunaMapper.getCountUse", memberCode);
-    }
-
-    public List<PointAccumulate> myAccuPoint(int memberCode, int startRow, int endRow) {
-
-        Map<String, Object> map = new HashMap<>();
-        map.put("memberCode", memberCode);
-        map.put("startRow", startRow);
-        map.put("endRow", endRow);
-
-        return sqlSessionTemplate.selectList("dao.dellunaMapper.myAccuPoint", map);
-    }
-
-    public List<PointUse> myUsePoint(int memberCode, int startRow, int endRow) {
-
-        Map<String, Object> map = new HashMap<>();
-        map.put("memberCode", memberCode);
-        map.put("startRow", startRow);
-        map.put("endRow", endRow);
-
-        return sqlSessionTemplate.selectList("dao.dellunaMapper.myUsePoint", map);
     }
 
     public int expReviewCount(int memberCode) {
@@ -572,12 +539,6 @@ public class DellunaDao {
     public List<NewHouseReserveDto> newNewHouseReserve(int memberCode) {
 
         return sqlSessionTemplate.selectList("dao.dellunaMapper.newNewHouseReserve", memberCode);
-    }
-
-
-    public List<PointAccumulate> allAccuPoint(int memberCode) {
-
-        return sqlSessionTemplate.selectList("dao.dellunaMapper.newPointAccu", memberCode);
     }
 
     public List<NewExpZzimDto> newExpZzimDto(int memberCode, int startRow, int endRow) {

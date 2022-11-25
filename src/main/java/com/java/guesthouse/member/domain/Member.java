@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
+import lombok.Getter;
+
 @Entity
 @SequenceGenerator(
         name = "MEMBER_SEQ_GEN",
@@ -15,6 +17,7 @@ import javax.persistence.SequenceGenerator;
         initialValue = 1000,
         allocationSize = 1
 )
+@Getter
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBER_SEQ_GEN")
@@ -57,53 +60,5 @@ public class Member {
 
     public void updateToHost() {
         this.memberLevel = "Host";
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public String getInfo() {
-        return info;
-    }
-
-    public Long getPoint() {
-        return point;
-    }
-
-    public String getImageName() {
-        return imageName;
-    }
-
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public Long getImageSize() {
-        return imageSize;
-    }
-
-    public String getMemberLevel() {
-        return memberLevel;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
     }
 }

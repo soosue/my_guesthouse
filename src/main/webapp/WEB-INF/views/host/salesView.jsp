@@ -205,7 +205,7 @@
                 <a href="${root}/guestdelluna/memberUpdate.do">회원수정</a>
             </li>
             <li>
-                <a href="${root}/guestdelluna/managePoint.do">포인트관리</a>
+                <a href="${root}/manage/points.page">포인트관리</a>
             </li>
             <li>
                 <a href="${root}/guestdelluna/payList.do">결제내역</a>
