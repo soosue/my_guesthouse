@@ -11,13 +11,13 @@
 <c:if test="${check > 0}">
     <script type="text/javascript">
         alert("삭제 되었습니다.");
-        location.href = "${root}/guestHousePage/guestHouse.do?houseCode=${houseCode}";
+        location.href = "${root}/guesthouses/details.page?houseCode=${houseCode}";
     </script>
 </c:if>
 <c:if test="${check == 0}">
     <script type="text/javascript">
         alert("삭제되지 않았습니다. 다시 시도하시길 바랍니다.");
-        location.href = "${root}/guestHousePage/guestHouse.do?pageNumber=${pageNumber}";
+        location.href = "${root}/guesthouses/details.page?pageNumber=${pageNumber}";
     </script>
 </c:if>
 </body>

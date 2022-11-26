@@ -60,7 +60,7 @@
                             style="background: #008489; border: 1px solid #008489; line-height: 1rem; margin-top: -0.1rem;"
                             data-target="#houseDelModal${status.count}">삭제</button></span>
                         <span style="margin-left: 25.5rem;">
-										<a href="${root}/guestHousePage/guestHouse.do?houseCode=${houseReview.houseCode}">${houseReview.houseName}</a>
+										<a href="${root}/guesthouses/details.page?houseCode=${houseReview.houseCode}">${houseReview.houseName}</a>
 										
 										</span>
                     </div>

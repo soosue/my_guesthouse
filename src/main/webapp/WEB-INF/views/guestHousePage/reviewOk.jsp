@@ -15,7 +15,7 @@
     <c:if test="${check == -1}">
     alert("등록할 후기가 없습니다.");
     </c:if>
-    location.href = "/guestHousePage/guestHouse.do?houseCode=${guestHouseId}";
+    location.href = "/guesthouses/details.page?houseCode=${guestHouseId}";
 </script>
 
 </body>

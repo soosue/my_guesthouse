@@ -104,7 +104,7 @@
                         <div class="houseSlide">
                             <c:forEach var="hostHouseList" items="${hostHouseList}">
                                 <a
-                                        href="${root}/guestHousePage/guestHouse.do?houseCode=${hostHouseList.houseCode}">
+                                        href="${root}/guesthouses/details.page?houseCode=${hostHouseList.houseCode}">
                                     <div class="houseDiv">
                                         <div class="houseImg">
                                             <img alt="img loading"

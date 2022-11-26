@@ -158,17 +158,17 @@
 
         <%-- 이전  // startPage=3, pageBlock=2 이면 [이전][3] 출력, 이전을 누르면  1페이지로 이동--%>
         <c:if test="${startPage > pageBlock}">
-            <a href="${root}/guestHousePage/guestHouse.do?pageNumber=${startPage-pageBlock}">[이전]</a>
+            <a href="${root}/guesthouses/details.page?pageNumber=${startPage-pageBlock}">[이전]</a>
         </c:if>
 
         <%-- 페이지 블럭 [1][2][3] --%>
         <c:forEach var="i" begin="${startPage}" end="${endPage}">
-            <a href="${root}/guestHousePage/guestHouse.do?pageNumber=${i}">[${i}]</a>
+            <a href="${root}/guesthouses/details.page?pageNumber=${i}">[${i}]</a>
         </c:forEach>
 
         <%-- 다음  // endPage=2, pageCount=3(총 페이지 갯수)이면 [1][2][다음] 출력, startPage=1, pageBlock=2일때 다음을 누르면 3페이지로 이동--%>
         <c:if test="${endPage < pageCount}">
-            <a href="${root}/guestHousePage/guestHouse.do?pageNumber=${startPage+pageBlock}">[다음]</a>
+            <a href="${root}/guesthouses/details.page?pageNumber=${startPage+pageBlock}">[다음]</a>
         </c:if>
 
     </c:if>
