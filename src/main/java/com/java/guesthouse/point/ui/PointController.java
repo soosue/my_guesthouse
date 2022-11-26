@@ -15,10 +15,10 @@ import com.java.guesthouse.point.service.dto.PointResponse;
 import com.java.guesthouse.point.service.dto.PointUsesResponse;
 
 @Controller
-public class PointController2 {
+public class PointController {
     private final PointService pointService;
 
-    public PointController2(PointService pointService) {
+    public PointController(PointService pointService) {
         this.pointService = pointService;
     }
 
