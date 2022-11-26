@@ -118,23 +118,6 @@
         values (seq_msgCode_num.nextval, #{memberCode}, #{msgContent}, #{msgDate}, #{msgCheck})
     </insert>
 
-    <select id="reviewList" parameterType="java.util.Map"
-            resultType="com.java.guesthouse.guestreserve.dto.GHouseReviewListDto">
-		<![CDATA[
-        SELECT *
-        FROM (select rownum as rnum, A.*
-              from (select REVIEW.*, HOUSE.HOUSECODE, member.email
-                    from REVIEW
-                             inner join RESERVATION on REVIEW.RESERVECODE = RESERVATION.RESERVECODE
-                             inner join HOUSE on RESERVATION.HOUSECODE = HOUSE.HOUSECODE and
-                                                 RESERVATION.HOUSECODE = #{houseCode}
-                             inner join member on REVIEW.memberCode = member.id
-                    ORDER BY REVIEW.revDate Desc) A) b
-        WHERE b.rnum >= #{startRow}
-          and b.rnum <= #{endRow}
-        ]]>
-	</select>
-
     <select id="findReservationByGuestHouseIdAndMemberId" parameterType="java.util.Map"
             resultType="com.java.guesthouse.guestreserve.dto.GuestReserveDto">
         select reserveCode

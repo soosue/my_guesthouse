@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import com.java.guesthouse.file.dto.FileDto;
 import com.java.guesthouse.guestdelluna.service.dto.HouseReviewDto;
 import com.java.guesthouse.guestdelluna.service.dto.MsgDto;
-import com.java.guesthouse.guestreserve.dto.GHouseReviewListDto;
 import com.java.guesthouse.guestreserve.dto.GuestReserveDto;
 import com.java.guesthouse.guestreserve.dto.RemainDto;
 import com.java.guesthouse.host.service.dto.HostDto;
@@ -103,15 +102,6 @@ public class GuestHouseDao {
     public int insertMsg(MsgDto msgDto) {
         // TODO Auto-generated method stub
         return sqlSessionTemplate.insert("dao.GuestHouseMapper.insertMsg", msgDto);
-    }
-
-    public List<GHouseReviewListDto> getReviewList(int startRow, int endRow, long houseCode) {
-        Map<String, Object> hMap = new HashMap<>();
-        hMap.put("startRow", startRow);
-        hMap.put("endRow", endRow);
-        hMap.put("houseCode", houseCode);
-
-        return sqlSessionTemplate.selectList("dao.GuestHouseMapper.reviewList", hMap);
     }
 
     public List<GuestReserveDto> findReservationByGuestHouseIdAndMemberId(long houseCode, long memberCode) {
