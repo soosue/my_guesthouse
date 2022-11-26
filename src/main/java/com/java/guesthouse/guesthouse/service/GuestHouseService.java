@@ -16,9 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONValue;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,15 +26,19 @@ import com.java.guesthouse.file.dto.FileDto;
 import com.java.guesthouse.guestdelluna.service.dto.HouseReviewDto;
 import com.java.guesthouse.guestdelluna.service.dto.MsgDto;
 import com.java.guesthouse.guesthouse.domain.GuestHouseDao;
+import com.java.guesthouse.guesthouse.service.dto.ReviewResponse;
+import com.java.guesthouse.guesthouse.service.dto.ReviewsResponse;
 import com.java.guesthouse.guestreserve.dto.GHouseReviewListDto;
 import com.java.guesthouse.guestreserve.dto.GuestReserveDto;
 import com.java.guesthouse.guestreserve.dto.RemainDto;
+import com.java.guesthouse.guestreserve.dto.ReviewDto;
 import com.java.guesthouse.host.service.dto.HostDto;
 import com.java.guesthouse.member.service.dto.MemberDto;
 import com.java.guesthouse.point.domain.PointAccumulate;
 import com.java.guesthouse.point.domain.PointAccumulateRepository;
 import com.java.guesthouse.point.domain.PointUse;
 import com.java.guesthouse.point.domain.PointUseRepository;
+import com.java.guesthouse.review.domain.ReviewRepository;
 
 @Service
 public class GuestHouseService {
@@ -43,16 +46,18 @@ public class GuestHouseService {
     private final GuestHouseDao guestHouseDao;
     private final PointAccumulateRepository pointAccumulateRepository;
     private final PointUseRepository pointUseRepository;
+    private final ReviewRepository reviewRepository;
     // TODO 추후에 고치겠습니다. Bean 인데 왜 이렇게 변수를 선언했을까요...
     String email;
     HostDto hostDto;
     List<FileDto> fileList;
     int memberPoint;
 
-    public GuestHouseService(GuestHouseDao guestHouseDao, PointAccumulateRepository pointAccumulateRepository, PointUseRepository pointUseRepository) {
+    public GuestHouseService(GuestHouseDao guestHouseDao, PointAccumulateRepository pointAccumulateRepository, PointUseRepository pointUseRepository, ReviewRepository reviewRepository) {
         this.guestHouseDao = guestHouseDao;
         this.pointAccumulateRepository = pointAccumulateRepository;
         this.pointUseRepository = pointUseRepository;
+        this.reviewRepository = reviewRepository;
     }
 
     public void guestHouseRead(ModelAndView mav) {
@@ -175,18 +180,14 @@ public class GuestHouseService {
         }
     }
 
-    public Map<String, Object> getReviewsOfGuestHouse(Pageable pageable, Long guestHouseId) {
-        int currentPage = pageable.getPageNumber();
-        int boardSize = 3;
-        int startRow = (currentPage - 1) * boardSize + 1;
-        int endRow = boardSize * currentPage;
+    public ReviewsResponse getReviewsOfGuestHouse(Pageable pageable, Long guestHouseId) {
+        Slice<ReviewDto> reviews = reviewRepository.findByGuestHouseId(guestHouseId, pageable);
 
-        List<GHouseReviewListDto> reviewList = guestHouseDao.getReviewList(startRow, endRow, guestHouseId);
-
-        Map<String, Object> map = new HashMap<>();
-        map.put("reviewList", reviewList);
-        map.put("count", reviewList.size());
-        return map;
+        return ReviewsResponse.from(
+                reviews.getContent().stream()
+                        .map(ReviewResponse::from)
+                        .toList()
+        );
     }
 
     public void reviewUpdate(ModelAndView mav) {

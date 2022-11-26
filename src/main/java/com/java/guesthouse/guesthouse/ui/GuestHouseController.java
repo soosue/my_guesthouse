@@ -1,23 +1,22 @@
 package com.java.guesthouse.guesthouse.ui;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.java.guesthouse.guestdelluna.service.dto.HouseReviewDto;
 import com.java.guesthouse.guesthouse.service.GuestHouseService;
+import com.java.guesthouse.guesthouse.service.dto.ReviewsResponse;
 
 @Controller
 public class GuestHouseController {
@@ -41,12 +40,12 @@ public class GuestHouseController {
     // 게스트 하우스의 리뷰 목록 조회
     @ResponseBody
     @RequestMapping(value = "/v1/guesthouses/{id}/reviews", method = RequestMethod.GET)
-    public Map<String, Object> getReviewsOfGuestHouse(
+    public ResponseEntity<ReviewsResponse> getReviewsOfGuestHouse(
             @PathVariable(value = "id") Long guestHouseId,
-            @PageableDefault(size = 5, sort = "createdDate", direction = Sort.Direction.DESC) Pageable pageable
+            @PageableDefault(size = 3, sort = "revdate", direction = Sort.Direction.DESC) Pageable pageable
     ) {
 
-        return guestHouseService.getReviewsOfGuestHouse(pageable, guestHouseId);
+        return ResponseEntity.ok(guestHouseService.getReviewsOfGuestHouse(pageable, guestHouseId));
     }
 
     // 후기 수정하기 눌렀을 때

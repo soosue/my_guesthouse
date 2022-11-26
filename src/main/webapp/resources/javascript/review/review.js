@@ -415,32 +415,19 @@ function reviewModalUpdate(form) {
 let pageNumber = 0;
 
 function getReviews(root, emailSession, houseCode) {
-    //alert("root:"+root+ emailSession+ houseCode);
-    ++pageNumber;
-    //alert(emailSession +"," +exCode);
     const url = "/v1/guesthouses/" + houseCode + "/reviews?";
     const params = "page=" + pageNumber;
 
-    let indexNum = 0;
     let count = 0;
-    /*var email = '<% (String)session.getAttribute("email")%>';
-    alert(email);*/
     $.ajax({
         method: 'GET',
         url: url + params,
         dataType: "JSON",
-        success: function (data) {
-            //console.log(data.count);
-            //console.log(data.reviewList[0]);
-            //alert(data.reviewList[0]);
-
+        success: function (json) {
+            ++pageNumber;
             let htmls = "";
-            let btn = "";
-            let cnt = data.count;
-            //alert("cnt:" + cnt);
 
-
-            if (data.count < 1) {
+            if (json.data.length < 1) {
                 htmls += '<div style="margin:10rem auto;"><strong class="text-gray-dark" style="font-size:1rem; magin-top:3rem;">' + "등록된 후기가 없습니다." + '</strong></div>';
                 // alert("data < 1");
                 $("#contentData").append(htmls);
@@ -449,16 +436,15 @@ function getReviews(root, emailSession, houseCode) {
                 });
 
             } else {
+                $(json.data).each(function () {
 
-                $(data.reviewList).each(function () {
+                    let day = new Date(this.revDate);
 
-                    var day = new Date(data.reviewList[indexNum].revDate);
+                    let year = day.getFullYear();
+                    let month = day.getMonth() + 1;
+                    let date = day.getDate();
 
-                    var year = day.getFullYear();
-                    var month = day.getMonth() + 1;
-                    var date = day.getDate();
-
-                    var formatDate = year + "년 " + month + "월 " + date + "일 ";
+                    let formatDate = year + "년 " + month + "월 " + date + "일 ";
 
                     htmls += '<div style="border-bottom: 0.063rem solid #dee2e6!important;" class="num' + this.reserveCode + 'media text-muted pt-3" id="rid">';
 
@@ -510,7 +496,6 @@ function getReviews(root, emailSession, houseCode) {
 
                     $("#contentData").append(htmls);
                     htmls = "";
-                    ++indexNum;
 
                     //alert("개수: "+$('#rid').length);
                     if ($('#rid').length != 1) {
@@ -520,7 +505,6 @@ function getReviews(root, emailSession, houseCode) {
                     }
                     ++count;
 
-                    // alert("indexNum: "+indexNum);
 
                     $('#updateRe button').on('click', function () {
                         var a = $(this).parent().parent().parent();
