@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -39,8 +40,12 @@ public class GuestHouseController {
     // 게스트 하우스의 리뷰 목록 조회
     @ResponseBody
     @RequestMapping(value = "/v1/guesthouses/{id}/reviews", method = RequestMethod.GET)
-    public Map<String, Object> getReviewsOfGuestHouse(HttpServletRequest request, @PathVariable(value = "id") Long guestHouseId) {
-        return guestHouseService.getReviewsOfGuestHouse(request, guestHouseId);
+    public Map<String, Object> getReviewsOfGuestHouse(
+            @PathVariable(value = "id") Long guestHouseId,
+            @RequestParam int pageNumber
+    ) {
+
+        return guestHouseService.getReviewsOfGuestHouse(pageNumber, guestHouseId);
     }
 
     // 후기 수정하기 눌렀을 때

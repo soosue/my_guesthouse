@@ -172,50 +172,19 @@ public class GuestHouseService {
         } else {
             mav.setViewName("guestHousePage/guestPage.tiles");
         }
-
-
     }
 
-    public Map<String, Object> getReviewsOfGuestHouse(HttpServletRequest request, Long guestHouseId) {
-        // jackson
-
-        Map<String, Object> map = new HashMap<>();
-
-        // 세션
-        HttpSession session = request.getSession();
-        String sessionEmail = (String) session.getAttribute("email");
-
-
-        ////////////////////////// 후기 리스트 exReview///////////////////////////////
-
-        String pageNumber = request.getParameter("pageNumber");
-        if (pageNumber == null)
-            pageNumber = "1";
-
-        int currentPage = Integer.parseInt(pageNumber); // 1) 요청 페이지 1
-
-        int boardSize = 3; // 2) 페이지당 출력할 게시물 수
-        // 시작 번호
+    public Map<String, Object> getReviewsOfGuestHouse(int pageNumber, Long guestHouseId) {
+        int currentPage = pageNumber;
+        int boardSize = 3;
         int startRow = (currentPage - 1) * boardSize + 1;
-
-        // 끝 번호
         int endRow = boardSize * currentPage;
 
-        int count = guestHouseDao.getReviewCnt(guestHouseId);
+        List<GHouseReviewListDto> reviewList = guestHouseDao.getReviewList(startRow, endRow, guestHouseId);
 
-        HomeAspect.logger.info(HomeAspect.logMsg + "이 회원의 댓글 갯수: " + count);
-
-        List<GHouseReviewListDto> reviewList = null;
-
-        if (count > 0) { // 이 페이지에 저장된 방명록이 존재 할 경우
-
-            reviewList = guestHouseDao.getReviewList(startRow, endRow, guestHouseId);
-            HomeAspect.logger.info(HomeAspect.logMsg + "이 페이지에 저장된 댓글  갯수: " + reviewList.size());
-            // HomeAspect.logger.info(HomeAspect.logMsg + reviewList.get(0).toString());
-        }
-
+        Map<String, Object> map = new HashMap<>();
         map.put("reviewList", reviewList);
-        map.put("count", count);
+        map.put("count", reviewList.size());
         return map;
     }
 
