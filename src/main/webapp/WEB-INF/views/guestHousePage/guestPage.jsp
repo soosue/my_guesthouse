@@ -26,7 +26,7 @@
     </style>
     <script>
         $(function () {
-            ghLoad('${root}', '${sessionScope.email}', '${hostDto.houseCode}');
+            onGuesthousePageLoad('${root}', '${sessionScope.email}', '${hostDto.houseCode}');
         });
     </script>
     <script type="text/javascript">
@@ -470,7 +470,7 @@
                 <div id="contentData"></div>
                 <div id="moreReviewB">
                     <button id="reviewBtn" type="button" class="btn btn-light"
-                            onclick="ghMoreView('${root}','${email}','${hostDto.houseCode}')">후기
+                            onclick="getReviews('${root}','${email}','${hostDto.houseCode}')">후기
                         더보기
                     </button>
                 </div>
