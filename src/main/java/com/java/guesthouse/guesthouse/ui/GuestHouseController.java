@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.java.guesthouse.aop.HomeAspect;
 import com.java.guesthouse.guestdelluna.service.dto.HouseReviewDto;
 import com.java.guesthouse.guesthouse.service.GuestHouseService;
 
@@ -45,23 +44,6 @@ public class GuestHouseController {
         System.out.println("r@@@@@@@");
 
         return guestHouseService.review(request);
-    }
-
-    // 체험 후기 작성 완료
-    @RequestMapping(value = "/guestHousePage/reviewOk.do", method = RequestMethod.GET)
-    public ModelAndView guestHousePageReviewOk(HttpServletRequest request, HttpServletResponse response, HouseReviewDto reviewDto) {
-        System.out.println("review write, list Ok");
-
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("request", request);
-        mav.addObject("response", response);
-        mav.addObject("reviewDto", reviewDto);
-
-        guestHouseService.reviewOk(mav);
-
-        HomeAspect.logger.info(HomeAspect.logMsg + reviewDto.toString());
-
-        return mav;
     }
 
     // 후기 수정하기 눌렀을 때

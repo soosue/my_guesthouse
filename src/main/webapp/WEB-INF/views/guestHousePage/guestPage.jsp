@@ -409,7 +409,7 @@
             <p id="reiveTitle">후기</p>
             <!-- 후기 작성 -->
             <c:if test="${memberLevel!=null}">
-                <form action="${root}/guestHousePage/reviewOk.do" method="get" name="Form"
+                <form action="/v1/reviews" method="post" name="Form"
                       onsubmit="return check('${revContent}','${revRate}')">
                     <div id="write">
                         <input type="hidden" name="houseCode" id="houseCode"

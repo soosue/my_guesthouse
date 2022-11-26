@@ -23,7 +23,7 @@
 <div align="center" style="margin: 100px auto;">
     <%-- 후기 갯수가 0개 이거나 현재 페이지가 1일 경우 --%>
     <c:if test="${count==0 || currentPage==1}">
-        <form class="form" action="${root}/guestHousePage/reviewOk.do" method="get">
+        <form class="form" action="/v1/reviews" method="post">
             <div class="title">
                 <span>이메일</span>
                 <input type="text" name="email" size="20" value="${email}" disabled="disabled"/>

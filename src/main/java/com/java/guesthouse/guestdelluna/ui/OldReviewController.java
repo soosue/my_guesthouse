@@ -11,11 +11,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.java.guesthouse.guestdelluna.service.DellunaService;
 
 @Controller
-public class ReviewController {
+public class OldReviewController {
 
     private final DellunaService dellunaService;
 
-    public ReviewController(DellunaService dellunaService) {
+    public OldReviewController(DellunaService dellunaService) {
         this.dellunaService = dellunaService;
     }
 
