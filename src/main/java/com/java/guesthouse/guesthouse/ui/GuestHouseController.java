@@ -1,11 +1,13 @@
 package com.java.guesthouse.guesthouse.ui;
 
-
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +28,6 @@ public class GuestHouseController {
         this.guestHouseService = guestHouseService;
     }
 
-
     @RequestMapping(value = "/guesthouses/details.page", method = RequestMethod.GET)
     public ModelAndView guestHousePageRead(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
@@ -42,10 +43,10 @@ public class GuestHouseController {
     @RequestMapping(value = "/v1/guesthouses/{id}/reviews", method = RequestMethod.GET)
     public Map<String, Object> getReviewsOfGuestHouse(
             @PathVariable(value = "id") Long guestHouseId,
-            @RequestParam int pageNumber
+            @PageableDefault(size = 5, sort = "createdDate", direction = Sort.Direction.DESC) Pageable pageable
     ) {
 
-        return guestHouseService.getReviewsOfGuestHouse(pageNumber, guestHouseId);
+        return guestHouseService.getReviewsOfGuestHouse(pageable, guestHouseId);
     }
 
     // 후기 수정하기 눌렀을 때
@@ -144,6 +145,5 @@ public class GuestHouseController {
         guestHouseService.kakaoPaySuccess(mav);
 
         return mav;
-
     }
 }

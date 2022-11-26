@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONValue;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -174,8 +175,8 @@ public class GuestHouseService {
         }
     }
 
-    public Map<String, Object> getReviewsOfGuestHouse(int pageNumber, Long guestHouseId) {
-        int currentPage = pageNumber;
+    public Map<String, Object> getReviewsOfGuestHouse(Pageable pageable, Long guestHouseId) {
+        int currentPage = pageable.getPageNumber();
         int boardSize = 3;
         int startRow = (currentPage - 1) * boardSize + 1;
         int endRow = boardSize * currentPage;
