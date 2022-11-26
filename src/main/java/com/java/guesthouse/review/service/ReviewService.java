@@ -3,10 +3,15 @@ package com.java.guesthouse.review.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
 import com.java.guesthouse.guesthouse.domain.GuestHouseDao;
+import com.java.guesthouse.guesthouse.service.dto.ReviewResponse;
+import com.java.guesthouse.guesthouse.service.dto.ReviewsResponse;
 import com.java.guesthouse.guestreserve.dto.GuestReserveDto;
+import com.java.guesthouse.guestreserve.dto.ReviewDto;
 import com.java.guesthouse.review.domain.Review;
 import com.java.guesthouse.review.domain.ReviewRepository;
 
@@ -41,5 +46,15 @@ public class ReviewService {
 
     private boolean isNotReviewed(GuestReserveDto reservation) {
         return guestHouseDao.reviewChk(reservation.getReserveCode()) == 0;
+    }
+
+    public ReviewsResponse getReviewsOfGuestHouse(Pageable pageable, Long guestHouseId) {
+        Slice<ReviewDto> reviews = reviewRepository.findByGuestHouseId(guestHouseId, pageable);
+
+        return ReviewsResponse.from(
+                reviews.getContent().stream()
+                        .map(ReviewResponse::from)
+                        .toList()
+        );
     }
 }

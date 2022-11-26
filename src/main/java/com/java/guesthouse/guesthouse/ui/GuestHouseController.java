@@ -17,14 +17,17 @@ import org.springframework.web.servlet.ModelAndView;
 import com.java.guesthouse.guestdelluna.service.dto.HouseReviewDto;
 import com.java.guesthouse.guesthouse.service.GuestHouseService;
 import com.java.guesthouse.guesthouse.service.dto.ReviewsResponse;
+import com.java.guesthouse.review.service.ReviewService;
 
 @Controller
 public class GuestHouseController {
 
     private final GuestHouseService guestHouseService;
+    private final ReviewService reviewService;
 
-    public GuestHouseController(GuestHouseService guestHouseService) {
+    public GuestHouseController(GuestHouseService guestHouseService, ReviewService reviewService) {
         this.guestHouseService = guestHouseService;
+        this.reviewService = reviewService;
     }
 
     @RequestMapping(value = "/guesthouses/details.page", method = RequestMethod.GET)
@@ -45,7 +48,7 @@ public class GuestHouseController {
             @PageableDefault(size = 3, sort = "revdate", direction = Sort.Direction.DESC) Pageable pageable
     ) {
 
-        return ResponseEntity.ok(guestHouseService.getReviewsOfGuestHouse(pageable, guestHouseId));
+        return ResponseEntity.ok(reviewService.getReviewsOfGuestHouse(pageable, guestHouseId));
     }
 
     // 후기 수정하기 눌렀을 때

@@ -180,16 +180,6 @@ public class GuestHouseService {
         }
     }
 
-    public ReviewsResponse getReviewsOfGuestHouse(Pageable pageable, Long guestHouseId) {
-        Slice<ReviewDto> reviews = reviewRepository.findByGuestHouseId(guestHouseId, pageable);
-
-        return ReviewsResponse.from(
-                reviews.getContent().stream()
-                        .map(ReviewResponse::from)
-                        .toList()
-        );
-    }
-
     public void reviewUpdate(ModelAndView mav) {
         Map<String, Object> map = mav.getModelMap();
         HttpServletRequest request = (HttpServletRequest) map.get("request");
