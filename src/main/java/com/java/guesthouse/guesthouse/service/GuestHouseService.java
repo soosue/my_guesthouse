@@ -155,65 +155,13 @@ public class GuestHouseService {
             mav.addObject("dList", dList);
         }
 
-//		String bfPath = fileList.get(0).getFilePath();
-//		String[] arr = bfPath.split(":");
-//		String afPath = arr[0] +":" +"\\"+arr[1];
-//		String mainImg=null;
-//		//String mainImgSrc = null;
-//		String[] img = new String[fileList.size()];
-//		for(int i=0; i<fileList.size(); i++) {
-//			if(fileList.get(i).getMainImgName()!=null) {
-//				//mainImgSrc = afPath + "\\" + "\\"+fileList.get(i).getMainImgName();
-//				//HomeAspect.logger.info(HomeAspect.logMsg +mainImgSrc);
-//				mainImg = fileList.get(i).getMainImgName();
-//			}else {
-//				img[i] = fileList.get(i).getFileName();
-//				HomeAspect.logger.info(HomeAspect.logMsg  +img[i]);
-//			}
-//		}
-
-        /* 후기 리스트 */
-        String pageNumber = request.getParameter("pageNumber");
-        if (pageNumber == null) pageNumber = "1";
-
-        int currentPage = Integer.parseInt(pageNumber); // 1) 요청 페이지 1
-
-        int boardSize = 3; // 2) 페이지당 출력할 게시물 수
-        // 시작 번호
-        int startRow = (currentPage - 1) * boardSize + 1;
-
-        // 끝 번호
-        int endRow = boardSize * currentPage;
-
-        int count = guestHouseDao.getReviewCnt(houseCode);
-        HomeAspect.logger.info(HomeAspect.logMsg + "댓글 수: " + count);
-
-        List<GHouseReviewListDto> reviewList = null;
-        if (count > 0) {
-            reviewList = guestHouseDao.getReviewList(startRow, endRow, houseCode);
-            HomeAspect.logger.info(HomeAspect.logMsg + "이 페이지에 저장된 댓글  갯수: " + reviewList.size());
-        }
-
-
         mav.addObject("hostDto", hostDto);
-//		mav.addObject("explain",(hostDto.getExplain()).replaceAll("\r\n", "<br>"));
-//		mav.addObject("etc",(hostDto.getEtc()).replaceAll("\r\n", "<br>"));
         mav.addObject("fileList", fileList);
         mav.addObject("host", host);
         mav.addObject("regDate", regDate);
         mav.addObject("lat", lat);
         mav.addObject("lng", lng);
-        mav.addObject("remainDtoList", remainDtoList);
         mav.addObject("email", email);
-
-
-        mav.addObject("reviewList", reviewList);
-        mav.addObject("currentPage", currentPage);
-        mav.addObject("boardSize", boardSize);
-        mav.addObject("count", count);
-
-
-        //mav.setViewName("guestHousePage/guestPage.tiles");
 
         // 게하를 관리자가 보는 경우 exApp에 1을 임의로 넘겨줌
 

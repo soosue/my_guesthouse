@@ -26,10 +26,9 @@ public class GuestHouseController {
 
 
     @RequestMapping(value = "/guesthouses/details.page", method = RequestMethod.GET)
-    public ModelAndView guestHousePageRead(HttpServletRequest request, HttpServletResponse response, HouseReviewDto reviewDto) {
+    public ModelAndView guestHousePageRead(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         mav.addObject("request", request);
-        mav.addObject("reviewDto", reviewDto);
 
         guestHouseService.guestHouseRead(mav);
 

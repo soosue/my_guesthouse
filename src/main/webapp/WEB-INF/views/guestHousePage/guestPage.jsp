@@ -602,7 +602,7 @@
             <!-- Modal body -->
             <div class="form-group">
                 <form class="form"
-                      action="${root}/guestHousePage/reviewUpdateOk.do?memberCode=${memberCode}&reserveCode=${reserveCode}&pageNumber=${currentPage}"
+                      action="${root}/guestHousePage/reviewUpdateOk.do?memberCode=${memberCode}&reserveCode=${reserveCode}"
                       method="get">
                     <!-- onsubmit="return checkUp()" -->
 
