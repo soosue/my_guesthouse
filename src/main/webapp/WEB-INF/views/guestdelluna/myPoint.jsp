@@ -145,7 +145,7 @@
 
     const getPointAccumulates = (page = 1) => {
         return getDataAndDraw(
-            "/v1/pointaccumulates/me?page=",
+            "/v1/point-accumulates/me?page=",
             pointAccumulatesRow,
             "pointAccumulatesTable",
             "pointAccumulatesBody",
@@ -157,7 +157,7 @@
 
     const getPointUses = (page = 1) => {
         return getDataAndDraw(
-            "/v1/pointuses/me?page=",
+            "/v1/point-uses/me?page=",
             pointUsesRow,
             "pointUsesTable",
             "pointUsesBody",
