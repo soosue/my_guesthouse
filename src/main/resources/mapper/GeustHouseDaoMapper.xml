@@ -142,14 +142,7 @@
         ]]>
 	</select>
 
-    <select id="reserveCodeCnt" parameterType="java.util.Map" resultType="int">
-        select count(*)
-        from RESERVATION
-        where memberCode = #{memberCode}
-          and HOUSECODE = #{houseCode}
-    </select>
-
-    <select id="reserveCode" parameterType="java.util.Map"
+    <select id="findReservationByGuestHouseIdAndMemberId" parameterType="java.util.Map"
             resultType="com.java.guesthouse.guestreserve.dto.GuestReserveDto">
         select reserveCode
         from RESERVATION

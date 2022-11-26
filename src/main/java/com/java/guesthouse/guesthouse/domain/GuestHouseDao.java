@@ -118,20 +118,12 @@ public class GuestHouseDao {
         return sqlSessionTemplate.selectList("dao.GuestHouseMapper.reviewList", hMap);
     }
 
-    public int reserveCodeCnt(long memberCode, long houseCode) {
+    public List<GuestReserveDto> findReservationByGuestHouseIdAndMemberId(long houseCode, long memberCode) {
         Map<String, Object> hMap = new HashMap<>();
         hMap.put("memberCode", memberCode);
         hMap.put("houseCode", houseCode);
 
-        return sqlSessionTemplate.selectOne("dao.GuestHouseMapper.reserveCodeCnt", hMap);
-    }
-
-    public List<GuestReserveDto> reserveCode(long houseCode, long memberCode) {
-        Map<String, Object> hMap = new HashMap<>();
-        hMap.put("memberCode", memberCode);
-        hMap.put("houseCode", houseCode);
-
-        return sqlSessionTemplate.selectList("dao.GuestHouseMapper.reserveCode", hMap);
+        return sqlSessionTemplate.selectList("dao.GuestHouseMapper.findReservationByGuestHouseIdAndMemberId", hMap);
     }
 
     public int reviewChk(int reserveCode) {

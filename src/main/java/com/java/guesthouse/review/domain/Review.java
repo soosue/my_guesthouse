@@ -4,39 +4,36 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Getter
+@Setter
 public class Review {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "reservecode")
     private Long id;
 
-    @Column(name = "reserveCode")
-    private Long reserveId;
-
-    @Column(name = "memberCode")
+    @Column(name = "membercode")
     private Long memberId;
 
-    @Column(name = "revContent")
+    @Column(name = "revcontent")
     private String content;
 
-    @Column(name = "revRate")
+    @Column(name = "revrate")
     private Integer rate;
 
-    @Column(name = "revDate")
+    @Column(name = "revdate")
     private LocalDateTime createdDate;
 
     public Review() {
     }
 
     public Review(Long reserveId, Long memberId, String content, Integer rate) {
-        this.reserveId = reserveId;
+        this.id = reserveId;
         this.memberId = memberId;
         this.content = content;
         this.rate = rate;

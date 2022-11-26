@@ -26,9 +26,6 @@ import com.java.guesthouse.file.dto.FileDto;
 import com.java.guesthouse.guestdelluna.service.dto.HouseReviewDto;
 import com.java.guesthouse.guestdelluna.service.dto.MsgDto;
 import com.java.guesthouse.guesthouse.domain.GuestHouseDao;
-import com.java.guesthouse.review.domain.ReviewRepository;
-import com.java.guesthouse.point.domain.PointUse;
-import com.java.guesthouse.point.domain.PointUseRepository;
 import com.java.guesthouse.guestreserve.dto.GHouseReviewListDto;
 import com.java.guesthouse.guestreserve.dto.GuestReserveDto;
 import com.java.guesthouse.guestreserve.dto.RemainDto;
@@ -36,7 +33,8 @@ import com.java.guesthouse.host.service.dto.HostDto;
 import com.java.guesthouse.member.service.dto.MemberDto;
 import com.java.guesthouse.point.domain.PointAccumulate;
 import com.java.guesthouse.point.domain.PointAccumulateRepository;
-import com.java.guesthouse.review.domain.Review;
+import com.java.guesthouse.point.domain.PointUse;
+import com.java.guesthouse.point.domain.PointUseRepository;
 
 @Service
 public class GuestHouseService {
@@ -44,18 +42,16 @@ public class GuestHouseService {
     private final GuestHouseDao guestHouseDao;
     private final PointAccumulateRepository pointAccumulateRepository;
     private final PointUseRepository pointUseRepository;
-    private final ReviewRepository reviewRepository;
     // TODO 추후에 고치겠습니다. Bean 인데 왜 이렇게 변수를 선언했을까요...
     String email;
     HostDto hostDto;
     List<FileDto> fileList;
     int memberPoint;
 
-    public GuestHouseService(GuestHouseDao guestHouseDao, PointAccumulateRepository pointAccumulateRepository, PointUseRepository pointUseRepository, ReviewRepository reviewRepository) {
+    public GuestHouseService(GuestHouseDao guestHouseDao, PointAccumulateRepository pointAccumulateRepository, PointUseRepository pointUseRepository) {
         this.guestHouseDao = guestHouseDao;
         this.pointAccumulateRepository = pointAccumulateRepository;
         this.pointUseRepository = pointUseRepository;
-        this.reviewRepository = reviewRepository;
     }
 
     public void guestHouseRead(ModelAndView mav) {
@@ -335,59 +331,6 @@ public class GuestHouseService {
         map.put("reviewList", reviewList);
         map.put("count", count);
         return map;
-    }
-
-    public void reviewOk(ModelAndView mav, Long memberId) {
-        Map<String, Object> map = mav.getModelMap();
-        HttpServletRequest request = (HttpServletRequest) map.get("request");
-
-        int houseCode = Integer.parseInt(request.getParameter("houseCode"));
-        HomeAspect.logger.info(HomeAspect.logMsg + "houseCode: " + houseCode);
-
-        HttpSession session = request.getSession();
-
-
-        HouseReviewDto reviewDto = (HouseReviewDto) map.get("reviewDto");
-
-        int getReserveCode = guestHouseDao.reserveCodeCnt(memberId, houseCode);
-        HomeAspect.logger.info(HomeAspect.logMsg + "getReserveCode: " + getReserveCode);
-
-        if (getReserveCode != 0) {
-            List<GuestReserveDto> reserveList = guestHouseDao.reserveCode(houseCode, memberId);
-            HomeAspect.logger.info(HomeAspect.logMsg + "exReserveList: " + reserveList);
-
-            for (int i = 0; i < reserveList.size(); i++) {
-                if (reserveList.get(i) != null) {
-                    int reserveCode = reserveList.get(i).getReserveCode();
-
-                    // 예약코드로 리뷰를 작성했는지 확인
-                    int reviewChk = guestHouseDao.reviewChk(reserveCode);
-
-                    // 이미 작성했을 경우
-                    if (reviewChk != 0) {
-                        mav.addObject("reviewChk", reviewChk);
-                        mav.addObject("houseCode", houseCode);
-
-                        mav.setViewName("guestHousePage/reviewOk.tiles");
-                    } else {
-                        String content = request.getParameter("revContent");
-                        int rate = Integer.parseInt(request.getParameter("revRate"));
-
-                        Review review = new Review((long) reserveCode, memberId, content, rate);
-                        reviewRepository.save(review);
-
-                        mav.addObject("check", review.getId());
-                        mav.addObject("houseCode", houseCode);
-                        mav.setViewName("guestHousePage/reviewOk.tiles");
-                    }
-                }
-            }
-        } else { // 게스트하우스 예약 번호가 없으면
-            mav.addObject("getReserveCode", getReserveCode);
-            mav.addObject("houseCode", houseCode);
-            mav.setViewName("guestHousePage/reviewOk.tiles");
-        }
-
     }
 
     public void reviewUpdate(ModelAndView mav) {
