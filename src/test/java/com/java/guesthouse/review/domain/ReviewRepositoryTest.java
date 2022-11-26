@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
@@ -19,7 +20,7 @@ class ReviewRepositoryTest {
         Long guestHouseId = 42L;
 
         assertDoesNotThrow(() -> {
-            reviewRepository.findByGuestHouseId(guestHouseId);
+            reviewRepository.findByGuestHouseId(guestHouseId, Pageable.ofSize(3));
         });
     }
 }
