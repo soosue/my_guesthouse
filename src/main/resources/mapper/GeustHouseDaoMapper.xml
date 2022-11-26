@@ -118,7 +118,7 @@
         values (seq_msgCode_num.nextval, #{memberCode}, #{msgContent}, #{msgDate}, #{msgCheck})
     </insert>
 
-    <select id="reviewCnt" parameterType="int" resultType="int">
+    <select id="reviewCnt" parameterType="long" resultType="int">
         select count(*)
         from REVIEW
                  inner join RESERVATION on REVIEW.RESERVECODE = RESERVATION.RESERVECODE

@@ -235,7 +235,7 @@ public class GuestHouseService {
         //mav.setViewName("guestHousePage/review.tiles");
     }
 
-    public Map<String, Object> review(HttpServletRequest request) {
+    public Map<String, Object> review(HttpServletRequest request, Long guestHouseId) {
         // jackson
 
         Map<String, Object> map = new HashMap<>();
@@ -244,9 +244,6 @@ public class GuestHouseService {
         HttpSession session = request.getSession();
         String sessionEmail = (String) session.getAttribute("email");
 
-        /* int exCode = 6; */
-        int houseCode = Integer.parseInt(request.getParameter("houseCode"));
-        // int memberCode = Integer.parseInt(request.getParameter("memberCode"));
 
         ////////////////////////// 후기 리스트 exReview///////////////////////////////
 
@@ -263,7 +260,7 @@ public class GuestHouseService {
         // 끝 번호
         int endRow = boardSize * currentPage;
 
-        int count = guestHouseDao.getReviewCnt(houseCode);
+        int count = guestHouseDao.getReviewCnt(guestHouseId);
 
         HomeAspect.logger.info(HomeAspect.logMsg + "이 회원의 댓글 갯수: " + count);
 
@@ -271,7 +268,7 @@ public class GuestHouseService {
 
         if (count > 0) { // 이 페이지에 저장된 방명록이 존재 할 경우
 
-            reviewList = guestHouseDao.getReviewList(startRow, endRow, houseCode);
+            reviewList = guestHouseDao.getReviewList(startRow, endRow, guestHouseId);
             HomeAspect.logger.info(HomeAspect.logMsg + "이 페이지에 저장된 댓글  갯수: " + reviewList.size());
             // HomeAspect.logger.info(HomeAspect.logMsg + reviewList.get(0).toString());
         }

@@ -105,12 +105,12 @@ public class GuestHouseDao {
         return sqlSessionTemplate.insert("dao.GuestHouseMapper.insertMsg", msgDto);
     }
 
-    public int getReviewCnt(int houseCode) {
+    public int getReviewCnt(long houseCode) {
         return sqlSessionTemplate.selectOne("dao.GuestHouseMapper.reviewCnt", houseCode);
     }
 
-    public List<GHouseReviewListDto> getReviewList(int startRow, int endRow, int houseCode) {
-        Map<String, Integer> hMap = new HashMap<>();
+    public List<GHouseReviewListDto> getReviewList(int startRow, int endRow, long houseCode) {
+        Map<String, Object> hMap = new HashMap<>();
         hMap.put("startRow", startRow);
         hMap.put("endRow", endRow);
         hMap.put("houseCode", houseCode);

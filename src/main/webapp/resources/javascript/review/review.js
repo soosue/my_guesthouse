@@ -418,8 +418,8 @@ function getReviews(root, emailSession, houseCode) {
     //alert("root:"+root+ emailSession+ houseCode);
     ++pageNumber;
     //alert(emailSession +"," +exCode);
-    const url = "/guestHousePage/review.do?";
-    const params = "pageNumber=" + pageNumber + "&houseCode=" + houseCode;
+    const url = "/v1/guesthouses/" + houseCode + "/reviews?";
+    const params = "pageNumber=" + pageNumber;
 
     let indexNum = 0;
     let count = 0;
