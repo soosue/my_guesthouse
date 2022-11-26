@@ -6,7 +6,7 @@ public class HouseReviewDto {
 
     private int reserveCode;
 
-    private int memberCode;
+    private long memberCode;
 
     private Date revDate;
 
@@ -34,11 +34,11 @@ public class HouseReviewDto {
         this.reserveCode = reserveCode;
     }
 
-    public int getMemberCode() {
+    public long getMemberCode() {
         return memberCode;
     }
 
-    public void setMemberCode(int memberCode) {
+    public void setMemberCode(long memberCode) {
         this.memberCode = memberCode;
     }
 

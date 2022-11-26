@@ -26,6 +26,7 @@ import com.java.guesthouse.file.dto.FileDto;
 import com.java.guesthouse.guestdelluna.service.dto.HouseReviewDto;
 import com.java.guesthouse.guestdelluna.service.dto.MsgDto;
 import com.java.guesthouse.guesthouse.domain.GuestHouseDao;
+import com.java.guesthouse.review.domain.ReviewRepository;
 import com.java.guesthouse.point.domain.PointUse;
 import com.java.guesthouse.point.domain.PointUseRepository;
 import com.java.guesthouse.guestreserve.dto.GHouseReviewListDto;
@@ -35,6 +36,7 @@ import com.java.guesthouse.host.service.dto.HostDto;
 import com.java.guesthouse.member.service.dto.MemberDto;
 import com.java.guesthouse.point.domain.PointAccumulate;
 import com.java.guesthouse.point.domain.PointAccumulateRepository;
+import com.java.guesthouse.review.domain.Review;
 
 @Service
 public class GuestHouseService {
@@ -42,16 +44,18 @@ public class GuestHouseService {
     private final GuestHouseDao guestHouseDao;
     private final PointAccumulateRepository pointAccumulateRepository;
     private final PointUseRepository pointUseRepository;
+    private final ReviewRepository reviewRepository;
     // TODO 추후에 고치겠습니다. Bean 인데 왜 이렇게 변수를 선언했을까요...
     String email;
     HostDto hostDto;
     List<FileDto> fileList;
     int memberPoint;
 
-    public GuestHouseService(GuestHouseDao guestHouseDao, PointAccumulateRepository pointAccumulateRepository, PointUseRepository pointUseRepository) {
+    public GuestHouseService(GuestHouseDao guestHouseDao, PointAccumulateRepository pointAccumulateRepository, PointUseRepository pointUseRepository, ReviewRepository reviewRepository) {
         this.guestHouseDao = guestHouseDao;
         this.pointAccumulateRepository = pointAccumulateRepository;
         this.pointUseRepository = pointUseRepository;
+        this.reviewRepository = reviewRepository;
     }
 
     public void guestHouseRead(ModelAndView mav) {
@@ -333,7 +337,7 @@ public class GuestHouseService {
         return map;
     }
 
-    public void reviewOk(ModelAndView mav) {
+    public void reviewOk(ModelAndView mav, Long memberId) {
         Map<String, Object> map = mav.getModelMap();
         HttpServletRequest request = (HttpServletRequest) map.get("request");
 
@@ -341,16 +345,15 @@ public class GuestHouseService {
         HomeAspect.logger.info(HomeAspect.logMsg + "houseCode: " + houseCode);
 
         HttpSession session = request.getSession();
-        int memberCode = (Integer) session.getAttribute("memberCode");
 
 
         HouseReviewDto reviewDto = (HouseReviewDto) map.get("reviewDto");
 
-        int getReserveCode = guestHouseDao.reserveCodeCnt(memberCode, houseCode);
+        int getReserveCode = guestHouseDao.reserveCodeCnt(memberId, houseCode);
         HomeAspect.logger.info(HomeAspect.logMsg + "getReserveCode: " + getReserveCode);
 
         if (getReserveCode != 0) {
-            List<GuestReserveDto> reserveList = guestHouseDao.reserveCode(houseCode, memberCode);
+            List<GuestReserveDto> reserveList = guestHouseDao.reserveCode(houseCode, memberId);
             HomeAspect.logger.info(HomeAspect.logMsg + "exReserveList: " + reserveList);
 
             for (int i = 0; i < reserveList.size(); i++) {
@@ -367,17 +370,13 @@ public class GuestHouseService {
 
                         mav.setViewName("guestHousePage/reviewOk.tiles");
                     } else {
-                        reviewDto.setMemberCode(memberCode);
-                        reviewDto.setRevDate(new Date());
-                        reviewDto.setRevContent(request.getParameter("revContent"));
-                        reviewDto.setRevRate(Integer.parseInt(request.getParameter("revRate")));
-                        reviewDto.setReserveCode(reserveCode);
-                        HomeAspect.logger.info(HomeAspect.logMsg + "reviewDto: " + reviewDto.toString());
+                        String content = request.getParameter("revContent");
+                        int rate = Integer.parseInt(request.getParameter("revRate"));
 
-                        int check = guestHouseDao.writeReview(reviewDto);
-                        HomeAspect.logger.info(HomeAspect.logMsg + "write-Check: " + check);
+                        Review review = new Review((long) reserveCode, memberId, content, rate);
+                        reviewRepository.save(review);
 
-                        mav.addObject("check", check);
+                        mav.addObject("check", review.getId());
                         mav.addObject("houseCode", houseCode);
                         mav.setViewName("guestHousePage/reviewOk.tiles");
                     }

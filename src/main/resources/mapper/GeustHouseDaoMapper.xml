@@ -163,11 +163,6 @@
         where reserveCode = #{reserveCode}
     </select>
 
-    <insert id="writeReview" parameterType="com.java.guesthouse.guestdelluna.service.dto.HouseReviewDto">
-        insert into REVIEW(RESERVECODE, memberCode, revDate, revContent, revRate)
-        values (#{reserveCode}, #{memberCode}, #{revDate}, #{revContent}, #{revRate})
-    </insert>
-
     <select id="reviewUpdate" parameterType="java.util.Map"
             resultType="com.java.guesthouse.guestdelluna.service.dto.HouseReviewDto">
         select *

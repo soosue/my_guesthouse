@@ -2,6 +2,7 @@ package com.java.guesthouse.review.ui;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +24,7 @@ public class ReviewController {
 
     // 게스트하우스 후기 작성 완료
     @PostMapping("")
-    public ModelAndView saveReview(HttpServletRequest request, HttpServletResponse response, HouseReviewDto reviewDto) {
+    public ModelAndView saveReview(HttpServletRequest request, HttpServletResponse response, HttpSession session, HouseReviewDto reviewDto) {
         System.out.println("review write, list Ok");
 
         ModelAndView mav = new ModelAndView();
@@ -31,7 +32,7 @@ public class ReviewController {
         mav.addObject("response", response);
         mav.addObject("reviewDto", reviewDto);
 
-        guestHouseService.reviewOk(mav);
+        guestHouseService.reviewOk(mav, (long) session.getAttribute("memberCode"));
 
         HomeAspect.logger.info(HomeAspect.logMsg + reviewDto.toString());
 
