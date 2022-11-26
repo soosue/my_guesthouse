@@ -176,66 +176,7 @@ public class GuestHouseService {
 
     }
 
-    public String review(ModelAndView mav) {
-        Map<String, Object> map = mav.getModelMap();
-        HttpServletRequest request = (HttpServletRequest) map.get("request");
-
-        int houseCode = Integer.parseInt(request.getParameter("houseCode"));
-        int memberCode = (Integer) (request.getSession().getAttribute("memberCode"));
-        HomeAspect.logger.info(HomeAspect.logMsg + "memberCode: " + memberCode);
-
-        //////////////////////////후기 리스트 exReview///////////////////////////////
-
-        String pageNumber = request.getParameter("pageNumber");
-        if (pageNumber == null)
-            pageNumber = "1";
-
-        int currentPage = Integer.parseInt(pageNumber); // 1) 요청 페이지 1
-
-        int boardSize = 3; // 2) 페이지당 출력할 게시물 수
-        // 시작 번호
-        int startRow = (currentPage - 1) * boardSize + 1;
-
-        // 끝 번호
-        int endRow = boardSize * currentPage;
-
-        int count = guestHouseDao.getReviewCnt(houseCode);
-
-        HomeAspect.logger.info(HomeAspect.logMsg + "이 회원의 댓글 갯수: " + count);
-
-        List<GHouseReviewListDto> reviewList = null;
-
-        if (count > 0) { // 이 페이지에 저장된 방명록이 존재 할 경우
-
-            reviewList = guestHouseDao.getReviewList(startRow, endRow, houseCode);
-            HomeAspect.logger.info(HomeAspect.logMsg + "이 페이지에 저장된 댓글  갯수: " + reviewList.size());
-            // HomeAspect.logger.info(HomeAspect.logMsg + reviewList.get(0).toString());
-        }
-
-        //json
-        JSONArray arr = new JSONArray();
-        for (GHouseReviewListDto reviewListDto : reviewList) {
-            HashMap<String, String> CommonMap = new HashMap<String, String>();
-            CommonMap.put("reserveCode", Integer.toString(reviewListDto.getReserveCode()));
-            CommonMap.put("memberCode", Integer.toString(reviewListDto.getMemberCode()));
-            CommonMap.put("revDate", reviewListDto.getRevDate().toString());
-            CommonMap.put("revContent", reviewListDto.getRevContent());
-            CommonMap.put("revRate", Integer.toString(reviewListDto.getRevRate()));
-            CommonMap.put("email", reviewListDto.getEmail());
-
-            arr.add(CommonMap);
-
-            HomeAspect.logger.info(HomeAspect.logMsg + "리뷰 정보 : " + reviewListDto.toString());
-        }
-        String jsonText = JSONValue.toJSONString(arr);
-        HomeAspect.logger.info(HomeAspect.logMsg + "jsonText 정보 : " + jsonText);
-
-        return jsonText;
-
-        //mav.setViewName("guestHousePage/review.tiles");
-    }
-
-    public Map<String, Object> review(HttpServletRequest request, Long guestHouseId) {
+    public Map<String, Object> getReviewsOfGuestHouse(HttpServletRequest request, Long guestHouseId) {
         // jackson
 
         Map<String, Object> map = new HashMap<>();

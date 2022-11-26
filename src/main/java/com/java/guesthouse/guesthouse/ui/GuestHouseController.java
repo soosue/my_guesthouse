@@ -36,11 +36,11 @@ public class GuestHouseController {
         return mav;
     }
 
-    // 후기 작성 눌렀을 때
+    // 게스트 하우스의 리뷰 목록 조회
     @ResponseBody
     @RequestMapping(value = "/v1/guesthouses/{id}/reviews", method = RequestMethod.GET)
-    public Map<String, Object> guestHousePageReview(HttpServletRequest request, @PathVariable(value = "id") Long guestHouseId) {
-        return guestHouseService.review(request, guestHouseId);
+    public Map<String, Object> getReviewsOfGuestHouse(HttpServletRequest request, @PathVariable(value = "id") Long guestHouseId) {
+        return guestHouseService.getReviewsOfGuestHouse(request, guestHouseId);
     }
 
     // 후기 수정하기 눌렀을 때
