@@ -21,7 +21,7 @@
 <div id="wrap" style="margin-top: 3rem;">
     <div class="menuL" style="margin-top: 6.5rem;">
         <ul>
-            <li><a href="${root}/guestdelluna/allMyReview.do"
+            <li><a href="/mypage/reviews.page"
                    style="color: black;">후기</a></li>
             <li><a href="${root}/guestdelluna/memberUpdate.do"
                    style="color: black;">회원수정</a></li>

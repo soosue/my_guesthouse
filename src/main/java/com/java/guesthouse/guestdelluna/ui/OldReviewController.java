@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -109,7 +110,7 @@ public class OldReviewController {
     }
 
     //내가 쓴 후기
-    @RequestMapping(value = "guestdelluna/allMyReview.do", method = RequestMethod.GET)
+    @RequestMapping(value = "/mypage/reviews.page", method = RequestMethod.GET)
     public ModelAndView myReivewList(HttpServletRequest request, HttpServletResponse response) {
 
         ModelAndView mav = new ModelAndView();

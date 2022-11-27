@@ -54,7 +54,7 @@
     <div class="menuL">
         <ul>
             <li>
-                <a href="${root}/guestdelluna/allMyReview.do">후기</a>
+                <a href="/mypage/reviews.page">후기</a>
             </li>
             <li>
                 <a href="${root}/guestdelluna/memberUpdate.do">회원수정</a>
