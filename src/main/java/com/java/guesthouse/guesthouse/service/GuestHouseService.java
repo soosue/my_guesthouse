@@ -165,27 +165,6 @@ public class GuestHouseService {
         }
     }
 
-    public void reviewUpdate(ModelAndView mav) {
-        Map<String, Object> map = mav.getModelMap();
-        HttpServletRequest request = (HttpServletRequest) map.get("request");
-
-        int reserveCode = Integer.parseInt(request.getParameter("reserveCode"));
-        int memberCode = Integer.parseInt(request.getParameter("memberCode"));
-
-        String revContent = request.getParameter("revContent");
-        HomeAspect.logger.info(HomeAspect.logMsg + "reserveCode: " + reserveCode + ", memberCode: " + memberCode);
-
-        HouseReviewDto reviewDto = guestHouseDao.reviewUpdate(memberCode, reserveCode);
-
-        mav.addObject("reviewDto", reviewDto);
-        mav.addObject("reserveCode", reserveCode);
-        mav.addObject("memberCode", memberCode);
-        mav.addObject("revContent", revContent);
-
-        mav.setViewName("guestHousePage/reviewUpdate.empty");
-
-    }
-
     public void reviewDelete(ModelAndView mav) {
         Map<String, Object> map = mav.getModelMap();
         HttpServletRequest request = (HttpServletRequest) map.get("request");

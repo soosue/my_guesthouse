@@ -132,14 +132,6 @@
         where reserveCode = #{reserveCode}
     </select>
 
-    <select id="reviewUpdate" parameterType="java.util.Map"
-            resultType="com.java.guesthouse.guestdelluna.service.dto.HouseReviewDto">
-        select *
-        from REVIEW
-        where memberCode = #{memberCode}
-          and RESERVECODE = #{reserveCode}
-    </select>
-
     <delete id="reviewDelete" parameterType="int">
         delete
         from REVIEW

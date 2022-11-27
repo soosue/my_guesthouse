@@ -91,20 +91,6 @@ function deleteCheck(root, exReserveCode, memberCode, currentPage, exCode) {
     }
 }
 
-function GHupdateCheck(root, reserveCode, memberCode, revContent) {
-    var url = root + "/guestHousePage/reviewUpdate.do?reserveCode=" + reserveCode + "&memberCode=" + memberCode + "&revContent=" + revContent;
-    //alert(url);
-
-    var width = "500";
-    var height = "300";
-
-    var left = Math.ceil((window.screen.width - width) / 3);
-    var top = Math.ceil((window.screen.width - height) / 2);
-
-
-    window.open(url, "review update", "width=" + width + ",height=" + height + ",left=" + left + ",top=" + top);
-}
-
 function GHdeleteCheck(root, reserveCode, memberCode, currentPage, houseCode) {
     var url = root + "/guestHousePage/reviewDelete.do?reserveCode=" + reserveCode + "&memberCode=" + memberCode + "&pageNumber=" + currentPage + "&houseCode=" + houseCode;
     //alert(url);

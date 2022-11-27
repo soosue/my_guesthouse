@@ -117,14 +117,6 @@ public class GuestHouseDao {
         return sqlSessionTemplate.selectOne("dao.GuestHouseMapper.reviewChk", reserveCode);
     }
 
-    public HouseReviewDto reviewUpdate(int memberCode, int reserveCode) {
-        Map<String, Integer> hMap = new HashMap<>();
-        hMap.put("memberCode", memberCode);
-        hMap.put("reserveCode", reserveCode);
-
-        return sqlSessionTemplate.selectOne("dao.GuestHouseMapper.reviewUpdate", hMap);
-    }
-
     public int reviewDelete(int reserveCode) {
         return sqlSessionTemplate.delete("dao.GuestHouseMapper.reviewDelete", reserveCode);
     }

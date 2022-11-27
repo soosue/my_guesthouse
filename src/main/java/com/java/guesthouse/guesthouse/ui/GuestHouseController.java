@@ -51,21 +51,6 @@ public class GuestHouseController {
         return ResponseEntity.ok(reviewService.getReviewsOfGuestHouse(pageable, guestHouseId));
     }
 
-    // 후기 수정하기 눌렀을 때
-    @RequestMapping(value = "/guestHousePage/reviewUpdate.do", method = RequestMethod.GET)
-    public ModelAndView reviewUpdate(HttpServletRequest request, HttpServletResponse response,
-                                     HouseReviewDto reviewDto) {
-        System.out.println("exReview 수정하기");
-        ModelAndView mav = new ModelAndView();
-
-        mav.addObject("request", request);
-
-        mav.addObject("reviewDto", reviewDto);
-
-        guestHouseService.reviewUpdate(mav);
-
-        return mav;
-    }
 
     // 삭제 눌렀을 때
     @RequestMapping(value = "/guestHousePage/reviewDelete.do", method = RequestMethod.GET)
