@@ -22,4 +22,6 @@ public interface ReviewRepository extends JpaRepository<Review, Long>  {
     Slice<ReviewDto> findByGuestHouseId(@Param("guestHouseId") Long guestHouseId, Pageable pageable);
 
     Optional<Review> findByIdAndMemberId(Long reviewId, Long memberId);
+
+    int countByMemberId(Long memberId);
 }

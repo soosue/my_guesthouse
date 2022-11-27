@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONValue;
+import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -36,14 +37,17 @@ import com.java.guesthouse.host.service.dto.ExReviewListDto;
 import com.java.guesthouse.host.service.dto.HostExListDto;
 import com.java.guesthouse.host.service.dto.HostHouseListDto;
 import com.java.guesthouse.host.service.dto.HouseReviewListDto;
+import com.java.guesthouse.review.domain.ReviewRepository;
 
 @Service
 public class DellunaService {
 
     private final DellunaDao dellunaDao;
+    private final ReviewRepository reviewRepository;
 
-    public DellunaService(DellunaDao dellunaDao) {
+    public DellunaService(DellunaDao dellunaDao, ReviewRepository reviewRepository) {
         this.dellunaDao = dellunaDao;
+        this.reviewRepository = reviewRepository;
     }
 
     // 찜목록불러오기
@@ -384,7 +388,7 @@ public class DellunaService {
         int useCurrentPage = Integer.parseInt(usePageNumber);
         HomeAspect.logger.info(HomeAspect.logMsg + "현재 페이지 : " + useCurrentPage);
 
-        int countHouseReview = dellunaDao.houseReviewCount(memberCode);
+        int countHouseReview = reviewRepository.countByMemberId(Long.parseLong(memberCode + ""));;
         HomeAspect.logger.info(HomeAspect.logMsg + "게하 후기 개수  : " + countHouseReview);
 
         int countExpReview = 10000000;
@@ -411,60 +415,11 @@ public class DellunaService {
         mav.setViewName("guestdelluna/reviewHouse.empty");
     }
 
-    // 내가 쓴 리뷰 리스트
-    public void myReviewList(ModelAndView mav) {
-        // TODO Auto-generated method stub
-
-        Map<String, Object> map = mav.getModelMap();
-        HttpServletRequest request = (HttpServletRequest) map.get("request");
-
-        HttpSession session = request.getSession();
-        String email = (String) session.getAttribute("email");
-        HomeAspect.logger.info(HomeAspect.logMsg + email);
-
-        int memberCode = dellunaDao.selectMemberCode(email);
-        HomeAspect.logger.info(HomeAspect.logMsg + memberCode);
-
-        MemberDto memberDto = dellunaDao.selectForUpdate(email);
-
-        String pageNumber = request.getParameter("pageNumber");
-
-        if (pageNumber == null) {
-            pageNumber = "1";
-        }
-        int currentPage = Integer.parseInt(pageNumber);
-        int boardSize = 5;
-
-        int startRow = (currentPage - 1) * boardSize + 1;
-        int endRow = startRow + boardSize - 1;
-
-        HomeAspect.logger.info(HomeAspect.logMsg + startRow + "," + endRow);
-
-        int countExpReview = dellunaDao.expReviewCount(memberCode);
-        HomeAspect.logger.info(HomeAspect.logMsg + "체험 후기 개수 : " + countExpReview);
-
-        List<NewExpReviewDto> myExpreviewList = null;
-        if (countExpReview > 0) {
-            myExpreviewList = dellunaDao.myExpreviewList(memberCode, startRow, endRow);
-            HomeAspect.logger.info(HomeAspect.logMsg + "내가 쓴 체험후기 : " + myExpreviewList.toString());
-        }
-
-        int countHouseReview = dellunaDao.houseReviewCount(memberCode);
-        HomeAspect.logger.info(HomeAspect.logMsg + "게하 후기 개수  : " + countHouseReview);
-
-        List<NewHouseReviewDto> myHousereviewList = null;
-
-        if (countHouseReview > 0) {
-            myHousereviewList = dellunaDao.myHousereviewList(memberCode, startRow, endRow);
-            HomeAspect.logger.info(HomeAspect.logMsg + "내가 쓴 게하후기 : " + myHousereviewList.toString());
-        }
-
-        mav.addObject("countHouseReview", countHouseReview);
-        mav.addObject("countExpReview", countExpReview);
-        mav.addObject("memberDto", memberDto);
-
-        mav.setViewName("guestdelluna/myReviewList.tiles");
-
+    // 내가 쓴 리뷰 개수 조회
+    public Pair<Integer, Integer> getMyReviewsCount(Long memberId) {
+        int countHouseReview = reviewRepository.countByMemberId(memberId);;
+        int countExpReview = dellunaDao.expReviewCount(memberId);
+        return Pair.of(countHouseReview, countExpReview);
     }
 
     // 내가 예약한 게스트하우스 , 찜 목록 조회

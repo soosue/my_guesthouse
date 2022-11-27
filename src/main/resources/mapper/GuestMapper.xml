@@ -292,15 +292,9 @@
           and h.state = #{state}
     </select>
 
-    <select id="expReviewCount" parameterType="int" resultType="int">
+    <select id="expReviewCount" parameterType="long" resultType="int">
         select count(*)
         from exreview
-        where memberCode = #{memberCode}
-    </select>
-
-    <select id="houseReviewCount" parameterType="int" resultType="int">
-        select count(*)
-        from review
         where memberCode = #{memberCode}
     </select>
 

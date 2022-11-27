@@ -93,20 +93,18 @@
     <div class="menuL" style="margin-top: 6.5rem;">
         <ul>
             <li><a href="/mypage/reviews.page" style="color: black;">후기</a></li>
-            <c:if test="${memberCode == memberDto.memberCode}">
-                <li><a href="${root}/guestdelluna/memberUpdate.do" style="color: black;">회원수정</a></li>
-                <li><a href="${root}/manage/points.page" style="color: black;">포인트관리</a></li>
-                <li><a href="${root}/guestdelluna/payList.do" style="color: black;">결제내역</a></li>
-                <c:if test="${memberLevel == 'Host'}">
-                    <hr style="border: 0.0315rem solid #ddd;"/>
-                    <li><a href="${root}/host/reservationView.do" style="color: black;">숙소예약현황</a></li>
-                    <li><a href="${root}/host/exReservationView.do" style="color: black;">체험예약현황</a></li>
-                    <li><a href="${root}/host/salesView.do" style="color: black;">매출조회</a></li>
-                    <li><a href="${root}/host/houseManagement.do" style="color: black;">게스트하우스 관리</a></li>
-                    <li><a href="${root}/host/exManagement.do" style="color: black;">체험 관리</a></li>
-                </c:if>
-                <li><a href="${root}/guestdelluna/memberDelete.do" style="color: black;">회원탈퇴</a></li>
+            <li><a href="${root}/guestdelluna/memberUpdate.do" style="color: black;">회원수정</a></li>
+            <li><a href="${root}/manage/points.page" style="color: black;">포인트관리</a></li>
+            <li><a href="${root}/guestdelluna/payList.do" style="color: black;">결제내역</a></li>
+            <c:if test="${memberLevel == 'Host'}">
+                <hr style="border: 0.0315rem solid #ddd;"/>
+                <li><a href="${root}/host/reservationView.do" style="color: black;">숙소예약현황</a></li>
+                <li><a href="${root}/host/exReservationView.do" style="color: black;">체험예약현황</a></li>
+                <li><a href="${root}/host/salesView.do" style="color: black;">매출조회</a></li>
+                <li><a href="${root}/host/houseManagement.do" style="color: black;">게스트하우스 관리</a></li>
+                <li><a href="${root}/host/exManagement.do" style="color: black;">체험 관리</a></li>
             </c:if>
+            <li><a href="${root}/guestdelluna/memberDelete.do" style="color: black;">회원탈퇴</a></li>
         </ul>
     </div>
 

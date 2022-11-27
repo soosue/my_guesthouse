@@ -346,14 +346,9 @@ public class DellunaDao {
         return sqlSessionTemplate.selectList("host.dao.mapper.getHouseReviewListScroll", map);
     }
 
-    public int expReviewCount(int memberCode) {
+    public int expReviewCount(long memberCode) {
 
         return sqlSessionTemplate.selectOne("dao.dellunaMapper.expReviewCount", memberCode);
-    }
-
-    public int houseReviewCount(int memberCode) {
-
-        return sqlSessionTemplate.selectOne("dao.dellunaMapper.houseReviewCount", memberCode);
     }
 
     public List<ExpReviewDto> myExpReview(int memberCode, int startRow, int endRow) {
