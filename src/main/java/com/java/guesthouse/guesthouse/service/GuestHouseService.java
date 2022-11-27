@@ -72,19 +72,17 @@ public class GuestHouseService {
         email = (String) session.getAttribute("email");
         HomeAspect.logger.info(HomeAspect.logMsg + "email: " + email);
 
-        MemberDto member = guestHouseDao.getMemberInfo(email);
-        mav.addObject("MemberDto", member);
-
-
         int emailCheck = 0;
         if (email != null) {
+            MemberDto member = guestHouseDao.getMemberInfo(email);
+            mav.addObject("MemberDto", member);
+
             HomeAspect.logger.info(HomeAspect.logMsg + member.getMemberCode() + member.getMemberLevel());
             emailCheck = 1;
 
             mav.addObject("memberCode", member.getMemberCode());
             mav.addObject("emailCheck", emailCheck);
         } else {
-            emailCheck = 0;
             mav.addObject("emailCheck", emailCheck);
         }
 
