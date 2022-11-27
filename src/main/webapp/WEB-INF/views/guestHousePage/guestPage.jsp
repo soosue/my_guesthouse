@@ -596,54 +596,41 @@
             <div class="modal-header">
                 <h4 class="modal-title">후기 수정</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-
             </div>
 
             <!-- Modal body -->
             <div class="form-group">
-                <form class="form"
-                      action="${root}/guestHousePage/reviewUpdateOk.do?memberCode=${memberCode}&reserveCode=${reserveCode}"
-                      method="get">
-                    <!-- onsubmit="return checkUp()" -->
-
+                <form class="form">
                     <div class="title">
-                        <input type="hidden" name="memberCode" value="${memberCode}"/> <input
-                            type="hidden" name="reserveCode" id="reserveCode"
-                            value="${reserveCode}"/> <span>
-								<!-- 이메일 -->
-							</span> <input type="text" name="email" size="20" value="${email}"
-                                           disabled="disabled" class="form-control"
-                                           style="width: 20rem; margin-left: 5.4rem; margin-top: 3rem;"/>
-
+                        <input type="hidden" name="memberCode" value="${memberCode}"/>
+                        <input type="hidden" name="reserveCode" id="reserveCode" value="${reserveCode}"/>
+                        <input type="text" name="email" size="20" value="${email}" disabled="disabled"
+                               class="form-control" style="width: 20rem; margin-left: 5.4rem; margin-top: 3rem;"/>
                     </div>
-
                     <div class="content" style="margin-top: 2rem;">
-
-							<textarea name="revContent" id="modalRevContent"
-                                      class="form-control"
-                                      style="background: #fff; border: none; width: 20rem; margin-left: 5.4rem; -webkit-box-shadow: 0rem 0.063rem 0.25rem 0.125rem rgba(0, 0, 0, 0.16); -moz-box-shadow: 0rem 0.063rem 0.25rem 0.125rem rgba(0, 0, 0, 0.16); box-shadow: 0rem 0.063rem 0.25rem 0.125rem rgba(0, 0, 0, 0.16); border-radius: 0.938rem; display: inline-block;"></textarea>
-
-                        <%-- <textarea rows="3" cols="53" name="revContent" id="modalRevContent" class="form-control">${revContent}</textarea>  --%>
+                        <textarea name="revContent" id="modalRevContent" class="form-control"
+                                  style="background: #fff; border: none; width: 20rem; margin-left: 5.4rem; -webkit-box-shadow: 0rem 0.063rem 0.25rem 0.125rem rgba(0, 0, 0, 0.16); -moz-box-shadow: 0rem 0.063rem 0.25rem 0.125rem rgba(0, 0, 0, 0.16); box-shadow: 0rem 0.063rem 0.25rem 0.125rem rgba(0, 0, 0, 0.16); border-radius: 0.938rem; display: inline-block;">
+                        </textarea>
                     </div>
                     <div>
                         <link rel="stylesheet" href="${root}/resources/css/review/review.css"/>
                         <span class="mstar-input">
-								<span class="minput" style="margin-left: 9rem; margin-bottom: 5rem;"> 
-								<input type="radio" name="mstar-input" value="1" id="mp1"> 
-								<label for="mp1">1</label> 
-								<input type="radio" name="mstar-input" value="2" id="mp2"> 
-								<label for="mp2">2</label> 
-								<input type="radio" name="mstar-input" value="3" id="mp3"> 
-								<label for="mp3">3</label> 
-								<input type="radio" name="mstar-input" value="4" id="mp4"> 
-								<label for="mp4">4</label> 
-								<input type="radio" name="mstar-input" value="5" id="mp5"> 
-								<label for="mp5">5</label>
-								</span> 
-								<output for="mstar-input" name="mstarValue">
-									<input type="hidden" name="revRate" id="revRate" class="revRate"/>
-								</output>
-							</span>
+                            <span class="minput" style="margin-left: 9rem; margin-bottom: 5rem;">
+                                <input type="radio" name="mstar-input" value="1" id="mp1">
+                                <label for="mp1">1</label>
+                                <input type="radio" name="mstar-input" value="2" id="mp2">
+                                <label for="mp2">2</label>
+                                <input type="radio" name="mstar-input" value="3" id="mp3">
+                                <label for="mp3">3</label>
+                                <input type="radio" name="mstar-input" value="4" id="mp4">
+                                <label for="mp4">4</label>
+                                <input type="radio" name="mstar-input" value="5" id="mp5">
+                                <label for="mp5">5</label>
+                            </span>
+                            <output for="mstar-input" name="mstarValue">
+                                <input type="hidden" name="revRate" id="revRate" class="revRate"/>
+                            </output>
+                        </span>
                     </div>
 
                     <!-- Modal footer -->
