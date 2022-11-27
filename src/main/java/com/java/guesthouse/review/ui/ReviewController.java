@@ -3,6 +3,7 @@ package com.java.guesthouse.review.ui;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -42,9 +43,21 @@ public class ReviewController {
 
     // 게스트하우스 상세 페이지에서 리뷰 수정 요청
     @PutMapping("/{id}")
-    public ResponseEntity<Void> updateReview(HttpSession session, @PathVariable("id") Long reviewId, @RequestBody UpdateReviewRequest updateReviewRequest) {
+    public ResponseEntity<Void> updateReview(
+            HttpSession session,
+            @PathVariable("id") Long reviewId,
+            @RequestBody UpdateReviewRequest updateReviewRequest
+    ) {
         Long memberId = (Long) session.getAttribute("memberCode");
         reviewService.updateReview(reviewId, memberId, updateReviewRequest);
+        return ResponseEntity.ok().build();
+    }
+
+    // 게스트하우스 상세 페이지에서 리뷰 삭제 요청
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteReview(HttpSession session, @PathVariable("id") Long reviewId) {
+        Long memberId = (Long) session.getAttribute("memberCode");
+        reviewService.deleteReview(reviewId, memberId);
         return ResponseEntity.ok().build();
     }
 

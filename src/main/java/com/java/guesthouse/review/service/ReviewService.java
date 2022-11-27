@@ -68,4 +68,12 @@ public class ReviewService {
                 .orElseThrow(() -> new IllegalArgumentException());
         review.update(updateReviewRequest.content(), updateReviewRequest.rate());
     }
+
+    @Transactional
+    public void deleteReview(Long reviewId, Long memberId) {
+        Review review = reviewRepository.findByIdAndMemberId(reviewId, memberId)
+                .orElseThrow(() -> new IllegalArgumentException());
+
+        reviewRepository.delete(review);
+    }
 }

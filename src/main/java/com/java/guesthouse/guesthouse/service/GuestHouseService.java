@@ -165,26 +165,6 @@ public class GuestHouseService {
         }
     }
 
-    public void reviewDelete(ModelAndView mav) {
-        Map<String, Object> map = mav.getModelMap();
-        HttpServletRequest request = (HttpServletRequest) map.get("request");
-
-        int reserveCode = Integer.parseInt(request.getParameter("reserveCode"));
-        int pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
-        int houseCode = Integer.parseInt(request.getParameter("houseCode"));
-
-        HomeAspect.logger.info(HomeAspect.logMsg + "reserveCode : " + reserveCode + ", " + houseCode);
-
-        int check = guestHouseDao.reviewDelete(reserveCode);
-        HomeAspect.logger.info(HomeAspect.logMsg + "check : " + check);
-
-        mav.addObject("pageNumber", pageNumber);
-        mav.addObject("check", check);
-        mav.addObject("houseCode", houseCode);
-
-        mav.setViewName("guestHousePage/reviewDelete.tiles");
-    }
-
     /* 예약 가능 인원 확인 */
     public void limitCheck(ModelAndView mav) {
         Map<String, Object> map = mav.getModelMap();

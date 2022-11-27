@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.java.guesthouse.guestdelluna.service.dto.HouseReviewDto;
 import com.java.guesthouse.guesthouse.service.GuestHouseService;
 import com.java.guesthouse.guesthouse.service.dto.ReviewsResponse;
 import com.java.guesthouse.review.service.ReviewService;
@@ -45,25 +44,11 @@ public class GuestHouseController {
     @RequestMapping(value = "/v1/guesthouses/{id}/reviews", method = RequestMethod.GET)
     public ResponseEntity<ReviewsResponse> getReviewsOfGuestHouse(
             @PathVariable(value = "id") Long guestHouseId,
-            @PageableDefault(size = 3, sort = "revdate", direction = Sort.Direction.DESC) Pageable pageable
+            @PageableDefault(size = 1, sort = "revdate", direction = Sort.Direction.DESC) Pageable pageable
     ) {
 
         return ResponseEntity.ok(reviewService.getReviewsOfGuestHouse(pageable, guestHouseId));
     }
-
-
-    // 삭제 눌렀을 때
-    @RequestMapping(value = "/guestHousePage/reviewDelete.do", method = RequestMethod.GET)
-    public ModelAndView exReviewDelete(HttpServletRequest request, HttpServletResponse response) {
-        System.out.println("exReview 삭제하기");
-        ModelAndView mav = new ModelAndView();
-
-        mav.addObject("request", request);
-        guestHouseService.reviewDelete(mav);
-
-        return mav;
-    }
-
 
     @RequestMapping(value = "/guestHousePage/limitCheck.do", method = RequestMethod.GET)
     public ModelAndView limitCheck(HttpServletRequest request, HttpServletResponse response) {

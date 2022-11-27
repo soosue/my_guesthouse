@@ -91,13 +91,16 @@ function deleteCheck(root, exReserveCode, memberCode, currentPage, exCode) {
     }
 }
 
-function GHdeleteCheck(root, reserveCode, memberCode, currentPage, houseCode) {
-    var url = root + "/guestHousePage/reviewDelete.do?reserveCode=" + reserveCode + "&memberCode=" + memberCode + "&pageNumber=" + currentPage + "&houseCode=" + houseCode;
-    //alert(url);
-
-    var value = confirm("후기를 삭제하시겠습니까?");
-    if (value == true) {
-        location.href = url;
+function deleteReview(reserveCode) {
+    if (confirm("후기를 삭제하시겠습니까?")) {
+        fetch(`/v1/reviews/${reserveCode}`, {
+            method: "DELETE"
+        }).then(response => {
+            if (response.status !== 200) {
+                alert("에러가 발생했습니다.");
+            }
+            location.reload();
+        });
     }
 }
 
@@ -432,7 +435,7 @@ function getReviews(root, emailSession, houseCode) {
 
                     if (emailSession == this.email) {
                         updateAndDeleteButton = `<div id="upAndDel" style="float: right; width:5.6rem; margin-top:1rem;"><div id="updateRe" style="width:3rem; float:left;"><button type="button" class="btn btn-light" data-toggle="modal" data-target="#updateModal"><i class="fa fa-pencil"></i></button></div>
-                                                 <div id="deleteRe"><button type="button" class="btn btn-light" onclick="GHdeleteCheck("", ${this.reserveCode}, ${this.memberCode}, ${pageNumber}, ${houseCode})"><i class="fa fa-trash-o"></i></button></div></div>`;
+                                                 <div id="deleteRe"><button type="button" class="btn btn-light" onclick="deleteReview(${this.reserveCode})"><i class="fa fa-trash-o"></i></button></div></div>`;
                     }
 
                     htmls = `<div style="border-bottom: 0.063rem solid #dee2e6!important;" class="num${this.reserveCode}media text-muted pt-3" id="rid">

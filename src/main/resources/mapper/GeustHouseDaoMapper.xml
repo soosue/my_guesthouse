@@ -132,10 +132,4 @@
         where reserveCode = #{reserveCode}
     </select>
 
-    <delete id="reviewDelete" parameterType="int">
-        delete
-        from REVIEW
-        where RESERVECODE = #{reserveCode}
-    </delete>
-
 </mapper>

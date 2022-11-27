@@ -116,8 +116,4 @@ public class GuestHouseDao {
 
         return sqlSessionTemplate.selectOne("dao.GuestHouseMapper.reviewChk", reserveCode);
     }
-
-    public int reviewDelete(int reserveCode) {
-        return sqlSessionTemplate.delete("dao.GuestHouseMapper.reviewDelete", reserveCode);
-    }
 }
