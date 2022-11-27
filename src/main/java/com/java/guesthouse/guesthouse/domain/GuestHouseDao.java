@@ -125,10 +125,6 @@ public class GuestHouseDao {
         return sqlSessionTemplate.selectOne("dao.GuestHouseMapper.reviewUpdate", hMap);
     }
 
-    public int reviewUpdateOk(HouseReviewDto reviewDto) {
-        return sqlSessionTemplate.update("dao.GuestHouseMapper.reviewUpdateOk", reviewDto);
-    }
-
     public int reviewDelete(int reserveCode) {
         return sqlSessionTemplate.delete("dao.GuestHouseMapper.reviewDelete", reserveCode);
     }

@@ -39,4 +39,10 @@ public class Review {
         this.rate = rate;
         this.createdDate = LocalDateTime.now();
     }
+
+    public void update(String content, Integer rate) {
+        this.content = content;
+        this.rate = rate;
+        this.createdDate = LocalDateTime.now();
+    }
 }

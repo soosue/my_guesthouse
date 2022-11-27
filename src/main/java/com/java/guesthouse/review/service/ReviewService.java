@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.java.guesthouse.guesthouse.domain.GuestHouseDao;
 import com.java.guesthouse.guesthouse.service.dto.ReviewResponse;
@@ -14,8 +15,10 @@ import com.java.guesthouse.guestreserve.dto.GuestReserveDto;
 import com.java.guesthouse.guestreserve.dto.ReviewDto;
 import com.java.guesthouse.review.domain.Review;
 import com.java.guesthouse.review.domain.ReviewRepository;
+import com.java.guesthouse.review.service.dto.UpdateReviewRequest;
 
 @Service
+@Transactional(readOnly = true)
 public class ReviewService {
 
     private final GuestHouseDao guestHouseDao;
@@ -26,6 +29,7 @@ public class ReviewService {
         this.reviewRepository = reviewRepository;
     }
 
+    @Transactional
     public Long saveReview(String content, int rate, Long memberId, Long guestHouseId) {
         List<GuestReserveDto> reservations = guestHouseDao.findReservationByGuestHouseIdAndMemberId(guestHouseId, memberId);
         Optional<GuestReserveDto> reservationOptional = reservations.stream()
@@ -56,5 +60,12 @@ public class ReviewService {
                         .map(ReviewResponse::from)
                         .toList()
         );
+    }
+
+    @Transactional
+    public void updateReview(Long reviewId, Long memberId, UpdateReviewRequest updateReviewRequest) {
+        Review review = reviewRepository.findByIdAndMemberId(reviewId, memberId)
+                .orElseThrow(() -> new IllegalArgumentException());
+        review.update(updateReviewRequest.content(), updateReviewRequest.rate());
     }
 }

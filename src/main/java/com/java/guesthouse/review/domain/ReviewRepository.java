@@ -1,5 +1,7 @@
 package com.java.guesthouse.review.domain;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -19,4 +21,5 @@ public interface ReviewRepository extends JpaRepository<Review, Long>  {
     nativeQuery = true)
     Slice<ReviewDto> findByGuestHouseId(@Param("guestHouseId") Long guestHouseId, Pageable pageable);
 
+    Optional<Review> findByIdAndMemberId(Long reviewId, Long memberId);
 }

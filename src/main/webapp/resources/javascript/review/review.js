@@ -498,47 +498,36 @@ function getReviews(root, emailSession, houseCode) {
 }
 
 function ghReviewModalUpdate(form) {
-    console.log(form);
-    var memberCode = form.memberCode.value;
-    var reserveCode = form.reserveCode.value;
-    var revContent = form.modalRevContent.value;
-    var revRate = form.revRate.value;
+    const reserveCode = form.reserveCode.value;
+    const revContent = form.modalRevContent.value;
+    const revRate = form.revRate.value;
 
-    console.log(memberCode);
-    console.log(reserveCode);
-    console.log(revContent);
-    console.log(revRate);
+    fetch(`/v1/reviews/${reserveCode}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            "rate" : revRate,
+            "content" : revContent
+        })
+    }).then(response => {
+        if (response.status === 200) {
+            let div = $(".num" + reserveCode + "media");
+            let day = new Date();
 
-    var url = proot + "/guestHousePage/reviewUpdateOk.do?memberCode=" + memberCode + "&reserveCode=" + reserveCode + "&revRate=" + revRate;
-    var params = "&revContent=" + revContent;
+            let year = day.getFullYear();
+            let month = day.getMonth() + 1;
+            let date = day.getDate();
 
-    $.ajax({
-
-        method: 'GET',
-        url: url + params,
-        dataType: "JSON",
-        success: function (data) {
-
-            var div = $(".num" + reserveCode + "media");
-            var day = new Date();
-
-            var year = day.getFullYear();
-            var month = day.getMonth() + 1;
-            var date = day.getDate();
-
-            var formatDate = year + "년 " + month + "월 " + date + "일 ";
+            const formatDate = `${year}년 ${month}월 ${date}일 `;
 
             $($($(div.children()[0]).children()[2]).children("img")[0]).attr("src", proot + '/resources/css/review/star' + revRate + '.PNG');
             $($(div.children()[0]).children()[1]).text(formatDate);
             $(div.children("div")[1]).text(revContent);
-            console.log($("#updateModal"));
             $("#updateModal").modal("hide");
-
-        },
-        error: function (a, b, c) {
-            console.log(a);
-            alert(b);
-            alert(c);
+        } else {
+            alert("에러가 발생했습니다.");
         }
     });
 

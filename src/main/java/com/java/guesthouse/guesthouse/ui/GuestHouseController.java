@@ -67,22 +67,6 @@ public class GuestHouseController {
         return mav;
     }
 
-    // 수정 완료 눌렀을 때
-    @RequestMapping(value = "/guestHousePage/reviewUpdateOk.do", method = RequestMethod.GET)
-    public void exReviewUpdateOk(HttpServletRequest request, HttpServletResponse response,
-                                 HouseReviewDto reviewDto) {
-        System.out.println("exReview 수정완료");
-
-        ModelAndView mav = new ModelAndView();
-
-        mav.addObject("request", request);
-        mav.addObject("response", response);
-        mav.addObject("reviewDto", reviewDto);
-
-        guestHouseService.reviewUpdateOk(mav);
-
-    }
-
     // 삭제 눌렀을 때
     @RequestMapping(value = "/guestHousePage/reviewDelete.do", method = RequestMethod.GET)
     public ModelAndView exReviewDelete(HttpServletRequest request, HttpServletResponse response) {

@@ -1,7 +1,5 @@
 package com.java.guesthouse.guesthouse.service;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
@@ -12,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
@@ -31,7 +28,6 @@ import com.java.guesthouse.point.domain.PointAccumulate;
 import com.java.guesthouse.point.domain.PointAccumulateRepository;
 import com.java.guesthouse.point.domain.PointUse;
 import com.java.guesthouse.point.domain.PointUseRepository;
-import com.java.guesthouse.review.domain.ReviewRepository;
 
 @Service
 public class GuestHouseService {
@@ -39,18 +35,16 @@ public class GuestHouseService {
     private final GuestHouseDao guestHouseDao;
     private final PointAccumulateRepository pointAccumulateRepository;
     private final PointUseRepository pointUseRepository;
-    private final ReviewRepository reviewRepository;
     // TODO 추후에 고치겠습니다. Bean 인데 왜 이렇게 변수를 선언했을까요...
     String email;
     HostDto hostDto;
     List<FileDto> fileList;
     int memberPoint;
 
-    public GuestHouseService(GuestHouseDao guestHouseDao, PointAccumulateRepository pointAccumulateRepository, PointUseRepository pointUseRepository, ReviewRepository reviewRepository) {
+    public GuestHouseService(GuestHouseDao guestHouseDao, PointAccumulateRepository pointAccumulateRepository, PointUseRepository pointUseRepository) {
         this.guestHouseDao = guestHouseDao;
         this.pointAccumulateRepository = pointAccumulateRepository;
         this.pointUseRepository = pointUseRepository;
-        this.reviewRepository = reviewRepository;
     }
 
     public void guestHouseRead(ModelAndView mav) {
@@ -192,30 +186,6 @@ public class GuestHouseService {
 
         mav.setViewName("guestHousePage/reviewUpdate.empty");
 
-    }
-
-    public void reviewUpdateOk(ModelAndView mav) {
-        Map<String, Object> map = mav.getModelMap();
-        HttpServletRequest request = (HttpServletRequest) map.get("request");
-        HttpServletResponse response = (HttpServletResponse) map.get("response");
-
-        HouseReviewDto reviewDto = (HouseReviewDto) map.get("reviewDto");
-        reviewDto.setRevDate(new Date());
-
-        HomeAspect.logger.info(HomeAspect.logMsg + reviewDto.toString());
-
-        int check = guestHouseDao.reviewUpdateOk(reviewDto);
-
-        mav.addObject("check");
-        response.setContentType("application/x-json;charset=utf-8");
-
-        try {
-            PrintWriter out = response.getWriter();
-            out.print(check);
-            out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void reviewDelete(ModelAndView mav) {

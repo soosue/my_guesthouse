@@ -140,15 +140,6 @@
           and RESERVECODE = #{reserveCode}
     </select>
 
-    <update id="reviewUpdateOk" parameterType="com.java.guesthouse.guestdelluna.service.dto.HouseReviewDto">
-        update REVIEW
-        set RESERVECODE=#{reserveCode},
-            revDate=#{revDate},
-            revContent=#{revContent},
-            revRate=#{revRate}
-        where memberCode = #{memberCode}
-    </update>
-
     <delete id="reviewDelete" parameterType="int">
         delete
         from REVIEW
