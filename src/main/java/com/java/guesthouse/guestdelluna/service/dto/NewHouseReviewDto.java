@@ -7,6 +7,7 @@ public class NewHouseReviewDto {
     private int reserveCode;
     private Date revDate;
     private String revContent;
+    private int revRate;
     private String houseName;
     private String mainImgName;
     private int houseCode;
@@ -14,12 +15,11 @@ public class NewHouseReviewDto {
     public NewHouseReviewDto() {
     }
 
-    public NewHouseReviewDto(int reserveCode, Date revDate, String revContent, String houseName, String mainImgName,
-                             int houseCode) {
-
+    public NewHouseReviewDto(int reserveCode, Date revDate, String revContent, int revRate, String houseName, String mainImgName, int houseCode) {
         this.reserveCode = reserveCode;
         this.revDate = revDate;
         this.revContent = revContent;
+        this.revRate = revRate;
         this.houseName = houseName;
         this.mainImgName = mainImgName;
         this.houseCode = houseCode;
@@ -60,6 +60,14 @@ public class NewHouseReviewDto {
 
     public void setRevContent(String revContent) {
         this.revContent = revContent;
+    }
+
+    public int getRevRate() {
+        return revRate;
+    }
+
+    public void setRevRate(int revRate) {
+        this.revRate = revRate;
     }
 
     public String getHouseName() {

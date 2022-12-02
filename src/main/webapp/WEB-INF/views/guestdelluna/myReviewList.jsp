@@ -22,6 +22,7 @@
 </style>
 <head>
     <script type="text/javascript" src="${root}/resources/javascript/guestdelluna/myReview.js"></script>
+    <script type="text/javascript" src="/resources/javascript/review/review.js"></script>
     <link rel="stylesheet" href="${root}/resources/css/guestdelluna/menuLayout.css">
     <script type="text/javascript" src="${root}/resources/javascript/jquery/flick/jquery-ui.js"></script>
     <link rel="stylesheet" href="${root}/resources/javascript/jquery/flick/jquery-ui.css">

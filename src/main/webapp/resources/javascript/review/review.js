@@ -486,10 +486,7 @@ function getReviews(root, emailSession, houseCode) {
 
 }
 
-function ghReviewModalUpdate(form) {
-    const reserveCode = form.reserveCode.value;
-    const revContent = form.modalRevContent.value;
-    const revRate = form.revRate.value;
+function updateReview(reserveCode, revContent, revRate) {
 
     fetch(`/v1/reviews/${reserveCode}`, {
         method: "PUT",

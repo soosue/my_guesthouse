@@ -637,7 +637,8 @@
                     <div class="modal-footer">
                         <div style="width: 10rem; margin-right: 10rem;" align="center">
                             <button id="modalSubmit" type="button" class="btn btn-info"
-                                    onclick='ghReviewModalUpdate(form)'>수정
+                                    onclick='updateReview(form.reserveCode.value, form.modalRevContent.value, form.revRate.value)'>
+                                수정
                             </button>
                             <button type="button" class="btn btn-light" data-dismiss="modal">닫기</button>
                         </div>
