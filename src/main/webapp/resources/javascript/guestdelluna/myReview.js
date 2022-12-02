@@ -37,16 +37,6 @@ function expUpdateOk(root, expUpResCode, i) {
 	sendRequest("GET", url, updateCallBack, params);
 }
 
-function delHouseRev(root, hsValue) {
-
-	var url = root + "/guestdelluna/houseReviewDelete.do";
-
-	var params = "hsValue=" + hsValue;
-
-	sendRequest("GET", url, delCallBackFromServer, params);
-
-}
-
 function delCallBackFromServer() {
 	if (xhr.readyState == 4 && xhr.status == 200) {
 		alert("후기 삭제 완료됐습니다");
