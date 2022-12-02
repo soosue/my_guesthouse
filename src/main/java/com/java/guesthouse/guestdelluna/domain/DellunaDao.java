@@ -498,7 +498,7 @@ public class DellunaDao {
         return sqlSessionTemplate.selectList("dao.dellunaMapper.myExpreviewList", map);
     }
 
-    public List<NewHouseReviewDto> myHousereviewList(int memberCode, int startRow, int endRow) {
+    public List<NewHouseReviewDto> getMyGuestHouseReviews(long memberCode, int startRow, int endRow) {
 
         Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);

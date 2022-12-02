@@ -367,51 +367,22 @@ public class DellunaService {
         mav.setViewName("guestdelluna/reviewExp.empty");
     }
 
-    public void revHouseAjax(ModelAndView mav) {
-        // TODO Auto-generated method stub
-        Map<String, Object> map = mav.getModelMap();
-        HttpServletRequest request = (HttpServletRequest) map.get("request");
+    public void getMyGuestHouseReviews(ModelAndView mav, Long memberId, int page) {
 
-        HttpSession session = request.getSession();
-        String email = (String) session.getAttribute("email");
-        HomeAspect.logger.info(HomeAspect.logMsg + email);
-
-        int memberCode = dellunaDao.selectMemberCode(email);
-        HomeAspect.logger.info(HomeAspect.logMsg + memberCode);
-
-        String usePageNumber = request.getParameter("usePageNumber");
-        if (usePageNumber.equals("")) {
-            usePageNumber = "1";
-        }
-
-        int useCurrentPage = Integer.parseInt(usePageNumber);
-        HomeAspect.logger.info(HomeAspect.logMsg + "현재 페이지 : " + useCurrentPage);
-
-        int countHouseReview = reviewRepository.countByMemberId(Long.parseLong(memberCode + ""));;
-        HomeAspect.logger.info(HomeAspect.logMsg + "게하 후기 개수  : " + countHouseReview);
-
+        int countHouseReview = reviewRepository.countByMemberId(memberId);;
         int countExpReview = 10000000;
 
         int boardSize = 5;
-
-        int startRow = (useCurrentPage - 1) * boardSize + 1;
+        int startRow = (page - 1) * boardSize + 1;
         int endRow = startRow + boardSize - 1;
 
-        HomeAspect.logger.info(HomeAspect.logMsg + startRow + "," + endRow);
-
-        List<NewHouseReviewDto> myHousereviewList = null;
-
-        if (countHouseReview > 0) {
-            myHousereviewList = dellunaDao.myHousereviewList(memberCode, startRow, endRow);
-            HomeAspect.logger.info(HomeAspect.logMsg + "내가 쓴 게하후기 : " + myHousereviewList.toString());
-        }
+        List<NewHouseReviewDto> guestHouseReviews = dellunaDao.getMyGuestHouseReviews(memberId, startRow, endRow);
 
         mav.addObject("countExpReview", countExpReview);
         mav.addObject("countHouseReview", countHouseReview);
-        mav.addObject("myHousereviewList", myHousereviewList);
+        mav.addObject("myHousereviewList", guestHouseReviews);
         mav.addObject("boardSize", boardSize);
-        mav.addObject("useCurrentPage", useCurrentPage);
-        mav.setViewName("guestdelluna/reviewHouse.empty");
+        mav.addObject("useCurrentPage", page);
     }
 
     // 내가 예약한 게스트하우스 , 찜 목록 조회
