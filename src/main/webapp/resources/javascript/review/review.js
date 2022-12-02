@@ -486,7 +486,26 @@ function getReviews(root, emailSession, houseCode) {
 
 }
 
-function updateReview(reserveCode, revContent, revRate) {
+const defaultReviewUpdateSuccessCallback = (response) => {
+    if (response.status === 200) {
+        let div = $(".num" + reserveCode + "media");
+        let day = new Date();
+
+        let year = day.getFullYear();
+        let month = day.getMonth() + 1;
+        let date = day.getDate();
+
+        const formatDate = `${year}년 ${month}월 ${date}일 `;
+
+        $($($(div.children()[0]).children()[2]).children("img")[0]).attr("src", proot + '/resources/css/review/star' + revRate + '.PNG');
+        $($(div.children()[0]).children()[1]).text(formatDate);
+        $(div.children("div")[1]).text(revContent);
+        $("#updateModal").modal("hide");
+    } else {
+        alert("에러가 발생했습니다.");
+    }
+}
+function updateReview(reserveCode, revContent, revRate, callback = defaultReviewUpdateSuccessCallback) {
 
     fetch(`/v1/reviews/${reserveCode}`, {
         method: "PUT",
@@ -497,24 +516,6 @@ function updateReview(reserveCode, revContent, revRate) {
             "rate" : revRate,
             "content" : revContent
         })
-    }).then(response => {
-        if (response.status === 200) {
-            let div = $(".num" + reserveCode + "media");
-            let day = new Date();
-
-            let year = day.getFullYear();
-            let month = day.getMonth() + 1;
-            let date = day.getDate();
-
-            const formatDate = `${year}년 ${month}월 ${date}일 `;
-
-            $($($(div.children()[0]).children()[2]).children("img")[0]).attr("src", proot + '/resources/css/review/star' + revRate + '.PNG');
-            $($(div.children()[0]).children()[1]).text(formatDate);
-            $(div.children("div")[1]).text(revContent);
-            $("#updateModal").modal("hide");
-        } else {
-            alert("에러가 발생했습니다.");
-        }
-    });
+    }).then(response => callback(response));
 
 }

@@ -89,7 +89,7 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-primary"
                                             style="background: #008489; border: 1px solid #008489;"
-                                            onclick="houseUpdateOk('${root}','${houseReview.reserveCode}','${status.count}')">
+                                            onclick="updateReviewWithModalIdx('${houseReview.reserveCode}','${status.count}','${houseReview.revRate}')">
                                         수정완료
                                     </button>
                                     <button type="button" class="btn btn-default"
@@ -100,7 +100,6 @@
                             </div>
                         </div>
                     </div>
-
                 </c:forEach>
                 </tbody>
             </table>
