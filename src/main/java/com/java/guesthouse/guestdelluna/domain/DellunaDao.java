@@ -164,80 +164,14 @@ public class DellunaDao {
         return sqlSessionTemplate.selectList("dao.dellunaMapper.allHouse", memberCode);
     }
 
-    public List<Integer> houseCodeThis(int houseCodeFromRes) {
-
-        return sqlSessionTemplate.selectList("dao.dellunaMapper.houseCodeThis", houseCodeFromRes);
-    }
-
-    public List<HouseDto> houseInfo(int memberCode, int houseCode) {
-
-
-        /*
-         * List<Object> list = sqlSessionTemplate.selectList("houseInfo2",memberCode);
-         *
-         * System.out.println("list: "+list.toString());
-         *
-         *
-         *
-         * Map<String,Object> map = (Map<String, Object>)
-         * sqlSessionTemplate.selectList("houseInfo",memberCode);
-         *
-         * System.out.println(map.toString());
-         */
-
-        return /* sqlSessionTemplate.selectList("houseInfo", memberCode) */ null;
-
-    }
-
-    public List<String> findHouseName(int memberCode) {
-
-        return sqlSessionTemplate.selectList("dao.dellunaMapper.findHouseName", memberCode);
-    }
-
-    public List<Integer> ExpResNum(int memberCode) {
-
-        return sqlSessionTemplate.selectList("dao.dellunaMapper.ExpResNum", memberCode);
-    }
-
-    public List<Integer> expRealNum(int expResNum) {
-
-        return sqlSessionTemplate.selectList("dao.dellunaMapper.expRealNum", expResNum);
-    }
-
-    public List<String> myExName(int memberCode) {
-
-        return sqlSessionTemplate.selectList("dao.dellunaMapper.myExName", memberCode);
-    }
-
-    public List<Integer> findMyResCode(int memberCode) {
-
-        return sqlSessionTemplate.selectList("dao.dellunaMapper.findMyResCode", memberCode);
-    }
-
     public int updateState(int houseReserveCode) {
 
         return sqlSessionTemplate.update("dao.dellunaMapper.updateState", houseReserveCode);
     }
 
-    public List<Integer> findMyExpCode(int memberCode) {
-
-        return sqlSessionTemplate.selectList("dao.dellunaMapper.findMyExpCode", memberCode);
-    }
-
     public int updateExpState(int expReserveCode) {
 
         return sqlSessionTemplate.update("dao.dellunaMapper.updateExpState", expReserveCode);
-    }
-
-    public List<ExpZzimDto> dtoExpZzim(int memberCode) {
-
-        return sqlSessionTemplate.selectList("dao.dellunaMapper.dtoExpZzim", memberCode);
-
-    }
-
-    public List<String> zzimExName(int memberCode) {
-
-        return sqlSessionTemplate.selectList("dao.dellunaMapper.zzimExName", memberCode);
     }
 
     public int deleteExpZzim(int exCode, int memberCode) {
@@ -248,16 +182,6 @@ public class DellunaDao {
         map.put("exCode", exCode);
 
         return sqlSessionTemplate.delete("dao.dellunaMapper.deleteExpZzim", map);
-    }
-
-    public List<HouseZzimDto> dtoHouseZzim(int memberCode) {
-
-        return sqlSessionTemplate.selectList("dao.dellunaMapper.dtoHouseZzim", memberCode);
-    }
-
-    public List<String> zzimHouseName(int memberCode) {
-
-        return sqlSessionTemplate.selectList("dao.dellunaMapper.zzimHouseName", memberCode);
     }
 
     public int deleteHouseZzim(int houseCode, int memberCode) {
@@ -278,48 +202,6 @@ public class DellunaDao {
     public int deletePayListHouse(int houseReserveCode) {
 
         return sqlSessionTemplate.delete("dao.dellunaMapper.deletePayListHouse", houseReserveCode);
-    }
-
-    public List<HouseReservationDto> findHouseListWithString(int memberCode, String state) {
-
-
-        Map<String, Object> map = new HashMap<>();
-
-        map.put("memberCode", memberCode);
-        map.put("state", state);
-
-
-        return sqlSessionTemplate.selectList("dao.dellunaMapper.findHouseListWithString", map);
-    }
-
-    public List<String> findHouseNameWithString(int memberCode, String state) {
-
-        Map<String, Object> map = new HashMap<>();
-
-        map.put("memberCode", memberCode);
-        map.put("state", state);
-
-        return sqlSessionTemplate.selectList("dao.dellunaMapper.findHouseNameWithString", map);
-    }
-
-    public List<ExpReservationDto> findExpListWithString(int memberCode, String state) {
-
-        Map<String, Object> map = new HashMap<>();
-
-        map.put("memberCode", memberCode);
-        map.put("state", state);
-
-        return sqlSessionTemplate.selectList("dao.dellunaMapper.findExpListWithString", map);
-    }
-
-    public List<String> myExNameWithString(int memberCode, String state) {
-
-        Map<String, Object> map = new HashMap<>();
-
-        map.put("memberCode", memberCode);
-        map.put("state", state);
-
-        return sqlSessionTemplate.selectList("dao.dellunaMapper.myExNameWithString", map);
     }
 
     public List<HostHouseListDto> getHouseList(int memberCode) {
@@ -351,35 +233,6 @@ public class DellunaDao {
         return sqlSessionTemplate.selectOne("dao.dellunaMapper.expReviewCount", memberCode);
     }
 
-    public List<ExpReviewDto> myExpReview(int memberCode, int startRow, int endRow) {
-
-        Map<String, Object> map = new HashMap<>();
-        map.put("memberCode", memberCode);
-        map.put("startRow", startRow);
-        map.put("endRow", endRow);
-
-        return sqlSessionTemplate.selectList("dao.dellunaMapper.myExpReview", map);
-    }
-
-    public List<HouseReviewDto> myHouseReview(int memberCode, int houseStartRow, int houseEndRow) {
-
-        Map<String, Object> map = new HashMap<>();
-        map.put("memberCode", memberCode);
-        map.put("houseStartRow", houseStartRow);
-        map.put("houseEndRow", houseEndRow);
-
-        return sqlSessionTemplate.selectList("dao.dellunaMapper.myHouseReview", map);
-    }
-
-    public ExpReviewDto findMyReview(int memberCode, int exReserveCode) {
-
-        Map<String, Object> map = new HashMap<>();
-        map.put("memberCode", memberCode);
-        map.put("exReserveCode", exReserveCode);
-
-        return sqlSessionTemplate.selectOne("dao.dellunaMapper.findMyReview", map);
-    }
-
     public int deleteReview(int exReserveCode, int memberCode) {
 
         Map<String, Object> map = new HashMap<>();
@@ -387,14 +240,6 @@ public class DellunaDao {
         map.put("exReserveCode", exReserveCode);
 
         return sqlSessionTemplate.delete("dao.dellunaMapper.deleteReview", map);
-    }
-
-    public int deleteHouseReview(int reserveCode, int memberCode) {
-
-        Map<String, Object> map = new HashMap<>();
-        map.put("memberCode", memberCode);
-        map.put("reserveCode", reserveCode);
-        return sqlSessionTemplate.delete("dao.dellunaMapper.deleteHouseReview", map);
     }
 
     public int updateExpReview(int memberCode, int exReserveCode, String revContent) {
@@ -455,38 +300,12 @@ public class DellunaDao {
         return sqlSessionTemplate.selectList("dao.dellunaMapper.allMsgDto", memberCode);
     }
 
-    public int updateHouseReview(int memberCode, int reserveCode, String revContent) {
-
-        Map<String, Object> map = new HashMap<>();
-        map.put("memberCode", memberCode);
-        map.put("reserveCode", reserveCode);
-        map.put("revContent", revContent);
-        return sqlSessionTemplate.update("dao.dellunaMapper.updateHouseReview", map);
-    }
-
-
     public List<ExReviewListDto> getExReviewListScroll(int memberCode, int startRow, int endRow) {
         Map<String, Object> map = new HashMap<>();
         map.put("memberCode", memberCode);
         map.put("startRow", startRow);
         map.put("endRow", endRow);
         return sqlSessionTemplate.selectList("host.dao.mapper.getExReviewListScroll", map);
-    }
-
-    public List<MyHouseReviewList> getMyHouseReviewListScroll(int memberCode, int startRow, int endRow) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("memberCode", memberCode);
-        map.put("startRow", startRow);
-        map.put("endRow", endRow);
-        return sqlSessionTemplate.selectList("host.dao.mapper.getMyHouseReviewListScroll", map);
-    }
-
-    public List<MyExReviewList> getMyExReviewListScroll(int memberCode, int startRow, int endRow) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("memberCode", memberCode);
-        map.put("startRow", startRow);
-        map.put("endRow", endRow);
-        return sqlSessionTemplate.selectList("host.dao.mapper.getMyExReviewListScroll", map);
     }
 
     public List<NewExpReviewDto> myExpreviewList(int memberCode, int startRow, int endRow) {
@@ -506,24 +325,6 @@ public class DellunaDao {
         map.put("endRow", endRow);
         return sqlSessionTemplate.selectList("dao.dellunaMapper.myHousereviewList", map);
 
-    }
-
-    public List<NewExpReserveDto> newExpReserve(int memberCode, String state) {
-
-        Map<String, Object> map = new HashMap<>();
-
-        map.put("memberCode", memberCode);
-        map.put("state", state);
-        return sqlSessionTemplate.selectList("dao.dellunaMapper.newExpReserve", map);
-    }
-
-    public List<NewHouseReserveDto> newHouseReserve(int memberCode, String state) {
-
-        Map<String, Object> map = new HashMap<>();
-
-        map.put("memberCode", memberCode);
-        map.put("state", state);
-        return sqlSessionTemplate.selectList("dao.dellunaMapper.newHouseReserve", map);
     }
 
     public List<NewExpReserveDto> newNewExpReserve(int memberCode) {

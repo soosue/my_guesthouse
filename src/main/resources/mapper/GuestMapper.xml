@@ -149,54 +149,11 @@
         where memberCode = #{memberCode}
     </select>
 
-    <select id="houseCodeThis" parameterType="int" resultType="int">
-        select houseCode
-        from house
-        where houseCode = #{houseCode}
-    </select>
-
-    <select id="findHouseName" parameterType="int" resultType="String">
-        select housename
-        from reservation r
-                 join house h on r.houseCode = h.houseCode and r.memberCode = #{memberCode}
-    </select>
-
-    <select id="ExpResNum" parameterType="int" resultType="int">
-        select exCode
-        from exreserve
-        where memberCode = #{memberCode}
-    </select>
-
-    <select id="expRealNum" parameterType="int" resultType="int">
-        select excode
-        from experience
-        where excode = #{excode}
-    </select>
-
-    <select id="myExName" parameterType="int" resultType="String">
-        select exname
-        from experience r
-                 join exreserve h on r.excode = h.excode
-        where h.memberCode = #{memberCode}
-    </select>
-
-    <select id="findMyResCode" parameterType="int" resultType="int">
-        select reserveCode
-        from reservation
-        where memberCode = #{memberCode}
-    </select>
-
     <update id="updateState" parameterType="int">
         update reservation
         set state='예약취소'
         where reservecode = #{reserveCode}
     </update>
-
-    <select id="findMyExpCode" parameterType="int" resultType="int">
-        select exreservecode
-        from exreserve
-        where memberCode = #{memberCode}
-    </select>
 
     <update id="updateExpState" parameterType="int">
         update exreserve
@@ -204,41 +161,12 @@
         where exreservecode = #{exreserveCode}
     </update>
 
-    <select id="dtoExpZzim" parameterType="int" resultType="com.java.guesthouse.guestdelluna.service.dto.ExpZzimDto">
-        select *
-        from exwishlist
-        where memberCode = #{memberCode}
-    </select>
-
-    <select id="zzimExName" parameterType="int" resultType="String">
-        select r.exname
-        from exwishlist e,
-             experience r
-        where r.excode = e.excode
-          and e.membercode = #{memberCode}
-    </select>
-
     <delete id="deleteExpZzim" parameterType="java.util.Map">
         delete
         from exwishlist
         where exCode = #{exCode}
           and membercode = #{memberCode}
     </delete>
-
-    <select id="dtoHouseZzim" parameterType="int"
-            resultType="com.java.guesthouse.guestdelluna.service.dto.HouseZzimDto">
-        select *
-        from wishlist
-        where memberCode = #{memberCode}
-    </select>
-
-    <select id="zzimHouseName" parameterType="int" resultType="String">
-        select housename
-        from wishlist w,
-             house h
-        where h.housecode = w.housecode
-          and w.membercode = #{memberCode}
-    </select>
 
     <delete id="deleteHouseZzim" parameterType="java.util.Map">
         delete
@@ -259,73 +187,10 @@
         where reserveCode = #{reserveCode}
     </delete>
 
-    <select id="findHouseListWithString" parameterType="java.util.Map"
-            resultType="com.java.guesthouse.guestdelluna.service.dto.HouseReservationDto">
-        select *
-        from reservation
-        where memberCode = #{memberCode}
-          and state = #{state}
-    </select>
-
-    <select id="findHouseNameWithString" parameterType="java.util.Map" resultType="String">
-        select housename
-        from reservation r,
-             house h
-        where r.housecode = h.housecode
-          and r.membercode = #{memberCode}
-          and r.state = #{state}
-    </select>
-
-    <select id="findExpListWithString" parameterType="java.util.Map"
-            resultType="com.java.guesthouse.guestdelluna.service.dto.ExpReservationDto">
-        select *
-        from exreserve
-        where memberCode = #{memberCode}
-          and state = #{state}
-    </select>
-
-    <select id="myExNameWithString" parameterType="java.util.Map" resultType="String">
-        select exname
-        from experience r
-                 join exreserve h on r.excode = h.excode
-        where h.memberCode = #{memberCode}
-          and h.state = #{state}
-    </select>
-
     <select id="expReviewCount" parameterType="long" resultType="int">
         select count(*)
         from exreview
         where memberCode = #{memberCode}
-    </select>
-
-    <select id="myExpReview" parameterType="java.util.Map"
-            resultType="com.java.guesthouse.guestdelluna.service.dto.ExpReviewDto">
-	<![CDATA[
-        select *
-        from (select rownum as rnum, a.*
-              from (select * from exreview where memberCode = #{memberCode}) a) b
-        where b.rnum >= #{startRow}
-          and b.rnum <= #{endRow}
-        ]]>
-    </select>
-
-    <select id="myHouseReview" parameterType="java.util.Map"
-            resultType="com.java.guesthouse.guestdelluna.service.dto.HouseReviewDto">
-    <![CDATA[
-        select *
-        from (select rownum as rnum, a.*
-              from (select * from review where memberCode = #{memberCode}) a) b
-        where b.rnum >= #{houseStartRow}
-          and b.rnum <= #{houseEndRow}
-        ]]>
-    </select>
-
-    <select id="findMyReview" parameterType="java.util.Map"
-            resultType="com.java.guesthouse.guestdelluna.service.dto.ExpReviewDto">
-        select *
-        from exreview
-        where memberCode = #{memberCode}
-          and exReserveCode = #{exReserveCode}
     </select>
 
     <delete id="deleteReview" parameterType="java.util.Map">
@@ -335,25 +200,11 @@
           and exReserveCode = ${exReserveCode}
     </delete>
 
-    <delete id="deleteHouseReview" parameterType="java.util.Map">
-        delete
-        from review
-        where memberCode = #{memberCode}
-          and reserveCode = ${reserveCode}
-    </delete>
-
     <update id="updateExpReview" parameterType="java.util.Map">
         update exreview
         set revContent=#{revContent}
         where memberCode = #{memberCode}
           and exReserveCode = #{exReserveCode}
-    </update>
-
-    <update id="updateHouseReview" parameterType="java.util.Map">
-        update review
-        set revContent=#{revContent}
-        where memberCode = #{memberCode}
-          and reserveCode = #{reserveCode}
     </update>
 
     <select id="selectMSG" resultType="int" parameterType="java.util.Map">
@@ -435,27 +286,6 @@
           and rnum <= #{endRow}
         ]]>
     </select>
-
-    <select id="newHouseReserve" parameterType="java.util.Map"
-            resultType="com.java.guesthouse.guestdelluna.service.dto.NewHouseReserveDto">
-        select r.reservecode, h.housename, r.state, r.checkin, r.checkout
-        from reservation r,
-             house h
-        where r.housecode = h.housecode
-          and r.membercode = #{memberCode}
-          and r.state = #{state}
-    </select>
-
-    <select id="newExpReserve" parameterType="java.util.Map"
-            resultType="com.java.guesthouse.guestdelluna.service.dto.NewExpReserveDto">
-        select r.exreservecode, e.exname, r.state, r.exdate
-        from exreserve r,
-             experience e
-        where e.excode = r.excode
-          and r.membercode = #{memberCode}
-          and r.state = #{state}
-    </select>
-
 
     <select id="newNewExpReserve" parameterType="int"
             resultType="com.java.guesthouse.guestdelluna.service.dto.NewExpReserveDto">
