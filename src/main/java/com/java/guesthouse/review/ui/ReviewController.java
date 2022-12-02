@@ -25,11 +25,9 @@ public class ReviewController {
         this.reviewService = reviewService;
     }
 
-    // 게스트하우스 리뷰 작성 완료
     @PostMapping("")
     public ModelAndView saveReview(HttpSession session, HouseReviewDto reviewDto) {
         long guestHouseId = reviewDto.getHouseCode();
-        ;
         long memberId = (long) session.getAttribute("memberCode");
 
         Long reviewId = reviewService.saveReview(reviewDto.getRevContent(), reviewDto.getRevRate(), memberId, guestHouseId);
@@ -41,7 +39,6 @@ public class ReviewController {
         return mav;
     }
 
-    // 게스트하우스 상세 페이지에서 리뷰 수정 요청
     @PutMapping("/{id}")
     public ResponseEntity<Void> updateReview(
             HttpSession session,
@@ -53,7 +50,6 @@ public class ReviewController {
         return ResponseEntity.ok().build();
     }
 
-    // 게스트하우스 상세 페이지에서 리뷰 삭제 요청
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteReview(HttpSession session, @PathVariable("id") Long reviewId) {
         Long memberId = (Long) session.getAttribute("memberCode");
