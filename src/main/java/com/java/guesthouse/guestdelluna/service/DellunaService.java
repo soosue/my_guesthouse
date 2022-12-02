@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONValue;
-import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -413,13 +412,6 @@ public class DellunaService {
         mav.addObject("boardSize", boardSize);
         mav.addObject("useCurrentPage", useCurrentPage);
         mav.setViewName("guestdelluna/reviewHouse.empty");
-    }
-
-    // 내가 쓴 리뷰 개수 조회
-    public Pair<Integer, Integer> getMyReviewsCount(Long memberId) {
-        int countHouseReview = reviewRepository.countByMemberId(memberId);;
-        int countExpReview = dellunaDao.expReviewCount(memberId);
-        return Pair.of(countHouseReview, countExpReview);
     }
 
     // 내가 예약한 게스트하우스 , 찜 목록 조회

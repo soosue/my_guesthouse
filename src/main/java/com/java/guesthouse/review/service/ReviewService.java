@@ -5,9 +5,11 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
+import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.java.guesthouse.guestdelluna.domain.DellunaDao;
 import com.java.guesthouse.guesthouse.domain.GuestHouseDao;
 import com.java.guesthouse.guesthouse.service.dto.ReviewResponse;
 import com.java.guesthouse.guesthouse.service.dto.ReviewsResponse;
@@ -21,10 +23,12 @@ import com.java.guesthouse.review.service.dto.UpdateReviewRequest;
 @Transactional(readOnly = true)
 public class ReviewService {
 
+    private final DellunaDao dellunaDao;
     private final GuestHouseDao guestHouseDao;
     private final ReviewRepository reviewRepository;
 
-    public ReviewService(GuestHouseDao guestHouseDao, ReviewRepository reviewRepository) {
+    public ReviewService(DellunaDao dellunaDao, GuestHouseDao guestHouseDao, ReviewRepository reviewRepository) {
+        this.dellunaDao = dellunaDao;
         this.guestHouseDao = guestHouseDao;
         this.reviewRepository = reviewRepository;
     }
@@ -75,5 +79,11 @@ public class ReviewService {
                 .orElseThrow(() -> new IllegalArgumentException());
 
         reviewRepository.delete(review);
+    }
+
+    public Pair<Integer, Integer> getCountsOfMyReviews(Long memberId) {
+        int countHouseReview = reviewRepository.countByMemberId(memberId);;
+        int countExpReview = dellunaDao.expReviewCount(memberId);
+        return Pair.of(countHouseReview, countExpReview);
     }
 }

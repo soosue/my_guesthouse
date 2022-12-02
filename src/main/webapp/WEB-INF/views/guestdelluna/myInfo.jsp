@@ -58,7 +58,7 @@
 
     <div class="menuL">
         <ul>
-            <li><a href="/mypage/reviews.page">후기</a></li>
+            <li><a href="/my-page/reviews.page">후기</a></li>
             <c:if test="${memberCode == memberDto.memberCode}">
                 <li><a href="${root}/guestdelluna/memberUpdate.do">회원수정</a></li>
                 <li><a href="${root}/manage/points.page">포인트관리</a></li>
