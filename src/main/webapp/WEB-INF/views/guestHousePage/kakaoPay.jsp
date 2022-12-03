@@ -39,7 +39,7 @@
                     + '&checkIn=${checkIn}&checkOut=${checkOut}&people=${people}&usePoint=${usePoint}&point=${point}&memberCode=${memberCode}';
             } else {
                 var msg = '결제에 실패하였습니다.';
-                location.href = '${root}/guestHousePage/guestHouse.do?houseCode=${houseCode}';
+                location.href = '${root}/guesthouses/details.page?houseCode=${houseCode}';
                 msg += '에러내용 : ' + rsp.error_msg;
 
             }

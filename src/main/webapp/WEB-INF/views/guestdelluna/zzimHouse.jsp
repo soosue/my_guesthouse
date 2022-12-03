@@ -32,7 +32,7 @@
                         <td align="center" height="20" width="70">${status.count}</td>
                         <td align="center" height="20" width="300">
 
-                            <a href="${root}/guestHousePage/guestHouse.do?houseCode=${newHouseZzimDto.houseCode}">${newHouseZzimDto.houseName}</a>
+                            <a href="${root}/guesthouses/details.page?houseCode=${newHouseZzimDto.houseCode}">${newHouseZzimDto.houseName}</a>
 
                         </td>
                         <td align="center" height="20" width="125">

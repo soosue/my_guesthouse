@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import com.java.guesthouse.file.dto.FileDto;
 import com.java.guesthouse.guestdelluna.service.dto.HouseReviewDto;
 import com.java.guesthouse.guestdelluna.service.dto.MsgDto;
-import com.java.guesthouse.guestreserve.dto.GHouseReviewListDto;
 import com.java.guesthouse.guestreserve.dto.GuestReserveDto;
 import com.java.guesthouse.guestreserve.dto.RemainDto;
 import com.java.guesthouse.host.service.dto.HostDto;
@@ -105,58 +104,11 @@ public class GuestHouseDao {
         return sqlSessionTemplate.insert("dao.GuestHouseMapper.insertMsg", msgDto);
     }
 
-    public int getReviewCnt(int houseCode) {
-        return sqlSessionTemplate.selectOne("dao.GuestHouseMapper.reviewCnt", houseCode);
-    }
-
-    public List<GHouseReviewListDto> getReviewList(int startRow, int endRow, int houseCode) {
-        Map<String, Integer> hMap = new HashMap<>();
-        hMap.put("startRow", startRow);
-        hMap.put("endRow", endRow);
-        hMap.put("houseCode", houseCode);
-
-        return sqlSessionTemplate.selectList("dao.GuestHouseMapper.reviewList", hMap);
-    }
-
-    public int reserveCodeCnt(int memberCode, int houseCode) {
-        Map<String, Integer> hMap = new HashMap<>();
+    public List<GuestReserveDto> findReservationByGuestHouseIdAndMemberId(long houseCode, long memberCode) {
+        Map<String, Object> hMap = new HashMap<>();
         hMap.put("memberCode", memberCode);
         hMap.put("houseCode", houseCode);
 
-        return sqlSessionTemplate.selectOne("dao.GuestHouseMapper.reserveCodeCnt", hMap);
-    }
-
-    public List<GuestReserveDto> reserveCode(int houseCode, int memberCode) {
-        Map<String, Integer> hMap = new HashMap<>();
-        hMap.put("memberCode", memberCode);
-        hMap.put("houseCode", houseCode);
-
-        return sqlSessionTemplate.selectList("dao.GuestHouseMapper.reserveCode", hMap);
-    }
-
-    public int reviewChk(int reserveCode) {
-
-        return sqlSessionTemplate.selectOne("dao.GuestHouseMapper.reviewChk", reserveCode);
-    }
-
-    public int writeReview(HouseReviewDto reviewDto) {
-
-        return sqlSessionTemplate.insert("dao.GuestHouseMapper.writeReview", reviewDto);
-    }
-
-    public HouseReviewDto reviewUpdate(int memberCode, int reserveCode) {
-        Map<String, Integer> hMap = new HashMap<>();
-        hMap.put("memberCode", memberCode);
-        hMap.put("reserveCode", reserveCode);
-
-        return sqlSessionTemplate.selectOne("dao.GuestHouseMapper.reviewUpdate", hMap);
-    }
-
-    public int reviewUpdateOk(HouseReviewDto reviewDto) {
-        return sqlSessionTemplate.update("dao.GuestHouseMapper.reviewUpdateOk", reviewDto);
-    }
-
-    public int reviewDelete(int reserveCode) {
-        return sqlSessionTemplate.delete("dao.GuestHouseMapper.reviewDelete", reserveCode);
+        return sqlSessionTemplate.selectList("dao.GuestHouseMapper.findReservationByGuestHouseIdAndMemberId", hMap);
     }
 }

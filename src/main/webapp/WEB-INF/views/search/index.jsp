@@ -315,7 +315,7 @@
                  style="width: 20rem; height: 20rem; float: left; margin-left: 2rem; margin-top: 5rem;">
 
 
-                <a href="${root}/guestHousePage/guestHouse.do?houseCode=${ho.houseCode}" style="display: block;"/>
+                <a href="${root}/guesthouses/details.page?houseCode=${ho.houseCode}" style="display: block;"/>
 
                 <!-- Indicators -->
                 <ul class="carousel-indicators">

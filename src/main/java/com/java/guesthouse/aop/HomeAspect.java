@@ -24,6 +24,7 @@ public class HomeAspect {
 
         } catch (Throwable e) {
             e.printStackTrace();
+            throw e;
         }
         return obj;
 

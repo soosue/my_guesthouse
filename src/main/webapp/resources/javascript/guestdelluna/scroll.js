@@ -154,7 +154,7 @@ function getList(page, root, status) {
 						if (status == 'house') {
 							code = '<a href="'
 									+ root
-									+ '/guestHousePage/guestHouse.do?houseCode='
+									+ '/guesthouses/details.page?houseCode='
 									+ json[i].code + '">';
 							mainImgName = '<img alt="img loading" src="' + root
 									+ "/image/" + json[i].mainImgName + '"/>';
