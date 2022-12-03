@@ -24,4 +24,6 @@ public interface ReviewRepository extends JpaRepository<Review, Long>  {
     Optional<Review> findByIdAndMemberId(Long reviewId, Long memberId);
 
     int countByMemberId(Long memberId);
+
+    int countById(Long id);
 }

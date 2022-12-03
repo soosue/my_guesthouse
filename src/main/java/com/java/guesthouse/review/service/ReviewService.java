@@ -53,7 +53,7 @@ public class ReviewService {
     }
 
     private boolean isNotReviewed(GuestReserveDto reservation) {
-        return guestHouseDao.reviewChk(reservation.getReserveCode()) == 0;
+        return reviewRepository.countById((long) reservation.getReserveCode()) == 0;
     }
 
     public ReviewsResponse getReviewsOfGuestHouse(Pageable pageable, Long guestHouseId) {

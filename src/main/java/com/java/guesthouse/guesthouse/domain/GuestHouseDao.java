@@ -111,9 +111,4 @@ public class GuestHouseDao {
 
         return sqlSessionTemplate.selectList("dao.GuestHouseMapper.findReservationByGuestHouseIdAndMemberId", hMap);
     }
-
-    public int reviewChk(int reserveCode) {
-
-        return sqlSessionTemplate.selectOne("dao.GuestHouseMapper.reviewChk", reserveCode);
-    }
 }

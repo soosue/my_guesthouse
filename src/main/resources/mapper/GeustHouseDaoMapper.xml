@@ -126,10 +126,4 @@
           and memberCode = #{memberCode}
     </select>
 
-    <select id="reviewChk" parameterType="int" resultType="int">
-        select count(*)
-        from REVIEW
-        where reserveCode = #{reserveCode}
-    </select>
-
 </mapper>
