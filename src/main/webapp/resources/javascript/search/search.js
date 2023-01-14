@@ -248,46 +248,36 @@ function heart(memberCode){
 		if(memberCode!='') {
 			var button = $(this).attr("class").split(" ")[1];
 			var heart=$("."+button).children().children();
-			console.log(heart);
-			var data;
-			var houseCode=$(this).parent().parent().children("div[class='_houseCode']").text();
-			if(heart.attr("fill")=="currentColor"){
+			var houseId=$(this).parent().parent().children("div[class='_houseCode']").text();
+			if (heart.attr("fill") === "currentColor") {
 				heart.attr("fill", "#FF385C");
 				heart.attr("fill-opacity", "1");
 				heart.attr("stroke","#FF385C");
 				heart.attr("stroke-width","1");
-				data= { houseId: houseCode};
 				$.ajax({
 					method: "POST",
 					url: root+"/v1/wishlists",
-					data: data,
+					data: { houseId: houseId} ,
 					success: function(){
 					},
 					error: function(){
 					}
 				})
-			}else{
+			} else {
 				heart.attr("fill", "currentColor");
 				heart.attr("fill-opacity", "0");
 				heart.attr("stroke","#222222");
 				heart.attr("stroke-width","1.4");
-				data= { houseId: houseCode};
 				$.ajax({
-					method: "POST",
+					method: "DELETE",
 					url: root+"/v1/wishlists",
-					data: data,
+					data: { houseId: houseId },
 					success: function(){
 					},
 					error: function(){
 					}
 				})
 			}
-			//$(this).parent(".overlaybox").css("display","block");
-			
-		}else{
-				//alert( $("#price" ).slider( "values" ));
-				console.log("로그인해주세요");
-				//로그인 모달 띄워주기
 		}
 	});
 }

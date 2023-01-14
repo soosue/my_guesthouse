@@ -1,10 +1,12 @@
 package com.java.guesthouse.refactor.wishlist.domain;
 
-import com.java.guesthouse.member.domain.Member;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 @NoArgsConstructor
@@ -14,13 +16,12 @@ public class Wishlist {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Member member;
+    private Long memberId;
 
     private Long houseId;
 
-    public Wishlist(Member member, Long houseId) {
-        this.member = member;
+    public Wishlist(Long memberId, Long houseId) {
+        this.memberId = memberId;
         this.houseId = houseId;
     }
 }
