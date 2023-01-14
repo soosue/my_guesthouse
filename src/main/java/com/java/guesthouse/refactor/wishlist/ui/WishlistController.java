@@ -19,16 +19,19 @@ public class WishlistController {
 
     @PostMapping("/v1/wishlists")
     public ResponseEntity<Void> saveWishlist(SaveWishlistRequest request, HttpSession session) {
-        Long wishlistId = wishlistService.save(request, (Long) session.getAttribute("memberCode"));
+        Long wishlistId = wishlistService.save(request, getMemberId(session));
 
         return ResponseEntity.created(URI.create("/v1/wishlists/" + wishlistId)).build();
     }
 
     @DeleteMapping("/v1/wishlists")
     public ResponseEntity<Void> deleteWishlist(DeleteWishlistRequest request, HttpSession session) {
-        wishlistService.delete(request, (Long) session.getAttribute("memberCode"));
+        wishlistService.delete(request, getMemberId(session));
 
         return ResponseEntity.ok().build();
     }
 
+    private static Long getMemberId(HttpSession session) {
+        return (Long) session.getAttribute("memberCode");
+    }
 }

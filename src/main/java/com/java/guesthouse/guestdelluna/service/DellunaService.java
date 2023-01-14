@@ -1,16 +1,13 @@
 package com.java.guesthouse.guestdelluna.service;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
+import com.java.guesthouse.aop.HomeAspect;
+import com.java.guesthouse.guestdelluna.domain.DellunaDao;
+import com.java.guesthouse.guestdelluna.service.dto.*;
+import com.java.guesthouse.host.service.dto.ExReviewListDto;
+import com.java.guesthouse.host.service.dto.HostExListDto;
+import com.java.guesthouse.host.service.dto.HostHouseListDto;
+import com.java.guesthouse.host.service.dto.HouseReviewListDto;
+import lombok.RequiredArgsConstructor;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONValue;
 import org.springframework.stereotype.Service;
@@ -18,33 +15,21 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.java.guesthouse.aop.HomeAspect;
-import com.java.guesthouse.guestdelluna.domain.DellunaDao;
-import com.java.guesthouse.guestdelluna.service.dto.ExpReservationDto;
-import com.java.guesthouse.guestdelluna.service.dto.ExpReviewDto;
-import com.java.guesthouse.guestdelluna.service.dto.MemberDto;
-import com.java.guesthouse.guestdelluna.service.dto.MsgDto;
-import com.java.guesthouse.guestdelluna.service.dto.NewExpResDto;
-import com.java.guesthouse.guestdelluna.service.dto.NewExpReserveDto;
-import com.java.guesthouse.guestdelluna.service.dto.NewExpReviewDto;
-import com.java.guesthouse.guestdelluna.service.dto.NewExpZzimDto;
-import com.java.guesthouse.guestdelluna.service.dto.NewHouseResDto;
-import com.java.guesthouse.guestdelluna.service.dto.NewHouseReserveDto;
-import com.java.guesthouse.guestdelluna.service.dto.NewHouseReviewDto;
-import com.java.guesthouse.guestdelluna.service.dto.NewHouseZzimDto;
-import com.java.guesthouse.host.service.dto.ExReviewListDto;
-import com.java.guesthouse.host.service.dto.HostExListDto;
-import com.java.guesthouse.host.service.dto.HostHouseListDto;
-import com.java.guesthouse.host.service.dto.HouseReviewListDto;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
+@RequiredArgsConstructor
 public class DellunaService {
 
     private final DellunaDao dellunaDao;
-
-    public DellunaService(DellunaDao dellunaDao) {
-        this.dellunaDao = dellunaDao;
-    }
 
     // 찜목록불러오기
     public void zzimlist(ModelAndView mav) {
@@ -189,38 +174,6 @@ public class DellunaService {
         mav.addObject("boardSize", boardSize);
         mav.addObject("useCurrentPage", useCurrentPage);
         mav.setViewName("guestdelluna/zzimHouse.empty");
-    }
-
-    // 찜한 게스트하우스 삭제
-    public String zzimCancle(ModelAndView mav) {
-        // TODO Auto-generated method stub
-        Map<String, Object> map = mav.getModelMap();
-        HttpServletRequest request = (HttpServletRequest) map.get("request");
-
-        HttpSession session = request.getSession();
-        String email = (String) session.getAttribute("email");
-        HomeAspect.logger.info(HomeAspect.logMsg + email);
-
-        int memberCode = dellunaDao.selectMemberCode(email);
-        HomeAspect.logger.info(HomeAspect.logMsg + memberCode);
-
-        int houseCode = Integer.parseInt(request.getParameter("hsValue"));
-        HomeAspect.logger.info(HomeAspect.logMsg + houseCode);
-
-        int check = dellunaDao.deleteHouseZzim(houseCode, memberCode);
-        HomeAspect.logger.info(HomeAspect.logMsg + "게스트하우스 찜삭제 : " + check);
-
-        return null;
-    }
-
-    public void doZzim(String memberCode, String houseCode, String zzim) {
-
-        Map<String, Object> dataMap = new HashMap<>();
-        dataMap.put("memberCode", memberCode);
-        dataMap.put("houseCode", houseCode);
-
-        int check = dellunaDao.doZzim(dataMap, zzim);
-        HomeAspect.logger.info(HomeAspect.logMsg + "check: " + check);
     }
 
     public String zzimExpCancle(ModelAndView mav) {

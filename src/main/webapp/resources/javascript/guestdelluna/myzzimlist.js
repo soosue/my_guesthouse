@@ -20,12 +20,15 @@ function deleteStateFromServer(){
 	}
 }	
 function deleteHouse(root,hsValue){
-		
-		var url = root + "/guestdelluna/zzimhouseCancel.do";
-		var params = "hsValue=" + hsValue;
-		
-		sendRequest("GET" , url , deleteStateFromServer , params);
-
+	$.ajax({
+		method: "DELETE",
+		url: root+"/v1/wishlists",
+		data: { houseId: hsValue },
+		success: function(){
+		},
+		error: function(){
+		}
+	})
 }
 
 
