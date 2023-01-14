@@ -34,17 +34,6 @@ public class DellunaController {
         this.dellunaService = dellunaService;
     }
 
-    @RequestMapping(value = "guestdelluna/zzim.do", method = RequestMethod.GET)
-    public void zzim(HttpServletRequest request, HttpServletResponse response) {
-        String memberCode = request.getParameter("memberCode");
-        String zzim = request.getParameter("zzim");
-        String houseCode = request.getParameter("houseCode");
-        HomeAspect.logger.info(HomeAspect.logMsg + "memberCode: " + memberCode + " zzim: " + zzim + " houseCode: " + houseCode);
-
-        dellunaService.doZzim(memberCode, houseCode, zzim);
-
-    }
-
     @RequestMapping(value = "guestdelluna/exZzim.do", method = RequestMethod.GET)
     public void exZzim(HttpServletRequest request, HttpServletResponse response) {
         String memberCode = request.getParameter("memberCode");
