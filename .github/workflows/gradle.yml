@@ -25,7 +25,10 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-    - name: run test
+    - name: ls main test
       run: ls
-      working-directory: ./src
+      working-directory: ./src/main
+    - name: ls test test
+      run: ls
+      working-directory: ./src/test
 
