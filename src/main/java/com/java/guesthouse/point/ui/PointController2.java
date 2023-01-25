@@ -25,6 +25,7 @@ public class PointController2 {
     @GetMapping("/v1/points/me")
     public ResponseEntity<PointResponse> getMyPoint(HttpSession session) {
         Long memberId = getMemberId(session);
+        return ResponseEntity.ok(pointService.getPointByMemberId(memberId));
     }
 
     @GetMapping("/v1/pointaccumulates/me")
