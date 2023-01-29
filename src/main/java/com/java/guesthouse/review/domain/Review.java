@@ -7,11 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
-@Setter
+@NoArgsConstructor
 public class Review {
     @Id
     @Column(name = "reservecode")
@@ -28,9 +28,6 @@ public class Review {
 
     @Column(name = "revdate")
     private LocalDateTime createdDate;
-
-    public Review() {
-    }
 
     public Review(Long reserveId, Long memberId, String content, Integer rate) {
         this.id = reserveId;
