@@ -2,9 +2,11 @@ package com.java.guesthouse.guestdelluna.ui;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,17 +34,6 @@ public class DellunaController {
 
     public DellunaController(DellunaService dellunaService) {
         this.dellunaService = dellunaService;
-    }
-
-    @RequestMapping(value = "guestdelluna/zzim.do", method = RequestMethod.GET)
-    public void zzim(HttpServletRequest request, HttpServletResponse response) {
-        String memberCode = request.getParameter("memberCode");
-        String zzim = request.getParameter("zzim");
-        String houseCode = request.getParameter("houseCode");
-        HomeAspect.logger.info(HomeAspect.logMsg + "memberCode: " + memberCode + " zzim: " + zzim + " houseCode: " + houseCode);
-
-        dellunaService.doZzim(memberCode, houseCode, zzim);
-
     }
 
     @RequestMapping(value = "guestdelluna/exZzim.do", method = RequestMethod.GET)
@@ -95,18 +86,6 @@ public class DellunaController {
         dellunaService.zzimHouseAjax(mav);
 
         return mav;
-
-    }
-
-    //찜쉬초
-    @RequestMapping(value = "guestdelluna/zzimhouseCancel.do", method = RequestMethod.GET)
-    public void zzimCancle(HttpServletRequest request, HttpServletResponse response) {
-
-        ModelAndView mav = new ModelAndView();
-
-        mav.addObject("request", request);
-
-        dellunaService.zzimCancle(mav);
 
     }
 

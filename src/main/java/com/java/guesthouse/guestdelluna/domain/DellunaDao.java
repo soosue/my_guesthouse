@@ -121,14 +121,6 @@ public class DellunaDao {
         return sqlSessionTemplate.selectOne("dao.dellunaMapper.myResExp", exCode);
     }
 
-    public int doZzim(Map<String, Object> dataMap, String zzim) {
-        if (zzim != null)
-            return sqlSessionTemplate.insert("dao.dellunaMapper.doZzim", dataMap);
-        else
-            return sqlSessionTemplate.delete("dao.dellunaMapper.cancelZzim", dataMap);
-
-    }
-
     public int selectMemberCode(String email) {
 
         return sqlSessionTemplate.selectOne("dao.dellunaMapper.selectMemberCode", email);
@@ -258,16 +250,6 @@ public class DellunaDao {
     public List<String> zzimHouseName(int memberCode) {
 
         return sqlSessionTemplate.selectList("dao.dellunaMapper.zzimHouseName", memberCode);
-    }
-
-    public int deleteHouseZzim(int houseCode, int memberCode) {
-
-        Map<String, Object> map = new HashMap<>();
-
-        map.put("memberCode", memberCode);
-        map.put("houseCode", houseCode);
-
-        return sqlSessionTemplate.delete("dao.dellunaMapper.deleteHouseZzim", map);
     }
 
     public int deletePayListExp(int exReserveCode) {
