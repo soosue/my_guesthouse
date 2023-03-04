@@ -2,6 +2,7 @@ package com.java.guesthouse.config;
 
 import java.util.List;
 
+import org.springdoc.core.GroupedOpenApi;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -40,5 +41,35 @@ public class OpenAPIConfiguration {
         return new SecurityRequirement().addList("session");
     }
 
+    @Bean
+    public GroupedOpenApi wishlistOpenApi() {
+        return GroupedOpenApi.builder()
+                .group("찜하기")
+                .pathsToMatch("/v1/wishlists/**")
+                .build();
+    }
 
+    @Bean
+    public GroupedOpenApi reviewOpenApi() {
+        return GroupedOpenApi.builder()
+                .group("리뷰")
+                .pathsToMatch("/v1/reviews/**")
+                .build();
+    }
+
+    @Bean
+    public GroupedOpenApi memberOpenApi() {
+        return GroupedOpenApi.builder()
+                .group("멤버")
+                .pathsToMatch("/v1/members/**")
+                .build();
+    }
+
+    @Bean
+    public GroupedOpenApi pointOpenApi() {
+        return GroupedOpenApi.builder()
+                .group("포인트")
+                .pathsToMatch("/v1/points/**")
+                .build();
+    }
 }
