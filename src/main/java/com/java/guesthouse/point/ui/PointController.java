@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.java.guesthouse.point.service.PointService;
-import com.java.guesthouse.point.service.dto.PointAccumulatesResponse;
+import com.java.guesthouse.point.service.dto.ListResponse;
+import com.java.guesthouse.point.service.dto.PointAccumulateResponse;
 import com.java.guesthouse.point.service.dto.PointResponse;
-import com.java.guesthouse.point.service.dto.PointUsesResponse;
+import com.java.guesthouse.point.service.dto.PointUseResponse;
 
 @RestController
 @RequestMapping("/v1/points")
@@ -31,7 +32,7 @@ public class PointController {
     }
 
     @GetMapping("/accumulates/me")
-    public ResponseEntity<PointAccumulatesResponse> getMyPointAccumulates(
+    public ResponseEntity<ListResponse<PointAccumulateResponse>> getMyPointAccumulates(
             HttpSession session,
             @PageableDefault(size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable
     ) {
@@ -40,7 +41,7 @@ public class PointController {
     }
 
     @GetMapping("/uses/me")
-    public ResponseEntity<PointUsesResponse> getMyPointUses(
+    public ResponseEntity<ListResponse<PointUseResponse>> getMyPointUses(
             HttpSession session,
             @PageableDefault(size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable
     ) {
