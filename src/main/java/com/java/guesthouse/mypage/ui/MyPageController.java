@@ -3,6 +3,7 @@ package com.java.guesthouse.mypage.ui;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.data.util.Pair;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +21,7 @@ public class MyPageController {
         this.reviewService = reviewService;
     }
 
-    @GetMapping("/reviews.page")
+    @GetMapping(value = "/reviews", produces = MediaType.TEXT_HTML_VALUE)
     public ModelAndView getMyReviewsPage(HttpSession session) {
         Long memberId = (Long) session.getAttribute("memberCode");
 
