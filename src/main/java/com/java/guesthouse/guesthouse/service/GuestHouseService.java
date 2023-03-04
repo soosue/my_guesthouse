@@ -1,23 +1,17 @@
 package com.java.guesthouse.guesthouse.service;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONValue;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,15 +20,14 @@ import com.java.guesthouse.file.dto.FileDto;
 import com.java.guesthouse.guestdelluna.service.dto.HouseReviewDto;
 import com.java.guesthouse.guestdelluna.service.dto.MsgDto;
 import com.java.guesthouse.guesthouse.domain.GuestHouseDao;
-import com.java.guesthouse.point.domain.PointUse;
-import com.java.guesthouse.point.domain.PointUseRepository;
-import com.java.guesthouse.guestreserve.dto.GHouseReviewListDto;
 import com.java.guesthouse.guestreserve.dto.GuestReserveDto;
 import com.java.guesthouse.guestreserve.dto.RemainDto;
 import com.java.guesthouse.host.service.dto.HostDto;
 import com.java.guesthouse.member.service.dto.MemberDto;
 import com.java.guesthouse.point.domain.PointAccumulate;
 import com.java.guesthouse.point.domain.PointAccumulateRepository;
+import com.java.guesthouse.point.domain.PointUse;
+import com.java.guesthouse.point.domain.PointUseRepository;
 
 @Service
 public class GuestHouseService {
@@ -79,19 +72,17 @@ public class GuestHouseService {
         email = (String) session.getAttribute("email");
         HomeAspect.logger.info(HomeAspect.logMsg + "email: " + email);
 
-        MemberDto member = guestHouseDao.getMemberInfo(email);
-        mav.addObject("MemberDto", member);
-
-
         int emailCheck = 0;
         if (email != null) {
+            MemberDto member = guestHouseDao.getMemberInfo(email);
+            mav.addObject("MemberDto", member);
+
             HomeAspect.logger.info(HomeAspect.logMsg + member.getMemberCode() + member.getMemberLevel());
             emailCheck = 1;
 
             mav.addObject("memberCode", member.getMemberCode());
             mav.addObject("emailCheck", emailCheck);
         } else {
-            emailCheck = 0;
             mav.addObject("emailCheck", emailCheck);
         }
 
@@ -155,65 +146,13 @@ public class GuestHouseService {
             mav.addObject("dList", dList);
         }
 
-//		String bfPath = fileList.get(0).getFilePath();
-//		String[] arr = bfPath.split(":");
-//		String afPath = arr[0] +":" +"\\"+arr[1];
-//		String mainImg=null;
-//		//String mainImgSrc = null;
-//		String[] img = new String[fileList.size()];
-//		for(int i=0; i<fileList.size(); i++) {
-//			if(fileList.get(i).getMainImgName()!=null) {
-//				//mainImgSrc = afPath + "\\" + "\\"+fileList.get(i).getMainImgName();
-//				//HomeAspect.logger.info(HomeAspect.logMsg +mainImgSrc);
-//				mainImg = fileList.get(i).getMainImgName();
-//			}else {
-//				img[i] = fileList.get(i).getFileName();
-//				HomeAspect.logger.info(HomeAspect.logMsg  +img[i]);
-//			}
-//		}
-
-        /* 후기 리스트 */
-        String pageNumber = request.getParameter("pageNumber");
-        if (pageNumber == null) pageNumber = "1";
-
-        int currentPage = Integer.parseInt(pageNumber); // 1) 요청 페이지 1
-
-        int boardSize = 3; // 2) 페이지당 출력할 게시물 수
-        // 시작 번호
-        int startRow = (currentPage - 1) * boardSize + 1;
-
-        // 끝 번호
-        int endRow = boardSize * currentPage;
-
-        int count = guestHouseDao.getReviewCnt(houseCode);
-        HomeAspect.logger.info(HomeAspect.logMsg + "댓글 수: " + count);
-
-        List<GHouseReviewListDto> reviewList = null;
-        if (count > 0) {
-            reviewList = guestHouseDao.getReviewList(startRow, endRow, houseCode);
-            HomeAspect.logger.info(HomeAspect.logMsg + "이 페이지에 저장된 댓글  갯수: " + reviewList.size());
-        }
-
-
         mav.addObject("hostDto", hostDto);
-//		mav.addObject("explain",(hostDto.getExplain()).replaceAll("\r\n", "<br>"));
-//		mav.addObject("etc",(hostDto.getEtc()).replaceAll("\r\n", "<br>"));
         mav.addObject("fileList", fileList);
         mav.addObject("host", host);
         mav.addObject("regDate", regDate);
         mav.addObject("lat", lat);
         mav.addObject("lng", lng);
-        mav.addObject("remainDtoList", remainDtoList);
         mav.addObject("email", email);
-
-
-        mav.addObject("reviewList", reviewList);
-        mav.addObject("currentPage", currentPage);
-        mav.addObject("boardSize", boardSize);
-        mav.addObject("count", count);
-
-
-        //mav.setViewName("guestHousePage/guestPage.tiles");
 
         // 게하를 관리자가 보는 경우 exApp에 1을 임의로 넘겨줌
 
@@ -224,236 +163,6 @@ public class GuestHouseService {
         } else {
             mav.setViewName("guestHousePage/guestPage.tiles");
         }
-
-
-    }
-
-    public String review(ModelAndView mav) {
-        Map<String, Object> map = mav.getModelMap();
-        HttpServletRequest request = (HttpServletRequest) map.get("request");
-
-        int houseCode = Integer.parseInt(request.getParameter("houseCode"));
-        int memberCode = (Integer) (request.getSession().getAttribute("memberCode"));
-        HomeAspect.logger.info(HomeAspect.logMsg + "memberCode: " + memberCode);
-
-        //////////////////////////후기 리스트 exReview///////////////////////////////
-
-        String pageNumber = request.getParameter("pageNumber");
-        if (pageNumber == null)
-            pageNumber = "1";
-
-        int currentPage = Integer.parseInt(pageNumber); // 1) 요청 페이지 1
-
-        int boardSize = 3; // 2) 페이지당 출력할 게시물 수
-        // 시작 번호
-        int startRow = (currentPage - 1) * boardSize + 1;
-
-        // 끝 번호
-        int endRow = boardSize * currentPage;
-
-        int count = guestHouseDao.getReviewCnt(houseCode);
-
-        HomeAspect.logger.info(HomeAspect.logMsg + "이 회원의 댓글 갯수: " + count);
-
-        List<GHouseReviewListDto> reviewList = null;
-
-        if (count > 0) { // 이 페이지에 저장된 방명록이 존재 할 경우
-
-            reviewList = guestHouseDao.getReviewList(startRow, endRow, houseCode);
-            HomeAspect.logger.info(HomeAspect.logMsg + "이 페이지에 저장된 댓글  갯수: " + reviewList.size());
-            // HomeAspect.logger.info(HomeAspect.logMsg + reviewList.get(0).toString());
-        }
-
-        //json
-        JSONArray arr = new JSONArray();
-        for (GHouseReviewListDto reviewListDto : reviewList) {
-            HashMap<String, String> CommonMap = new HashMap<String, String>();
-            CommonMap.put("reserveCode", Integer.toString(reviewListDto.getReserveCode()));
-            CommonMap.put("memberCode", Integer.toString(reviewListDto.getMemberCode()));
-            CommonMap.put("revDate", reviewListDto.getRevDate().toString());
-            CommonMap.put("revContent", reviewListDto.getRevContent());
-            CommonMap.put("revRate", Integer.toString(reviewListDto.getRevRate()));
-            CommonMap.put("email", reviewListDto.getEmail());
-
-            arr.add(CommonMap);
-
-            HomeAspect.logger.info(HomeAspect.logMsg + "리뷰 정보 : " + reviewListDto.toString());
-        }
-        String jsonText = JSONValue.toJSONString(arr);
-        HomeAspect.logger.info(HomeAspect.logMsg + "jsonText 정보 : " + jsonText);
-
-        return jsonText;
-
-        //mav.setViewName("guestHousePage/review.tiles");
-    }
-
-    public Map<String, Object> review(HttpServletRequest request) {
-        // jackson
-
-        Map<String, Object> map = new HashMap<>();
-
-        // 세션
-        HttpSession session = request.getSession();
-        String sessionEmail = (String) session.getAttribute("email");
-
-        /* int exCode = 6; */
-        int houseCode = Integer.parseInt(request.getParameter("houseCode"));
-        // int memberCode = Integer.parseInt(request.getParameter("memberCode"));
-
-        ////////////////////////// 후기 리스트 exReview///////////////////////////////
-
-        String pageNumber = request.getParameter("pageNumber");
-        if (pageNumber == null)
-            pageNumber = "1";
-
-        int currentPage = Integer.parseInt(pageNumber); // 1) 요청 페이지 1
-
-        int boardSize = 3; // 2) 페이지당 출력할 게시물 수
-        // 시작 번호
-        int startRow = (currentPage - 1) * boardSize + 1;
-
-        // 끝 번호
-        int endRow = boardSize * currentPage;
-
-        int count = guestHouseDao.getReviewCnt(houseCode);
-
-        HomeAspect.logger.info(HomeAspect.logMsg + "이 회원의 댓글 갯수: " + count);
-
-        List<GHouseReviewListDto> reviewList = null;
-
-        if (count > 0) { // 이 페이지에 저장된 방명록이 존재 할 경우
-
-            reviewList = guestHouseDao.getReviewList(startRow, endRow, houseCode);
-            HomeAspect.logger.info(HomeAspect.logMsg + "이 페이지에 저장된 댓글  갯수: " + reviewList.size());
-            // HomeAspect.logger.info(HomeAspect.logMsg + reviewList.get(0).toString());
-        }
-
-        map.put("reviewList", reviewList);
-        map.put("count", count);
-        return map;
-    }
-
-    public void reviewOk(ModelAndView mav) {
-        Map<String, Object> map = mav.getModelMap();
-        HttpServletRequest request = (HttpServletRequest) map.get("request");
-
-        int houseCode = Integer.parseInt(request.getParameter("houseCode"));
-        HomeAspect.logger.info(HomeAspect.logMsg + "houseCode: " + houseCode);
-
-        HttpSession session = request.getSession();
-        int memberCode = (Integer) session.getAttribute("memberCode");
-
-
-        HouseReviewDto reviewDto = (HouseReviewDto) map.get("reviewDto");
-
-        int getReserveCode = guestHouseDao.reserveCodeCnt(memberCode, houseCode);
-        HomeAspect.logger.info(HomeAspect.logMsg + "getReserveCode: " + getReserveCode);
-
-        if (getReserveCode != 0) {
-            List<GuestReserveDto> reserveList = guestHouseDao.reserveCode(houseCode, memberCode);
-            HomeAspect.logger.info(HomeAspect.logMsg + "exReserveList: " + reserveList);
-
-            for (int i = 0; i < reserveList.size(); i++) {
-                if (reserveList.get(i) != null) {
-                    int reserveCode = reserveList.get(i).getReserveCode();
-
-                    // 예약코드로 리뷰를 작성했는지 확인
-                    int reviewChk = guestHouseDao.reviewChk(reserveCode);
-
-                    // 이미 작성했을 경우
-                    if (reviewChk != 0) {
-                        mav.addObject("reviewChk", reviewChk);
-                        mav.addObject("houseCode", houseCode);
-
-                        mav.setViewName("guestHousePage/reviewOk.tiles");
-                    } else {
-                        reviewDto.setMemberCode(memberCode);
-                        reviewDto.setRevDate(new Date());
-                        reviewDto.setRevContent(request.getParameter("revContent"));
-                        reviewDto.setRevRate(Integer.parseInt(request.getParameter("revRate")));
-                        reviewDto.setReserveCode(reserveCode);
-                        HomeAspect.logger.info(HomeAspect.logMsg + "reviewDto: " + reviewDto.toString());
-
-                        int check = guestHouseDao.writeReview(reviewDto);
-                        HomeAspect.logger.info(HomeAspect.logMsg + "write-Check: " + check);
-
-                        mav.addObject("check", check);
-                        mav.addObject("houseCode", houseCode);
-                        mav.setViewName("guestHousePage/reviewOk.tiles");
-                    }
-                }
-            }
-        } else { // 게스트하우스 예약 번호가 없으면
-            mav.addObject("getReserveCode", getReserveCode);
-            mav.addObject("houseCode", houseCode);
-            mav.setViewName("guestHousePage/reviewOk.tiles");
-        }
-
-    }
-
-    public void reviewUpdate(ModelAndView mav) {
-        Map<String, Object> map = mav.getModelMap();
-        HttpServletRequest request = (HttpServletRequest) map.get("request");
-
-        int reserveCode = Integer.parseInt(request.getParameter("reserveCode"));
-        int memberCode = Integer.parseInt(request.getParameter("memberCode"));
-
-        String revContent = request.getParameter("revContent");
-        HomeAspect.logger.info(HomeAspect.logMsg + "reserveCode: " + reserveCode + ", memberCode: " + memberCode);
-
-        HouseReviewDto reviewDto = guestHouseDao.reviewUpdate(memberCode, reserveCode);
-
-        mav.addObject("reviewDto", reviewDto);
-        mav.addObject("reserveCode", reserveCode);
-        mav.addObject("memberCode", memberCode);
-        mav.addObject("revContent", revContent);
-
-        mav.setViewName("guestHousePage/reviewUpdate.empty");
-
-    }
-
-    public void reviewUpdateOk(ModelAndView mav) {
-        Map<String, Object> map = mav.getModelMap();
-        HttpServletRequest request = (HttpServletRequest) map.get("request");
-        HttpServletResponse response = (HttpServletResponse) map.get("response");
-
-        HouseReviewDto reviewDto = (HouseReviewDto) map.get("reviewDto");
-        reviewDto.setRevDate(new Date());
-
-        HomeAspect.logger.info(HomeAspect.logMsg + reviewDto.toString());
-
-        int check = guestHouseDao.reviewUpdateOk(reviewDto);
-
-        mav.addObject("check");
-        response.setContentType("application/x-json;charset=utf-8");
-
-        try {
-            PrintWriter out = response.getWriter();
-            out.print(check);
-            out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void reviewDelete(ModelAndView mav) {
-        Map<String, Object> map = mav.getModelMap();
-        HttpServletRequest request = (HttpServletRequest) map.get("request");
-
-        int reserveCode = Integer.parseInt(request.getParameter("reserveCode"));
-        int pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
-        int houseCode = Integer.parseInt(request.getParameter("houseCode"));
-
-        HomeAspect.logger.info(HomeAspect.logMsg + "reserveCode : " + reserveCode + ", " + houseCode);
-
-        int check = guestHouseDao.reviewDelete(reserveCode);
-        HomeAspect.logger.info(HomeAspect.logMsg + "check : " + check);
-
-        mav.addObject("pageNumber", pageNumber);
-        mav.addObject("check", check);
-        mav.addObject("houseCode", houseCode);
-
-        mav.setViewName("guestHousePage/reviewDelete.tiles");
     }
 
     /* 예약 가능 인원 확인 */

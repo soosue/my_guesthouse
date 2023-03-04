@@ -34,7 +34,7 @@
                     <td align="center" height="20" width="70">${status.count}</td>
                     <td align="center" height="20" width="300">
 
-                        <a href="${root}/guestHousePage/guestHouse.do?houseCode=${newHouseResDto.houseCode}">${newHouseResDto.houseName}</a>
+                        <a href="${root}/guesthouses/details.page?houseCode=${newHouseResDto.houseCode}">${newHouseResDto.houseName}</a>
 
                     </td>
                     <td align="center" height="20" width="200"><fmt:formatDate

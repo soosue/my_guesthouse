@@ -56,11 +56,11 @@
                                               style="background: #008489; border: 1px solid #008489; line-height: 1rem; margin-top: -0.1rem;"
                                               data-target="#myHouseModal${status.count}">수정</button></span> <span><button
                             type="button" class="btn btn-primary btn-lg"
-                            data-toggle="modal"
+                            onclick="deleteReview('${houseReview.reserveCode}')"
                             style="background: #008489; border: 1px solid #008489; line-height: 1rem; margin-top: -0.1rem;"
-                            data-target="#houseDelModal${status.count}">삭제</button></span>
+                            >삭제</button></span>
                         <span style="margin-left: 25.5rem;">
-										<a href="${root}/guestHousePage/guestHouse.do?houseCode=${houseReview.houseCode}">${houseReview.houseName}</a>
+										<a href="${root}/guesthouses/details.page?houseCode=${houseReview.houseCode}">${houseReview.houseName}</a>
 										
 										</span>
                     </div>
@@ -68,34 +68,6 @@
                     <br/>
                     <br/>
                     <br/>
-
-                    <!-- 삭제 Modal -->
-                    <div class="modal fade" id="houseDelModal${status.count}" tabindex="-1"
-                         role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title" id="myModalLabel"
-                                        style="text-align: left">후기 삭제</h4>
-                                    <button type="button" class="close" data-dismiss="modal"
-                                            aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">선택한 후기를 삭제하시겠습니까?</div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary"
-                                            style="background: #008489; border: 1px solid #008489;"
-                                            onclick="delHouseRev('${root}','${houseReview.reserveCode}')">네
-                                    </button>
-                                    <button type="button" class="btn btn-default"
-                                            data-dismiss="modal">닫기
-                                    </button>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <!-- 수정 Modal -->
                     <div class="modal fade" id="myHouseModal${status.count}" tabindex="-1"
@@ -117,7 +89,7 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-primary"
                                             style="background: #008489; border: 1px solid #008489;"
-                                            onclick="houseUpdateOk('${root}','${houseReview.reserveCode}','${status.count}')">
+                                            onclick="updateReviewWithModalIdx('${houseReview.reserveCode}','${status.count}','${houseReview.revRate}')">
                                         수정완료
                                     </button>
                                     <button type="button" class="btn btn-default"
@@ -128,7 +100,6 @@
                             </div>
                         </div>
                     </div>
-
                 </c:forEach>
                 </tbody>
             </table>

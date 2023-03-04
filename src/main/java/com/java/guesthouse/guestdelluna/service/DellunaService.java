@@ -7,6 +7,8 @@ import com.java.guesthouse.host.service.dto.ExReviewListDto;
 import com.java.guesthouse.host.service.dto.HostExListDto;
 import com.java.guesthouse.host.service.dto.HostHouseListDto;
 import com.java.guesthouse.host.service.dto.HouseReviewListDto;
+import com.java.guesthouse.review.domain.ReviewRepository;
+
 import lombok.RequiredArgsConstructor;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONValue;
@@ -30,6 +32,7 @@ import java.util.Map;
 public class DellunaService {
 
     private final DellunaDao dellunaDao;
+    private final ReviewRepository reviewRepository;
 
     // 찜목록불러오기
     public void zzimlist(ModelAndView mav) {
@@ -198,30 +201,6 @@ public class DellunaService {
         return null;
     }
 
-    public String reviewUpdate(ModelAndView mav) {
-        // TODO Auto-generated method stub
-
-        Map<String, Object> map = mav.getModelMap();
-        HttpServletRequest request = (HttpServletRequest) map.get("request");
-
-        HttpSession session = request.getSession();
-        String email = (String) session.getAttribute("email");
-        HomeAspect.logger.info(HomeAspect.logMsg + email);
-
-        int memberCode = dellunaDao.selectMemberCode(email);
-        HomeAspect.logger.info(HomeAspect.logMsg + memberCode);
-
-        int exReserveCode = Integer.parseInt(request.getParameter("exValue"));
-        HomeAspect.logger.info(HomeAspect.logMsg + "넘어온 체험 예약 번호 : " + exReserveCode);
-
-        // dto받아서 셀렉트
-        ExpReviewDto expReviewDto = dellunaDao.findMyReview(memberCode, exReserveCode);
-        HomeAspect.logger.info(HomeAspect.logMsg + "받아온 리뷰 DTO : " + expReviewDto);
-
-        return null;
-
-    }
-
     // 체험후기수정
     public void reviewUpdateOk(ModelAndView mav) {
         // TODO Auto-generated method stub
@@ -317,107 +296,22 @@ public class DellunaService {
         mav.setViewName("guestdelluna/reviewExp.empty");
     }
 
-    public void revHouseAjax(ModelAndView mav) {
-        // TODO Auto-generated method stub
-        Map<String, Object> map = mav.getModelMap();
-        HttpServletRequest request = (HttpServletRequest) map.get("request");
+    public void getMyGuestHouseReviews(ModelAndView mav, Long memberId, int page) {
 
-        HttpSession session = request.getSession();
-        String email = (String) session.getAttribute("email");
-        HomeAspect.logger.info(HomeAspect.logMsg + email);
-
-        int memberCode = dellunaDao.selectMemberCode(email);
-        HomeAspect.logger.info(HomeAspect.logMsg + memberCode);
-
-        String usePageNumber = request.getParameter("usePageNumber");
-        if (usePageNumber.equals("")) {
-            usePageNumber = "1";
-        }
-
-        int useCurrentPage = Integer.parseInt(usePageNumber);
-        HomeAspect.logger.info(HomeAspect.logMsg + "현재 페이지 : " + useCurrentPage);
-
-        int countHouseReview = dellunaDao.houseReviewCount(memberCode);
-        HomeAspect.logger.info(HomeAspect.logMsg + "게하 후기 개수  : " + countHouseReview);
-
+        int countHouseReview = reviewRepository.countByMemberId(memberId);;
         int countExpReview = 10000000;
 
         int boardSize = 5;
-
-        int startRow = (useCurrentPage - 1) * boardSize + 1;
+        int startRow = (page - 1) * boardSize + 1;
         int endRow = startRow + boardSize - 1;
 
-        HomeAspect.logger.info(HomeAspect.logMsg + startRow + "," + endRow);
-
-        List<NewHouseReviewDto> myHousereviewList = null;
-
-        if (countHouseReview > 0) {
-            myHousereviewList = dellunaDao.myHousereviewList(memberCode, startRow, endRow);
-            HomeAspect.logger.info(HomeAspect.logMsg + "내가 쓴 게하후기 : " + myHousereviewList.toString());
-        }
+        List<NewHouseReviewDto> guestHouseReviews = dellunaDao.getMyGuestHouseReviews(memberId, startRow, endRow);
 
         mav.addObject("countExpReview", countExpReview);
         mav.addObject("countHouseReview", countHouseReview);
-        mav.addObject("myHousereviewList", myHousereviewList);
+        mav.addObject("myHousereviewList", guestHouseReviews);
         mav.addObject("boardSize", boardSize);
-        mav.addObject("useCurrentPage", useCurrentPage);
-        mav.setViewName("guestdelluna/reviewHouse.empty");
-    }
-
-    // 내가 쓴 리뷰 리스트
-    public void myReviewList(ModelAndView mav) {
-        // TODO Auto-generated method stub
-
-        Map<String, Object> map = mav.getModelMap();
-        HttpServletRequest request = (HttpServletRequest) map.get("request");
-
-        HttpSession session = request.getSession();
-        String email = (String) session.getAttribute("email");
-        HomeAspect.logger.info(HomeAspect.logMsg + email);
-
-        int memberCode = dellunaDao.selectMemberCode(email);
-        HomeAspect.logger.info(HomeAspect.logMsg + memberCode);
-
-        MemberDto memberDto = dellunaDao.selectForUpdate(email);
-
-        String pageNumber = request.getParameter("pageNumber");
-
-        if (pageNumber == null) {
-            pageNumber = "1";
-        }
-        int currentPage = Integer.parseInt(pageNumber);
-        int boardSize = 5;
-
-        int startRow = (currentPage - 1) * boardSize + 1;
-        int endRow = startRow + boardSize - 1;
-
-        HomeAspect.logger.info(HomeAspect.logMsg + startRow + "," + endRow);
-
-        int countExpReview = dellunaDao.expReviewCount(memberCode);
-        HomeAspect.logger.info(HomeAspect.logMsg + "체험 후기 개수 : " + countExpReview);
-
-        List<NewExpReviewDto> myExpreviewList = null;
-        if (countExpReview > 0) {
-            myExpreviewList = dellunaDao.myExpreviewList(memberCode, startRow, endRow);
-            HomeAspect.logger.info(HomeAspect.logMsg + "내가 쓴 체험후기 : " + myExpreviewList.toString());
-        }
-
-        int countHouseReview = dellunaDao.houseReviewCount(memberCode);
-        HomeAspect.logger.info(HomeAspect.logMsg + "게하 후기 개수  : " + countHouseReview);
-
-        List<NewHouseReviewDto> myHousereviewList = null;
-
-        if (countHouseReview > 0) {
-            myHousereviewList = dellunaDao.myHousereviewList(memberCode, startRow, endRow);
-            HomeAspect.logger.info(HomeAspect.logMsg + "내가 쓴 게하후기 : " + myHousereviewList.toString());
-        }
-
-        mav.addObject("countHouseReview", countHouseReview);
-        mav.addObject("countExpReview", countExpReview);
-        mav.addObject("memberDto", memberDto);
-
-        mav.setViewName("guestdelluna/myReviewList.tiles");
-
+        mav.addObject("useCurrentPage", page);
     }
 
     // 내가 예약한 게스트하우스 , 찜 목록 조회
@@ -434,8 +328,6 @@ public class DellunaService {
 
         int memberCode = dellunaDao.selectMemberCode(email);
         HomeAspect.logger.info(HomeAspect.logMsg + memberCode);
-
-        dellunaDao.houseInfo(memberCode, 3);
 
         // 게하 예약수 조회
         int countHouse = dellunaDao.countHouse(memberCode);
@@ -934,29 +826,6 @@ public class DellunaService {
 
     }
 
-    public void houseReviewDelete(ModelAndView mav) {
-        // TODO Auto-generated method stub
-        Map<String, Object> map = mav.getModelMap();
-
-        HttpServletRequest request = (HttpServletRequest) map.get("request");
-
-        HttpSession session = request.getSession();
-        String email = (String) session.getAttribute("email");
-        HomeAspect.logger.info(HomeAspect.logMsg + email);
-
-        int memberCode = dellunaDao.selectMemberCode(email);
-        HomeAspect.logger.info(HomeAspect.logMsg + memberCode);
-
-        int reserveCode = Integer.parseInt(request.getParameter("hsValue"));
-        HomeAspect.logger.info(HomeAspect.logMsg + "reserveCode : " + reserveCode);
-
-        int check = dellunaDao.deleteHouseReview(reserveCode, memberCode);
-        HomeAspect.logger.info(HomeAspect.logMsg + check);
-        mav.addObject("check", check);
-        mav.setViewName("guestdelluna/reviewDeleteOk.tiles");
-
-    }
-
     public void deleteAllMsg(ModelAndView mav) {
         // TODO Auto-generated method stub
         Map<String, Object> map = mav.getModelMap();
@@ -1133,29 +1002,6 @@ public class DellunaService {
         HomeAspect.logger.info(HomeAspect.logMsg + "수신 확인이 잘 됐다면 : " + check);
 
     }
-
-    public void houseReviewUpdateOk(ModelAndView mav) {
-        // TODO Auto-generated method stub
-        Map<String, Object> map = mav.getModelMap();
-
-        HttpServletRequest request = (HttpServletRequest) map.get("request");
-
-        HttpSession session = request.getSession();
-        String email = (String) session.getAttribute("email");
-        HomeAspect.logger.info(HomeAspect.logMsg + email);
-
-        int memberCode = dellunaDao.selectMemberCode(email);
-        HomeAspect.logger.info(HomeAspect.logMsg + memberCode);
-
-        int reserveCode = Integer.parseInt(request.getParameter("houseUpResCode"));
-        HomeAspect.logger.info(HomeAspect.logMsg + "리케스트로 받은 하우스예약번호는 : " + reserveCode);
-
-        String revContent = request.getParameter("houseRevContent");
-        HomeAspect.logger.info(HomeAspect.logMsg + "리케스트로 받은 수정내뇽 : " + revContent);
-
-        int check = dellunaDao.updateHouseReview(memberCode, reserveCode, revContent);
-    }
-
 
     public void doExZzim(String memberCode, String exCode, String zzim) {
 

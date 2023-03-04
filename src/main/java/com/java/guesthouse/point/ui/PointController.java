@@ -15,10 +15,10 @@ import com.java.guesthouse.point.service.dto.PointResponse;
 import com.java.guesthouse.point.service.dto.PointUsesResponse;
 
 @Controller
-public class PointController2 {
+public class PointController {
     private final PointService pointService;
 
-    public PointController2(PointService pointService) {
+    public PointController(PointService pointService) {
         this.pointService = pointService;
     }
 
@@ -28,7 +28,7 @@ public class PointController2 {
         return ResponseEntity.ok(pointService.getPointByMemberId(memberId));
     }
 
-    @GetMapping("/v1/pointaccumulates/me")
+    @GetMapping("/v1/point-accumulates/me")
     public ResponseEntity<PointAccumulatesResponse> getMyPointAccumulates(
             HttpSession session,
             @PageableDefault(size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable
@@ -37,7 +37,7 @@ public class PointController2 {
         return ResponseEntity.ok(pointService.getPointAccumulates(memberId, pageable));
     }
 
-    @GetMapping("/v1/pointuses/me")
+    @GetMapping("/v1/point-uses/me")
     public ResponseEntity<PointUsesResponse> getMyPointUses(
             HttpSession session,
             @PageableDefault(size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable

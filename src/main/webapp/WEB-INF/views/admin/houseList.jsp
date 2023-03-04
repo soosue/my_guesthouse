@@ -47,7 +47,6 @@
 
                 <tr>
                     <td>
-                            <%-- <button onclick="window.open('${root}/guestHousePage/guestHouse.do?memberCode=${hostDto.memberCode}&houseCode=${hostDto.houseCode}','window_name','width=430,height=500,location=no,status=no,scrollbars=yes')">${hostDto.houseName}</button> --%>
                             ${hostDto.houseName}
                         <input type="hidden" name="houseCode" value="${hostDto.houseCode}"/>
                     </td>
@@ -59,7 +58,7 @@
                     <td>
                         <button style="margin-left: 4rem;" class="btn btn-outline-warning btn-xs" data-title="Edit"
                                 data-toggle="modal" data-target="#edit"
-                                onclick="window.open('${root}/guestHousePage/guestHouse.do?exApp=1&memberCode=${hostDto.memberCode}&houseCode=${hostDto.houseCode}','window_name','width=1300,height=700,location=no,status=no,scrollbars=yes')">
+                                onclick="window.open('${root}/guesthouses/details.page?exApp=1&memberCode=${hostDto.memberCode}&houseCode=${hostDto.houseCode}','window_name','width=1300,height=700,location=no,status=no,scrollbars=yes')">
                             <i class="fa fa-mail-forward"></i></button>
                     </td>
 

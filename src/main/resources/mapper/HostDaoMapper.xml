@@ -386,46 +386,6 @@
         ]]>
     </select>
 
-    <select id="getMyHouseReviewListScroll" parameterType="java.util.Map"
-            resultType="com.java.guesthouse.guestdelluna.service.dto.MyHouseReviewList">
-        <![CDATA[
-        select *
-        from (select rownum rnum, A.*
-              from (select h.houseName, f.mainImgName, r.reserveCode, rv.revContent, rv.revDate
-                    from house h
-                             inner join filelist f
-                                        on h.houseCode = f.houseCode
-                             left outer join reservation r
-                                             on h.houseCode = r.houseCode
-                             left outer join review rv
-                                             on r.reserveCode = rv.reserveCode
-                    where NOT f.mainImgName is NULL
-                      and rv.memberCode = #{memberCode}) A)
-        where rnum >= #{startRow}
-          and rnum <= #{endRow}
-        ]]>
-    </select>
-
-    <select id="getMyExReviewListScroll" parameterType="java.util.Map"
-            resultType="com.java.guesthouse.guestdelluna.service.dto.MyExReviewList">
-        <![CDATA[
-        select *
-        from (select rownum rnum, A.*
-              from (select e.exName, f.mainImgName, r.exreserveCode, rv.revContent, rv.revDate
-                    from experience e
-                             inner join exfilelist f
-                                        on e.exCode = f.exCode
-                             left outer join exreserve r
-                                             on e.exCode = r.exCode
-                             left outer join exreview rv
-                                             on r.exreserveCode = rv.exreserveCode
-                    where NOT f.mainImgName is NULL
-                      and rv.memberCode = #{memberCode}) A)
-        where rnum >= #{startRow}
-          and rnum <= #{endRow}
-        ]]>
-    </select>
-
     <select id="getHouseReviewCount" parameterType="int" resultType="int">
         select count(*)
         from house h
