@@ -20,6 +20,10 @@ import com.java.guesthouse.member.service.dto.LoginMember;
 import com.java.guesthouse.member.service.dto.LoginRequest;
 import com.java.guesthouse.member.service.dto.MemberSaveRequest;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+
 @Controller
 public class MemberController {
 
@@ -58,7 +62,8 @@ public class MemberController {
 
     @ResponseBody
     @GetMapping(value = "/v1/members/check")
-    public String checkEmail(@RequestParam String email) {
+    @Operation(summary = "이메일 중복확인", description = "이메일을 이용하여 이미 가입된 이메일인지 확인합니다.")
+    public String checkEmail(@Parameter(name = "email", description = "이메일", in = ParameterIn.QUERY) @RequestParam String email) {
 
         int check = memberService.checkEmail(email);
 
