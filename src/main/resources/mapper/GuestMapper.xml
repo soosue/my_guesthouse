@@ -31,18 +31,6 @@
         where email = #{email}
     </update>
 
-    <insert id="doZzim" parameterType="java.util.Map">
-        insert into wishList(memberCode, houseCode)
-        values (#{memberCode}, #{houseCode})
-    </insert>
-
-    <delete id="cancelZzim" parameterType="java.util.Map">
-        delete
-        from wishList
-        where memberCode = #{memberCode}
-          and houseCode = #{houseCode}
-    </delete>
-
     <insert id="doExZzim" parameterType="java.util.Map">
         insert into exWishList(memberCode, exCode)
         values (#{memberCode}, #{exCode})
@@ -165,13 +153,6 @@
         delete
         from exwishlist
         where exCode = #{exCode}
-          and membercode = #{memberCode}
-    </delete>
-
-    <delete id="deleteHouseZzim" parameterType="java.util.Map">
-        delete
-        from wishlist
-        where houseCode = #{houseCode}
           and membercode = #{memberCode}
     </delete>
 
