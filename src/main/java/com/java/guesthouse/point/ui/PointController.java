@@ -16,6 +16,11 @@ import com.java.guesthouse.point.service.dto.PointAccumulateResponse;
 import com.java.guesthouse.point.service.dto.PointResponse;
 import com.java.guesthouse.point.service.dto.PointUseResponse;
 
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @RestController
 @RequestMapping("/v1/points")
 public class PointController {
@@ -32,9 +37,13 @@ public class PointController {
     }
 
     @GetMapping("/accumulates/me")
+    @Parameter(name = "page", in = ParameterIn.QUERY, description = "페이지 번호 0..n",
+            content = @Content(schema = @Schema(type = "integer", defaultValue = "0")))
+    @Parameter(name = "size", in = ParameterIn.QUERY, description = "페이지 크기",
+            content = @Content(schema = @Schema(type = "integer", defaultValue = "5")))
     public ResponseEntity<ListResponse<PointAccumulateResponse>> getMyPointAccumulates(
             HttpSession session,
-            @PageableDefault(size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable
+            @Parameter(hidden = true) @PageableDefault(size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable
     ) {
         Long memberId = getMemberId(session);
         return ResponseEntity.ok(pointService.getPointAccumulates(memberId, pageable));
