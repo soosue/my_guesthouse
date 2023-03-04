@@ -44,7 +44,7 @@ public class OpenAPIConfiguration {
     @Bean
     public GroupedOpenApi wishlistOpenApi() {
         return GroupedOpenApi.builder()
-                .group("찜하기")
+                .group("위시리스트")
                 .pathsToMatch("/v1/wishlists/**")
                 .build();
     }
