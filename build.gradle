@@ -39,6 +39,9 @@ dependencies {
     //springdoc
     implementation 'org.springdoc:springdoc-openapi-ui:1.6.7'
 
+    //h2
+    implementation 'com.h2database:h2'
+
     runtimeOnly 'com.oracle.database.jdbc:ojdbc8:21.5.0.0'
     compileOnly 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

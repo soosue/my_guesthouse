@@ -19,7 +19,7 @@ public class DbConfiguration {
         this.applicationContext = applicationContext;
     }
 
-    @Bean
+//    @Bean
     public DataSource dataSource() {
         HikariDataSource dataSource = new HikariDataSource();
         dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
@@ -34,17 +34,17 @@ public class DbConfiguration {
     }
 
     @Bean
-    public SqlSessionFactory sqlSessionFactory() throws Exception {
+    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-        sqlSessionFactoryBean.setDataSource(dataSource());
+        sqlSessionFactoryBean.setDataSource(dataSource);
         sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:mapper/**/*.xml"));
 
         return sqlSessionFactoryBean.getObject();
     }
 
     @Bean
-    public SqlSessionTemplate sqlSessionTemplate() throws Exception {
-        return new SqlSessionTemplate(sqlSessionFactory());
+    public SqlSessionTemplate sqlSessionTemplate(DataSource dataSource) throws Exception {
+        return new SqlSessionTemplate(sqlSessionFactory(dataSource));
     }
 
 }
