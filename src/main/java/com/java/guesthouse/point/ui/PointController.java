@@ -6,15 +6,23 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.java.guesthouse.point.service.PointService;
-import com.java.guesthouse.point.service.dto.PointAccumulatesResponse;
+import com.java.guesthouse.point.service.dto.ListResponse;
+import com.java.guesthouse.point.service.dto.PointAccumulateResponse;
 import com.java.guesthouse.point.service.dto.PointResponse;
-import com.java.guesthouse.point.service.dto.PointUsesResponse;
+import com.java.guesthouse.point.service.dto.PointUseResponse;
 
-@Controller
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@RestController
+@RequestMapping("/v1/points")
 public class PointController {
     private final PointService pointService;
 
@@ -22,23 +30,27 @@ public class PointController {
         this.pointService = pointService;
     }
 
-    @GetMapping("/v1/points/me")
+    @GetMapping("/me")
     public ResponseEntity<PointResponse> getMyPoint(HttpSession session) {
         Long memberId = getMemberId(session);
         return ResponseEntity.ok(pointService.getPointByMemberId(memberId));
     }
 
-    @GetMapping("/v1/point-accumulates/me")
-    public ResponseEntity<PointAccumulatesResponse> getMyPointAccumulates(
+    @GetMapping("/accumulates/me")
+    @Parameter(name = "page", in = ParameterIn.QUERY, description = "페이지 번호 0..n",
+            content = @Content(schema = @Schema(type = "integer", defaultValue = "0")))
+    @Parameter(name = "size", in = ParameterIn.QUERY, description = "페이지 크기",
+            content = @Content(schema = @Schema(type = "integer", defaultValue = "5")))
+    public ResponseEntity<ListResponse<PointAccumulateResponse>> getMyPointAccumulates(
             HttpSession session,
-            @PageableDefault(size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable
+            @Parameter(hidden = true) @PageableDefault(size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable
     ) {
         Long memberId = getMemberId(session);
         return ResponseEntity.ok(pointService.getPointAccumulates(memberId, pageable));
     }
 
-    @GetMapping("/v1/point-uses/me")
-    public ResponseEntity<PointUsesResponse> getMyPointUses(
+    @GetMapping("/uses/me")
+    public ResponseEntity<ListResponse<PointUseResponse>> getMyPointUses(
             HttpSession session,
             @PageableDefault(size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable
     ) {

@@ -5,17 +5,16 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.java.guesthouse.point.domain.PointUse;
-import com.java.guesthouse.point.domain.PointUseRepository;
 import com.java.guesthouse.member.domain.Member;
 import com.java.guesthouse.member.service.MemberService;
 import com.java.guesthouse.point.domain.PointAccumulate;
 import com.java.guesthouse.point.domain.PointAccumulateRepository;
+import com.java.guesthouse.point.domain.PointUse;
+import com.java.guesthouse.point.domain.PointUseRepository;
+import com.java.guesthouse.point.service.dto.ListResponse;
 import com.java.guesthouse.point.service.dto.PointAccumulateResponse;
-import com.java.guesthouse.point.service.dto.PointAccumulatesResponse;
 import com.java.guesthouse.point.service.dto.PointResponse;
 import com.java.guesthouse.point.service.dto.PointUseResponse;
-import com.java.guesthouse.point.service.dto.PointUsesResponse;
 
 @Service
 @Transactional(readOnly = true)
@@ -30,9 +29,9 @@ public class PointService {
         this.memberService = memberService;
     }
 
-    public PointAccumulatesResponse getPointAccumulates(Long memberId, Pageable pageable) {
+    public ListResponse<PointAccumulateResponse> getPointAccumulates(Long memberId, Pageable pageable) {
         Page<PointAccumulate> pointAccumulates = pointAccumulateRepository.findByMemberId(memberId, pageable);
-        return PointAccumulatesResponse.of(
+        return ListResponse.of(
                 pointAccumulates.stream()
                         .map(PointAccumulateResponse::from)
                         .toList(),
@@ -40,9 +39,9 @@ public class PointService {
         );
     }
 
-    public PointUsesResponse getPointUses(Long memberId, Pageable pageable) {
+    public ListResponse<PointUseResponse> getPointUses(Long memberId, Pageable pageable) {
         Page<PointUse> pointUses = pointUseRepository.findByMemberId(memberId, pageable);
-        return PointUsesResponse.of(
+        return ListResponse.of(
                 pointUses.stream()
                         .map(PointUseResponse::from)
                         .toList(),
